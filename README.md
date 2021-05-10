@@ -8,3 +8,6 @@ Branch naming conventions:
      - change (ändringar i befintlig kod eller design utan att det är en bug inblandad)
 
 
+VUE FrontEnd:
+     - In Visual Code Run Server with: npm run serve
+
