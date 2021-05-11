@@ -20,7 +20,7 @@ namespace HolidayMaker_API.Models
         public bool IsPending { get; set; }
         public bool IsCancelled { get; set; }
         public double TotalPrice { get; set; }
-        public int FlightId { get; set; }
+        public int? FlightId { get; set; }
         public int CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }

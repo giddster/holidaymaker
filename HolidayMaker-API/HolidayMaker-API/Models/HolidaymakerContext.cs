@@ -62,7 +62,6 @@ namespace HolidayMaker_API.Models
                 entity.HasOne(d => d.Flight)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.FlightId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Booking__FlightI__797309D9");
             });
 
