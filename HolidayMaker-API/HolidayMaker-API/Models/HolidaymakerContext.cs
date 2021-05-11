@@ -6,18 +6,19 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HolidayMaker_API.Models
 {
-    public partial class HolidaymakerContext : DbContext
+    public partial class HolidayMakerContext : DbContext
     {
-        public HolidaymakerContext()
+        public HolidayMakerContext()
         {
         }
 
-        public HolidaymakerContext(DbContextOptions<HolidaymakerContext> options)
+        public HolidayMakerContext(DbContextOptions<HolidayMakerContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<BookingXroom> BookingXrooms { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Destination> Destinations { get; set; }
         public virtual DbSet<FavoriteHotel> FavoriteHotels { get; set; }
@@ -34,13 +35,13 @@ namespace HolidayMaker_API.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.\\sqlexpress;Database=Holidaymaker;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=tcp:grupp3holidaymaker.database.windows.net;Database=HolidayMaker;Persist Security Info=False;User ID=yahya;Password=Password1;Encrypt=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Finnish_Swedish_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Booking>(entity =>
             {
@@ -56,13 +57,33 @@ namespace HolidayMaker_API.Models
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Booking__Custome__4D94879B");
+                    .HasConstraintName("FK__Booking__Custome__7A672E12");
 
                 entity.HasOne(d => d.Flight)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.FlightId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Booking__FlightI__4CA06362");
+                    .HasConstraintName("FK__Booking__FlightI__797309D9");
+            });
+
+            modelBuilder.Entity<BookingXroom>(entity =>
+            {
+                entity.HasKey(e => new { e.RoomId, e.BookingId })
+                    .HasName("PK__BookingX__F5BF689745960560");
+
+                entity.ToTable("BookingXRoom");
+
+                entity.HasOne(d => d.Booking)
+                    .WithMany(p => p.BookingXrooms)
+                    .HasForeignKey(d => d.BookingId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__BookingXR__Booki__7E37BEF6");
+
+                entity.HasOne(d => d.Room)
+                    .WithMany(p => p.BookingXrooms)
+                    .HasForeignKey(d => d.RoomId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__BookingXR__RoomI__7D439ABD");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -131,7 +152,13 @@ namespace HolidayMaker_API.Models
                     .WithMany(p => p.FavoriteHotels)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FavoriteH__Custo__3C69FB99");
+                    .HasConstraintName("FK__FavoriteH__Custo__70DDC3D8");
+
+                entity.HasOne(d => d.Hotel)
+                    .WithMany(p => p.FavoriteHotels)
+                    .HasForeignKey(d => d.HotelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__FavoriteH__Hotel__6FE99F9F");
             });
 
             modelBuilder.Entity<Flight>(entity =>
@@ -156,7 +183,7 @@ namespace HolidayMaker_API.Models
                     .WithMany(p => p.Flights)
                     .HasForeignKey(d => d.DestinationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Flight__Destinat__4316F928");
+                    .HasConstraintName("FK__Flight__Destinat__693CA210");
             });
 
             modelBuilder.Entity<Hotel>(entity =>
@@ -181,17 +208,11 @@ namespace HolidayMaker_API.Models
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Destination)
+                entity.HasOne(d => d.Destionation)
                     .WithMany(p => p.Hotels)
-                    .HasForeignKey(d => d.DestinationId)
+                    .HasForeignKey(d => d.DestionationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Hotel__Destinati__3F466844");
-
-                entity.HasOne(d => d.FavoriteHotels)
-                    .WithMany(p => p.Hotels)
-                    .HasForeignKey(d => d.FavoriteHotelsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Hotel__FavoriteH__403A8C7D");
+                    .HasConstraintName("FK__Hotel__Destionat__628FA481");
             });
 
             modelBuilder.Entity<HotelImage>(entity =>
@@ -200,15 +221,13 @@ namespace HolidayMaker_API.Models
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.ImageLink)
-                    .IsRequired()
-                    .IsUnicode(false);
+                entity.Property(e => e.ImageLink).IsUnicode(false);
 
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.HotelImages)
                     .HasForeignKey(d => d.HotelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__HotelImag__Hotel__49C3F6B7");
+                    .HasConstraintName("FK__HotelImag__Hotel__76969D2E");
             });
 
             modelBuilder.Entity<Review>(entity =>
@@ -223,13 +242,13 @@ namespace HolidayMaker_API.Models
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Reviews__Custome__45F365D3");
+                    .HasConstraintName("FK__Reviews__Custome__6C190EBB");
 
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.HotelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Reviews__HotelId__46E78A0C");
+                    .HasConstraintName("FK__Reviews__HotelId__6D0D32F4");
             });
 
             modelBuilder.Entity<Room>(entity =>
@@ -238,23 +257,17 @@ namespace HolidayMaker_API.Models
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.HasOne(d => d.Boking)
-                    .WithMany(p => p.Rooms)
-                    .HasForeignKey(d => d.BokingId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Room__BokingId__52593CB8");
-
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.Rooms)
                     .HasForeignKey(d => d.HotelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Room__HotelId__5070F446");
+                    .HasConstraintName("FK__Room__HotelId__656C112C");
 
-                entity.HasOne(d => d.RoomTypes)
+                entity.HasOne(d => d.RoomType)
                     .WithMany(p => p.Rooms)
-                    .HasForeignKey(d => d.RoomTypesId)
+                    .HasForeignKey(d => d.RoomTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Room__RoomTypesI__5165187F");
+                    .HasConstraintName("FK__Room__RoomTypeId__66603565");
             });
 
             modelBuilder.Entity<RoomImage>(entity =>
@@ -263,15 +276,13 @@ namespace HolidayMaker_API.Models
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.ImageLink)
-                    .IsRequired()
-                    .IsUnicode(false);
+                entity.Property(e => e.ImageLink).IsUnicode(false);
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.RoomImages)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__RoomImage__RoomI__5535A963");
+                    .HasConstraintName("FK__RoomImage__RoomI__73BA3083");
             });
 
             modelBuilder.Entity<RoomType>(entity =>

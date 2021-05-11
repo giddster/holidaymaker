@@ -9,7 +9,7 @@ namespace HolidayMaker_API.Models
     {
         public Booking()
         {
-            Rooms = new HashSet<Room>();
+            BookingXrooms = new HashSet<BookingXroom>();
         }
 
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace HolidayMaker_API.Models
 
         public virtual Customer Customer { get; set; }
         public virtual Flight Flight { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<BookingXroom> BookingXrooms { get; set; }
     }
 }

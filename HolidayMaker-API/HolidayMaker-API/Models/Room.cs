@@ -9,6 +9,7 @@ namespace HolidayMaker_API.Models
     {
         public Room()
         {
+            BookingXrooms = new HashSet<BookingXroom>();
             RoomImages = new HashSet<RoomImage>();
         }
 
@@ -16,14 +17,13 @@ namespace HolidayMaker_API.Models
         public int RoomNo { get; set; }
         public int NoOfSpareBeds { get; set; }
         public bool IsSelfCleaning { get; set; }
-        public bool IsOccupied { get; set; }
+        public bool? IsOccupied { get; set; }
         public int HotelId { get; set; }
-        public int RoomTypesId { get; set; }
-        public int BokingId { get; set; }
+        public int RoomTypeId { get; set; }
 
-        public virtual Booking Boking { get; set; }
         public virtual Hotel Hotel { get; set; }
-        public virtual RoomType RoomTypes { get; set; }
+        public virtual RoomType RoomType { get; set; }
+        public virtual ICollection<BookingXroom> BookingXrooms { get; set; }
         public virtual ICollection<RoomImage> RoomImages { get; set; }
     }
 }
