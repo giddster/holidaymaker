@@ -10,6 +10,7 @@
         placeholder="Sök resmål"
         aria-label="Search"
       />
+      <p>HÄR SKA DATE-PICKER + GÄSTER-KOMPONENTEN VARA</p>
       <MDBBtn outline="primary"> Search </MDBBtn>
     </form>
 

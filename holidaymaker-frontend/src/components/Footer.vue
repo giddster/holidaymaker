@@ -1,7 +1,8 @@
 <template>
 <footer>
+    <!-- testa antingen sätta tre spans istället för divs, eller sätta width på respektive div -->
     <div class="container-fluid">
-	<div class="row">
+	<div class="row"> 
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-4">
@@ -14,7 +15,7 @@
                      <a href="https://www.google.com/">Kontakt</a>
 				</div>
 				<div class="col-md-4">
-                    <p>App created with Vue</p>
+                    <p>App created with Vue.</p>
 				</div>
 			</div>
 		</div>
