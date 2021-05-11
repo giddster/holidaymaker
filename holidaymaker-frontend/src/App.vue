@@ -1,30 +1,31 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <Header/>
+    <Search />
+    <HelloWorld msg="HolidayMaker Grupp 3" />
+    <img src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" />
+    <Footer />
   </div>
   <router-view />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
+<script>
+// @ is an alias to /src
+import HelloWorld from "@/components/HelloWorld.vue"
+import Header from "@/components/Header.vue"
+import Footer from "@/components/Footer.vue"
+import Search from "@/components/Search.vue"
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: "Home",
+  components: {
+    HelloWorld,
+    Header,
+    Footer,
+    Search
+  },
+};
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style src="./assets/style.css"></style>
