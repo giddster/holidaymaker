@@ -8,10 +8,10 @@
                         <p>© HolidayMaker 2021</p>
                     </div>
                     <div class="col-md-4" id="middleFooterDiv">
-                        <a href="https://www.google.com/">Home</a> | 
-                        <a href="https://www.google.com/">Help/FAQ</a> |
-                        <a href="https://www.google.com/">About</a> |
-                        <a href="https://www.google.com/">Contact</a>
+                        <a href="#">Home</a> | 
+                        <a href="#">Help/FAQ</a> |
+                        <a href="#">About</a> |
+                        <a href="#">Contact</a>
                     </div>
                     <div class="col-md-4" id="rightFooterDiv">
                         <p>App created with <a href="https://vuejs.org/" target="blank">Vue</a>.</p>

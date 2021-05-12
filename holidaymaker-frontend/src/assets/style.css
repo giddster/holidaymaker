@@ -8,6 +8,8 @@
     color: #2c3e50;
   }
   
+  /* -- COMPONENTS -- */
+  
   /*HEADER COMPONENT */
   header {
     background:rgb(233, 232, 253);
@@ -134,18 +136,26 @@
     float: left;
   }
 
-  #checkInButton {
-    float: left;
-  }
-
   #checkOutDiv {
     float: center;
   }
-
+  
   #guestsButtonDiv {
     float: right;
   }
+
+  #checkInDateButton {
+    display: inline-flex;  
+  }
+
+  #checkOutDateButton {
+    display: inline-flex;
+  }
   
+  #guestsButton {
+    float: right;
+  }
+
   #checkInIcon {
     font-size: 1.5em;
     color:lightcoral;
@@ -157,20 +167,15 @@
     color:lightcoral;
   }
   
-  #guestsButton {
-    margin-left: 10px;
-    float: right;
-  }
-
+  
   #guestsIcon {
-    float: left;
     text-align: left;
     color: darkblue;
   }
 
   /*FOOTER COMPONENT */
   footer {
-    background: #b8b5ff;
+    background:rgb(233, 232, 253);
     padding: 10px;
     font-size: 18px;
   }
