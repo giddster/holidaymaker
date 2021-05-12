@@ -10,7 +10,6 @@
                     <h5 id="headerTitle"><a href="https://www.google.com/"> HolidayMaker</a></h5>
 				</div>
 				<div class="col-md-4" id="middleHeaderDiv">
-					middle div la la la
 				</div>
 				<div class="col-md-4" id="rightHeaderDiv">
                     <ProfileComponent />

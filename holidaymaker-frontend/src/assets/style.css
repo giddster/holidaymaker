@@ -1,6 +1,4 @@
 @import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
-@import "~bootstrap/dist/css/bootstrap.css";
-
 
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -104,6 +102,7 @@
     border-style: solid;
     border-width: thin;
     font-size: 18px;
+    width: fit-content;
   }
 
   #searchIcon {
