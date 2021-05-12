@@ -1,5 +1,5 @@
 @import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
-
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css);
 /* https://colorhunt.co/palette/265183 */
 
 #app {
@@ -139,11 +139,14 @@
   }
 
   #checkOutDiv {
-    float: center;
+    padding-left: 35px;
+    float: left;
   }
   
   #guestsButtonDiv {
+    padding-left: 75px;
     float: right;
+    text-align: right;
   }
 
   #checkInDateButton {
@@ -155,23 +158,26 @@
   }
   
   #guestsButton {
-    float: right;
+    display: inline-flex;
   }
 
   #checkInIcon {
+    padding-right: 10px;
     font-size: 1.5em;
     color:lightcoral;
   }
 
   #checkOutIcon {
+    padding-right: 10px;
     font-size: 1.5em;
     margin-left: 10px;
     color:lightcoral;
   }
   
-  
   #guestsIcon {
-    text-align: left;
+    padding-right: 10px;
+    font-size: 1.5em;
+    float: left;
     color: darkblue;
   }
 
