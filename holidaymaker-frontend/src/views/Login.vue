@@ -3,10 +3,10 @@
         <div class="login-page">
         <div class="form">
             <form class="login-form">
-                <input type="text" placeholder="username">
-                <input type="password" placeholder="password">
-                <button>login</button>
-                <p class="message">Not Registered? <router-link to="/register">Register</router-link></p>
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <button>Login</button>
+                <p class="message">Not registered? <router-link to="/register">Register</router-link></p>
             </form>
         </div>
         </div>

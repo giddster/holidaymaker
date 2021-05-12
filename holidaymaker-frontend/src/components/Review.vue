@@ -6,8 +6,8 @@
                 <input type="text" placeholder="Rubrik">
                 <input type="text" placeholder="Namn">
                 <p>
-                    <label for="rating">Omdöme:</label>
-                    <select id="rating" >
+                    <label class="rating">Omdöme:</label>
+                    <select id="rating">
                         <option>10</option>
                         <option>9</option>
                         <option>8</option>
@@ -72,5 +72,20 @@ export default {
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+}
+.rating{
+    color:white;
+}
+.form button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline:0;
+    background:#4CAF50;
+    width: 100%;
+    border: 0;
+    padding:15 px;
+    color:#FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
 }
 </style>
