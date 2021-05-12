@@ -23,7 +23,6 @@
                <td>
                   <input type="checkbox" id="includeFlightCheckbox"> 
                   <p id="includeFlightText"> Include flight </p>
-
                </td>
                </tr>
             </tbody>

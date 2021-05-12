@@ -80,6 +80,8 @@
     border:black;
     border-style: solid;
     border-width: thin;
+    border-radius: 10px;
+    width:75%;
   }
 
   #leftSearchDiv {
