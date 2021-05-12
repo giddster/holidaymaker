@@ -207,9 +207,9 @@ namespace HolidayMaker_API.Models
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Destionation)
+                entity.HasOne(d => d.Destination)
                     .WithMany(p => p.Hotels)
-                    .HasForeignKey(d => d.DestionationId)
+                    .HasForeignKey(d => d.DestinationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Hotel__Destionat__628FA481");
             });

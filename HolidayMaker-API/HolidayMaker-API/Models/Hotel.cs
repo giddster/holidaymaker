@@ -33,9 +33,9 @@ namespace HolidayMaker_API.Models
         public bool HasWholePension { get; set; }
         public bool HasAllInclusive { get; set; }
         public bool HasRoomService { get; set; }
-        public int DestionationId { get; set; }
+        public int DestinationId { get; set; }
 
-        public virtual Destination Destionation { get; set; }
+        public virtual Destination Destination { get; set; }
         public virtual ICollection<FavoriteHotel> FavoriteHotels { get; set; }
         public virtual ICollection<HotelImage> HotelImages { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
