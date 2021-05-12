@@ -1,4 +1,6 @@
 @import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
+@import "~bootstrap/dist/css/bootstrap.css";
+
 
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -8,28 +10,26 @@
     color: #2c3e50;
   }
   
-  #nav {
-    padding: 10px;
-  }
-  
-  #nav a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
-  
-  #nav a.router-link-exact-active {
-    color: #42b983;
-  }
-  
-  
   /* additional style */
-  header{
-    background:lightblue;
-    text-align: left;
+  header {
+    background:#b8b5ff;
+    padding: 10px;
 }
 
-  footer{
-    background: lightcoral;
+  footer {
+    background: #b8b5ff;
+    padding: 10px;
+  }
+
+  /* ICONS */
+  #hotelIcon {
+    color:lightcoral;
+    font-size: 1.5em;
+  }
+
+  #planeIcon {
+    color:coral;
+    font-size: 1.5em;
   }
 
   

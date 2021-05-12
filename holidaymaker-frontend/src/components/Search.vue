@@ -1,7 +1,7 @@
 <template>
 <div>
-    <MDBNavbar light bg="light" container>
-    <MDBNavbarBrand class="h1">
+    <!-- <MDBNavbar light bg="light" container>
+    <MDBNavbarBrand class="h">
         
       <form class="d-flex input-group w-auto">
       <input
@@ -16,6 +16,6 @@
 
     </MDBNavbarBrand>
     
-  </MDBNavbar>
+  </MDBNavbar> -->
 </div>
 </template>
