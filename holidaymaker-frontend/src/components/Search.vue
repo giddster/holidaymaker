@@ -9,14 +9,13 @@
                   <input
                   type="search"
                   class="form-control"
-                  placeholder="Search for destinations"
+                  placeholder="Search destinations"
                   aria-label="Search"
                   id="searchBox"
                   />
                   </td>
                <td>
                   <i class="fa fa-search" id="searchIcon"></i>
-  
                </td>
                </tr>
                <tr>
@@ -30,12 +29,23 @@
 		</div>
 		
       <div class="col-md-4" id="middleSearchDiv">
-         DATE/ROOM PICKER COMPONENT
+         <DRPicker />
 		</div>
 		<div class="col-md-4" id="rightSearchDiv">
-      <button type="button" class="btn btn-primary" id="searchButton">Confirm search</button>
+      <button type="button" class="btn btn-primary" id="searchButton">Search</button>
 		</div>
 	</div>
 </div>
 
 </template>
+
+<script>
+import DRPicker from "@/components/DRPicker.vue"
+
+export default {
+  components: {
+	DRPicker
+  }
+};
+
+</script>

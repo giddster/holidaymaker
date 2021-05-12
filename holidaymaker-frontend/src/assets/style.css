@@ -10,7 +10,7 @@
   
   /*HEADER COMPONENT */
   header {
-    background:rgb(215, 213, 252);
+    background:rgb(233, 232, 253);
   }
 
   #headerContainer {
@@ -74,6 +74,7 @@
   
   /* SEARCH COMPONENT */
   #searchContainer {
+    background: #e9fafd;
     margin-top: 10px;
     border:black;
     border-style: solid;
@@ -89,7 +90,6 @@
 
   #middleSearchDiv {
     margin-top: 10px;
-    float: none;  
   }
 
   #rightSearchDiv {
@@ -126,6 +126,46 @@
   
   #searchButton {
     float: right;
+  }
+
+  /*DATE AND ROOM PICKER COMPONENT */
+
+  #checkInDiv {
+    float: left;
+  }
+
+  #checkInButton {
+    float: left;
+  }
+
+  #checkOutDiv {
+    float: center;
+  }
+
+  #guestsButtonDiv {
+    float: right;
+  }
+  
+  #checkInIcon {
+    font-size: 1.5em;
+    color:lightcoral;
+  }
+
+  #checkOutIcon {
+    font-size: 1.5em;
+    margin-left: 10px;
+    color:lightcoral;
+  }
+  
+  #guestsButton {
+    margin-left: 10px;
+    float: right;
+  }
+
+  #guestsIcon {
+    float: left;
+    text-align: left;
+    color: darkblue;
   }
 
   /*FOOTER COMPONENT */
