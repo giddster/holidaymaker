@@ -10,9 +10,10 @@
                     <h5 id="headerTitle"><a href="https://www.google.com/"> HolidayMaker</a></h5>
 				</div>
 				<div class="col-md-4" id="middleHeaderDiv">
+					middle div la la la
 				</div>
 				<div class="col-md-4" id="rightHeaderDiv">
-                    PROFILE COMPONENT
+                    <ProfileComponent />
 				</div>
 			</div>
 		</div>
@@ -36,9 +37,12 @@
 </template>
 
 <script>
+import ProfileComponent from "@/components/ProfileComponent.vue"
 
-export default{
-    
-}
+export default {
+  components: {
+	ProfileComponent
+  }
+};
 
 </script>
