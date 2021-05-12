@@ -29,9 +29,10 @@ namespace HolidayMaker_API.Controllers
 
         // GET: api/FavoriteHotels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FavoriteHotel>> GetFavoriteHotel(int id)
+        public async Task<ActionResult<IEnumerable<FavoriteHotel>>> GetFavoriteHotelByUser(int id)
         {
-            var favoriteHotel = await _context.FavoriteHotels.FindAsync(id);
+            //var favoriteHotel = await _context.FavoriteHotels.FindAsync(id);
+            var favoriteHotel = await _context.FavoriteHotels.Where(fh => fh.CustomerId == id).ToListAsync();
 
             if (favoriteHotel == null)
             {
