@@ -94,6 +94,7 @@
 
   #middleSearchDiv {
     margin-top: 10px;
+    float: center;
   }
 
   #rightSearchDiv {
@@ -140,13 +141,10 @@
 
   #checkOutDiv {
     padding-left: 35px;
-    float: left;
   }
   
   #guestsButtonDiv {
-    padding-left: 75px;
-    float: right;
-    text-align: right;
+    padding-left: 65px;
   }
 
   #checkInDateButton {
@@ -170,7 +168,6 @@
   #checkOutIcon {
     padding-right: 10px;
     font-size: 1.5em;
-    margin-left: 10px;
     color:lightcoral;
   }
   
