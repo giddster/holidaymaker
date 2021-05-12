@@ -78,7 +78,7 @@
   
   /* SEARCH COMPONENT */
   #searchContainer {
-    background: #e9fafd;
+    background: rgb(246, 246, 252);
     margin-top: 10px;
     border:black;
     border-style: solid;
