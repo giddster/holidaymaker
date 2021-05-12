@@ -1,19 +1,19 @@
 <template>
 <footer>
-    <div class="container-fluid">
+    <div class="container-fluid" id="footerContainer">
         <div class="row"> 
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="leftFooterDiv">
                         <p>© HolidayMaker 2021</p>
                     </div>
-                    <div class="col-md-4">
-                        <a href="https://www.google.com/">Hem</a> | 
-                        <a href="https://www.google.com/">Hjälp</a> |
-                        <a href="https://www.google.com/">Om oss</a> |
-                        <a href="https://www.google.com/">Kontakt</a>
+                    <div class="col-md-4" id="middleFooterDiv">
+                        <a href="https://www.google.com/">Home</a> | 
+                        <a href="https://www.google.com/">Help/FAQ</a> |
+                        <a href="https://www.google.com/">About</a> |
+                        <a href="https://www.google.com/">Contact</a>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="rightFooterDiv">
                         <p>App created with <a href="https://vuejs.org/" target="blank">Vue</a>.</p>
                     </div>
                 </div>

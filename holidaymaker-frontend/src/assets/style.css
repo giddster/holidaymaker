@@ -10,27 +10,118 @@
     color: #2c3e50;
   }
   
-  /* additional style */
+  /*HEADER COMPONENT */
   header {
-    background:#b8b5ff;
-    padding: 10px;
-    text-align: left;
-}
-
-  footer {
-    background: #b8b5ff;
-    padding: 10px;
+    background:rgb(215, 213, 252);
   }
 
-  /* ICONS */
+  #headerContainer {
+    padding: 15px;
+  }
+
+  #leftHeaderDiv {
+    float: left;
+    text-align: left;
+  }
+
+  #rightHeaderDiv {
+    float: right;
+  }
+
+  #headerTitle {
+    float:left;
+    margin-left: 10px;
+  }
+
   #hotelIcon {
     color:lightcoral;
     font-size: 1.5em;
+    float: left;
   }
 
   #planeIcon {
     color:coral;
     font-size: 1.5em;
+    padding-left: 5px;
+    float: left;
   }
+  
+  /* SEARCH COMPONENT */
+  #searchContainer {
+    margin-top: 10px;
+  }
+
+  #leftSearchDiv {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #middleSearchDiv {
+    margin-top: 10px;
+    margin-bottom: 10px;  
+  }
+
+  #rightSearchDiv {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;  
+  }
+
+  #searchBox {
+    width: 85%;
+    border:black;
+    border-style: solid;
+    border-width: thin;
+    font-size: 17px;
+    float: left;
+  }
+
+  #searchIcon {
+    font-size: 1.5em;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  #includeFlightText {
+    text-align: left;
+  }
+
+  #includeFlightCheckbox {
+    margin-top: 8px;
+    margin-left: 10px; 
+    float: left;
+  }
+
+  #searchButton {
+    float: right;
+  }
+
+  /*FOOTER COMPONENT */
+  footer {
+    background: #b8b5ff;
+    padding: 10px;
+  }
+
+  #footerContainer {
+    margin-top: 10px;
+  }
+  
+  #middleFooterDiv {
+    text-align: center;
+  }
+
+  #leftFooterDiv {
+    float: left;
+    text-align: left;
+  }
+
+  #rightFooterDiv {
+    float: right;
+    text-align: right;
+  }
+
+   /* additional style */
 
   
