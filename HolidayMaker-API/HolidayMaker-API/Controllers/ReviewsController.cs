@@ -27,11 +27,30 @@ namespace HolidayMaker_API.Controllers
             return await _context.Reviews.ToListAsync();
         }
 
+
+
+        #region OLD GetReviews
+        //// GET: api/Reviews/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Review>> GetReview(int id)
+        //{
+        //    var review = await _context.Reviews.FindAsync(id);
+
+        //    if (review == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return review;
+        //}
+        #endregion
+
         // GET: api/Reviews/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Review>> GetReview(int id)
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByHotel(int id)
         {
-            var review = await _context.Reviews.FindAsync(id);
+            var review = await _context.Reviews.Where(c => c.HotelId == id).ToListAsync();
+
 
             if (review == null)
             {
@@ -40,6 +59,7 @@ namespace HolidayMaker_API.Controllers
 
             return review;
         }
+
 
         // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
