@@ -7,7 +7,7 @@
 				<div class="col-md-4">
                     <i class="fas fa-hotel" id="hotelIcon"></i>
                     <i class="fas fa-plane" id="planeIcon"></i>
-                    <h4><a href="https://www.google.com/"> HolidayMaker</a></h4>
+                    <h5><a href="https://www.google.com/"> HolidayMaker</a></h5>
 				</div>
 				<div class="col-md-4">
 				</div>
