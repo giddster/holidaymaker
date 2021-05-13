@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
 
 namespace HolidayMaker_API.Controllers
 {
@@ -14,10 +15,12 @@ namespace HolidayMaker_API.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
+        private readonly BookingService _bs;
 
-        public BookingsController(HolidayMakerContext context)
+        public BookingsController(HolidayMakerContext context, BookingService bs)
         {
             _context = context;
+            _bs = bs;
         }
 
         // GET: api/Bookings

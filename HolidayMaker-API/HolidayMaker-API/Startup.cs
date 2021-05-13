@@ -1,3 +1,4 @@
+using HolidayMaker_API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,16 @@ namespace HolidayMaker_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HolidayMaker_API", Version = "v1" });
             });
+
+            services.AddScoped(typeof(BookingService));
+            services.AddScoped(typeof(CustomerService));
+            services.AddScoped(typeof(DestinationService));
+            services.AddScoped(typeof(FavoriteHotelsService));
+            services.AddScoped(typeof(FlightService));
+            services.AddScoped(typeof(HotelService));
+            services.AddScoped(typeof(ReviewsService));
+            services.AddScoped(typeof(RoomService));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
