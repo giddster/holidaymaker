@@ -12,7 +12,7 @@ namespace HolidayMaker_API.Services
 
         public CustomerService(HolidayMakerContext holidayMakerContext)
         {
-            _holidayMakerContext = holidayMakerContext
+            _holidayMakerContext = holidayMakerContext;
         }
 
         public void RegisterCustomer(Customer customer)
