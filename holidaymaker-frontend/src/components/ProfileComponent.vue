@@ -10,6 +10,7 @@
                     <i class="fas fa-user-circle" id="profileIcon"></i>
                     <a href="#" class="profileLinks">My profile</a>
                 </td>
+                ADD MY FAVORITES HERE
             </tr>
         </tbody>
     </table>
