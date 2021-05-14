@@ -12,7 +12,7 @@
 				<div class="col-md-4" id="middleHeaderDiv">
 				</div>
 				<div class="col-md-4" id="rightHeaderDiv">
-                    <ProfileComponent />
+                    <ProfileDropdown />
 				</div>
 			</div>
 		</div>
@@ -36,11 +36,11 @@
 </template>
 
 <script>
-import ProfileComponent from "@/components/ProfileComponent.vue"
+import ProfileDropdown from "@/components/ProfileDropdown.vue"
 
 export default {
   components: {
-	ProfileComponent
+	ProfileDropdown
   }
 };
 
