@@ -20,11 +20,28 @@ namespace HolidayMaker_API.Controllers
             _context = context;
         }
 
-        // GET: api/Rooms
+        //// GET: api/Rooms
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        //{
+        //    return await _context.Rooms.ToListAsync();
+        //}
+
+        // GET: api/Rooms/GetAvailableRoomsInSpecificHotel/
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<BookingXroom>>> GetAvailableRoomsInSpecificHotel(int hotelId, DateTime checkInDate, DateTime checkOutDate, int numberOfCustomers)
         {
-            return await _context.Rooms.ToListAsync();
+            if (checkInDate < checkOutDate)
+            {
+                return await _context.BookingXrooms.Where(r =>
+                r.Room.Hotel.Id == hotelId &&
+                checkInDate > r.Booking.CheckOutDate ||
+                checkOutDate < r.Booking.CheckInDate &&
+                r.Room.RoomType.Capacity >= numberOfCustomers).ToListAsync();
+            }
+
+            return null;
+            
         }
 
         // GET: api/Rooms/5
