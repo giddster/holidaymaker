@@ -34,14 +34,14 @@ namespace HolidayMaker_API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HolidayMaker_API", Version = "v1" });
             });
 
-            services.AddScoped(typeof(BookingService));
-            services.AddScoped(typeof(CustomerService));
-            services.AddScoped(typeof(DestinationService));
-            services.AddScoped(typeof(FavoriteHotelsService));
-            services.AddScoped(typeof(FlightService));
-            services.AddScoped(typeof(HotelService));
-            services.AddScoped(typeof(ReviewsService));
-            services.AddScoped(typeof(RoomService));
+            //services.AddScoped(typeof(BookingService));
+            //services.AddScoped(typeof(CustomerService));
+            //services.AddScoped(typeof(DestinationService));
+            //services.AddScoped(typeof(FavoriteHotelsService));
+            //services.AddScoped(typeof(FlightService));
+            //services.AddScoped(typeof(HotelService));
+            //services.AddScoped(typeof(ReviewsService));
+            //services.AddScoped(typeof(RoomService));
 
         }
 

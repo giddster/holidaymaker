@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
 
+
 namespace HolidayMaker_API.Controllers
 {
     [Route("api/[controller]")]

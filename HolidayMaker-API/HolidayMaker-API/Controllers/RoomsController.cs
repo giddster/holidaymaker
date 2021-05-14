@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
 
 namespace HolidayMaker_API.Controllers
 {
@@ -14,10 +15,12 @@ namespace HolidayMaker_API.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
+        private readonly RoomService _rs;
 
-        public RoomsController(HolidayMakerContext context)
+        public RoomsController(HolidayMakerContext context, RoomService roomService)
         {
             _context = context;
+            _rs = roomService;
         }
 
         // GET: api/Rooms
@@ -25,6 +28,13 @@ namespace HolidayMaker_API.Controllers
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
             return await _context.Rooms.ToListAsync();
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Room>>> GetAllRoomsByDestinationId(int id)
+        {
+
+            return await _rs.GetAllRoomsByDestinationId(id);
         }
 
         // GET: api/Rooms/5
