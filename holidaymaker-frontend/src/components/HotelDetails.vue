@@ -37,12 +37,12 @@ export default {
 .hotel-form {
     position: relative;
     left:200px;
-    bottom:583px;
+    bottom:582px;
     z-index: 1;
-    background:rgba(238, 238, 238, 0.8);
+    background:rgb(246, 246, 252);
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 21px;
+    padding: 19px;
     text-align: left;
     border-style: solid;
     border-width:3px;
