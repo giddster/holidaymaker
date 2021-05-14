@@ -7,42 +7,34 @@
             <p class="pos3">
                 At HolidayMaker, we appreciate your questions, comments and requests.
             </p>
-            <b>Reparation och support</b>
+            <b>Customer satisfaction</b>
             <br>
             <p class="pos3">
-                Problem med din produkt? Ofta kan <a href="http://www.torktrumlar-supplier.se" target="_blank">tillverkaren</a> hjälpa dig direkt. Om de inte kan hjälpa, kan du istället kontakt vår kundtjänst.
+               We want to make sure your dream holiday becomes reality. If anything doesn't live up to your expectations, please feel free to complain about it to someone who feels like listening!
             </p>
-            <b>Spåra din leverans</b>
-            <p class="pos3">
-                Har du köpt en vara på hemsidan och undrar när den kommer? Spåra din order <a class="cs-link" href="http://www.posten.se" target="_blank">här</a>.
-            </p>
-            <b>Ångrat ditt köp?</b>
+            
+            <b>Other things</b>
             <br>
             <p class="pos3">
-                Du har som kund 7 dagar på dig att ångra ditt köp.
-            </p>
-            <b>Övriga frågor</b>
-            <br>
-            <p class="pos3">
-                Har du någon annan fråga kontaka oss via; E-post, telefon eller direkt i formuläret.
+               If you want to reach us, you can try! No promises.
             </p>
 
-            <b>Kontakta oss via E-post:</b>
+            <b>Send us an e-mail:</b>
             <br>
-            <a href="mailto:info@snurrtumlare.se" target="_blank">Info@Snurrtumlare.se</a>
+            <a href="mailto:fuhgetaboutit@holidaymaker.com" target="_blank">help_me_plz_im_dying@holidaymaker.com</a>
             <br>
             <br>
-            <b>Kontakta oss via telefon:</b>
+            <b>Give us a call (make our intern happy, he has nothing to do but answer the phone):</b>
 
             <p>+46701231234</p>
 
-            <b>Kontakta oss via formulär nedan:</b>
+            <b>Use the form below to send us an angry message:</b>
             <br>
             <br>
             <p>
                 <left>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
-                        Skriv meddelanden
+                        Write message (or haiku poem)
                     </button>
                 </left>
             </p>
@@ -56,12 +48,11 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Vad kan vi hjälpa dig med?</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">What's new, pussycat?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,23 +68,31 @@
 
                                         <div class="col-6 col-sm-12">
 
+                                             <label for="title">Your official title:</label>
+
+                                                <select name="title" id="personTitle">
+                                                <option value="Monsieur">Monsieur</option>
+                                                <option value="Señora">Señora</option>
+                                                <option value="Doctor">Dr.</option>
+                                                <option value="Time traveller">Time traveller</option>
+                                                </select> 
                                             <p>
-                                                Förnamn:<br>
+                                                First name:<br>
                                                 <input type="text" />
                                             </p>
 
                                             <p>
-                                                Efternamn:<br>
+                                                Last name:<br>
                                                 <input type="text" />
                                             </p>
 
                                             <p>
-                                                E-postadress:<br>
+                                                E-mail:<br>
                                                 <input type="text" />
                                             </p>
 
                                             <p>
-                                                Skriv meddelanden:<br>
+                                                Write a rhyme about potatoes:<br>
                                                 <textarea cols="23" rows="12"></textarea>
                                             </p>
 
@@ -110,19 +109,11 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Skicka</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-
-    $('#exampleModalCenter1').on('hidden.bs.modal', function () {
-        $('#exampleModalCenter1 form')[0].reset();
-    });
-
-
-</script>
 </template>
