@@ -77,7 +77,10 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-4">
-								Room X <button type="button" class="btn btn-danger btn-sm">Delete</button>
+								Room X 
+								<button type="button" class="btn btn-danger btn-sm">
+									Delete
+								</button>
 							</div> 
 							<div class="col-md-4 ml-auto">
 								<input type="number" id="typeNumber" class="form-control" />
