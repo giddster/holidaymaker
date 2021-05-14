@@ -8,6 +8,8 @@ import ProfileView from "/src/views/ProfileView.vue";
 import MyProfile from "/src/views/MyProfile.vue";
 import MyBookingsProfile from "/src/views/MyBookingsProfile.vue";
 import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue";
+import Help from "../views/Help.vue";
+import Contact from "../views/Contact.vue";
 
 
 const routes = [
@@ -25,16 +27,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
-  // {
-  //   path: "/help",
-  //   name: "Help",
-  //   component: Help,
-  // },
-  // {
-  //   path: "/contact",
-  //   name: "Contact",
-  //   component: Contact,
-  // },
+  {
+    path: "/help",
+    name: "Help",
+    component: Help,
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact,
+  },
   {
     path: "/login",
     name: "Login",
