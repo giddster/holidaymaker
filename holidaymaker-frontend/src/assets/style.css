@@ -55,6 +55,10 @@
   
   /* PROFILE COMPONENT */
 
+  #dropdownMenuLink {
+    background: lightcoral;
+  }
+
   #heartIcon {
     color:red;
     font-size: 1.5em;
@@ -67,7 +71,7 @@
   }
   
   #profileIcon {
-    color:blue;
+    color:coral;
     font-size: 1.5em;
     padding-left: 5px;
   }
@@ -90,7 +94,6 @@
 
   #middleSearchDiv {
     margin-top: 10px;
-    float: center;
   }
 
   #rightSearchDiv {
@@ -131,46 +134,30 @@
 
   /*DATE AND ROOM PICKER COMPONENT */
 
-  #checkInDiv {
-    float: left;
+  #datesButton {
+    display: inline-flexbox;
+    margin: auto;
+    height: min-content;
   }
 
-  #checkOutDiv {
-    padding-left: 35px;
-  }
-  
-  #guestsButtonDiv {
-    padding-left: 65px;
-  }
-
-  #checkInDateButton {
-    display: inline-flex;  
-  }
-
-  #checkOutDateButton {
-    display: inline-flex;
-  }
-  
   #guestsButton {
-    display: inline-flex;
+    display: inline-flexbox;
+    margin: auto;
+    height: min-content;
   }
 
   #checkInIcon {
-    padding-right: 10px;
     font-size: 1.5em;
     color:lightcoral;
   }
 
   #checkOutIcon {
-    padding-right: 10px;
     font-size: 1.5em;
     color:lightcoral;
   }
   
   #guestsIcon {
-    padding-right: 10px;
     font-size: 1.5em;
-    float: left;
     color:lightcoral;
   }
 

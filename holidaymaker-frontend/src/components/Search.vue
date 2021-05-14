@@ -32,7 +32,7 @@
          <DRPicker />
 		</div>
 		<div class="col-md-4" id="rightSearchDiv">
-      <button type="button" class="btn btn-primary" id="searchButton">Search</button>
+      <button type="button" class="btn btn-lg btn-primary" id="searchButton">Search</button>
 		</div>
 	</div>
 </div>
