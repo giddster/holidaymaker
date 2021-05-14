@@ -1,0 +1,193 @@
+@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
+
+/* https://colorhunt.co/palette/265183 */
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  /* -- COMPONENTS -- */
+  
+  /*HEADER COMPONENT */
+  header {
+    background:rgb(233, 232, 253);
+  }
+
+  #headerContainer {
+    padding: 15px;
+  }
+
+  #leftHeaderDiv {
+    float: left;
+    text-align: left;
+  }
+
+  #middleHeaderDiv {
+    float: none;
+  }
+
+  #rightHeaderDiv {
+    float: right;
+    text-align: right;
+  }
+
+  #headerTitle {
+    float:left;
+    margin-left: 10px;
+  }
+
+  #hotelIcon {
+    color:lightcoral;
+    font-size: 1.5em;
+    float: left;
+  }
+
+  #planeIcon {
+    color:coral;
+    font-size: 1.5em;
+    padding-left: 5px;
+    float: left;
+  }
+  
+  /* PROFILE COMPONENT */
+
+  #dropdownMenuLink {
+    background: lightcoral;
+  }
+
+  #heartIcon {
+    color:red;
+    font-size: 1.5em;
+    padding-left: 5px;
+  }
+
+  #calendarIcon {
+    color:lightcoral;
+    font-size: 1.5em;
+  }
+  
+  #profileIcon {
+    color:coral;
+    font-size: 1.5em;
+    padding-left: 5px;
+  }
+  
+  /* SEARCH COMPONENT */
+  #searchContainer {
+    background: rgb(246, 246, 252);
+    margin-top: 10px;
+    border:black;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    width:75%;
+  }
+
+  #leftSearchDiv {
+    float: left;
+    margin-top: 10px;
+  }
+
+  #middleSearchDiv {
+    margin-top: 10px;
+  }
+
+  #rightSearchDiv {
+    float: right;
+    margin-top: 10px;
+  }
+
+  #searchBox {
+    border:black;
+    border-style: solid;
+    border-width: thin;
+    font-size: 18px;
+    width: fit-content;
+  }
+
+  #searchIcon {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+  }
+
+  #includeFlightCheckbox {
+    margin-top: 5px;
+    float: left;
+  }
+
+  #includeFlightText {
+    margin-left: 10px;
+    text-align: left;
+    float: left;
+  }
+  
+  #searchButton {
+    float: right;
+  }
+
+  /*DATE AND ROOM PICKER COMPONENT */
+
+  #datesButton {
+    display: inline-flexbox;
+    margin: auto;
+    height: min-content;
+  }
+
+  #guestsButton {
+    display: inline-flexbox;
+    margin: auto;
+    height: min-content;
+  }
+
+  #checkInIcon {
+    font-size: 1.5em;
+    color:lightcoral;
+  }
+
+  #checkOutIcon {
+    font-size: 1.5em;
+    color:lightcoral;
+  }
+  
+  #guestsIcon {
+    font-size: 1.5em;
+    color:lightcoral;
+  }
+
+  /*FOOTER COMPONENT */
+  footer {
+    background:rgb(233, 232, 253);
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  #footerContainer {
+    margin-top: 10px;
+  }
+  
+  #middleFooterDiv {
+    text-align: center;
+  }
+
+  #leftFooterDiv {
+    float: left;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  #rightFooterDiv {
+    float: right;
+    text-align: right;
+    font-style: oblique;
+  }
+
+   /* additional style */
+
+  

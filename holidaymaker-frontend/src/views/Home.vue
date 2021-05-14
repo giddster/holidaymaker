@@ -1,18 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="HolidayMaker Grupp3" />
+        <img src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" style="padding:20px;" />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
-export default {
-  name: "Home",
-  components: {
-    HelloWorld,
-  },
-};
-</script>
