@@ -2,10 +2,9 @@
   <div id="nav">
     <Header/>
     <Search />
-    <SiteBody />
+    <router-view />
     <Footer />
   </div>
-  <router-view />
 </template>
 
 
@@ -13,7 +12,6 @@
 // @ is an alias to /src
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
-import SiteBody from "@/components/SiteBody.vue"
 import Search from "@/components/Search.vue"
 
 export default {
@@ -21,7 +19,6 @@ export default {
   components: {
     Header,
     Search,
-    SiteBody,
     Footer,
   }
 };
