@@ -5,9 +5,10 @@
         </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#"> <i class="fas fa-user-circle" id="profileIcon"></i> My Profile</a>
-        <a class="dropdown-item" href="#"><i class="far fa-heart" id="heartIcon"></i> My favorites</a>
-        <a class="dropdown-item" href="#"> <i class="far fa-calendar-alt" id="calendarIcon"></i> My bookings</a>
+        <router-link to="/profile" class="dropdown-item"> <i class="fas fa-user-circle" id="profileIcon"></i> My Profile </router-link>
+        <router-link to="/myfavorites" class="dropdown-item"> <i class="far fa-heart" id="heartIcon"></i> My favorites </router-link>
+        <router-link to="/mybookings" class="dropdown-item"> <i class="far fa-calendar-alt" id="calendarIcon"></i> My bookings </router-link>
+        
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Sign out</a>
     </div>

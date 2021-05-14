@@ -80,6 +80,7 @@
   #searchContainer {
     background: rgb(246, 246, 252);
     margin-top: 10px;
+    margin-bottom: 10px;
     border:black;
     border-style: solid;
     border-width: thin;
