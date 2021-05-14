@@ -2,7 +2,7 @@
   <div id="nav">
     <Header/>
     <Search />
-    <img src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" style="padding:20px;" />
+    <SiteBody />
     <Footer />
   </div>
   <router-view />
@@ -13,6 +13,7 @@
 // @ is an alias to /src
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
+import SiteBody from "@/components/SiteBody.vue"
 import Search from "@/components/Search.vue"
 
 export default {
@@ -20,6 +21,7 @@ export default {
   components: {
     Header,
     Search,
+    SiteBody,
     Footer,
   }
 };
