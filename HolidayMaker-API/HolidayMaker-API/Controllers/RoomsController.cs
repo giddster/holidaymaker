@@ -29,13 +29,13 @@ namespace HolidayMaker_API.Controllers
         {
             return await _context.Rooms.ToListAsync();
         }
-        
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<Room>>> GetAllRoomsByDestinationId(int id)
-        {
 
-            return await _rs.GetAllRoomsByDestinationId(id);
-        }
+        //[HttpGet("/test/{id}")]
+        //public async Task<ActionResult<IEnumerable<int>>> GetAllRoomsByDestinationId(int id)
+        //{
+        //    var result = await _rs.GetAllRoomsByDestinationId(id);
+        //    return result;
+        //}
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]

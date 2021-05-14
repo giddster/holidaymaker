@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
 
 
 namespace HolidayMaker_API.Controllers
@@ -15,10 +16,12 @@ namespace HolidayMaker_API.Controllers
     public class HotelsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
+        private readonly HotelService _hs;
 
-        public HotelsController(HolidayMakerContext context)
+        public HotelsController(HolidayMakerContext context, HotelService hotelService)
         {
             _context = context;
+            _hs = hotelService;
         }
 
         // GET: api/Hotels
@@ -27,6 +30,12 @@ namespace HolidayMaker_API.Controllers
         {
             return await _context.Hotels.ToListAsync();
         }
+
+        //[HttpGet("/availablehotels/{destinationId}/{checkInDate}/{checkOutDate}")]
+        //public async Task<ActionResult<IEnumerable <Hotel>>> GetAvailableHotels(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        //{
+        //    return await GetAllAvailableHotels(destinationId, checkInDate, checkOutDate);
+        //}
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
@@ -117,6 +126,48 @@ namespace HolidayMaker_API.Controllers
         private bool HotelExists(int id)
         {
             return _context.Hotels.Any(e => e.Id == id);
+        }
+        [HttpGet("/availablehotels/{destinationId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Hotel>> GetAllAvailableHotels(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+
+            var hotels = await _context.Hotels.Where(h => h.DestinationId == destinationId).ToListAsync();
+            List<int> rooms = new List<int>();
+            var allRooms = await _context.Rooms.ToListAsync();
+            rooms.AddRange(from hotel in hotels
+                           from room in allRooms
+                           where hotel.Id == room.HotelId
+                           select room.Id);
+
+            List<int> bookedRooms = new List<int>();
+            var bookings = _context.Bookings.Where(r => r.CheckInDate >= checkInDate &&
+                                                                       r.CheckOutDate <= checkOutDate);
+            var xbookings = await _context.BookingXrooms.ToListAsync();
+            bookedRooms.AddRange(from booking in bookings
+                                 from xbooking in xbookings
+                                 where booking.Id == xbooking.BookingId
+                                 select xbooking.RoomId);
+
+            List<Room> availableRooms = (from room in allRooms
+                                         from bookedRoom in bookedRooms
+                                         where room.Id != bookedRoom
+                                         select room).ToList();
+
+            //var availableRoomsId =_rs.GetAllAvailableRoomsByDestinationId(destinationId, checkInDate, checkOutDate).Result;
+            IEnumerable<Hotel> availableHotels = (from hotel in hotels
+                                                  from room in allRooms
+                                                  from bookedRoom in bookedRooms
+                                                  where room.Id != bookedRoom
+                                                  select hotel).ToList();
+            return availableHotels.Distinct();
+
+            //var allRooms =  await _holidayMakerContext.Rooms.ToListAsync();
+            //availableHotels.AddRange(from hotel in GetAllHotelsByDestination(destinationId).Result
+            //                         from availableRoom in availableRoomsId
+            //                         from room in allRooms
+            //                         where availableRoom == room.Id
+            //                         select hotel);
+            //return availableHotels.Distinct();
         }
     }
 }
