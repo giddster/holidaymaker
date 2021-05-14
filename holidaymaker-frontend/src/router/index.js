@@ -1,5 +1,14 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Login from "/src/views/Login.vue";
+import Register from "/src/views/Register.vue";
+import Review from "/src/components/Review.vue";
+import BookingView from "/src/views/BookingView.vue";
+import ProfileView from "/src/views/ProfileView.vue";
+import MyProfile from "/src/views/MyProfile.vue";
+import MyBookingsProfile from "/src/views/MyBookingsProfile.vue";
+import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue";
+
 
 const routes = [
   {
@@ -26,6 +35,49 @@ const routes = [
   //   name: "Contact",
   //   component: Contact,
   // },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register
+  },
+  {
+    path: "/review",
+    name: "Review",
+    component: Review
+
+  },
+  {
+    path: "/booking",
+    name: "Booking",
+    component: BookingView
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: ProfileView
+  },
+  {
+    path: "/myprofile",
+    name: "MyProfile",
+    component: MyProfile
+  },
+  {
+    path: "/mybookings",
+    name: "MyBookingsProfile",
+    component: MyBookingsProfile
+  },
+  {
+    path: "/myfavorites",
+    name: "MyFavoritesProfile",
+    component: MyFavoritesProfile
+  }
+  
+  
 ];
 
 const router = createRouter({
