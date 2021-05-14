@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Login from "/src/views/Login.vue";
 import Register from "/src/views/Register.vue";
 import Review from "/src/components/Review.vue"
+import BookingView from "/src/views/BookingView.vue"
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
     name: "Review",
     component: Review
 
+  },
+  {
+    path: "/booking",
+    name: "Booking",
+    component: BookingView
   }
 ];
 

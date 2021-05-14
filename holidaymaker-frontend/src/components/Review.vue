@@ -3,10 +3,10 @@
     <div class="review">
         <div class="form">
             <form class="review-form">
-                <input type="text" placeholder="Rubrik">
-                <input type="text" placeholder="Namn">
+                <input type="text" placeholder="Heading">
+                <input type="text" placeholder="Name">
                 <p>
-                    <label class="rating">Omdöme:</label>
+                    <label class="rating">Rating:</label>
                     <select id="rating">
                         <option>10</option>
                         <option>9</option>
@@ -21,7 +21,7 @@
                     </select>
                 </p>
                 <textarea class="textarea" cols="30" rows="10"></textarea>
-                <button>Lämna recension</button> 
+                <button>Leave Review</button> 
             </form> 
         </div>
     </div>
