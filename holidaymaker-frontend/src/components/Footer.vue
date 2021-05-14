@@ -7,15 +7,20 @@
                     <div class="col-md-4" id="leftFooterDiv">
                         <p>© HolidayMaker 2021</p>
                     </div>
+
                     <div class="col-md-4" id="middleFooterDiv">
-                        <a href="#">Home</a> | 
-                        <a href="#">Help/FAQ</a> |
-                        <a href="#">About</a> |
-                        <a href="#">Contact</a>
+                        <nav>
+                            <router-link to="/"> Home </router-link> |
+                            <router-link to="/help"> Help/FAQ </router-link> |
+                            <router-link to="/about"> About </router-link> |
+                            <router-link to="/contact"> Contact </router-link>
+                        </nav>
                     </div>
+
                     <div class="col-md-4" id="rightFooterDiv">
                         <p>App created with <a href="https://vuejs.org/" target="blank">Vue</a>.</p>
                     </div>
+
                 </div>
             </div>
         </div>
