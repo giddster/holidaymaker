@@ -26,6 +26,9 @@ namespace HolidayMaker_API
                 options.UseSqlServer(
                     Configuration.GetConnectionString("HolidayMakerDB")));
 
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

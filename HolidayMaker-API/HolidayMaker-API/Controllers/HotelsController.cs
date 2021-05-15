@@ -128,7 +128,7 @@ namespace HolidayMaker_API.Controllers
             return _context.Hotels.Any(e => e.Id == id);
         }
         [HttpGet("/availablehotels/{destinationId}/{checkInDate}/{checkOutDate}")]
-        public async Task<ActionResult<Hotel>> GetAllAvailableHotels(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        public async Task<IEnumerable<Hotel>> GetAllAvailableHotels(int destinationId, DateTime checkInDate, DateTime checkOutDate)
         {
             //Hittar alla hotel på en given destination
             var hotels = await _context.Hotels.Where(h => h.DestinationId == destinationId).ToListAsync();
