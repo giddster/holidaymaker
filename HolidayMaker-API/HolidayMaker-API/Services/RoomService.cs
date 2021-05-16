@@ -20,50 +20,44 @@ namespace HolidayMaker_API.Services
             _holidayMakerContext = holidayMakerContext;
            
         }
+        public async Task<IEnumerable<Room>> GetAvailableRoomsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Returnerar alla rum som inte är bokade FUNKAR 100%
+            var availableRooms = await _holidayMakerContext.Rooms.Where(r => r.Hotel.Destination.Id == destinationId).Where(x => !x.BookingXrooms.Any(b =>
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate)) ||
+                          ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate) && (checkOutDate >= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).ToListAsync();
 
-        //public async Task<IEnumerable<int>> GetAllRoomsByDestinationId(int destinationId)
-        //{
-        //    List<int> rooms = new List<int>();
-           
-           
-        //    var allRooms = await _holidayMakerContext.Rooms.ToListAsync();
-        //    rooms.AddRange(from hotel in hotels
-        //                   from room in allRooms
-        //                   where hotel.Id == room.HotelId
-        //                   select room.Id);
-        //    return rooms.ToList();
-        //}
+            return availableRooms;
+        }
 
-        //public async Task<List<int>> GetAllAvailableRoomsByDestinationId(int destinationId,DateTime checkInDate, DateTime checkOutDate)
-        //{
-        //    List<int> bookedRooms = new List<int>();
-        //    var bookings = _holidayMakerContext.Bookings.Where(r => r.CheckInDate >= checkInDate &&
-        //                                                               r.CheckOutDate <= checkOutDate);
-        //   var xbookings = await _holidayMakerContext.BookingXrooms.ToListAsync();
-        //    bookedRooms.AddRange(from booking in bookings
-        //                         from xbooking in xbookings
-        //                         where booking.Id == xbooking.BookingId
-        //                         select xbooking.RoomId);
-            
-        //    var allRooms = GetAllRoomsByDestinationId(destinationId).Result;
-            
+        public async Task<IEnumerable<Room>> GetAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Returnerar alla rum som inte är bokade FUNKAR 100%
+            var availableRooms = await _holidayMakerContext.Rooms.Where(r => r.Hotel.Id == hotelId).Where(x => !x.BookingXrooms.Any(b =>
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate)) ||
+                          ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate) && (checkOutDate >= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).ToListAsync();
 
-        //    List<int> availableRooms = new List<int>();
-
-        //    foreach (var room in allRooms)
-        //    {
-        //        foreach (var bookedRoom in bookedRooms)
-        //        {
-        //            if(room != bookedRoom)
-        //            {
-        //                availableRooms.Add(room);
-        //            }
-        //        }
-        //    }
-
-        //    return availableRooms;
-        //}
+            return availableRooms;
+        }
 
 
+        public async Task<IEnumerable<Room>> GetAvailableRoomsByHotelName(string hotelName, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Returnerar alla rum som inte är bokade FUNKAR 100%
+            var availableRooms = await _holidayMakerContext.Rooms.Where(r => r.Hotel.Name.ToLower() == hotelName.ToLower()).Where(x => !x.BookingXrooms.Any(b =>
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate)) ||
+                          ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
+                          ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate) && (checkOutDate >= b.Booking.CheckOutDate)) ||
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).ToListAsync();
+
+            return availableRooms;
+        }
     }
 }

@@ -15,13 +15,32 @@ namespace HolidayMaker_API.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
-        private readonly RoomService _rs;
+        private readonly RoomService _roomService;
 
         public RoomsController(HolidayMakerContext context, RoomService roomService)
         {
             _context = context;
-            _rs = roomService;
+            _roomService = roomService;
         }
+
+        [HttpGet("/availableRoomsByHotelId/{hotelId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelId(hotelId, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
+
+        [HttpGet("/availableRoomsByHotelName/{hotelName}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelName(string hotelName, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelName(hotelName, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
+
 
         // GET: api/Rooms
         [HttpGet]
