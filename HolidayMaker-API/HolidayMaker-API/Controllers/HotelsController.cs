@@ -123,6 +123,7 @@ namespace HolidayMaker_API.Controllers
             return _context.Hotels.Any(e => e.Id == id);
         }
 
+
         [HttpGet("/allHotelsByDestinationId/{destinationId}")]
         public async Task<IEnumerable<Hotel>> GetAllHotelsByDestinationId(int destinationId)
         {
@@ -140,7 +141,7 @@ namespace HolidayMaker_API.Controllers
         {
             //Maybe add some verification controls
 
-            var availableHotels = await _hotelService.GetAvailableHotelsByDestinationId(destinationId, checkInDate, checkOutDate);
+            var availableHotels = await _hotelService.GetAllHotelsByDestination(destinationId);
 
             return availableHotels;
 
