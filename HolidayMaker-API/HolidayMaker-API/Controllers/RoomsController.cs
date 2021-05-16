@@ -23,6 +23,14 @@ namespace HolidayMaker_API.Controllers
             _roomService = roomService;
         }
 
+        [HttpGet("/availableRoomsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelId(destinationId, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
         [HttpGet("/availableRoomsByHotelId/{hotelId}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
         {
