@@ -14,11 +14,11 @@ namespace HolidayMaker_API.Models
         }
 
         public int Id { get; set; }
+        public int HotelId { get; set; }
         public int RoomNo { get; set; }
         public int NoOfSpareBeds { get; set; }
         public bool IsSelfCleaning { get; set; }
         public bool? IsOccupied { get; set; }
-        public int HotelId { get; set; }
         public int RoomTypeId { get; set; }
 
         public virtual Hotel Hotel { get; set; }

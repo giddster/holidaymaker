@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
+
 
 namespace HolidayMaker_API.Controllers
 {
@@ -14,10 +16,12 @@ namespace HolidayMaker_API.Controllers
     public class HotelsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
+        private readonly HotelService _hotelService;
 
-        public HotelsController(HolidayMakerContext context)
+        public HotelsController(HolidayMakerContext context, HotelService hotelService)
         {
             _context = context;
+            _hotelService = hotelService;
         }
 
         // GET: api/Hotels
@@ -27,6 +31,7 @@ namespace HolidayMaker_API.Controllers
             return await _context.Hotels.ToListAsync();
         }
 
+        
         // GET: api/Hotels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
@@ -117,5 +122,56 @@ namespace HolidayMaker_API.Controllers
         {
             return _context.Hotels.Any(e => e.Id == id);
         }
+
+
+        [HttpGet("/allHotelsByDestinationId/{destinationId}")]
+        public async Task<IEnumerable<Hotel>> GetAllHotelsByDestinationId(int destinationId)
+        {
+            //Maybe add some verification controls
+
+            var availableHotels = await _hotelService.GetAllHotelsByDestination(destinationId);
+
+            return availableHotels;
+
+        }
+
+
+        [HttpGet("/availablehotelsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Maybe add some verification controls
+
+            var availableHotels = await _hotelService.GetAvailableHotelsByDestinationId(destinationId, checkInDate, checkOutDate);
+
+            return availableHotels;
+
+        }
+
+
+
+
+        [HttpGet("/availablehotelsByCityName/{cityName}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByCityName(string cityName, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Maybe add some verification controls
+
+            var availableHotels = await _hotelService.GetAvailableHotelsByCityName(cityName, checkInDate, checkOutDate);
+
+            return availableHotels;
+
+        }
+
+
+        [HttpGet("/availablehotelsByCountryName/{countryName}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByCountryId(string countryName, DateTime checkInDate, DateTime checkOutDate)
+        {
+            //Maybe add some verification controls
+
+            var availableHotels = await _hotelService.GetAvailableHotelsByCountryName(countryName, checkInDate, checkOutDate);
+
+            return availableHotels;
+
+        }
+
     }
 }

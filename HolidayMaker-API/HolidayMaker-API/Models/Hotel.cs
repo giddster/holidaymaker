@@ -17,7 +17,6 @@ namespace HolidayMaker_API.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public string ZipCode { get; set; }
         public string Address { get; set; }
         public double StarRating { get; set; }
@@ -27,13 +26,14 @@ namespace HolidayMaker_API.Models
         public bool HasSeaSide { get; set; }
         public bool HasEntertainment { get; set; }
         public bool HasKidsClub { get; set; }
-        public bool HasWifi { get; set; }
         public bool HasRestaurant { get; set; }
         public bool HasHalfPension { get; set; }
         public bool HasWholePension { get; set; }
         public bool HasAllInclusive { get; set; }
+        public bool HasWifi { get; set; }
         public bool HasRoomService { get; set; }
         public int DestinationId { get; set; }
+        public string Description { get; set; }
 
         public virtual Destination Destination { get; set; }
         public virtual ICollection<FavoriteHotel> FavoriteHotels { get; set; }

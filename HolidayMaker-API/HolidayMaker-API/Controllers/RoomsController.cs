@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
 
 namespace HolidayMaker_API.Controllers
 {
@@ -14,11 +15,40 @@ namespace HolidayMaker_API.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
+        private readonly RoomService _roomService;
 
-        public RoomsController(HolidayMakerContext context)
+        public RoomsController(HolidayMakerContext context, RoomService roomService)
         {
             _context = context;
+            _roomService = roomService;
         }
+
+        [HttpGet("/availableRoomsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelId(destinationId, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
+        [HttpGet("/availableRoomsByHotelId/{hotelId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelId(hotelId, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
+
+        [HttpGet("/availableRoomsByHotelName/{hotelName}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelName(string hotelName, DateTime checkInDate, DateTime checkOutDate)
+        {
+            var availableRooms = await _roomService.GetAvailableRoomsByHotelName(hotelName, checkInDate, checkOutDate);
+
+            return availableRooms;
+        }
+
+
 
         // GET: api/Rooms
         [HttpGet]
@@ -26,6 +56,13 @@ namespace HolidayMaker_API.Controllers
         {
             return await _context.Rooms.ToListAsync();
         }
+
+        //[HttpGet("/test/{id}")]
+        //public async Task<ActionResult<IEnumerable<int>>> GetAllRoomsByDestinationId(int id)
+        //{
+        //    var result = await _rs.GetAllRoomsByDestinationId(id);
+        //    return result;
+        //}
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
