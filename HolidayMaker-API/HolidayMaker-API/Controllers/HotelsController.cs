@@ -124,8 +124,8 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        [HttpGet("/allHotelsByDestinationId/{destinationId}")]
-        public async Task<IEnumerable<Hotel>> GetAllHotelsByDestinationId(int destinationId)
+        [HttpGet("/allHotelsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        public async Task<IEnumerable<Hotel>> GetAllHotelsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
         {
             //Maybe add some verification controls
 
