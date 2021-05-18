@@ -46,7 +46,7 @@ namespace HolidayMaker_API.Controllers
 
 
         // GET: api/Bookings/5
-        [HttpGet("/BookingByCustomer/{id}")]
+        [HttpGet("/api/BookingByCustomer/{id}")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingByCustomer(int id)
         {
             var booking = await _context.Bookings.Where(c => c.CustomerId == id).ToListAsync();

@@ -124,7 +124,7 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        [HttpGet("/allHotelsByDestinationId/{destinationId}")]
+        [HttpGet("/api/allHotelsByDestinationId/{destinationId}")]
         public async Task<IEnumerable<Hotel>> GetAllHotelsByDestinationId(int destinationId)
         {
             //Maybe add some verification controls
@@ -136,7 +136,7 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        [HttpGet("/availablehotelsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availablehotelsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
         {
             //Maybe add some verification controls
@@ -150,7 +150,7 @@ namespace HolidayMaker_API.Controllers
 
 
 
-        [HttpGet("/availablehotelsByCityName/{cityName}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availablehotelsByCityName/{cityName}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByCityName(string cityName, DateTime checkInDate, DateTime checkOutDate)
         {
             //Maybe add some verification controls
@@ -162,7 +162,7 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        [HttpGet("/availablehotelsByCountryName/{countryName}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availablehotelsByCountryName/{countryName}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Hotel>> GetAllAvailableHotelsByCountryId(string countryName, DateTime checkInDate, DateTime checkOutDate)
         {
             //Maybe add some verification controls

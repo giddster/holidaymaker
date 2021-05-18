@@ -23,7 +23,7 @@ namespace HolidayMaker_API.Controllers
             _roomService = roomService;
         }
 
-        [HttpGet("/availableRoomsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availableRoomsByDestinationId/{destinationId}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Room>> GetAllAvailableRoomsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
         {
             var availableRooms = await _roomService.GetAvailableRoomsByHotelId(destinationId, checkInDate, checkOutDate);
@@ -31,7 +31,7 @@ namespace HolidayMaker_API.Controllers
             return availableRooms;
         }
 
-        [HttpGet("/availableRoomsByHotelId/{hotelId}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availableRoomsByHotelId/{hotelId}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
         {
             var availableRooms = await _roomService.GetAvailableRoomsByHotelId(hotelId, checkInDate, checkOutDate);
@@ -40,7 +40,7 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        [HttpGet("/availableRoomsByHotelName/{hotelName}/{checkInDate}/{checkOutDate}")]
+        [HttpGet("/api/availableRoomsByHotelName/{hotelName}/{checkInDate}/{checkOutDate}")]
         public async Task<IEnumerable<Room>> GetAllAvailableRoomsByHotelName(string hotelName, DateTime checkInDate, DateTime checkOutDate)
         {
             var availableRooms = await _roomService.GetAvailableRoomsByHotelName(hotelName, checkInDate, checkOutDate);
