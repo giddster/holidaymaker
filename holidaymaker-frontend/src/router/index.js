@@ -10,6 +10,7 @@ import MyBookingsProfile from "/src/views/MyBookingsProfile.vue";
 import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue";
 import Help from "../views/Help.vue";
 import Contact from "../views/Contact.vue";
+import SearchResults from "../views/SearchResults.vue"
 
 
 const routes = [
@@ -86,6 +87,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "aboutHotel" */ "../views/AboutHotel.vue"),
+  },
+  {
+    path: "/searchresults",
+    name: "SearchResults",
+    component: SearchResults
   },
   
 ];
