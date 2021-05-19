@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HolidayMaker_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210519092636_InitialApplicationDbContext")]
+    [Migration("20210519133745_InitialApplicationDbContext")]
     partial class InitialApplicationDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
