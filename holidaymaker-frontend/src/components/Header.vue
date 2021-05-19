@@ -7,7 +7,7 @@
 				<div class="col-md-4" id="leftHeaderDiv">
                     <i class="fas fa-hotel" id="hotelIcon"></i>
                     <i class="fas fa-plane" id="planeIcon"></i>
-                    <h5 id="headerTitle"><a href="#"> HolidayMaker</a></h5>
+                    <h5 id="headerTitle"><router-link to="/">HolidayMaker</router-link></h5>
 				</div>
 				<div class="col-md-4" id="middleHeaderDiv">
 				</div>
