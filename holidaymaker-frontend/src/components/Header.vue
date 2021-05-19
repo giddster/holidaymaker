@@ -12,7 +12,6 @@
 				<div class="col-md-4" id="middleHeaderDiv">
 				</div>
 				<div class="col-md-4" id="rightHeaderDiv">
-					<button @click="fetchAllDestinations">Click me for GET</button>
 					<ProfileDropdown />
 				</div>
 			</div>
