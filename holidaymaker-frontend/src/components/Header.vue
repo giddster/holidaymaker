@@ -12,7 +12,8 @@
 				<div class="col-md-4" id="middleHeaderDiv">
 				</div>
 				<div class="col-md-4" id="rightHeaderDiv">
-                    <ProfileDropdown />
+					<button @click="fetchAllDestinations">bajs</button>
+					<ProfileDropdown />
 				</div>
 			</div>
 		</div>
@@ -41,6 +42,11 @@ import ProfileDropdown from "@/components/ProfileDropdown.vue"
 export default {
   components: {
 	ProfileDropdown
+  },
+  methods: {
+	  fetchAllDestinations(event) {
+		  this.$store.dispatch('fetchAllDestinations')
+	  }
   }
 };
 
