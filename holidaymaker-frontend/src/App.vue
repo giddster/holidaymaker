@@ -20,6 +20,10 @@ export default {
     Header,
     Search,
     Footer,
+  },
+
+  created() {
+    this.$store.dispatch('fetchAllDestinations')
   }
 };
 </script>

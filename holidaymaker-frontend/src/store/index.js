@@ -123,14 +123,16 @@ export default createStore({
   },
 
   mutations: {
-
+	setAllDestinations(state, data){
+		state.destinations = data
+	}
   },
 
   actions: {
-    async fetchAllDestinations(){
-      let response = await fetch('/Destinations')
-      let data = await response
-      console.log(data)
+    async fetchAllDestinations({commit}){
+      let response = await fetch('/api/Destinations')
+      let data = await response.json()
+	  commit('setAllDestinations', data)
     }
   },
 
