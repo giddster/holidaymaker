@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using HolidayMaker_API.Models;
+using HolidayMaker_API.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -21,11 +22,13 @@ namespace HolidayMaker_API.Controllers
 
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly CustomerService _customerService;
 
-        public AuthenticationController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AuthenticationController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, CustomerService customerService)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this._customerService = customerService;
         }
 
         [HttpPost]
@@ -39,8 +42,12 @@ namespace HolidayMaker_API.Controllers
 
             var identityUser = new IdentityUser() { UserName = userDetails.UserName, Email = userDetails.Email };
             var result = await userManager.CreateAsync(identityUser, userDetails.Password);
+
+
             if (!result.Succeeded)
             {
+
+
                 var dictionary = new ModelStateDictionary();
                 foreach (IdentityError error in result.Errors)
                 {
@@ -49,8 +56,17 @@ namespace HolidayMaker_API.Controllers
 
                 return new BadRequestObjectResult(new { Message = "User Registration Failed", Errors = dictionary });
             }
+            else
+            {
+                if (!_customerService.UserExistsByEmail(identityUser.Email))
+                {
+                    var holidayMakerUser = new Customer { Email = identityUser.Email };
+                    await _customerService.AddNewUser(holidayMakerUser);
+                }
 
-            return Ok(new { Message = "User Reigstration Successful" });
+            }
+
+            return Ok(new { Message = "User Registration Successful" });
         }
 
         [HttpPost]
