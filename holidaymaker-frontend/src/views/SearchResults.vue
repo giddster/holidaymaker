@@ -9,14 +9,19 @@
 - filter component -->
 <div>
     <ul>
-        <li v-for="destination in destinations" :key="destination.country">
-            City: {{destination.city}}
+        <li v-for="destination in destinations" :key="destination">
+            City: {{destination.city}}                                                          
             Country: {{destination.country}}
         </li>
     </ul>
-    <section v-for="destination in destinations" :key="destination.country">
-        {{destination.country}}
-    </section>
+
+    <ul>
+        <li v-for="hotel in hotels" :key="hotel">
+            Id: {{hotel.id}}                                                          
+            Name: {{hotel.name}}
+        </li>
+    </ul>
+    
 </div>
 </template>
 
@@ -24,8 +29,11 @@
 export default {
 computed: {
     destinations(){
-        return this.$store.state.destinations[this.$route.params.category];
-    }
+        return this.$store.state.destinations;
+    },
+    hotels(){
+        return this.$store.state.hotels;
+    },
 }
 }
 </script>

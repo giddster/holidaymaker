@@ -159,6 +159,14 @@ export default createStore({
 	  console.log(data)
 	  commit('setDestinations', data)
     },
+	
+	// async fetchDestinationsById({commit}){
+	// 	let id = 2
+	// 	let response = await fetch(`api/Destinations/${id}`)
+	// 	let data = await response.json()
+	// 	console.log(data)
+	// 	commit('setDestinations', data)
+	//   },
 	async fetchHotels({commit}){
 		let response2 = await fetch('api/Hotels/')
 		let data2 = await response2.json()

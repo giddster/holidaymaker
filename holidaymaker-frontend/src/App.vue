@@ -23,7 +23,10 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('fetchDestinations') /*det är nåt jävla fel här */
+    this.$store.dispatch('fetchDestinations')
+    this.$store.dispatch('fetchHotels')
+
+
   }
 };
 </script>
