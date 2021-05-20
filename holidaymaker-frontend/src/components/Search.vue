@@ -7,7 +7,7 @@
                <tr>
                <td>
                   <input
-                  type="search"
+                  type="text"
                   class="form-control"
                   placeholder="Search destinations"
                   aria-label="Search"
@@ -41,10 +41,12 @@
 
 <script>
 import DRPicker from "@/components/DRPicker.vue"
+import searchbar from "@/assets/searchbar.js"
 
 export default {
   components: {
-	DRPicker
+	DRPicker,
+   searchbar
   }
 };
 
