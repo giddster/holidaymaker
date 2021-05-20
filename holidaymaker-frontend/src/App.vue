@@ -23,7 +23,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('fetchAllDestinations')
+    this.$store.dispatch('fetchDestinations') /*det är nåt jävla fel här */
   }
 };
 </script>

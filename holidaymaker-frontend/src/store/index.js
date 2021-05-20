@@ -146,6 +146,7 @@ export default createStore({
 	},
 	setFavoriteHotels(state, data){
 		state.favoritehotels = data
+	}
   },
 
   actions: {
@@ -155,12 +156,13 @@ export default createStore({
 	async fetchDestinations({commit}){
       let response = await fetch('api/Destinations/')
       let data = await response.json()
+	  console.log(data)
 	  commit('setDestinations', data)
     },
 	async fetchHotels({commit}){
-		let response = await fetch('api/Hotels/')
-		let data = await response.json()
-		commit('setHotels', data)
+		let response2 = await fetch('api/Hotels/')
+		let data2 = await response2.json()
+		commit('setHotels', data2)
 	  },
 	  async fetchReviews({commit}){
 		let response = await fetch('api/Reviews/')
@@ -195,13 +197,12 @@ export default createStore({
 	
 	}
 
-  },
+  });
 
-  modules: {
+//   modules: {
 
-  }
+//   }
 
-});
 
 
 
