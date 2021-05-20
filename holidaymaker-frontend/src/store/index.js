@@ -123,17 +123,78 @@ export default createStore({
   },
 
   mutations: {
-	setAllDestinations(state, data){
+	setDestinations(state, data){
 		state.destinations = data
-	}
+	},
+	setHotels(state, data){
+		state.hotels = data
+	},
+	setReviews(state, data){
+		state.reviews = data
+	},
+	setRooms(state, data){
+		state.rooms = data
+	},
+	setBookings(state, data){
+		state.bookings = data
+	},
+	setFlights(state, data){
+		state.flights = data
+	},
+	setCustomers(state, data){
+		state.customers = data
+	},
+	setFavoriteHotels(state, data){
+		state.favoritehotels = data
   },
 
   actions: {
-    async fetchAllDestinations({commit}){
-      let response = await fetch('/api/Destinations')
+    
+	/* ---------- Destinations ----------- */
+
+	async fetchDestinations({commit}){
+      let response = await fetch('api/Destinations/')
       let data = await response.json()
-	  commit('setAllDestinations', data)
-    }
+	  commit('setDestinations', data)
+    },
+	async fetchHotels({commit}){
+		let response = await fetch('api/Hotels/')
+		let data = await response.json()
+		commit('setHotels', data)
+	  },
+	  async fetchReviews({commit}){
+		let response = await fetch('api/Reviews/')
+		let data = await response.json()
+		commit('setReviews', data)
+	  },
+	  async fetchRooms({commit}){
+		let response = await fetch('api/Rooms/')
+		let data = await response.json()
+		commit('setRooms', data)
+	  },
+	  async fetchBookings({commit}){
+		let response = await fetch('api/Bookings/')
+		let data = await response.json()
+		commit('setBookings', data)
+	  },
+	  async fetchFlights({commit}){
+		let response = await fetch('api/Flights/')
+		let data = await response.json()
+		commit('setFlights', data)
+	  },
+	  async fetchCustomers({commit}){
+		let response = await fetch('api/Customers/')
+		let data = await response.json()
+		commit('setCustomers', data)
+	  },
+	  async fetchFavoriteHotels({commit}){
+		let response = await fetch('api/FavoriteHotels/')
+		let data = await response.json()
+		commit('setFavoriteHotels', data)
+	  },
+	
+	}
+
   },
 
   modules: {
