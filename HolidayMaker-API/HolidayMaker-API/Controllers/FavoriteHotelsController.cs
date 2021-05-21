@@ -20,11 +20,13 @@ namespace HolidayMaker_API.Controllers
     {
         private readonly HolidayMakerContext _context;
         private readonly CustomerService _customerService;
+        private readonly FavoriteHotelsService _favoriteHotelsService;
 
-        public FavoriteHotelsController(HolidayMakerContext context, CustomerService customerService)
+        public FavoriteHotelsController(HolidayMakerContext context, CustomerService customerService, FavoriteHotelsService favoriteHotelsService)
         {
             _context = context;
             _customerService = customerService;
+            this._favoriteHotelsService = favoriteHotelsService;
         }
 
         #region OLD
@@ -47,7 +49,7 @@ namespace HolidayMaker_API.Controllers
 
             if (customerFromDB)
             {
-                var favoriteHotel = await _context.FavoriteHotels.Where(fh => fh.CustomerId == id).ToListAsync();
+                List<FavoriteHotel> favoriteHotel = await _favoriteHotelsService.GetFavoriteHotelByUserId(id);
 
                 if (favoriteHotel == null)
                 {
@@ -63,6 +65,8 @@ namespace HolidayMaker_API.Controllers
             }
 
         }
+
+        
 
         #region OLD
         // PUT: api/FavoriteHotels/5
@@ -107,7 +111,8 @@ namespace HolidayMaker_API.Controllers
 
             var customerFromDB = _customerService.UserExistsByEmail(userEmail);
 
-            if (customerFromDB)
+
+            if (!FavoriteHotelExistsByUserId(favoriteHotel.HotelId, favoriteHotel.CustomerId) && customerFromDB)
             {
                 _context.FavoriteHotels.Add(favoriteHotel);
 
@@ -127,10 +132,13 @@ namespace HolidayMaker_API.Controllers
                     }
                 }
 
-                return CreatedAtAction("GetFavoriteHotel", new { id = favoriteHotel.Id }, favoriteHotel);
+                //Fixa denna
+                return Ok(new { Message = "Added favorite hotel" });
+                //return CreatedAtAction("GetFavoriteHotel", new { id = favoriteHotel.Id }, favoriteHotel);
             }
             else
             {
+                //Fixa en annan response
                 return BadRequest();
             }
         }
@@ -138,7 +146,7 @@ namespace HolidayMaker_API.Controllers
 
 
 
-
+        //TODO: Kolla om DeleteFavoriteHotel behöver ändras
         //Delete ej klar måste söka upp users favoritehotel och delete inte på id bara
 
         // DELETE: api/FavoriteHotels/5
@@ -175,5 +183,12 @@ namespace HolidayMaker_API.Controllers
         {
             return _context.FavoriteHotels.Any(e => e.Id == id);
         }
+
+        private bool FavoriteHotelExistsByUserId(int hotelId, int customerId)
+        {
+            return _context.FavoriteHotels.Where(fh => fh.CustomerId == customerId).Any(b => b.HotelId == hotelId);
+        }
+
+
     }
 }
