@@ -54,7 +54,7 @@ export default {
 .form .hotelId{
     text-align: left;
     font-size: 15px;
-    color:blak;
+    color:black;
 }
 img{
     width:300px;

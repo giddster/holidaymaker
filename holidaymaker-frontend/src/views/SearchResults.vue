@@ -7,6 +7,8 @@
             - thumbnail pic
 - "book now" button for each hotel option
 - filter component -->
+<sorting-component></sorting-component>
+<search-result-component></search-result-component>
 <div>
     <ul>
         <li v-for="destination in destinations" :key="destination">
@@ -23,10 +25,24 @@
     </ul>
     
 </div>
+
+
+
 </template>
 
+
 <script>
+import SearchResultComponent from '../components/searchResultComponent.vue';
+import SortingComponent from '../components/SortingComponent.vue';
+
 export default {
+components:{
+    SortingComponent,
+    SearchResultComponent
+
+},
+
+
 computed: {
     destinations(){
         return this.$store.state.destinations;
