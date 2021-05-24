@@ -21,9 +21,21 @@ namespace HolidayMaker_API.Services
             _holidayMakerContext.SaveChanges();
         }
 
-        public Customer GetCustomer(string email)
+
+        public Customer GetCustomerByEmail(string userEmail)
         {
-           return _holidayMakerContext.Customers.FirstOrDefault(c => c.Email == email );
+            return _holidayMakerContext.Customers.FirstOrDefault(u => u.Email == userEmail);
+        }
+
+        public bool UserExistsByEmail(string userEmail)
+        {
+            return _holidayMakerContext.Customers.Any(e => e.Email == userEmail);
+        }
+
+        public async Task AddNewUser(Customer customer)
+        {
+            _holidayMakerContext.Add(customer);
+            await _holidayMakerContext.SaveChangesAsync();
         }
 
         public async Task<int> EditCustomer(Customer customer)
