@@ -1,5 +1,5 @@
 <template>
-    <div class="sorting-view">
+    <div class="sorting-component">
         <div class="form">
             <form>
                 <h3>Sort</h3>
@@ -19,7 +19,7 @@
                     <option value="1500m">1.5km</option>
                     <option value="2000m">2km</option>
                 </select>
-                
+
                 <button>Customer Rating</button>
 
                 <label for="price">Price</label>
