@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .form {
-    position: relative;
+    /* position: relative;
     z-index: 1;
     background: rgba(231, 230, 230, 0.8);
     width:800px;
@@ -52,7 +52,12 @@ export default {
     text-align: center;
     border-bottom: solid;
     border-top:solid;
-    border-width: 2px;
+    border-width: 2px; */
+    margin: 2rem auto;
+    max-width: 40rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 1rem;
+    border-radius: 12px;
 }
 label{
     margin-left: 15px;
