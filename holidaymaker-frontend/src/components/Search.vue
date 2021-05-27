@@ -32,7 +32,7 @@
          <DRPicker />
 		</div>
 		<div class="col-md-4" id="rightSearchDiv">
-      <button type="button" class="btn btn-lg btn-primary" id="searchButton">Search</button>
+      <button @click="redirect" class="btn btn-lg btn-primary" id="searchButton">Search</button>
 		</div>
 	</div>
 </div>
@@ -41,12 +41,18 @@
 
 <script>
 import DRPicker from "@/components/DRPicker.vue"
-import searchbar from "@/assets/searchbar.js"
 
 export default {
+  methods: {
+     redirect() {
+        this.$router.push({ name: 'SearchResults' })
+     }
+  },
   components: {
 	DRPicker,
-   searchbar
+  },
+  mounted() {
+    this.$store.dispatch('fetchDestinations')
   }
 };
 

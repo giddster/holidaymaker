@@ -20,13 +20,6 @@ export default {
     Header,
     Search,
     Footer,
-  },
-
-  created() {
-    this.$store.dispatch('fetchDestinations')
-    this.$store.dispatch('fetchHotels')
-
-
   }
 };
 </script>

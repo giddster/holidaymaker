@@ -1,15 +1,16 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "/src/views/Login.vue";
-import Register from "/src/views/Register.vue";
-import Review from "/src/components/Review.vue";
-import BookingView from "/src/views/BookingView.vue";
-import ProfileView from "/src/views/ProfileView.vue";
-import MyProfile from "/src/views/MyProfile.vue";
-import MyBookingsProfile from "/src/views/MyBookingsProfile.vue";
-import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue";
-import Help from "../views/Help.vue";
-import Contact from "../views/Contact.vue";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import Home from "../views/Home.vue"
+import Login from "/src/views/Login.vue"
+import Register from "/src/views/Register.vue"
+import Review from "/src/components/Review.vue"
+import BookingView from "/src/views/BookingView.vue"
+import ProfileView from "/src/views/ProfileView.vue"
+import MyProfile from "/src/views/MyProfile.vue"
+import MyBookingsProfile from "/src/views/MyBookingsProfile.vue"
+import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue"
+import Help from "../views/static/Help.vue"
+import About from "../views/static/About.vue"
+import Contact from "../views/static/Contact.vue"
 import SearchResults from "../views/SearchResults.vue"
 
 
@@ -22,11 +23,7 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: About
   },
   {
     path: "/help",
