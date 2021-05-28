@@ -1,20 +1,16 @@
 <template>
 	<div class="date-parent">
 		<div class="date-div1"> 
-			<input ref="checkIn" type="date" v-model="dates.checkinDate">
+			<input ref="checkIn" type="date" v-model="dates.checkinDate" class="date-picker">
 			<p>Checkin Date</p>
 		</div>
 
 		<div class="date-div2"> 
-			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates">
+			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker">
 			<p>Checkout Date</p>
 		</div>
 		
-		<div class="date-div3"> 
-			<button type="button" class="btn btn-sm btn-primary guests-button" data-toggle="modal" data-target="#guestsModal">
-  				Guests/rooms
-			</button>
-		</div>
+		
 
 	</div>
 </template>
@@ -45,6 +41,14 @@ grid-column-gap: 0px;
 grid-row-gap: 0px;
 }
 
+.date-picker {
+	color:rgb(117, 116, 114);
+	opacity: 0.9;
+	border: 2px solid rgb(189, 189, 189);
+	border-radius: 5px;
+	background: #fff;
+}
+
 .date-div1 { 
 	grid-area: 1 / 1 / 2 / 2; 
 	margin-left: 10px;
@@ -53,17 +57,16 @@ grid-row-gap: 0px;
 	grid-area: 1 / 2 / 2 / 3; 
 	margin-left: 10px;
 }
-.date-div3 { 
-	grid-area: 1 / 3 / 2 / 4; 
-	margin-left: 10px;
-}
 
  .guests-button {
 	background: lightcoral;
-
+	border-radius: 5px;
+	border: 1px solid lightcoral;
   }
   .guests-button:hover {
-      background: rgb(247, 108, 108);
+	background: rgb(247, 108, 108);
+	border-radius: 5px;
+	border: 1px solid lightcoral;
   }
 
 </style>

@@ -7,7 +7,7 @@
                     <td>
                     <input
                     type="text"
-                    class="form-control"
+                    class="form-control searchbox-content"
                     placeholder="Search destinations..."
                     aria-label="Search"
                     id="searchBox"
@@ -19,9 +19,9 @@
                     </td>
                </tr>
                <tr>
-                    <td class="includeFlightCheckbox">
-                        <label for="checkbox"> Include flight </label>
-                        <input type="checkbox" style="margin-left:10px;"> 
+                    <td >
+                        <label for="checkbox"> Include flight? </label>
+                        <input class="includeflight-checkbox" type="checkbox"> 
                     </td>
                </tr>
             </tbody>
@@ -55,6 +55,7 @@ export default {
      }
   },
     components: { DRPicker },
+    
     mounted() {
         this.$store.dispatch('fetchDestinations')
     }
@@ -71,12 +72,12 @@ export default {
    grid-row-gap: 0px;
    background: rgb(246, 246, 252);
    margin: 20px auto;
-   padding: 20px;
+   padding: 12px;
    max-width: fit-content;
    border:black;
    border-style: solid;
    border-width: thin;
-   border-radius: 15px;
+   border-radius: 10px;
 }
 
 .search-div1 { 
@@ -92,21 +93,35 @@ export default {
     text-align: right;
 }
 
- #searchBox {
-    border:black;
-    border-style: solid;
-    border-width: thin;
+ #searchBox{
     font-size: 18px;
     width: fit-content;
-    font-style: italic;
     font-family: sans-serif;
+    border: 2px solid rgb(189, 189, 189);
+	border-radius: 5px;
+	background: #fff;
   }
 
-  .search-button {
-      background: lightcoral;
-  }
-  .search-button:hover {
-      background: rgb(247, 108, 108);
-  }
+#searchIcon {
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.search-button {
+    background: lightcoral;
+    border-radius: 5px;
+    border: 1px solid lightcoral;
+}
+.search-button:hover {
+    background: rgb(247, 108, 108);
+    border-radius: 5px;
+    border: 1px solid lightcoral;
+}
+
+.includeflight-checkbox {
+    margin-left:10px;
+}
+
 
 </style>

@@ -16,11 +16,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+
 .tab {
   overflow: hidden;
-  border: 20px solid #ccc;
-  background-color: #f1f1f1;
+  border: 2px solid rgb(156, 155, 155);
+  border-radius: 10px;
+  background: rgb(246, 246, 252);
+  max-width: 90%;
+  margin: 20px auto;
 }
 .tab .routerlink {
   background-color: inherit;

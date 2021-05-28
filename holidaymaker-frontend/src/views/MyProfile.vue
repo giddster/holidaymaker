@@ -1,6 +1,8 @@
 <template>
-    <profile-navbar></profile-navbar>
-    <edit-user-profile></edit-user-profile>
+        <h4 class="profile-title">Hello, USERNAME</h4>
+    
+    <ProfileNavbar />
+    <EditUserProfile />
 </template>
 
 
@@ -19,6 +21,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+.profile-title {
+  margin: 0 auto;
+  text-align: center;
+}
 
 </style>

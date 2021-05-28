@@ -31,10 +31,14 @@ export default{
 
 .profiledropdown-button {
     background:rgb(248, 157, 157);
+    border-radius: 5px;
+    border: 1px solid lightcoral;
 }
 
 .profiledropdown-button:hover {
     background: rgb(247, 108, 108);
+    border-radius: 5px;
+    border: 1px solid lightcoral;
 }
 
 </style>
