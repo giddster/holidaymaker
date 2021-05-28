@@ -12,6 +12,7 @@
                     aria-label="Search"
                     id="searchBox"
                     v-model="searchString"
+                    @keyup="autocomplete"
                     />
                     </td>
                     <td>
@@ -52,6 +53,9 @@ export default {
      redirect() {
         this.$router.push({ name: 'SearchResults' })
         this.$store.dispatch('search', this.searchString)
+     },
+     autocomplete() {
+         this.$store.state.searches = $('#searchBox-field').val()
      }
   },
     components: { DRPicker },

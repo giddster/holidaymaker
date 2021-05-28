@@ -6,9 +6,14 @@
 <div class="searchResults">
     <div>
         <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
+            <button @click="redirect" class="btn btn-md btn-primary booking-button">Book a room</button>
+
             <img src='../assets/logo.png' class="thumbnail">
+
             <h4> {{ hotel.name }}</h4>
+
             <i class="fas fa-star star-rating"></i>
+
             <p> <i>{{ hotel.description }}</i> </p>
         </div>
     </div>
@@ -19,6 +24,12 @@
 <script>
 export default {
 
+methods: {
+    redirect() {
+        this.$router.push({ name: 'AboutHotel' })
+        this.$store.dispatch('search', this.searchString)
+     }
+},
 computed: {
     filteredHotels(){
         return this.$store.state.filteredHotels
@@ -57,6 +68,14 @@ computed: {
 
     .star-rating {
         font-size: 20px;
+    }
+
+    .booking-button {
+        margin: 0 auto;
+        float: right;
+        background: lightcoral;
+        border-radius: 5px;
+        border: 1px solid lightcoral;
     }
 
 </style>
