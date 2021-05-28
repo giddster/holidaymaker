@@ -127,13 +127,19 @@ export default createStore({
   },
 
   mutations: {
-	setDestinations(state, data){
-		state.destinations = data
-	},
-	setHotels(state, data){
-		state.hotels = data
-	},
-	
+    setDestinations(state, data){
+      state.destinations = data
+    },
+    setHotels(state, data){
+      state.hotels = data
+    },
+    setFilteredHotels(state, data){
+      state.filteredHotels = data
+    },
+    setDates(state, data) {
+      state.dates = data
+    }
+
   },
 
   actions: {

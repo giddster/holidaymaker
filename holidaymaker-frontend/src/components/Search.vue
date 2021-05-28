@@ -8,7 +8,7 @@
                     <input
                     type="text"
                     class="form-control"
-                    placeholder="Search destinations"
+                    placeholder="Search destinations..."
                     aria-label="Search"
                     id="searchBox"
                     v-model="searchString"
@@ -64,19 +64,19 @@ export default {
 <style>
 
 .search-parent {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-background: rgb(246, 246, 252);
-margin: 20px auto;
-padding: 20px;
-max-width: fit-content;
-border:black;
-border-style: solid;
-border-width: thin;
-border-radius: 15px;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: 1fr;
+   grid-column-gap: 0px;
+   grid-row-gap: 0px;
+   background: rgb(246, 246, 252);
+   margin: 20px auto;
+   padding: 20px;
+   max-width: fit-content;
+   border:black;
+   border-style: solid;
+   border-width: thin;
+   border-radius: 15px;
 }
 
 .search-div1 { 
@@ -98,6 +98,8 @@ border-radius: 15px;
     border-width: thin;
     font-size: 18px;
     width: fit-content;
+    font-style: italic;
+    font-family: sans-serif;
   }
 
   .search-button {
