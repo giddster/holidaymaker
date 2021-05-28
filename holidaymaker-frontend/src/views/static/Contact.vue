@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div class="container-fluid" style="max-width:45%">
     <div class="row">
         <div class="col-md-12">
             <br>
@@ -33,7 +33,7 @@
             <br>
             <p>
                 <left>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+                    <button type="button" class="btn btn-primary contact-button" data-toggle="modal" data-target="#exampleModalCenter1">
                         Write message (or haiku poem)
                     </button>
                 </left>
@@ -114,3 +114,13 @@
 </div>
 
 </template>
+
+<style>
+
+.contact-button {
+    background: lightcoral;
+}
+.contact-button:hover {
+    background: rgb(247, 108, 108);
+}
+</style>

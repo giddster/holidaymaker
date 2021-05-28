@@ -1,38 +1,38 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" style="max-width:45%">
     <div class="row">
         <div class="col-md-12">
             <div>
-                <h3>Help/Frequently Asked Questions</h3>
+                <h3 style="text-align:center;">Help/Frequently Asked Questions</h3>
             </div>
 
             <div>
-                <h4>Do you sell hotels?</h4>
+                <b>Do you sell hotels?</b>
                     <p>
                         No.
                     </p>
 
-                <h4>Do you sell planes?</h4>
+                <b>Do you sell planes?</b>
                     <p>
                         If you ask <b>really</b> nicely.
                     </p>
                 
-                <h4>What is the meaning of life?</h4>
+                <b>What is the meaning of life?</b>
                     <p>
                         Programming.
                     </p>  
                 
-                <h4>Are your services actually good?</h4>
+                <b>Are your services actually good?</b>
                     <p>
                         <i> You don't even know what swag <b>is</b>! - Albert Einstein</i>
                     </p>
                 
-                <h4>My hotel burned to the ground as I was about to check in - how do I get a refund?</h4>
+                <b>My hotel burned to the ground as I was about to check in - how do I get a refund?</b>
                     <p>
                        Ask again later. 
                     </p> 
 
-                <h4>How do I contact customer service?</h4>
+                <b>How do I contact customer service?</b>
                     <p>
                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="blank">Click here</a>
                     </p>      

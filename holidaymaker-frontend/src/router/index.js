@@ -12,6 +12,7 @@ import Help from "../views/static/Help.vue"
 import About from "../views/static/About.vue"
 import Contact from "../views/static/Contact.vue"
 import SearchResults from "../views/SearchResults.vue"
+import AboutHotel from "../views/AboutHotel.vue"
 
 
 const routes = [
@@ -79,11 +80,7 @@ const routes = [
   {
     path: "/aboutHotel",
     name: "AboutHotel",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "aboutHotel" */ "../views/AboutHotel.vue"),
+    component: AboutHotel
   },
   {
     path: "/searchresults",

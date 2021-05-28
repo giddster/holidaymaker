@@ -118,7 +118,11 @@ export default createStore({
 			roomType: null,
 			bookingXrooms: [],
 			roomImages: [] //innehållet i varje array-index måste representeras rätt här
-		}
+		},
+		
+		filteredHotels: [],
+
+      	dates: {}  
 		
   },
 
@@ -129,88 +133,40 @@ export default createStore({
 	setHotels(state, data){
 		state.hotels = data
 	},
-	setReviews(state, data){
-		state.reviews = data
-	},
-	setRooms(state, data){
-		state.rooms = data
-	},
-	setBookings(state, data){
-		state.bookings = data
-	},
-	setFlights(state, data){
-		state.flights = data
-	},
-	setCustomers(state, data){
-		state.customers = data
-	},
-	setFavoriteHotels(state, data){
-		state.favoritehotels = data
-	}
+	
   },
 
   actions: {
-    
-	/* ---------- Destinations ----------- */
-
-	async fetchDestinations({commit}){
+    async fetchDestinations({commit}){
       let response = await fetch('api/Destinations/')
       let data = await response.json()
 	  console.log(data)
 	  commit('setDestinations', data)
     },
-	
-	// async fetchDestinationsById({commit}){
-	// 	let id = 2
-	// 	let response = await fetch(`api/Destinations/${id}`)
-	// 	let data = await response.json()
-	// 	console.log(data)
-	// 	commit('setDestinations', data)
-	//   },
-	async fetchHotels({commit}){
-		let response2 = await fetch('api/Hotels/')
-		let data2 = await response2.json()
-		commit('setHotels', data2)
-	  },
-	  async fetchReviews({commit}){
-		let response = await fetch('api/Reviews/')
-		let data = await response.json()
-		commit('setReviews', data)
-	  },
-	  async fetchRooms({commit}){
-		let response = await fetch('api/Rooms/')
-		let data = await response.json()
-		commit('setRooms', data)
-	  },
-	  async fetchBookings({commit}){
-		let response = await fetch('api/Bookings/')
-		let data = await response.json()
-		commit('setBookings', data)
-	  },
-	  async fetchFlights({commit}){
-		let response = await fetch('api/Flights/')
-		let data = await response.json()
-		commit('setFlights', data)
-	  },
-	  async fetchCustomers({commit}){
-		let response = await fetch('api/Customers/')
-		let data = await response.json()
-		commit('setCustomers', data)
-	  },
-	  async fetchFavoriteHotels({commit}){
-		let response = await fetch('api/FavoriteHotels/')
-		let data = await response.json()
-		commit('setFavoriteHotels', data)
-	  },
-	
-	}
+    
+    async fetchHotels({commit}){
+      let response2 = await fetch('api/Hotels/')
+      let data = await response2.json()
+      commit('setHotels', data)
+      },
 
-  });
+      async search({commit}, searchString){
+        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+        let data = await response.json()
+        console.log(data)
+        commit('setFilteredHotels', data)
+      },
 
-//   modules: {
+      async setDates({commit}, dates){
+        commit('setDates', dates)
+      }
 
-//   }
+  },
+  modules: {
 
+
+  }
+})
 
 
 

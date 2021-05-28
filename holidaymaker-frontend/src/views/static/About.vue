@@ -1,11 +1,12 @@
 <template>
+  
   <div class="about">
-    <div class="container-fluid">
+    <div class="container-fluid" style="max-width:75%">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-12">
-					<h3>
+					<h3 style="text-align:center;">
 						About HolidayMaker
 					</h3>
 					<p>
@@ -111,16 +112,26 @@
 	</div>
 </div>
   </div>
+  
 </template>
+
+<script>
+export default {
+
+}
+</script>
 
 <style>
 .card {
 	padding: 50px;
-	margin: 20px;
+	margin: 20px auto;
 	max-height: 600px;
 	max-width: 600px;
 	width: fit-content;
 	height: fit-content;
+    border-radius: 15px;
+	border-style: hidden;
 }
+
 
 </style>
