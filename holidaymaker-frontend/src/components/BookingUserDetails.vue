@@ -1,7 +1,6 @@
 <template>
     <div class="booking-page">
         <div class="form">
-            <h3>User Details</h3>
             <form class="booking-form">
                 <input type="text" placeholder="Name">
                 <input type="text" placeholder="Lastname">
@@ -21,23 +20,27 @@ export default {
 <style scoped>
 .booking-form {
     position: relative;
+    right: 200px;
     z-index: 1;
-    background: rgba(238, 238, 238, 0.8);
+    background:rgb(246, 246, 252);
     max-width: 360px;
-    margin: 0 left 100px;
-    padding: 250px;
+    margin: 0 auto 100px;
+    padding: 45px;
     text-align: center;
     border-style: solid;
     border-width:3px;
+    
 }
 h3{
-    text-align: left;
+    position:relative;
+    right:200px;
+    
 }
 .form input{
     font-family: "Roboto", sans-serif;
     outline:1;
     background: #f8f6f6;
-    width:120%;
+    width:100%;
     border:0;
     margin:0 0 15px;
     padding: 10px;
@@ -45,9 +48,12 @@ h3{
     font-size: 14px;
     margin-top: 35px;
     border-style: solid;
-    border-width: 3px;
-    
+    border-width: 2px;
     
 }
-
+.booking-page{
+    width:360px;
+    padding: 5% 0 0;
+    margin: auto;
+}
 </style>
