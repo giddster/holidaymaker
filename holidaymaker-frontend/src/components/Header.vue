@@ -7,6 +7,8 @@
           </div>
           <div class="header-div2"> 
               <ProfileDropdown />
+               <router-link to="/login"><h5 class="header-title">login</h5></router-link>
+               <router-link to="/register"><h5 class="header-title">register</h5></router-link>
           </div>
       </div>
   </header>

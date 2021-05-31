@@ -19,6 +19,8 @@ export default createStore({
 				flight: null,
 				bookingXrooms: [ ]
 		},
+
+		
 		
 		customers: {
 				id: 0,
@@ -188,7 +190,56 @@ export default createStore({
 
       async setDates({commit}, dates){
         commit('setDates', dates)
-      }
+      },
+
+	  async registerUser(user){
+
+		console.log(user)
+
+		let body = `{ "userName": "${user.userName}", "email": "${user.email}", "password": "${user.password}"  }`;
+		console.log(body)
+
+		const requestOptions = {
+			method: "POST",
+			body: JSON.stringify(body)
+		};
+
+		const response = await fetch('/api/Authentication/Register', requestOptions)
+		const data = await response.json();
+		console.log(data)
+
+		if (data.status === 200){
+			 	  return data
+			  }
+			   else{
+			 	  return data
+			   }
+
+
+
+
+
+
+		
+		//   let body = `{ "userName": "${user.userName}", "email": "${user.email}", "password": "${user.password}"  }`;
+		//   console.log(body);
+
+		// 	let userOutPut = JSON.stringify(body)
+        // 	let response = await fetch('/api/Authentication/Register',{
+        //     method: 'Post',
+		// 	body: body
+        // })
+		// console.log(response);
+		// // använd response för att medddela att registreringen är slutförd
+		//   if (response.status === 200){
+		// 	  return response
+		//   }
+		//   else{
+		// 	  return response
+		//   }
+	  }
+
+	  
 
   },
   modules: {
