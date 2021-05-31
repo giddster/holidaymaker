@@ -42,7 +42,7 @@ computed: {
 }
 </script>
 
-<style scoped>
+<style>
     .searchResults {
         max-width: 100%;
         margin: 0 auto;
@@ -67,7 +67,7 @@ computed: {
     }
 
     .star-rating {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .booking-button {

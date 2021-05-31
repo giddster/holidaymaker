@@ -1,305 +1,159 @@
 <template>
+<div class="parent hotel-header">
+  <div class="div1"> 
+    <h3 class="hotel-title">HOTEL NAME</h3>
+    <i class="fas fa-star star-rating-about"></i>
+    <i class="fas fa-star star-rating-about"></i>
+    <hr>
+    <i class="fas fa-heart addtofavorite-button"></i> <i>Add to Favorites</i> 
+  </div>
 
-<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-        
-        <input type="text" name="Name" id="Name" value="HotelName"> &#9733; &#9733; &#9733; &#9733; &#9733; 
-        <br>
-		  
-        <br>
-        
-        
-        
-        
-        <label>
-          <input type="checkbox" name="HasWifi" value="kryssruta"  id="HasWifi">
-          Wi-Fi</label>
-        
-        <label>
-          <input type="checkbox" name="IsCancelled" value="kryssruta" id="IsCancelled">
-          Free Cancellation</label>
-        
-        <label>
-          <input type="checkbox" name="HasAllInclusive" value="kryssruta" id="HasAllInclusive">
-          All Inclusive</label>
-        
-        <br>
-        <br>
-        
-        <input type="checkbox" name="FavoriteHotelsId" id="FavoriteHotelsId">
-        <label for="checkbox">Add Hotel to favorites </label>
-      </td>
-      <td>
-		  <label for="range">Price from:</label>
-<input type="range" name="TypeName" id="TypeName">
-		<br>
-		  <br>
-          <input type="button" name="TypeName" id="TypeName" value="Choose this room" class="button">
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-	
-<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td> <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/447c582c_z.jpg" width="760" height="500" alt="">
-        <table width="750" border="0">
-          <tbody>
-          <tr>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg" width="250" height="167" alt=""></td>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/38b33d0c_z.jpg" width="250" height="167" alt=""></td>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/4378a799_z.jpg" width="250" height="167" alt=""></td>
-          </tr>
-        </tbody>
-    </table>
-        <B>About Hotel</B><br>
-       
-        
-<input type="text" name="Description" id="Description" value="The hotel is close to the beach and have a nice skybar" style="height:120px; width:400px;"> <br> <br> 
-  <label>
-    <input type="checkbox" name="HasPool" value="kryssruta" id="HasPool">
-    Pool</label>
-  
-  <label>
-    <input type="checkbox" name="SeaSide" value="kryssruta" id="SeaSide">
-    Seaview</label>
-  
-  <label>
-    <input type="checkbox" name="HasEntertainment" value="kryssruta" id="HasEntertainment">
-    Entertainment</label>
-  
-  <label>
-    <input type="checkbox" name="HasKidClub" value="kryssruta" id="HasKidClub">
-    KidClub</label>
-  
-  <label>
-    <input type="checkbox" name="HasRestaurant" value="kryssruta" id="HasRestaurant">
-    Restaurant</label>
- <br>
-  <label>
-    <input type="checkbox" name="HasHalfPension" value="kryssruta" id="HasHalfPension">
-    Halfpension</label>
-  
-  <label>
-    <input type="checkbox" name="HasWholePension" value="kryssruta" id="HasWholePension">
-    Wholepension</label>
- 
-  <label>
-    <input type="checkbox" name="HasAllInclusive" value="kryssruta" id="HasAllInclusive">
-    Allinclusive</label>
-  
-  <label>
-    <input type="checkbox" name="HasWifi" value="kryssruta" id="HasWifi">
-    Wi-Fi</label>
-  
-  <label>
-    <input type="checkbox" name="HasRoomService" value="kryssruta" id="HasRoomService">
-    Roomservice</label>
-  <br>
-<br>
-		  
-		  
-</td>
-      <td>
-		  
-		  
-		  <p> <b>Hotel info:</b> </p><br>
-	  
-		  
-		    
-		   <input type="text" name="Name" id="Name" value="HotelName">  
-        <br>
-	    <input type="text" name="Address" id="Address" value="StreetAddress">  
-        <br>
-          
-        <input type="text" name="ZipCode" id="ZipCode" value="ZipCode" style=" width:70px;">
-	    <input type="text" name="City" id="City" value="City">
-		  <br>
-		   <input type="text" name="Country" id="Country" value="Country"> 
-       
-		  <br>
-		  <br>
-		  <input type="number" name="DistanceToBeach" id="DistanceToBeach" value="850" style="width:50px;">
-	<label for="DistanceToBeach">Meters to beach</label>
-		  <br>
-		    <input type="number" name="DistanceToCityCenter" id="DistanceToCityCenter" value="150" style="width:50px;">
-	<label for="DistanceToCityCenter">Meters to city center</label>
-		  <br>
-		  <br>
-<img src="https://cm01.mapion.co.jp/m2/map?usr=atlas_org&island=org&lon=139.70960376&lat=35.6886135&level=16&size=633x510" width="323" height="200" alt=""/>
-        <p></p>
-      
-        <br>
-<input type="number" name="Rating" id="Rating" value="9.1" style="width:40px;">
-<label for="Rating">Rating</label>
-        <br>
-        <p>192 Guestreviews at HolidayMakers.com</p>
-        <label for="ReviewText">Latest Guestreview<br>
-        </label>
-        <input type="text" name="ReviewText" id="ReviewText" value="Very nice hotel close to the beach, bla bla bla bla bla lbla bla" style="height:60px; width:300px;">
-     <br>
-</td>
-    </tr>
-  </tbody>
-</table>
-<br>
+  <div class="div2"> 
+     <h4 class="prices-title">Prices from: XXX SEK</h4>
+    <button class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+  </div>
 
-	
-      <table width="1200" border="0">
-          <label for="NoOfAdults">Your choose for</label>
-          <input type="number" name="NoOfAdults" id="NoOfAdults" style="width:50px;">guest.
-          <br>
-			<br>
-			
-           <label for="CheckInDate">CheckIn date:</label>
-      <input type="date" name="CheckInDate" id="CheckInDate">
-												 
-	<label for="CheckInDate">CheckOut Date:</label>
-      <input type="date" name="CheckOutDate" id="CheckOutDate">
-			
- <label for="RoomNo">Number of room:</label>
-          <input type="number" name="RoomNo" id="RoomNo" style="width:50px;" value="2">
-			
-			<label for="NoOfAdults">Number of Adults:</label>
-          <input type="number" name="NoOfAdults" id="NoOfAdults" style="width:50px;" value="2">
-          <br>
-          
-         </table> 
-          
-       <br>
-     <br>
-		  
-		  <table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Standardroom / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/d5422cdf_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="500"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button" >
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="div3"> 
+        <img src='../assets/logo.png' class="thumbnail">
+  </div>
 
-	<br>
-	<br>
-	<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Superior-Room / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/914ab001_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="750"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button">
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
-	
-	<br>
-	<br>
-	
-	<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Suite-Room / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/399f56bf_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="1000"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button">
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="div4"> 
+      REVIEW SUMMARY
+  </div>
+
+  <div class="div5"> 
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, dolorem quis? Voluptates atque, necessitatibus nam quos officia ratione aspernatur rerum sapiente quam iure deleniti asperiores quidem tenetur ex alias officiis.</p>
+      <i class="fas fa-wifi bool-icon"></i> Has Wi-fi
+      <i class="fas fa-paw bool-icon"></i> Pets allowed
+      <i class="fas fa-utensils bool-icon"></i> Has restaurant
+      <hr>
+  </div>
+
+  <div class="div6 empty-div"> 
+      EMPTY
+  </div>
+
+  <div class="div7"> 
+      <DRPicker class="datepicker-small" />
+      <button class="btn btn-md btn-primary guests-button"> <i class="fas fa-users"></i> Guests/rooms</button>
+  </div>
+
+  <div class="div8 empty-div"> 
+      EMPTY
+  </div>
   
+  ROOM SUGGESTION COMPONENT
+
+</div>
+
 
 </template>
 
+<script>
+import DRPicker from '@/components/DRPicker.vue'
+
+export default {
+    components: { DRPicker }
+}
+</script>
 
 
 <style>
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: left;
-  color: #2c3e50;
+.hotel-title {
+  float: left;
 }
 
-
-#nav a {
-  color: #2c3e50;
+.star-rating-about {
+  font-size: 28px;
+  margin-left: 10px;
+  color: red;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.addtofavorite-button {
+  color: red;
+  font-size: 28px;
+  float: left;
+  margin-right: 10px;
 }
 
+.addtofavorite-button:hover {
+  color: lightcoral;
+}
 
- body {
+.prices-title {
+  text-align: right;
+}
+
+.selectrooms-button {
+  margin: 0 auto;
+  float: right;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.bool-icon {
+  font-size: 28px;
+  margin-left: 10px;
+
+}
+
+.datepicker-small {
+  display: inline-flex;
+}
+
+.guests-button {
+  margin-left: 10px;
+}
+
+ .parent.hotel-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: rgb(246, 246, 252);
+  margin: 20px auto;
+  padding: 12px;
+  max-width: 80%;
+  border:black;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+}
+
+.empty-div {
+  visibility: hidden;
+}
+
+.div1 { 
+  grid-area: 1 / 1 / 2 / 2; 
+}
+.div2 { 
+  grid-area: 1 / 2 / 2 / 3; 
+}
+.div3 { 
+  grid-area: 2 / 1 / 3 / 2; 
+}
+.div4 { 
+  grid-area: 2 / 2 / 3 / 3; 
+}
+.div5 { 
+  grid-area: 3 / 1 / 4 / 2; 
+}
+.div6 { 
+  grid-area: 3 / 2 / 4 / 3; 
+}
+.div7 { 
+  grid-area: 4 / 1 / 5 / 2; 
+  width: 100%;
+}
+.div8 { 
+  grid-area: 4 / 2 / 5 / 3; 
+}
+ 
+ /* body {
      margin: 0;
      padding: 0;
      font-family: 'Open Sans', serif;
@@ -352,6 +206,6 @@ input[type=number] {
   font-family: 'Open Sans', serif;
   font-size: 18px;
   
-}
+} */
 
 </style>

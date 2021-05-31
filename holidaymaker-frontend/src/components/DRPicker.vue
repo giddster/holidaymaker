@@ -42,11 +42,11 @@ grid-row-gap: 0px;
 }
 
 .date-picker {
-	color:rgb(117, 116, 114);
-	opacity: 0.9;
-	border: 2px solid rgb(189, 189, 189);
-	border-radius: 5px;
-	background: #fff;
+color:rgb(117, 116, 114);
+opacity: 0.9;
+border: 2px solid rgb(189, 189, 189);
+border-radius: 5px;
+background: #fff;
 }
 
 .date-div1 { 
