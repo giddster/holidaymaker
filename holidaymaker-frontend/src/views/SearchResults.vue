@@ -79,7 +79,6 @@ computed: {
     margin-left: 10px;
 }
 
-
 .thumbnail {
     border: 1px solid #ddd;
     padding: 5px; 
