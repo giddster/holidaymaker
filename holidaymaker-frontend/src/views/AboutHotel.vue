@@ -1,20 +1,22 @@
 <template>
 <div class="parent hotel-header">
   <div class="div1"> 
-    <h3 class="hotel-title">HOTEL NAME</h3>
+    <h4 class="hotel-title">HOTEL NAME</h4>
     <i class="fas fa-star star-rating-about"></i>
     <i class="fas fa-star star-rating-about"></i>
+    <p></p>
+    
     <hr>
     <i class="fas fa-heart addtofavorite-button"></i> <i>Add to Favorites</i> 
   </div>
 
   <div class="div2"> 
-     <h4 class="prices-title">Prices from: XXX SEK</h4>
+     <h5 class="prices-title">Prices from: XXX SEK</h5>
     <button class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
   </div>
 
   <div class="div3"> 
-        <img src='../assets/logo.png' class="thumbnail">
+        <img src='../assets/logo.png'>
   </div>
 
   <div class="div4"> 
@@ -23,9 +25,21 @@
 
   <div class="div5"> 
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, dolorem quis? Voluptates atque, necessitatibus nam quos officia ratione aspernatur rerum sapiente quam iure deleniti asperiores quidem tenetur ex alias officiis.</p>
-      <i class="fas fa-wifi bool-icon"></i> Has Wi-fi
-      <i class="fas fa-paw bool-icon"></i> Pets allowed
-      <i class="fas fa-utensils bool-icon"></i> Has restaurant
+      
+      <i class="fas fa-wifi bool-icon"><p class="icon-description">Has Wi-fi</p></i>  
+      <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
+      <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Swimming pool</p></i> 
+      <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
+      <i class="fas fa-cocktail bool-icon"><p class="icon-description">Bar</p></i>
+      <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
+      <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
+      <i class="fas fa-music bool-icon"><p class="icon-description">Entertainment</p></i> 
+      
+      <br>
+      <br>
+      <i>DISTANCE TO BEACH: xxx km</i> |
+      <i>DISTANCE TO CITY CENTER: xxx km</i>
+     
       <hr>
   </div>
 
@@ -35,7 +49,8 @@
 
   <div class="div7"> 
       <DRPicker class="datepicker-small" />
-      <button class="btn btn-md btn-primary guests-button"> <i class="fas fa-users"></i> Guests/rooms</button>
+      <button class="btn btn-md btn-primary guests-button datepicker-small"> <i class="fas fa-users"></i> Guests</button>
+      <hr>
   </div>
 
   <div class="div8 empty-div"> 
@@ -94,9 +109,21 @@ export default {
 }
 
 .bool-icon {
-  font-size: 28px;
+  font-size: 25px;
   margin-left: 10px;
+  color: rgb(38, 177, 38);
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
 
+.icon-description {
+  font-size: 14px;
+  margin-right: 10px;
+  color: rgb(41, 148, 41);
+  font-family: sans-serif;
+  font-weight: lighter;
+  margin-top: 5px;
 }
 
 .datepicker-small {
@@ -110,7 +137,7 @@ export default {
  .parent.hotel-header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   background: rgb(246, 246, 252);
@@ -129,15 +156,20 @@ export default {
 
 .div1 { 
   grid-area: 1 / 1 / 2 / 2; 
+  padding-bottom: 10px;
 }
 .div2 { 
   grid-area: 1 / 2 / 2 / 3; 
 }
 .div3 { 
   grid-area: 2 / 1 / 3 / 2; 
+  max-width: 800px;
+  height: 500px;
+  border: 1px solid black;
 }
 .div4 { 
   grid-area: 2 / 2 / 3 / 3; 
+  margin: auto;
 }
 .div5 { 
   grid-area: 3 / 1 / 4 / 2; 
@@ -147,65 +179,10 @@ export default {
 }
 .div7 { 
   grid-area: 4 / 1 / 5 / 2; 
-  width: 100%;
 }
 .div8 { 
-  grid-area: 4 / 2 / 5 / 3; 
+  grid-area: 4 / 1 / 5 / 3; 
 }
  
- /* body {
-     margin: 0;
-     padding: 0;
-     font-family: 'Open Sans', serif;
-     background: white
-     
-     }
-
-     .button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 9px #999;
-}
-
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-input[type=text] {
-  
-  
-  box-sizing: border-box;
-  border: 0px solid black;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: 'Open Sans', serif;
-  font-size: 18px;
-  
-}
-
-input[type=number] {
-  
-  
-  box-sizing: border-box;
-  border: 0px solid black;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: 'Open Sans', serif;
-  font-size: 18px;
-  
-} */
 
 </style>
