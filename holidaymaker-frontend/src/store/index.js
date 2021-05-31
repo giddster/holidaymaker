@@ -145,7 +145,10 @@ export default createStore({
 		
 		filteredHotels: [],
 
-      	dates: {}  
+      	dates: {},
+		
+		 
+		
 		
   },
 
@@ -161,11 +164,23 @@ export default createStore({
     },
     setDates(state, data) {
       state.dates = data
-    }
+    },
+	setBooking(state, data){
+		state.bookings = data
+	}
 
   },
 
   actions: {
+
+	async fetchBooking({commit}){
+		let response = await fetch(`api/bookings/`)
+		let data = await response.json()
+		commit('setBooking', data)
+		console.log(data);
+		
+	},
+
     async fetchDestinations({commit}){
       let response = await fetch('api/Destinations/')
       let data = await response.json()
@@ -188,8 +203,10 @@ export default createStore({
 
       async setDates({commit}, dates){
         commit('setDates', dates)
-      }
+      },
 
+  
+	  
   },
   modules: {
 

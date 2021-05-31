@@ -9,11 +9,18 @@
                 </div>
                 <p class="hotelId">Hotel Name</p>
                 <div class="hotelDetails">
-                    <p>Address: </p>
-                    <p>Checkin date: </p>
-                    <p>Checkout date: </p>
-                    <p>Room type: </p>
-                    <p>Price: </p>
+                    <ul v-for="booking in bookings" :key="booking">
+                        <li>Address: </li>
+                        <li>Checkin date: </li>
+                        <li>Checkout date:</li>
+                        <li>Room type:</li>
+                        <li>Price:</li>
+                    </ul>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
                 </div>
             </form>
         </div>
@@ -27,6 +34,11 @@ export default {
     data(){
         return{
             img: 'https://www.nordicchoicehotels.se/globalassets/global/hotel-pictures/nordic-hotels-and-resorts/hotel-christiania-teater/the-hotel/enterence-hotel-christiania-teater-web.jpg?t=SmartScale%7c1024x570'
+        }
+    },
+    computed: {
+        bookings(){
+            return this.$store.state.bookings;
         }
     }
 }
