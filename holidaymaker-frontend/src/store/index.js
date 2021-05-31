@@ -147,6 +147,7 @@ export default createStore({
 
       	dates: {},
 		
+		bookings2: [],
 		 
 		
 		
@@ -174,11 +175,23 @@ export default createStore({
   actions: {
 
 	async fetchBooking({commit}){
-		let response = await fetch(`api/bookings/`)
+		let response = await fetch(`api/bookings/2`)
 		let data = await response.json()
 		commit('setBooking', data)
 		console.log(data);
 		
+	},
+
+	loadBookings(){
+		fetch('api/bookings/')
+		.then(function (response) {
+			if (response.ok) {
+				return response.json();
+			}
+		})
+		.then(function(data) {
+			console.log(data);
+		});
 	},
 
     async fetchDestinations({commit}){

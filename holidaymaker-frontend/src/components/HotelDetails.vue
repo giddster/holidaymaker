@@ -4,24 +4,12 @@
         <div class="form">
             <form class="hotel-form">
                 <h3>Hotel Info</h3>
-                <div class="hotel-image">
+                
+                <div v-for="booking in bookings" :key="booking" class="hotelDetails">
                     <img v-bind:src="img">
+                    <p class="hotelId">Hotel Name</p>
                 </div>
-                <p class="hotelId">Hotel Name</p>
-                <div class="hotelDetails">
-                    <ul v-for="booking in bookings" :key="booking">
-                        <li>Address: </li>
-                        <li>Checkin date: </li>
-                        <li>Checkout date:</li>
-                        <li>Room type:</li>
-                        <li>Price:</li>
-                    </ul>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                </div>
+                <button @click="fetchBooking">click</button>
             </form>
         </div>
     </div>
@@ -40,7 +28,14 @@ export default {
         bookings(){
             return this.$store.state.bookings;
         }
+    },
+    methods:{
+        fetchBooking(){
+            return this.$store.dispatch('loadBookings')
+        }
     }
+    
+
 }
 </script>
 
