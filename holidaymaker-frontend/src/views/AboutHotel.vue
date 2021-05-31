@@ -57,6 +57,7 @@
       EMPTY
   </div>
   
+  <RoomSuggestor />
   ROOM SUGGESTION COMPONENT
 
 </div>
@@ -66,9 +67,10 @@
 
 <script>
 import DRPicker from '@/components/DRPicker.vue'
+import RoomSuggestor from '@/components/RoomSuggestor.vue'
 
 export default {
-    components: { DRPicker }
+    components: { DRPicker, RoomSuggestor }
 }
 </script>
 
