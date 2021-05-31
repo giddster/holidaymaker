@@ -3,17 +3,32 @@
     <div class="register-page">
       <div class="form">
         <form class="register-form">
-          <input v-model="UserName" id="UserName" type="text" placeholder="User Name" />
-          <input v-model="UserEmail" id="UserEmail" type="text" placeholder="Email" />
-          <input v-model="UserPassword" id="UserPassword" type="password" placeholder="Password" />
           <input
-          v-bind="UserPasswordConfirmation"
+            v-model="UserName"
+            id="UserName"
+            type="text"
+            placeholder="User Name"
+          />
+          <input
+            v-model="UserEmail"
+            id="UserEmail"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            v-model="UserPassword"
+            id="UserPassword"
+            type="password"
+            placeholder="Password"
+          />
+          <input
+            v-model="UserPasswordConfirmation"
             id="UserPasswordConfirmation"
             type="password"
             placeholder="Confirm password"
           />
 
-          <button @click.prevent="handleUserRegister" >Register</button>
+          <button @click.prevent="handleUserRegister">Register</button>
           <p class="message">
             Already Registered? <router-link to="/login">Login</router-link>
           </p>
@@ -40,18 +55,25 @@ export default {
 
       ...mapActions(['registerUser']),
 
-    handleUserRegister() {
+    async handleUserRegister() {
         let user = {
             userName: this.UserName,
-            email: this.UserEmail,
             password: this.UserPassword,
+            email: this.UserEmail,
            // UserPasswordConfirmation: this.UserPasswordConfirmation
         }
-            console.log(user);
-            //this.$store.dispatch('search', this.searchString)
-           let response = this.$store.dispatch('registerUser', this.user)
-           alert(response.title)
+
+        let response = await this.registerUser(user)
+
+        if(response){
+          alert('User Registration Successful')
+
+        }
+        else{
+          alert('User Registartion Failed')
+        }
     },
+    
   },
 };
 </script>
