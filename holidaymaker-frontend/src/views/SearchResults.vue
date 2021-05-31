@@ -4,7 +4,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        FILTER COMPONENT
+        <FilterComponent />
     </div>
 
     <div class="results-div"> 
@@ -23,8 +23,11 @@
 </template>
 
 <script>
+import FilterComponent from '@/components/FilterComponent.vue'
+
 export default {
 
+components: { FilterComponent },
 methods: {
     redirect() {
         this.$router.push({ name: 'AboutHotel' })
