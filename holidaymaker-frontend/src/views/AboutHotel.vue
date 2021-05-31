@@ -57,8 +57,8 @@
       EMPTY
   </div>
   
+  <h4>Room suggestions: </h4>
   <RoomSuggestor />
-  ROOM SUGGESTION COMPONENT
 
 </div>
 
