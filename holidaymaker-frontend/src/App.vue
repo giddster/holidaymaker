@@ -1,8 +1,12 @@
-<template>
-  <Header />
-  <Search />
-  <router-view/>
-  <Footer />
+<template class="main-template">
+  <Header id="header-component" />
+  <div id="content-container">
+    <div id="bg-container">
+      <Search id="search-component" />
+    </div>
+    <router-view id="router-component"/>
+  </div>
+  <Footer id="footer-component"/>
 </template>
 
 <script>
@@ -12,7 +16,7 @@ import Search from './components/Search.vue'
 
 
 export default {
-  components: { Header, Footer, Search }
+  components: { Header, Footer, Search}
 }
 </script>
 
@@ -26,6 +30,56 @@ export default {
 
 body {
   margin: 0px;
+  height: 837px;
+  background-color: lightgrey;
 }
 
+#bg-container {
+  background-image: url("../src/assets/background1920.png");
+  height: 400px;
+  padding: 40px;
+  min-height: 400px;
+}
+
+#search-component {
+  margin-top: 6%;
+  opacity: 95%;
+  box-shadow: 0px 2px 10px black;
+}
+
+#footer-component {
+  margin-bottom: 0px;
+}
+
+#content-container {
+  min-height: 840px;
+}
+
+/* BUTTONS */
+
+.btn {
+    background: lightcoral;
+    border-radius: 5px;
+    border: 1px solid lightcoral;
+}
+.btn:hover {
+    background: lightpink;
+    border-radius: 5px;
+    border: 1px solid lightpink;
+    box-shadow: none;
+}
+.btn:focus {
+    background: lightcoral;
+    border-radius: 5px;
+    border-color: lightcoral;
+    box-shadow: none;
+}
+
+a {
+  color: lightcoral;
+}
+
+a:hover {
+  color: lightpink;
+}
 </style>

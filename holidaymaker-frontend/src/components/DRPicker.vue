@@ -2,12 +2,12 @@
 	<div class="date-parent">
 		<div class="date-div1"> 
 			<input ref="checkIn" type="date" v-model="dates.checkinDate" class="date-picker">
-			<p>Checkin Date</p>
+			<p style="margin-bottom: 0px; color: lightcoral">Checkin Date</p>
 		</div>
 
 		<div class="date-div2"> 
 			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker">
-			<p>Checkout Date</p>
+			<p style="margin-bottom: 0px; color: lightcoral">Checkout Date</p>
 		</div>
 		
 		

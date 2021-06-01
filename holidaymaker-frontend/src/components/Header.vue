@@ -2,8 +2,9 @@
   <header>
       <div class="header-parent">
           <div class="header-div1"> 
-            <img src="../assets/logo.png" alt="holidayMakerLogo" class="companyLogo">
-            <router-link to="/"><h5 class="header-title">HolidayMaker.com</h5></router-link>
+            <router-link id="logo-link" to="/">
+              <img src="../assets/logoPink.svg" alt="holidayMakerLogo" class="companyLogo">
+            </router-link>
           </div>
           <div class="header-div2"> 
               <ProfileDropdown />
@@ -23,7 +24,8 @@ export default {
 <style>
 
 header {
-  background:rgb(233, 232, 253);
+  background:rgb(246, 246, 252);
+  height: 75px;
 }
 
 .header-parent {
@@ -39,23 +41,12 @@ header {
 }
 .header-div2 { 
   grid-area: 1 / 4 / 2 / 5; 
-  margin-top: 10px;
+  margin-top: 17px;
   margin-right: 10px;
 }
 
-.header-title {
-  display: inline;
-  margin-left: 10px;
-}
-
-.header-title:hover {
-    cursor: pointer;
-    color: cornflowerblue;
-}
-
 .companyLogo {
-  padding: 5px; 
-  width: 85px; 
+  height: 60px;
 }
 
 
