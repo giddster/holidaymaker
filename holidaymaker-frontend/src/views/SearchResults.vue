@@ -9,7 +9,7 @@
 
     <div class="results-div"> 
             <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
-                <button @click="redirect" class="btn btn-md btn-primary booking-button">Book a room</button>
+                <router-link :to="'/abouthotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
                 <img src='../assets/logo.png' class="thumbnail">
                 <h4 class="hotel-name"> {{ hotel.name }}</h4>
                 <i class="fas fa-star star-rating"></i>
@@ -29,10 +29,7 @@ export default {
 
 components: { FilterComponent },
 methods: {
-    redirect() {
-        this.$router.push({ name: 'AboutHotel' })
-        this.$store.dispatch('search', this.searchString)
-     }
+    
 },
 computed: {
     filteredHotels(){
