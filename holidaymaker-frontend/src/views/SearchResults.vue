@@ -9,7 +9,7 @@
 
     <div class="results-div"> 
             <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
-                <router-link :to="'/abouthotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
+                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
                 <img src='../assets/logo.png' class="thumbnail">
                 <h4 class="hotel-name"> {{ hotel.name }}</h4>
                 <i class="fas fa-star star-rating"></i>

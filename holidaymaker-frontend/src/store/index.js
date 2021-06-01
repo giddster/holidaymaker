@@ -145,6 +145,8 @@ export default createStore({
 		
 		filteredHotels: [],
 
+		thisHotel: {},
+
       	dates: {}  
 		
   },
@@ -159,6 +161,9 @@ export default createStore({
     setFilteredHotels(state, data){
       state.filteredHotels = data
     },
+	setThisHotel(state, data){
+	  state.thisHotel = data
+	},
     setDates(state, data) {
       state.dates = data
     }
@@ -167,9 +172,9 @@ export default createStore({
 
   actions: {
     async fetchDestinations({commit}){
-      let response = await fetch('api/Destinations/')
+      let response = await fetch('/api/Destinations/')
       let data = await response.json()
-	  console.log(data)
+	//   console.log(data)
 	  commit('setDestinations', data)
     },
     
@@ -177,6 +182,13 @@ export default createStore({
       let response2 = await fetch('api/Hotels/')
       let data = await response2.json()
       commit('setHotels', data)
+      },
+	  
+	  async fetchThisHotel({commit}, id){
+      let response = await fetch(`/api/Hotels/${id}`)
+      let data = await response.json()
+	  console.log(data)
+      commit('setThisHotel', data)
       },
 
       async search({commit}, searchString){

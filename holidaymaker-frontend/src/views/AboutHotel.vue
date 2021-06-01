@@ -1,18 +1,16 @@
 <template>
-<div class="parent hotel-header">
+<div class="parent hotel-header" >
   <div class="div1"> 
-    <h4 class="hotel-title">HOTEL NAME</h4>
+    <h4 class="hotel-title">{{ thishotel.name }}</h4>
     <i class="fas fa-star star-rating-about"></i>
-    <i class="fas fa-star star-rating-about"></i>
-    <p></p>
-    
     <hr>
-    <i class="fas fa-heart addtofavorite-button"></i> <i>Add to Favorites</i> 
   </div>
 
   <div class="div2"> 
-     <h5 class="prices-title">Prices from: XXX SEK</h5>
     <button class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+    <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
+   
+
   </div>
 
   <div class="div3"> 
@@ -24,21 +22,20 @@
   </div>
 
   <div class="div5"> 
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, dolorem quis? Voluptates atque, necessitatibus nam quos officia ratione aspernatur rerum sapiente quam iure deleniti asperiores quidem tenetur ex alias officiis.</p>
+      <p>{{thishotel.description}}</p>
       
       <i class="fas fa-wifi bool-icon"><p class="icon-description">Has Wi-fi</p></i>  
       <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
       <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Swimming pool</p></i> 
       <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
-      <i class="fas fa-cocktail bool-icon"><p class="icon-description">Bar</p></i>
       <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
       <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
       <i class="fas fa-music bool-icon"><p class="icon-description">Entertainment</p></i> 
       
       <br>
       <br>
-      <i>DISTANCE TO BEACH: xxx km</i> |
-      <i>DISTANCE TO CITY CENTER: xxx km</i>
+      <i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i> <br>
+      <i> Distance to city center: {{ thishotel.distanceToCityCenter }} km to city center</i>
      
       <hr>
   </div>
@@ -48,8 +45,9 @@
   </div>
 
   <div class="div7"> 
+      <h4>Your trip: </h4>
       <DRPicker class="datepicker-small" />
-      <button class="btn btn-md btn-primary guests-button datepicker-small"> <i class="fas fa-users"></i> Guests</button>
+      <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
       <hr>
   </div>
 
@@ -70,7 +68,18 @@ import DRPicker from '@/components/DRPicker.vue'
 import RoomSuggestor from '@/components/RoomSuggestor.vue'
 
 export default {
-    components: { DRPicker, RoomSuggestor }
+  components: { DRPicker, RoomSuggestor },
+  
+  computed: {
+      thishotel() {
+        return this.$store.state.thisHotel;
+      }
+    },
+    
+    mounted() {
+      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+    },
+    
 }
 </script>
 
@@ -87,11 +96,16 @@ export default {
   color: red;
 }
 
-.addtofavorite-button {
+.heart-icon {
   color: red;
-  font-size: 28px;
-  float: left;
-  margin-right: 10px;
+}
+
+.addtofavorite-button {
+  float: right;
+  margin-right: 20px;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
 }
 
 .addtofavorite-button:hover {

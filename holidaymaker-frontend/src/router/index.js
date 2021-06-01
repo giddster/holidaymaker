@@ -79,7 +79,7 @@ const routes = [
     component: MyFavoritesProfile
   },
   {
-    path: "/abouthotel/:id",
+    path: "/hotel/:id",
     name: "AboutHotel",
     component: AboutHotel
   },
