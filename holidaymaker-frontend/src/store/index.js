@@ -204,11 +204,7 @@ export default createStore({
 
     async registerUser({ commit }, user) {
 
-      //console.log(user);
-
       let body = { userName: user.userName, password: user.password, email: user.email }
-
-      //console.log(body)
 
       const requestOptions = {
         method: "POST",
@@ -218,8 +214,6 @@ export default createStore({
 
       const response = await fetch('/api/Authentication/Register', requestOptions)
       const data = await response.json();
-      
-      //console.log(data)
 
       commit('setUser', data)
 

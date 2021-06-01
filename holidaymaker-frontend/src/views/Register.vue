@@ -2,13 +2,8 @@
   <body>
     <div class="register-page">
       <div class="form">
-        <form class="register-form">
-          <input
-            v-model="UserName"
-            id="UserName"
-            type="text"
-            placeholder="User Name"
-          />
+        <form id ="registerForm" class="register-form">
+          
           <input
             v-model="UserEmail"
             id="UserEmail"
@@ -32,13 +27,18 @@
           <p class="message">
             Already Registered? <router-link to="/login">Login</router-link>
           </p>
+
+          
         </form>
       </div>
     </div>
+
   </body>
 </template>
 
 <script>
+
+
 import {mapActions} from 'vuex'
 export default {
   data() {
@@ -56,21 +56,32 @@ export default {
       ...mapActions(['registerUser']),
 
     async handleUserRegister() {
+        
         let user = {
-            userName: this.UserName,
+            userName: this.UserEmail,
             password: this.UserPassword,
             email: this.UserEmail,
-           // UserPasswordConfirmation: this.UserPasswordConfirmation
+            UserPasswordConfirmation: this.UserPasswordConfirmation
         }
 
-        let response = await this.registerUser(user)
 
-        if(response){
-          alert('User Registration Successful')
 
+        if(user.password === user.UserPasswordConfirmation){
+
+            let response = await this.registerUser(user)
+            
+
+            if(response){
+                alert('User Registration Successful')
+                document.getElementById("registerForm").reset();
+
+            }
+            else{
+                alert('User Registartion Failed')
+            }
         }
         else{
-          alert('User Registartion Failed')
+            alert('Wrong password')
         }
     },
     

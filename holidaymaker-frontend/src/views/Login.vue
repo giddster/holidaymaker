@@ -3,7 +3,7 @@
         <div class="login-page">
         <div class="form">
             <form class="login-form">
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Email">
                 <input type="password" placeholder="Password">
                 <button>Login</button>
                 <p class="message">Not registered? <router-link to="/register">Register</router-link></p>
