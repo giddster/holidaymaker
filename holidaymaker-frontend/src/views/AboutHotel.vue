@@ -13,8 +13,8 @@
 
   </div>
 
-  <div class="div3"> 
-        <img src='../assets/logo.png'>
+  <div class="div3">
+    
   </div>
 
   <div class="div4"> 
@@ -73,13 +73,15 @@ export default {
   computed: {
       thishotel() {
         return this.$store.state.thisHotel;
+      },
+      images() {
+        return this.$store.state.hotelImages
       }
     },
     
     mounted() {
       this.$store.dispatch('fetchThisHotel', this.$route.params.id)
     },
-    
 }
 </script>
 
