@@ -31,8 +31,7 @@ export default {
 
 <style scoped>
 body{
-    background-image: linear-gradient(rgba(0,0,0,0.6),
-    rgba(0,0,0,0.6)),url(/src/assets/pic1.jpg);
+    
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -40,17 +39,20 @@ body{
 }
 .register-page{
     width:360px;
-    padding: 10% 0 0;
+    padding: 5% 0 0;
     margin: auto;
 }
 .form {
     position: relative;
     z-index: 1;
-    background: rgba(7,40,195, 0.8);
+    background: rgb(246, 246, 252);
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 45px;
+    padding: 30px;
     text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
     
     
 }
@@ -69,7 +71,7 @@ body{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline:0;
-    background:#4CAF50;
+    background: lightcoral;
     width: 100%;
     border: 0;
     padding:15 px;
@@ -78,15 +80,15 @@ body{
     cursor: pointer;
 }
 .form button:hover,.form button:active{
-    background: #43A047;
+    background: rgb(243, 109, 109);
 }
 .form .message{
     margin: 15px;
-    color:aliceblue;
+    color:rgb(0, 0, 0);
     font-size: 12px;
 }
 .form .message a{
-    color:#4CAF50;
+    color: lightcoral;
     text-decoration: none;
 }
 

@@ -73,11 +73,14 @@ export default {
 .form {
     position: relative;
     z-index: 1;
-    background: rgba(139, 140, 144, 0.8);
+    background: rgb(246, 246, 252);
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
 }
 .form input{
     font-family: "Roboto", sans-serif;

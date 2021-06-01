@@ -3,10 +3,14 @@
         <div class="form">
             <form class="editProfile-Form">
                 <h5 class="profile-form-title">Edit your profile</h5>
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Password">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Lastname">
+                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Lastname">
+                    <input type="text" placeholder="Address">
+                    <input type="password" placeholder="Password">
+                    <input type="text" placeholder="Zip">
+                    <input type="text" placeholder="City">
+                    <input type="text" placeholder="Country">
+                    <input type="text" placeholder="Phone">
                 <button class="btn btn-lg btn-primary saveprofilechanges-button">Save changes</button>
             </form>
         </div>
