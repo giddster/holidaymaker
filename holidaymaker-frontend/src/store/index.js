@@ -148,6 +148,8 @@ export default createStore({
 		thisHotel: {},
 
       	dates: {}  
+
+		  // lagra searchString i state? Då kan den återanvändas enligt Benjamin
 		
   },
 
