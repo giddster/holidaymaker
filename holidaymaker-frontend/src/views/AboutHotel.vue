@@ -35,7 +35,7 @@
       <br>
       <br>
       <i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i> <br>
-      <i> Distance to city center: {{ thishotel.distanceToCityCenter }} km to city center</i>
+      <i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i>
      
       <hr>
   </div>
