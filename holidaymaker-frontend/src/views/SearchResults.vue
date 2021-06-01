@@ -70,11 +70,12 @@ computed: {
 }
 
 .hotel {
-    margin: 25px 0;
+    margin: 20px auto;
     float: left;
     background: rgb(246, 246, 252);
     border-radius: 15px;
     padding: 10px;
+    width: 60%;
 }
 
 .hotel-name {
@@ -85,6 +86,7 @@ computed: {
 .thumbnail {
     border: 1px solid #ddd;
     padding: 5px; 
+    margin-right: 10px;
     width: 150px; 
     float: left;
 }
@@ -97,7 +99,7 @@ computed: {
 
 .hotel-description {
     text-align: left;
-    margin: 30px auto;
+    margin: 10px 25px;
 }
 
 .booking-button {
