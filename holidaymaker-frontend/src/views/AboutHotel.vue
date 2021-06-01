@@ -21,6 +21,7 @@
 
   <div class="div4"> 
       REVIEW SUMMARY
+      <output-review></output-review>
   </div>
 
   <div class="div5"> 
@@ -59,7 +60,7 @@
   
   <h4>Room suggestions: </h4>
   <RoomSuggestor />
-
+  
 </div>
 
 
@@ -68,9 +69,13 @@
 <script>
 import DRPicker from '@/components/DRPicker.vue'
 import RoomSuggestor from '@/components/RoomSuggestor.vue'
+import OutputReview from '../components/OutputReview.vue'
+import { computed } from 'vue'
 
 export default {
-    components: { DRPicker, RoomSuggestor }
+    components: { DRPicker, RoomSuggestor,OutputReview },
+
+    
 }
 </script>
 

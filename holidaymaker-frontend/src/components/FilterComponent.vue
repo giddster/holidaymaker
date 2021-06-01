@@ -31,7 +31,8 @@
                     </div>
                     <h3>Price per night: </h3>
                     <div class="slider">
-                        <input type="range" min="1" max="5000" value>
+                        <input type="range" min="1" max="5000" v-model="value">
+                        <p>{{value}}</p>
                     </div>
                     <h3>Star rating</h3>
                     <div class="star-rating">
@@ -48,7 +49,8 @@
                     </div>
                     <h3>Guest rating</h3>
                     <div class="slider">
-                        <input type="range" min="1" max="10" value>
+                        <input type="range" min="1" max="10" v-model="value2">
+                        <p>{{value2}}</p>
                     </div>
                 </form>
             </div>
@@ -57,9 +59,13 @@
     </body>
 </template>
 <script>
+
 export default {
-    methods:{
-       
+    data(){
+        return{
+            value2: 0,
+            value: 0
+        }
     }
 }
 </script>
@@ -101,11 +107,13 @@ export default {
 }
 .slider{
     text-align: left;
+    
 
 }
 h3{
     font-size: 15px;
     text-align: left;
+    padding:0px;
 }
 .star-rating {
   border:solid 1px #ccc;
