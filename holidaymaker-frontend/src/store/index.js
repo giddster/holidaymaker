@@ -128,6 +128,11 @@ export default createStore({
       password: "",
     },
 
+	loggedInUser: {
+		userName: "",
+		password: ""
+	  },
+
     hotelImages: [
       { id: 2, HotelId: 1, ImageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg' },
       { id: 3, HotelId: 1, ImageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/38b33d0c_z.jpg' },
@@ -173,7 +178,11 @@ export default createStore({
 
     setUser(state, data) {
       state.user = data
-    }
+    },
+
+	LogInUser(state, data) {
+		state.loggedInUser = data
+	  }
 
   },
 
@@ -224,6 +233,30 @@ export default createStore({
         return false
       }
     },
+
+
+	async loginUser({ commit }, loggedInUser) {
+
+		let body = { userName: loggedInUser.email, password: loggedInUser.password }
+  
+		const requestOptions = {
+		  method: "POST",
+		  headers: { 'Content-type': 'application/json' },
+		  body: JSON.stringify(body)
+		};
+  
+		const response = await fetch('/api/Authentication/Login', requestOptions)
+		const data = await response.json();
+  
+		commit('LogInUser', data)
+  
+		if (response.status == 200) {
+		  return true
+		}
+		else {
+		  return false
+		}
+	  },
 
 
 

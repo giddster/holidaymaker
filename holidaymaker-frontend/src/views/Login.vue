@@ -2,10 +2,10 @@
     <body>
         <div class="login-page">
         <div class="form">
-            <form class="login-form">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Login</button>
+            <form id = "loginForm" class="login-form">
+                <input v-model="UserEmail" type="email" placeholder="Email">
+                <input v-model="UserPassword" type="password" placeholder="Password">
+                <button @click.prevent="handleUserLogin">Login</button>
                 <p class="message">Not registered? <router-link to="/register">Register</router-link></p>
             </form>
         </div>
@@ -14,9 +14,55 @@
 </template>
 
 <script>
+
+import {mapActions} from 'vuex'
+
 export default {
+
+     data() {
+        return {
+            user:{
+            email:'',
+            password:'',
+        }
+        
+    };
+    },
+
+    methods: {
+
+       ...mapActions(['loginUser']),
+
+        async handleUserLogin() {
+            
+            let user = {
+                email: this.UserEmail,
+                password: this.UserPassword,
+            }
+
+            console.log(user)
+
+               
+               let response = await this.loginUser(user)
+
+               console.log(response)
+
+                if(response){
+                    alert('Login Successful')
+                    document.getElementById("loginForm").reset();
+
+                }
+                else{
+                    alert('Login Failed')
+                }
+        
+        },
     
+    },
+    
+
 }
+
 
 </script>
 

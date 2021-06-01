@@ -40,6 +40,7 @@
 
 
 import {mapActions} from 'vuex'
+
 export default {
   data() {
     return {
@@ -55,7 +56,7 @@ export default {
 
       ...mapActions(['registerUser']),
 
-    async handleUserRegister() {
+     async handleUserRegister() {
         
         let user = {
             userName: this.UserEmail,
