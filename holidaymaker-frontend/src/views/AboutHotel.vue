@@ -14,7 +14,7 @@
   </div>
 
   <div class="div3">
-    
+    <img :src="images[thishotel.id].ImageLink" style="width: 746px">
   </div>
 
   <div class="div4"> 
