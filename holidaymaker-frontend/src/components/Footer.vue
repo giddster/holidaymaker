@@ -6,10 +6,10 @@
       </div>
       <div class="footer-div2">
           <span>
-            <router-link to="/"> Home </router-link> |
-            <router-link to="/about"> About Us </router-link> |
-            <router-link to="/help"> Help/FAQ </router-link> |
-            <router-link to="/contact"> Contact </router-link>
+            <router-link class="link" to="/"> Home </router-link> |
+            <router-link class="link" to="/about"> About Us </router-link> |
+            <router-link class="link" to="/help"> Help/FAQ </router-link> |
+            <router-link class="link" to="/contact"> Contact </router-link>
           </span>
       </div>
       <div class="footer-div3">
@@ -35,8 +35,8 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  padding-top: 15px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  margin-bottom: 0px;
 }
 .footer-div1 { 
   grid-area: 1 / 1 / 2 / 2; 
@@ -54,6 +54,14 @@ footer {
   text-align: right;
   margin-right: 30px;
   font-style: italic;
+}
+
+.link {
+  color: lightcoral;
+}
+
+.link:hover {
+  color:lightpink;
 }
 
 </style>

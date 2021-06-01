@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown show">
-        <a class="btn btn-primary dropdown-toggle profiledropdown-button" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="btn btn-primary profiledropdown-button" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             USERNAME'S Profile
         </a>
 
@@ -27,18 +27,6 @@ export default{
 
 .profileIcon {
     color:lightcoral;
-}
-
-.profiledropdown-button {
-    background:rgb(248, 157, 157);
-    border-radius: 5px;
-    border: 1px solid lightcoral;
-}
-
-.profiledropdown-button:hover {
-    background: rgb(247, 108, 108);
-    border-radius: 5px;
-    border: 1px solid lightcoral;
 }
 
 </style>
