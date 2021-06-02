@@ -24,7 +24,7 @@ export default {
 <style>
 
 header {
-  background:rgb(246, 246, 252);
+  background:whitesmoke;
   height: 75px;
 }
 

@@ -28,7 +28,7 @@ export default {
 <style>
 
 footer {
-  background:rgb(233, 232, 253);
+  background:whitesmoke;
 }
 
 .footer-parent {

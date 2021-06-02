@@ -1,5 +1,5 @@
 <template>
-<div class="parent hotel-header" >
+<div class="parent hotel-header" ref="top">
   <div class="div1"> 
     <h4 class="hotel-title">{{ thishotel.name }}</h4>
     <i class="fas fa-star star-rating-about"></i>
@@ -61,8 +61,10 @@
 
 <div class="roomsuggestor-parent" ref="roomsuggestor">
     <div class="roomsuggestor-child"> 
+      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
       <h4 class="roomsuggestor-title">Available rooms </h4>
       <RoomSuggestor />
+      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
     </div>
 
   </div>
@@ -77,6 +79,12 @@ export default {
   components: { DRPicker, RoomSuggestor },
   methods: {
     scrollToSuggestions(refName){
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    },
+    scrollToTop(refName){
       var element = this.$refs[refName];
       var top = element.offsetTop;
 
@@ -99,82 +107,7 @@ export default {
 
 
 <style>
-
-.hotel-title {
-  float: left;
-}
-
-.star-rating-about {
-  font-size: 28px;
-  margin-left: 10px;
-  color: red;
-}
-
-.heart-icon {
-  color: red;
-}
-
-.addtofavorite-button {
-  float: right;
-  margin-right: 20px;
-  background: lightcoral;
-  border-radius: 5px;
-  border: 1px solid lightcoral;
-}
-
-.addtofavorite-button:hover {
-  color: lightcoral;
-}
-
-.prices-title {
-  text-align: right;
-}
-
-.selectrooms-button {
-  margin: 0 auto;
-  float: right;
-  background: lightcoral;
-  border-radius: 5px;
-  border: 1px solid lightcoral;
-}
-
-.bool-icon {
-  font-size: 25px;
-  margin-left: 10px;
-  color: rgb(38, 177, 38);
-  border: 1px solid black;
-  border-style: hidden;
-  text-align: center;
-}
-
-.distance-icon {
-  font-size: 18px;
-  margin-left: 10px;
-  padding: 10px;
-  color:lightcoral;
-  border: 1px solid black;
-  border-style: hidden;
-  text-align: center;
-}
-
-.icon-description {
-  font-size: 14px;
-  margin-right: 10px;
-  color: rgb(41, 148, 41);
-  font-family: sans-serif;
-  font-weight: lighter;
-  margin-top: 5px;
-}
-
-.datepicker-small {
-  display: inline-flex;
-}
-
-.guests-button {
-  margin-left: 10px;
-}
-
- .parent.hotel-header {
+.parent.hotel-header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
@@ -224,6 +157,90 @@ export default {
   grid-area: 4 / 2 / 5 / 3; 
 }
 
+.hotel-title {
+  float: left;
+}
+
+.star-rating-about {
+  font-size: 28px;
+  margin-left: 10px;
+  color: red;
+}
+
+.heart-icon {
+  color: red;
+}
+
+.addtofavorite-button {
+  float: right;
+  margin-right: 20px;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.addtofavorite-button:hover {
+  color: lightcoral;
+}
+
+.prices-title {
+  text-align: right;
+}
+
+.selectrooms-button {
+  margin: 0 auto;
+  float: right;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.backtotop-button{
+  float: right;
+  margin: 0 auto;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.bool-icon {
+  font-size: 25px;
+  margin-left: 10px;
+  color: rgb(38, 177, 38);
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
+
+.distance-icon {
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 10px;
+  color:lightcoral;
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
+
+.icon-description {
+  font-size: 14px;
+  margin-right: 10px;
+  color: rgb(41, 148, 41);
+  font-family: sans-serif;
+  font-weight: lighter;
+  margin-top: 5px;
+}
+
+.datepicker-small {
+  display: inline-flex;
+}
+
+.guests-button {
+  margin-left: 10px;
+}
+
+ 
+
 .roomsuggestor-title{
   text-align: left;
 }
@@ -234,7 +251,7 @@ grid-template-columns: 1fr;
 grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
-background: rgb(246, 246, 252);
+background: rgb(252, 232, 234);
 margin: 20px auto;
 padding: 12px;
 max-width: 80%;
