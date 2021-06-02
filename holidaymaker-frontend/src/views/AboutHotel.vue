@@ -2,9 +2,28 @@
 <div class="parent hotel-header" >
   <div class="div1"> 
     <h4 class="hotel-title">{{ thishotel.name }}</h4>
-    <i class="fas fa-star star-rating-about"></i>
+    
     <hr>
   </div>
+
+   <div style="padding:0px;">
+        <star-rating @rating-selected ="setRating"
+        
+               
+                :round-start-rating="false"
+                :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                :border-width="2"
+                :clearable="true"
+                active-on-click
+                animate
+                :padding="0"
+        >
+     
+        </star-rating>
+        
+      
+    </div>
+
 
   <div class="div2"> 
     <button class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
@@ -66,9 +85,10 @@
 <script>
 import DRPicker from '@/components/DRPicker.vue'
 import RoomSuggestor from '@/components/RoomSuggestor.vue'
+import StarRating from '@/components/StarRating.vue'
 
 export default {
-  components: { DRPicker, RoomSuggestor },
+  components: { DRPicker, RoomSuggestor,StarRating },
   
   computed: {
       thishotel() {
