@@ -23,7 +23,7 @@
       <p>Address: {{ thishotel.address }}, {{ thishotel.zipCode }} </p>
       <p><i>{{thishotel.description}}</i></p> <br>
 
-      <b>Amenities: </b> <br>
+      <b>Available amenities: </b> <br>
       <i class="fas fa-wifi bool-icon"><p class="icon-description">Wi-fi</p></i>  
       <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
       <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Pool</p></i> 
@@ -61,7 +61,7 @@
 
 <div class="roomsuggestor-parent" ref="roomsuggestor">
     <div class="roomsuggestor-child"> 
-      <h4>Room suggestions </h4>
+      <h4 class="roomsuggestor-title">Available rooms </h4>
       <RoomSuggestor />
     </div>
 
@@ -224,6 +224,10 @@ export default {
   grid-area: 4 / 2 / 5 / 3; 
 }
 
+.roomsuggestor-title{
+  text-align: left;
+}
+
 .roomsuggestor-parent {
 display: grid;
 grid-template-columns: 1fr;
@@ -239,6 +243,7 @@ border-style: solid;
 border-width: thin;
 border-radius: 10px;
 }
+
 
 .roomsuggestor-child{ 
   grid-area: 1 / 1 / 2 / 2; 

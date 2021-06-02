@@ -1,10 +1,11 @@
 <template>
     <div class="room-box" v-for="room in filteredRooms" :key="room.id">
-        <h5>Room type: {{ room.roomType.typeName }}</h5>
+        <h5>Type: {{ room.roomType.typeName }}</h5>
             <img v-bind:src="img">
             <div class="box">
-                    <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night</p>
-                    <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} adults </p>
+                    <p><i class="fas fa-hashtag"></i><i>Room number: {{ room.roomNo}} </i> </p>
+                    <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
+                    <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
                     <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
                     <button class="btn btn-primary">Add to booking</button>
             </div>
