@@ -1,10 +1,10 @@
 <template>
     <div class="card" v-for="room in filteredRooms" :key="room.id">
-        <h3>Room number: {{ room.roomNo }}</h3>
+        <h4>Room type: {{ room.roomType.typeName }}</h4>
             <img v-bind:src="img">
             <div class="box">
-                <p> Spare beds: {{ room.noOfSpareBeds }}</p>
-                <p> Room type: {{ room.roomType.typeName }}</p>
+                <p> Price per night: {{ room.roomType.price }} SEK</p>
+                <i> Spare beds: {{ room.noOfSpareBeds }}</i> <br>
                 <button class="btn btn-primary">Add to booking</button>
             </div>
     </div>
