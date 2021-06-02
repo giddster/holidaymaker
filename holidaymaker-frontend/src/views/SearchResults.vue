@@ -1,6 +1,9 @@
 <template>
-<h2 v-if="filteredHotels.length" class="hotelHeader">Your results for CITY, COUNTRY</h2>
-<h2 v-else class="hotelHeader"><i>Sorry, we couldn't find hotels in that city!</i></h2>
+<div class="hotelHeader">
+    <h2 v-if="filteredHotels.length">Your results for CITY, COUNTRY</h2>
+    <h2 v-else><i>Sorry, we couldn't find hotels in that city!</i></h2>
+</div>
+
 
 <div class="parent">
     <div class="filter-div"> 

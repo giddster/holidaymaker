@@ -7,7 +7,7 @@
   </div>
 
   <div class="div2"> 
-    <button @click="scrollToSuggestions('suggestions')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+    <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
     <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
   </div>
 
@@ -39,7 +39,6 @@
       <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
       
      
-      <hr>
   </div>
 
   <div class="div6 empty-div"> 
@@ -51,21 +50,22 @@
       <DRPicker class="datepicker-small" />
       <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
       <hr> -->
+      
   </div>
 
   <div class="div8 empty-div"> 
       EMPTY
   </div>
-  
-  <div class="div9" ref="suggestions"> 
-      <h4>Room suggestions </h4>
-      <RoomSuggestor />
-  </div>
-  
-  
 
 </div>
 
+<div class="roomsuggestor-parent" ref="roomsuggestor">
+    <div class="roomsuggestor-child"> 
+      <h4>Room suggestions </h4>
+      <RoomSuggestor />
+    </div>
+
+  </div>
 
 </template>
 
@@ -218,15 +218,31 @@ export default {
   grid-area: 3 / 2 / 4 / 3; 
 }
 .div7 { 
-  grid-area: 4 / 1 / 5 / 2; 
+  grid-area: 4 / 1 / 5 / 4; 
 }
 .div8 { 
   grid-area: 4 / 2 / 5 / 3; 
 }
 
-.div9 { 
-  grid-area: 5 / 1 / 5 / 1; 
+.roomsuggestor-parent {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+background: rgb(246, 246, 252);
+margin: 20px auto;
+padding: 12px;
+max-width: 80%;
+border:black;
+border-style: solid;
+border-width: thin;
+border-radius: 10px;
 }
- 
+
+.roomsuggestor-child{ 
+  grid-area: 1 / 1 / 2 / 2; 
+  width: 100%;
+}
 
 </style>

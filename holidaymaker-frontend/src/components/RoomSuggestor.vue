@@ -1,6 +1,6 @@
 <template>
-    <div class="card" v-for="room in filteredRooms" :key="room.id">
-        <h4>Room type: {{ room.roomType.typeName }}</h4>
+    <div class="room-box" v-for="room in filteredRooms" :key="room.id">
+        <h5>Room type: {{ room.roomType.typeName }}</h5>
             <img v-bind:src="img">
             <div class="box">
                     <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night</p>
@@ -30,23 +30,16 @@ export default {
 </script>
 
 <style scoped>
-.card {
+
+.room-box {
   background: rgb(246, 246, 252);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 20px;
-  margin: 15px 10px;
-  float: left;
-  width: 100%;
-  
+  margin: 20px auto;
+  width: 95%;
 }
-/* .box {
-    margin:0 auto; 
-    width:600px;
-    padding:2px;
-    background:#f9f9f9;
-    border:2px solid #333;
-} */
+
 img {
     overflow: hidden;
     max-width: 200px;

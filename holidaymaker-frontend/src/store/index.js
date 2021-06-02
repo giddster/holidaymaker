@@ -181,7 +181,7 @@ export default createStore({
     async fetchDestinations({commit}){
       let response = await fetch('/api/Destinations/')
       let data = await response.json()
-	//   console.log(data)
+	  console.log(data)
 	  commit('setDestinations', data)
     },
     
