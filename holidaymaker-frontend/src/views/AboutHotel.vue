@@ -7,7 +7,7 @@
   </div>
 
   <div class="div2"> 
-    <button class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+    <button @click="scrollToSuggestions('suggestions')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
     <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
    
 
@@ -34,8 +34,10 @@
       
       <br>
       <br>
-      <i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i> <br>
-      <i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i>
+      <i class="fas fa-umbrella-beach distance-icon"><i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i></i>
+      <br>
+      <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
+      
      
       <hr>
   </div>
@@ -55,7 +57,7 @@
       EMPTY
   </div>
   
-  <div class="div9"> 
+  <div class="div9" ref="suggestions"> 
       <h4>Room suggestions: </h4>
       <RoomSuggestor />
   </div>
@@ -73,6 +75,14 @@ import RoomSuggestor from '@/components/RoomSuggestor.vue'
 
 export default {
   components: { DRPicker, RoomSuggestor },
+  methods: {
+    scrollToSuggestions(refName){
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    }
+  },
   
   computed: {
       thishotel() {
@@ -132,6 +142,16 @@ export default {
   font-size: 25px;
   margin-left: 10px;
   color: rgb(38, 177, 38);
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
+
+.distance-icon {
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 10px;
+  color:lightcoral;
   border: 1px solid black;
   border-style: hidden;
   text-align: center;

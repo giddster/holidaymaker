@@ -4,7 +4,7 @@
             <img v-bind:src="img">
             <div class="box">
                 <p> Price per night: {{ room.roomType.price }} SEK</p>
-                <i> Spare beds: {{ room.noOfSpareBeds }}</i> <br>
+                <i> Available spare beds: {{ room.noOfSpareBeds }}</i> <br>
                 <button class="btn btn-primary">Add to booking</button>
             </div>
     </div>
