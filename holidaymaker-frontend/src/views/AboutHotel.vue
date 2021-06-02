@@ -3,11 +3,7 @@
   <div class="div1"> 
     <h4 class="hotel-title">{{ thishotel.name }}</h4>
     
-   
-  </div>
-
-   <div style="padding:0px;">
-        <star-rating @rating-selected ="setRating"
+    <star-rating @rating-selected ="setRating"
         
                
                 :round-start-rating="false"
@@ -20,9 +16,13 @@
         >
      
         </star-rating>
+   
+  </div>
+
+ 
         
       
-    </div>
+  
 
 
   <div class="div2"> 
