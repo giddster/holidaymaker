@@ -14,8 +14,25 @@
   </div>
 
   <div class="div3">
-    <img :src="images[thishotel.id].ImageLink" style="width: 746px">
-  </div>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" v-if="filteredImages !== null">
+          <img class="d-block w-100" :src="filteredImages[0].ImageLink">
+        </div>
+        <div class="carousel-item" v-for="image in filteredImages" :key="image">
+          <img class="d-block w-100" :src="image.ImageLink">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
 
   <div class="div4"> 
       REVIEW SUMMARY
@@ -76,6 +93,19 @@ export default {
       },
       images() {
         return this.$store.state.hotelImages
+      },
+      filteredImages() {
+        let images = this.$store.state.hotelImages;
+        let filteredImages = []
+        let image;
+
+        for(image of images){
+          if (image.HotelId == this.thishotel.id){
+            filteredImages.push(image);
+          }
+        }
+
+        return filteredImages;
       }
     },
     
@@ -87,6 +117,24 @@ export default {
 
 
 <style>
+.gallery ul {
+  padding-left: 0;
+  list-style-type: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.gallery-item {
+  display: inline-block;
+}
+
+.gallery-item-img {
+  width: 100%;
+  height: 8rem;
+  float: left;
+  display: block;
+}
 
 .hotel-title {
   float: left;
@@ -201,6 +249,4 @@ export default {
 .div8 { 
   grid-area: 4 / 1 / 5 / 3; 
 }
- 
-
 </style>
