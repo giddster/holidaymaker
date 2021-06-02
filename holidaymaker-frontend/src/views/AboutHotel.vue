@@ -15,20 +15,20 @@
 
   <div class="div3">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" v-if="filteredImages !== null">
-          <img class="d-block w-100" :src="filteredImages[0].ImageLink">
+      <div class="carousel-inner" style="border: 1px solid black">
+        <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
+          <img class="test" :src="filteredImages[0].ImageLink" style="object-fit: cover">
         </div>
-        <div class="carousel-item" v-for="image in filteredImages" :key="image">
-          <img class="d-block w-100" :src="image.ImageLink">
+        <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
+          <img class="test" :src="image.ImageLink" style="object-fit: cover">
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">
+        <span class="carousel-control-arrowprev" style="" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="width: 75px">
+        <span class="carousel-control-arrownext" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
     </div>
@@ -117,23 +117,24 @@ export default {
 
 
 <style>
-.gallery ul {
-  padding-left: 0;
-  list-style-type: none;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
+ .test {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
 }
 
-.gallery-item {
-  display: inline-block;
+.carousel-control-arrowprev:after {
+  content: '<';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
 }
 
-.gallery-item-img {
-  width: 100%;
-  height: 8rem;
-  float: left;
-  display: block;
+.carousel-control-arrownext:after {
+  content: '>';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
 }
 
 .hotel-title {
@@ -228,10 +229,8 @@ export default {
   grid-area: 1 / 2 / 2 / 3; 
 }
 .div3 { 
-  grid-area: 2 / 1 / 3 / 2; 
-  max-width: 800px;
-  height: 500px;
-  border: 1px solid black;
+  grid-area: 2 / 1 / 3 / 2;
+  margin-bottom: 20px;
 }
 .div4 { 
   grid-area: 2 / 2 / 3 / 3; 
