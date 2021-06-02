@@ -45,18 +45,22 @@
   </div>
 
   <div class="div7"> 
-      <h4>Your trip: </h4>
+      <!-- <h4>Your trip: </h4>
       <DRPicker class="datepicker-small" />
       <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
-      <hr>
+      <hr> -->
   </div>
 
   <div class="div8 empty-div"> 
       EMPTY
   </div>
   
-  <h4>Room suggestions: </h4>
-  <RoomSuggestor />
+  <div class="div9"> 
+      <h4>Room suggestions: </h4>
+      <RoomSuggestor />
+  </div>
+  
+  
 
 </div>
 
@@ -197,7 +201,11 @@ export default {
   grid-area: 4 / 1 / 5 / 2; 
 }
 .div8 { 
-  grid-area: 4 / 1 / 5 / 3; 
+  grid-area: 4 / 2 / 5 / 3; 
+}
+
+.div9 { 
+  grid-area: 5 / 1 / 5 / 1; 
 }
  
 

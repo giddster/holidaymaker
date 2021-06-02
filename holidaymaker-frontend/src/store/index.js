@@ -142,8 +142,10 @@ export default createStore({
 			{id: 20, HotelId: 5, ImageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/1e9c4ac9_z.jpg'}
 			],
 		
-		
+
 		filteredHotels: [],
+
+		filteredRooms: [],
 
 		thisHotel: {},
 
@@ -166,6 +168,9 @@ export default createStore({
 	setThisHotel(state, data){
 	  state.thisHotel = data
 	},
+	setFilteredRooms(state, data){
+	  state.filteredRooms = data
+	},
     setDates(state, data) {
       state.dates = data
     }
@@ -186,6 +191,17 @@ export default createStore({
       commit('setHotels', data)
       },
 	  
+	  async setDates({commit}, dates){
+        commit('setDates', dates)
+      },
+
+	  async search({commit}, searchString){
+        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+        let data = await response.json()
+        console.log(data)
+        commit('setFilteredHotels', data)
+      },
+
 	  async fetchThisHotel({commit}, id){
       let response = await fetch(`/api/Hotels/${id}`)
       let data = await response.json()
@@ -193,16 +209,14 @@ export default createStore({
       commit('setThisHotel', data)
       },
 
-      async search({commit}, searchString){
-        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-        let data = await response.json()
-        console.log(data)
-        commit('setFilteredHotels', data)
+	  async fetchFilteredRooms({commit}, id){
+      let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+      let data = await response.json()
+	  console.log(data)
+      commit('setFilteredRooms', data)
       },
 
-      async setDates({commit}, dates){
-        commit('setDates', dates)
-      }
+      
 
   },
   modules: {

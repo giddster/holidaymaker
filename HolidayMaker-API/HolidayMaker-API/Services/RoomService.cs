@@ -41,7 +41,7 @@ namespace HolidayMaker_API.Services
                           ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
                           ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
                           ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate) && (checkOutDate >= b.Booking.CheckOutDate)) ||
-                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).ToListAsync();
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).Include("RoomType").ToListAsync();
 
             return availableRooms;
         }

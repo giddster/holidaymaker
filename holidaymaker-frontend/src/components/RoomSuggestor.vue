@@ -1,9 +1,11 @@
 <template>
-    <div class="card">
-        <h3>Classic double room</h3>
+    <div class="card" v-for="room in filteredRooms" :key="room.id">
+        <h3>Room number: {{ room.roomNo }}</h3>
             <img v-bind:src="img">
             <div class="box">
-                <button class="btn btn-primary">Book now</button>
+                <p> Spare beds: {{ room.noOfSpareBeds }}</p>
+                <p> Room type: {{ room.roomType.typeName }}</p>
+                <button class="btn btn-primary">Add to booking</button>
             </div>
     </div>
 </template>
@@ -14,6 +16,14 @@ export default {
         return{
             img: 'https://www.nordicchoicehotels.se/globalassets/global/hotel-pictures/nordic-hotels-and-resorts/hotel-christiania-teater/the-hotel/enterence-hotel-christiania-teater-web.jpg?t=SmartScale%7c1024x570'
         }
+    },
+    computed: {
+      filteredRooms() {
+        return this.$store.state.filteredRooms;
+      }
+    },
+    mounted() {
+        this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
     }
 }
 </script>
@@ -21,13 +31,12 @@ export default {
 <style scoped>
 .card {
   background: rgb(246, 246, 252);
-  position: relative;
-  right: 800px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-  margin: 2rem auto;
-  max-width:70rem;
+  padding: 20px;
+  margin: 15px 10px;
+  float: left;
+  width: 100%;
   
 }
 /* .box {
@@ -39,16 +48,10 @@ export default {
 } */
 img {
     overflow: hidden;
-    position:relative;
     max-width: 200px;
 }
-h3{
-    position: relative;
-    font-size: 15px;
-    margin-left: 30px;
-}
+
 button{
-    margin-left: 30rem;
     background: lightcoral;
     border: 1px solid lightcoral;
 }
