@@ -9,8 +9,6 @@
   <div class="div2"> 
     <button @click="scrollToSuggestions('suggestions')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
     <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
-   
-
   </div>
 
   <div class="div3"> 
@@ -22,11 +20,13 @@
   </div>
 
   <div class="div5"> 
-      <p>{{thishotel.description}}</p>
-      
-      <i class="fas fa-wifi bool-icon"><p class="icon-description">Has Wi-fi</p></i>  
+      <p>Address: {{ thishotel.address }}, {{ thishotel.zipCode }} </p>
+      <p><i>{{thishotel.description}}</i></p> <br>
+
+      <b>Amenities: </b> <br>
+      <i class="fas fa-wifi bool-icon"><p class="icon-description">Wi-fi</p></i>  
       <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
-      <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Swimming pool</p></i> 
+      <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Pool</p></i> 
       <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
       <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
       <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
@@ -58,7 +58,7 @@
   </div>
   
   <div class="div9" ref="suggestions"> 
-      <h4>Room suggestions: </h4>
+      <h4>Room suggestions </h4>
       <RoomSuggestor />
   </div>
   

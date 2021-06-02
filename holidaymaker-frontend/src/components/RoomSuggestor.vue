@@ -3,9 +3,10 @@
         <h4>Room type: {{ room.roomType.typeName }}</h4>
             <img v-bind:src="img">
             <div class="box">
-                <p> Price per night: {{ room.roomType.price }} SEK</p>
-                <i> Available spare beds: {{ room.noOfSpareBeds }}</i> <br>
-                <button class="btn btn-primary">Add to booking</button>
+                    <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night</p>
+                    <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} adults </p>
+                    <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
+                    <button class="btn btn-primary">Add to booking</button>
             </div>
     </div>
 </template>
