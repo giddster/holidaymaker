@@ -3,7 +3,7 @@
   <div class="div1"> 
     <h4 class="hotel-title">{{ thishotel.name }}</h4>
     
-    <hr>
+   
   </div>
 
    <div style="padding:0px;">
