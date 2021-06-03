@@ -1,4 +1,6 @@
+import { routerKey } from "vue-router";
 import { createStore } from "vuex";
+import router from "../router/index";
 
 export default createStore({
   state: {
@@ -128,10 +130,11 @@ export default createStore({
       password: "",
     },
 
-	loggedInUser: {
-		userName: "",
-		password: ""
-	  },
+    loggedInUser: {
+      userName: "",
+      password: "",
+      IsLoggedIn: window.localStorage.getItem('isLoggedIn')
+      },
 
     hotelImages: [
       { id: 2, HotelId: 1, ImageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg' },
@@ -180,11 +183,32 @@ export default createStore({
       state.user = data
     },
 
-	LogInUser(state, data) {
+	  LogInUser(state, data) {
 		state.loggedInUser = data
-	  }
+    state.loggedInUser.isLoggedIn = true
+    console.log(state.loggedInUser.isLoggedIn)
+	  },
+
+    Logout(state) {
+      state.loggedInUser.userName = null
+      state.loggedInUser.password = null
+      state.loggedInUser.isLoggedIn = false
+      }
+
+
 
   },
+
+  getters:{
+
+    IsLoggedIn: state => !!state.loggedInUser.IsLoggedIn
+    //  IsLoggedIn(state){ 
+    //  if(state.loggedInUser.IsLoggedIn === 'true' ){
+
+    //   return true}
+    //}
+  },
+
 
   actions: {
     async fetchDestinations({ commit }) {
@@ -248,9 +272,13 @@ export default createStore({
 		const response = await fetch('/api/Authentication/Login', requestOptions)
 		const data = await response.json();
   
-		commit('LogInUser', data)
+		
   
 		if (response.status == 200) {
+
+			commit('LogInUser', data)
+      window.localStorage.setItem('isLoggedIn',true)
+      //router.push('/')
 		  return true
 		}
 		else {
@@ -258,6 +286,31 @@ export default createStore({
 		}
 	  },
 
+    async logoutUser({commit}){
+
+      const requestOptions = {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+        
+      };
+      
+      let response = await fetch('/api/Authentication/Logout', requestOptions)
+      const data = await response.json();
+
+
+      if (response.status == 200) {
+        commit('Logout')
+        window.localStorage.removeItem('isLoggedIn')
+        router.go()
+        router.push('/')
+        alert('you have been logged off')
+        return data
+      }
+      else {
+        return false
+      }
+
+    }
 
 
   },

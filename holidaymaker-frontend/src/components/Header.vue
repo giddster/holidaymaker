@@ -1,3 +1,6 @@
+
+
+
 <template>
   <header>
       <div class="header-parent">
@@ -5,10 +8,13 @@
             <img src="../assets/logo.png" alt="holidayMakerLogo" class="companyLogo">
             <router-link to="/"><h5 class="header-title">HolidayMaker.com</h5></router-link>
           </div>
-          <div class="header-div2"> 
+          {{IsLoggedIn}}
+          <div v-if="IsLoggedIn" class="header-div2"> 
               <ProfileDropdown />
-               <router-link to="/login"><h5 class="header-title">login</h5></router-link>
-               <router-link to="/register"><h5 class="header-title">register</h5></router-link>
+          </div>
+          <div v-else>
+            <router-link to="/login"><h5 class="header-title">login</h5></router-link>
+            <router-link to="/register"><h5 class="header-title">register</h5></router-link>
           </div>
       </div>
   </header>
@@ -16,9 +22,15 @@
 
 <script>
     import ProfileDropdown from '@/components/ProfileDropdown.vue'
-
+    import {mapGetters} from "vuex";
 export default {
-    components: { ProfileDropdown }
+    components: { ProfileDropdown },
+    computed:{
+      ...mapGetters(["IsLoggedIn"])
+      // IsLoggedIn(){
+      //   return this.$store.state.loggedInUser.IsLoggedIn
+     //}
+    }
 }
 </script>
 

@@ -36,12 +36,20 @@ namespace HolidayMaker_API.Services
         public async Task<IEnumerable<Room>> GetAvailableRoomsByHotelId(int hotelId, DateTime checkInDate, DateTime checkOutDate)
         {
             //Returnerar alla rum som inte är bokade FUNKAR 100%
+
             var availableRooms = await _holidayMakerContext.Rooms.Where(r => r.Hotel.Id == hotelId).Where(x => !x.BookingXrooms.Any(b =>
                           ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate)) ||
                           ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
                           ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
                           ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate) && (checkOutDate >= b.Booking.CheckOutDate)) ||
-                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).ToListAsync();
+                          ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckOutDate)))).Include("RoomType").ToListAsync();
+            //var RoomImages = await _holidayMakerContext.RoomImages.ToListAsync();
+            //var availableRoomsWithImages = availableRooms.Join(RoomImages,
+            //                                                    room => room.Id,
+            //                                                    image => image.RoomId,
+            //                                                    (room, image) => new {
+            //                                                     availableRoom = room,
+            //                                                     image = image });
 
             return availableRooms;
         }

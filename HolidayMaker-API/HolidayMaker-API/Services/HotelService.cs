@@ -37,10 +37,10 @@ namespace HolidayMaker_API.Services
             return availableHotels;
         }
 
-        public async Task<IEnumerable<Hotel>> GetAvailableHotelsByCityName(string cityName, DateTime checkInDate, DateTime checkOutDate)
+        public async Task<IEnumerable<Hotel>> GetAvailableHotelsByCityName(string searchInput, DateTime checkInDate, DateTime checkOutDate)
         {
             //Returnerar alla lediga hotel FUNKAR 100%
-            var availableHotels = await _holidayMakerContext.Hotels.Where(d => d.Destination.City.ToLower() == cityName.ToLower()).Where(r => r.Rooms.Any(x => !x.BookingXrooms.Any(b =>
+            var availableHotels = await _holidayMakerContext.Hotels.Where(d => d.Destination.City.ToLower() == searchInput.ToLower() || d.Destination.Country.ToLower() == searchInput.ToLower()).Where(r => r.Rooms.Any(x => !x.BookingXrooms.Any(b =>
               ((checkInDate >= b.Booking.CheckInDate) && (checkInDate <= b.Booking.CheckOutDate)) ||
               ((checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||
               ((checkInDate <= b.Booking.CheckInDate) && (checkOutDate >= b.Booking.CheckInDate) && (checkOutDate <= b.Booking.CheckOutDate)) ||

@@ -16,7 +16,7 @@
 <script>
 
 import {mapActions} from 'vuex'
-
+import router from '../router/index'
 export default {
 
      data() {
@@ -40,7 +40,7 @@ export default {
                 password: this.UserPassword,
             }
 
-            console.log(user)
+            //console.log(user)
 
                
                let response = await this.loginUser(user)
@@ -48,6 +48,8 @@ export default {
                console.log(response)
 
                 if(response){
+                    router.go()
+                    router.push('/')
                     alert('Login Successful')
                     document.getElementById("loginForm").reset();
 
