@@ -42,7 +42,8 @@
 export default {
     computed:{
       reviews(){
-        return this.$store.state.filteredReviews    
+        return this.$store.state.filteredReviews
+      },    
     methods: {
         dispatchReview(){
             this.$store.dispatch('fetchFilteredReviews', this.$route.params.id);
