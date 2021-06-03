@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="FixedHeightContainer">
-            <button @click="dispatchReview" class="btn btn-lg btn-primary">See reviews</button>
+            <button @click="dispatchReview" class="btn btn-lg btn-primary" :id="{active:isActive}">{{isActive ? 'Reviews' : 'See Reviews'}}</button>
             <div class="scroll">
                 <div v-for="review in reviews" :key="review" class="content">
                     
@@ -39,9 +39,16 @@
 
 <script>
 export default {
+    data() {
+        return {
+            isActive: false,
+        }
+    },
     methods: {
         dispatchReview(){
             this.$store.dispatch('fetchFilteredReviews', this.$route.params.id)
+
+            this.isActive = !this.enable;
             }
         },
     computed:{
@@ -57,9 +64,9 @@ export default {
 
 .FixedHeightContainer
 {
-    float:right;
-    height: 500px;
-    width:500px; 
+    float: right;
+    height: 635px;
+    width: 500px; 
     padding:3px; 
     background: rgb(246, 246, 252);
 }

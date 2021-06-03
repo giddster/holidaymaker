@@ -1,94 +1,93 @@
 <template>
-<div class="parent hotel-header" ref="top">
-  <div class="div1"> 
-    <h4 class="hotel-title">{{ thishotel.name }}</h4>
+  <div class="parent hotel-header" ref="top">
+    <div class="div1"> 
+      <h4 class="hotel-title">{{ thishotel.name }}</h4>
+      
+      <star-rating @rating-selected ="setRating"
+                  :round-start-rating="false"
+                  :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                  :border-width="2"
+                  :clearable="true"
+                  active-on-click
+                  animate
+                  :padding="0"
+          >
+      
+      </star-rating>
     
-    <star-rating @rating-selected ="setRating"
-                :round-start-rating="false"
-                :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-                :border-width="2"
-                :clearable="true"
-                active-on-click
-                animate
-                :padding="0"
-        >
-     
-        </star-rating>
-   
-  </div>
+    </div>
 
-  <div class="div2"> 
-    <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
-    <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
-  </div>
+    <div class="div2"> 
+      <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+      <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
+    </div>
 
-  <div class="div3">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" style="border: 1px solid black">
-        <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
-          <img class="image-container" :src="filteredImages[0].ImageLink">
+    <div class="div3">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="border: 1px solid black">
+          <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
+            <img class="image-container" :src="filteredImages[0].ImageLink">
+          </div>
+          <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
+            <img class="image-container" :src="image.ImageLink">
+          </div>
         </div>
-        <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
-          <img class="image-container" :src="image.ImageLink">
-        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">
+          <span class="carousel-control-arrowprev" style="" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="width: 75px">
+          <span class="carousel-control-arrownext" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">
-        <span class="carousel-control-arrowprev" style="" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="width: 75px">
-        <span class="carousel-control-arrownext" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+    </div>
+
+    <div class="div4"> 
+        <OutputReview />
+    </div>
+
+    <div class="div5"> 
+        <p>Address: {{ thishotel.address }}, {{ thishotel.zipCode }} </p>
+        <p><i>{{thishotel.description}}</i></p> <br>
+
+        <b>Available amenities: </b> <br>
+        <i class="fas fa-wifi bool-icon"><p class="icon-description">Wi-fi</p></i>  
+        <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
+        <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Pool</p></i> 
+        <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
+        <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
+        <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
+        <i class="fas fa-music bool-icon"><p class="icon-description">Entertainment</p></i> 
+        
+        <br>
+        <br>
+        <i class="fas fa-umbrella-beach distance-icon"><i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i></i>
+        <br>
+        <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
+    </div>
+
+    <div class="div6 empty-div"> 
+        EMPTY
+    </div>
+
+    <div class="div7"> 
+        <!-- <h4>Your trip: </h4>
+        <DRPicker class="datepicker-small" />
+        <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
+        <hr> -->
+        
+    </div>
+
+    <div class="div8 empty-div"> 
+        EMPTY
+    </div>
+    <div class="div9" ref="roomsuggestor">
+      <h4 class="roomsuggestor-title">Available rooms </h4>
+      <RoomSuggestor />
+      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
     </div>
   </div>
-
-  <div class="div4"> 
-      <OutputReview />
-  </div>
-
-  <div class="div5"> 
-      <p>Address: {{ thishotel.address }}, {{ thishotel.zipCode }} </p>
-      <p><i>{{thishotel.description}}</i></p> <br>
-
-      <b>Available amenities: </b> <br>
-      <i class="fas fa-wifi bool-icon"><p class="icon-description">Wi-fi</p></i>  
-      <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
-      <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Pool</p></i> 
-      <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
-      <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
-      <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
-      <i class="fas fa-music bool-icon"><p class="icon-description">Entertainment</p></i> 
-      
-      <br>
-      <br>
-      <i class="fas fa-umbrella-beach distance-icon"><i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i></i>
-      <br>
-      <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
-  </div>
-
-  <div class="div6 empty-div"> 
-      EMPTY
-  </div>
-
-  <div class="div7"> 
-      <!-- <h4>Your trip: </h4>
-      <DRPicker class="datepicker-small" />
-      <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
-      <hr> -->
-      
-  </div>
-
-  <div class="div8 empty-div"> 
-      EMPTY
-  </div>
-  <div class="div9">
-    <h4 class="roomsuggestor-title">Available rooms </h4>
-    <RoomSuggestor class="rs" />
-    <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
-  </div>
-  </div>
-
 </template>
 
 <script>
@@ -120,27 +119,25 @@ export default {
   },
 
   computed: {
-      thishotel() {
-        return this.$store.state.thisHotel;
-      },
-      images() {
-        return this.$store.state.hotelImages
-      },
-      filteredImages() {
-        let images = this.$store.state.hotelImages;
-        let filteredImages = []
-        let image;
+    thishotel() {
+      return this.$store.state.thisHotel;
+    },
+    images() {
+      return this.$store.state.hotelImages
+    },
+    filteredImages() {
+      let images = this.$store.state.hotelImages;
+      let filteredImages = []
+      let image;
 
-        for(image of images){
-          if (image.HotelId == this.thishotel.id){
-            filteredImages.push(image);
-          }
+      for(image of images){
+        if (image.HotelId == this.thishotel.id){
+          filteredImages.push(image);
         }
-        return filteredImages;
       }
+      return filteredImages;
     }
-    
-    
+  }
 }
 </script>
 
@@ -179,9 +176,9 @@ export default {
   float: left;
 }
 .div4 {
-  padding-top: 50px;
+  grid-column: 2 / 2;
   grid-row: 2 / span 4;
-  margin: auto;
+  margin: 4% auto;
 }
 .div5 { 
   grid-area: 3 / 1 / 4 / 2; 
@@ -324,32 +321,4 @@ border-width: thin;
 border-radius: 10px;
 }
 
-
-.roomsuggestor-child{ 
-  grid-area: 1 / 1 / 2 / 2; 
-  padding-bottom: 10px;
-}
-.div2 { 
-  grid-area: 1 / 2 / 2 / 3; 
-}
-.div3 { 
-  grid-area: 2 / 1 / 3 / 2;
-  margin-bottom: 20px;
-}
-.div4 { 
-  grid-area: 2 / 2 / 3 / 3; 
-  margin: auto;
-}
-.div5 { 
-  grid-area: 3 / 1 / 4 / 2; 
-}
-.div6 { 
-  grid-area: 3 / 2 / 4 / 3; 
-}
-.div7 { 
-  grid-area: 4 / 1 / 5 / 2; 
-}
-.div8 { 
-  grid-area: 4 / 1 / 5 / 3; 
-}
 </style>
