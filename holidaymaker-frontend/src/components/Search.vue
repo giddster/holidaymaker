@@ -50,7 +50,7 @@ export default {
   },
     components: { DRPicker },
     
-    mounted() {
+    created() {
         this.$store.dispatch('fetchDestinations')
     }
 }

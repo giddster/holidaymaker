@@ -44,8 +44,7 @@
 </div>
 
   <div class="div4"> 
-      REVIEW SUMMARY
-      <output-review></output-review>
+      <OutputReview />
   </div>
 
   <div class="div5"> 
@@ -145,7 +144,7 @@ export default {
       }
     },
     
-    mounted() {
+    created() {
       this.$store.dispatch('fetchThisHotel', this.$route.params.id)
     },
 }

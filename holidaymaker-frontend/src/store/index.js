@@ -92,19 +92,19 @@ export default createStore({
 			rooms: []
 		},
 		
-		// reviews: [
-		// 	{
-		// 		id: 0,
-		// 		rating: 0.0,
-		// 		customerId: 0,
-		// 		hotelId: 0,
-		// 		heading: null,
-		// 		name: null,
-		// 		reviewText: "",
-		// 		customer: null,
-		// 		hotel: null
-		// 	}
-		// ],
+		reviews: [
+			{
+				id: 0,
+				rating: 0.0,
+				customerId: 0,
+				hotelId: 0,
+				heading: null,
+				name: null,
+				reviewText: "",
+				customer: null,
+				hotel: null
+			}
+		],
 		
 		rooms: {
 			id: 0,
@@ -147,6 +147,8 @@ export default createStore({
 
 		filteredHotels: [],
 
+		filteredReviews: [],
+
 		filteredRooms: [],
 
 		thisHotel: {},
@@ -169,11 +171,17 @@ export default createStore({
     setHotels(state, data){
       state.hotels = data
     },
+	setReviews(state, data){
+		state.reviews = data
+	  },
     setFilteredHotels(state, data){
       state.filteredHotels = data
     },
 	setThisHotel(state, data){
 	  state.thisHotel = data
+	},
+	setFilteredReviews(state, data) {
+		state.filteredReviews = data
 	},
 	setFilteredRooms(state, data){
 	  state.filteredRooms = data
@@ -181,9 +189,7 @@ export default createStore({
     setDates(state, data) {
       state.dates = data
     },
-	setReviews(state, data){
-	  state.reviews = data
-	},
+	
 	
 
   },
@@ -203,6 +209,13 @@ export default createStore({
       let data = await response2.json()
       commit('setHotels', data)
       },
+
+	  async fetchReviews({commit}){
+		let response = await fetch('/api/reviews/')
+		let data = await response.json()
+		console.log(data)
+		commit('setReviews', data)
+	  },
 	  
 	  async setDates({commit}, dates){
         commit('setDates', dates)
@@ -223,6 +236,13 @@ export default createStore({
       commit('setThisHotel', data)
       },
 
+	  async fetchFilteredReviews({commit}, id){
+		let response = await fetch(`/api/reviews/${id}`)
+		let data = await response.json()
+		console.log(data)
+		commit('setFilteredReviews', data)
+	  },
+
 	  async fetchFilteredRooms({commit}, id){
       let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
       let data = await response.json()
@@ -234,12 +254,7 @@ export default createStore({
         commit('setDates', dates)
       },
 	
-	  async fetchReviews({commit}){
-		let response = await fetch('/api/reviews/')
-		let data = await response.json()
-		console.log(data)
-		commit('setReviews', data)
-	  },
+	  
 	  
 	  async postReview({commit}, data){
 		  console.log(data)
