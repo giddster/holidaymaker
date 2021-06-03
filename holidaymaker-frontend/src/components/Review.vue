@@ -2,12 +2,14 @@
 <body>
     <div class="review">
         <div class="form">
-            <form class="review-form">
-                <input type="text" placeholder="Heading">
-                <input type="text" placeholder="Name">
+            <form @submit.prevent="submit" class="review-form">
+                <input type="text" placeholder="Heading" v-model="form.heading">
+                <input type="text" placeholder="Name" v-model="form.name">
+                <input type="text" placeholder="HotelId" v-model="form.hotelId">
+                <input type="text" placeholder="CustomerId" v-model="form.customerId">
                 <p>
                     <label class="rating">Rating:</label>
-                    <select id="rating">
+                    <select v-model="form.rating" id="rating">
                         <option>10</option>
                         <option>9</option>
                         <option>8</option>
@@ -20,8 +22,8 @@
                         <option>1</option>
                     </select>
                 </p>
-                <textarea class="textarea" cols="30" rows="10"></textarea>
-                <button>Leave Review</button> 
+                <textarea class="textarea" cols="30" rows="10" v-model="form.reviewText"></textarea>
+                <button >Leave Review</button> 
             </form> 
         </div>
     </div>
@@ -31,8 +33,38 @@
 <script>
 
 export default {
-    
+    data(){
+        return {
+            form: {
+                
+                rating: 0,
+                customerId: 0,
+                hotelId: 0,
+                heading: '',
+                name: '',
+                reviewText: '',
+                
+            }
+        }
+    },
+    methods: {
+        submit(event){
+            event.preventDefault()
+            let formData = {reviewText: this.form.reviewText, rating: this.form.rating,
+            customerId: this.form.customerId, hotelId: this.form.hotelId, 
+            heading: this.form.heading, name: this.form.name}
+            console.log('objekt med data från formuläret', formData)
+            this.$store.dispatch('postReview', formData)
+            this.form.rating = 0,
+            this.form.customerId = '',
+            this.form.hotelId = '',
+            this.form.heading = '',
+            this.form.name = '',
+            this.form.reviewText = ''
+        }
+    }
    
+        
     
 }
 </script>
@@ -51,7 +83,7 @@ export default {
 .form input{
     font-family: "Roboto", sans-serif;
     outline:1;
-    background: #f2f2f2;
+    background: #fbfbfb;
     width:100%;
     border:0;
     margin:0 0 15px;
@@ -62,25 +94,37 @@ export default {
 .form {
     position: relative;
     z-index: 1;
-    background: rgba(7,40,195, 0.8);
+    background: rgb(246, 246, 252);
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
 }
 .rating{
-    color:white;
+    color:black;
+    padding: 3px;
 }
 .form button{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline:0;
-    background:#4CAF50;
+    background:lightcoral;
     width: 100%;
     border: 0;
     padding:15 px;
     color:#FFFFFF;
     font-size: 14px;
     cursor: pointer;
+    border: 1px solid lightcoral;
+    
 }
+form button:hover{
+    background: rgb(246, 114, 114);
+    border: 1px solid lightcoral;
+}
+
+
 </style>

@@ -166,7 +166,8 @@ export default createStore({
     },
 	setReviews(state, data){
 	  state.reviews = data
-	}
+	},
+	
 
   },
 
@@ -204,6 +205,34 @@ export default createStore({
 		commit('setReviews', data)
 	  },
 	  
+	  async postReview({commit}, data){
+		  console.log(data)
+		  let body = {
+  			rating: data.rating,
+  			// customerId: data.customerId,
+			customerId: data.customerId,
+  			hotelId: data.hotelId,
+  			heading: data.heading,
+  			name: data.name,
+			reviewText: data.reviewText,
+			
+			
+		  }
+		//  let response = await fetch('api/Reviews', {
+		// 	 method: 'post',
+		// 	 headers: {'Content-type': 'application/json'},
+		// 	 body: JSON.stringify(body)
+		//  })
+		let requestOptions = { 
+			method: 'post',
+		 	headers: {'Content-type': 'application/json'},
+		 	body: JSON.stringify(body)}
+
+			 const response = await fetch('api/Reviews', requestOptions)
+		 let result = await response.json()
+		 console.log('resultat från backend', result)
+		 commit('setReviews', result)
+	  }
   },
   modules: {
 
