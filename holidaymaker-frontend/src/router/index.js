@@ -1,5 +1,19 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
+// STATIC VIEWS //
+
 import Home from "../views/Home.vue"
+import Help from "../views/static/Help.vue"
+import About from "../views/static/About.vue"
+import Contact from "../views/static/Contact.vue"
+import NotFound from "../views/static/NotFound.vue"
+
+
+// STRIPE REDIRECTS //
+import Payment from "../views/Payment/Payment.vue"
+import PaymentFail from "../views/Payment/PaymentFail.vue"
+import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
+
+//"DYNAMIC" VIEWS
 import Login from "/src/views/Login.vue"
 import Register from "/src/views/Register.vue"
 import Review from "/src/components/Review.vue"
@@ -8,19 +22,19 @@ import ProfileView from "/src/views/ProfileView.vue"
 import MyProfile from "/src/views/MyProfile.vue"
 import MyBookingsProfile from "/src/views/MyBookingsProfile.vue"
 import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue"
-import Help from "../views/static/Help.vue"
-import About from "../views/static/About.vue"
-import Contact from "../views/static/Contact.vue"
 import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
-import { StripeCheckout } from "@vue-stripe/vue-stripe"
-
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home
+  },
+  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
+  { path: '/:pathMatch(.*)*', 
+    name: 'not-found', 
+    component: NotFound 
   },
   {
     path: "/about",
@@ -30,12 +44,12 @@ const routes = [
   {
     path: "/help",
     name: "Help",
-    component: Help,
+    component: Help
   },
   {
     path: "/contact",
     name: "Contact",
-    component: Contact,
+    component: Contact
   },
   {
     path: "/login",
@@ -88,6 +102,23 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
+  
+  //PAYMENT ROUTES
+  {
+    path: "/payment",
+    name: "Payment",
+    component: Payment
+  },
+  {
+    path: "/paymentfailed",
+    name: "PaymentFail",
+    component: PaymentFail
+  },
+  {
+    path: "/paymentsucceeded",
+    name: "PaymentSuccess",
+    component: PaymentSuccess
+  }
   
 ];
 
