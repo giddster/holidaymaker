@@ -1,5 +1,17 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
+// STATIC VIEWS //
+
 import Home from "../views/Home.vue"
+import Help from "../views/static/Help.vue"
+import About from "../views/static/About.vue"
+import Contact from "../views/static/Contact.vue"
+import NotFound from "../views/static/NotFound.vue"
+
+
+// STRIPE REDIRECT TO PAYMENT //
+import Payment from "../views/Payment.vue"
+
+//"DYNAMIC" VIEWS
 import Login from "/src/views/Login.vue"
 import Register from "/src/views/Register.vue"
 import Review from "/src/components/Review.vue"
@@ -8,19 +20,18 @@ import ProfileView from "/src/views/ProfileView.vue"
 import MyProfile from "/src/views/MyProfile.vue"
 import MyBookingsProfile from "/src/views/MyBookingsProfile.vue"
 import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue"
-import Help from "../views/static/Help.vue"
-import About from "../views/static/About.vue"
-import Contact from "../views/static/Contact.vue"
 import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
-import Payment from "../views/Payment.vue"
+
+
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home
   },
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
   {
     path: "/about",
     name: "About",
@@ -29,12 +40,12 @@ const routes = [
   {
     path: "/help",
     name: "Help",
-    component: Help,
+    component: Help
   },
   {
     path: "/contact",
     name: "Contact",
-    component: Contact,
+    component: Contact
   },
   {
     path: "/login",
