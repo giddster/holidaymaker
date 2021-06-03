@@ -5,64 +5,64 @@ export default createStore({
 		name: "Vue",
 		
 		bookings: {
-				id: 0,
-				checkInDate: "",
-				checkOutDate: "",
-				noOfAdults: 0,
-				noOfChildren: 0,
-				isPending: false,
-				isCancelled: false,
-				totalPrice: 0.0,
-				flightId: 0,
-				customerId: 0,
-				customer: null,
-				flight: null,
-				bookingXrooms: [ ]
+			id: 0,
+			checkInDate: "",
+			checkOutDate: "",
+			noOfAdults: 0,
+			noOfChildren: 0,
+			isPending: false,
+			isCancelled: false,
+			totalPrice: 0.0,
+			flightId: 0,
+			customerId: 0,
+			customer: null,
+			flight: null,
+			bookingXrooms: [ ]
 		},
 		
 		customers: {
-				id: 0,
-				firstName: "",
-				lastName: "",
-				address: "",
-				zipCode: "",
-				city: "",
-				country: "",
-				email: "",
-				phone: "",
-				isLoggedIn: false,
-				password: "",
-				bookings: [],
-				favoriteHotels: [],
-				reviews: []
+			id: 0,
+			firstName: "",
+			lastName: "",
+			address: "",
+			zipCode: "",
+			city: "",
+			country: "",
+			email: "",
+			phone: "",
+			isLoggedIn: false,
+			password: "",
+			bookings: [],
+			favoriteHotels: [],
+			reviews: []
 		},
 		
 		destinations: {
-					id: 0,
-					country: "",
-					city: "",
-					flights: [],
-					hotels: []
+			id: 0,
+			country: "",
+			city: "",
+			flights: [],
+			hotels: []
 		},
 		
 		favoritehotels: {
-					id: 0,
-					hotelId: 0,
-					customerId: 0,
-					customer: null,
-					hotel: null
+			id: 0,
+			hotelId: 0,
+			customerId: 0,
+			customer: null,
+			hotel: null
 		},
 		
 		flights: {
-				id: 1,
-				aviatorName: "",
-				departureCity: "",
-				departureCountry: "",
-				isReturnFlight: true,
-				price: 0.0,
-				destinationId: 1,
-				destination: null,
-				bookings: []
+			id: 1,
+			aviatorName: "",
+			departureCity: "",
+			departureCountry: "",
+			isReturnFlight: true,
+			price: 0.0,
+			destinationId: 1,
+			destination: null,
+			bookings: []
 		},
 		
 		hotels: {
@@ -117,8 +117,27 @@ export default createStore({
 			hotel: null,
 			roomType: null,
 			bookingXrooms: [],
-			roomImages: [] //innehållet i varje array-index måste representeras rätt här
+			roomImages: []
 		},
+
+		roomImages: [
+			
+			{hotelId: 1, roomTypeId: 1, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/d5422cdf_z.jpg'},
+			{hotelId: 1, roomTypeId: 2, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/914ab001_z.jpg'},
+			{hotelId: 1, roomTypeId: 3, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/399f56bf_z.jpg'},
+			{hotelId: 2, roomTypeId: 4, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1920000/1916100/1916074/98705039_z.jpg'},
+			{hotelId: 2, roomTypeId: 5, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1920000/1916100/1916074/03e72a86_z.jpg'},
+			{hotelId: 2, roomTypeId: 6, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1920000/1916100/1916074/a89a2e11_z.jpg'},
+			{hotelId: 3, roomTypeId: 7, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/2aeff7e0_z.jpg'},
+			{hotelId: 3, roomTypeId: 8, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/c6cedc8b_z.jpg'},
+			{hotelId: 3, roomTypeId: 9, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/3ee97856_z.jpg'},
+			{hotelId: 4, roomTypeId: 10, imageLink: 'https://exp.cdn-hotels.com/hotels/1000000/530000/525800/525749/66c7db4d_z.jpg'},
+			{hotelId: 4, roomTypeId: 11, imageLink: 'https://exp.cdn-hotels.com/hotels/1000000/530000/525800/525749/5691c899_z.jpg'},
+			{hotelId: 4, roomTypeId: 12, imageLink: 'https://exp.cdn-hotels.com/hotels/1000000/530000/525800/525749/a7b3dd9f_z.jpg'},
+			{hotelId: 5, roomTypeId: 13, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2530000/2529000/2528934/0d212496_z.jpg'},
+			{hotelId: 5, roomTypeId: 14, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2530000/2529000/2528934/3ef83082_z.jpg'},
+			{hotelId: 5, roomTypeId: 15, imageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2530000/2529000/2528934/49cb80f1_z.jpg'}
+		],
 
 		hotelImages: [
 			{id: 2, HotelId: 1, ImageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg'},
@@ -141,7 +160,6 @@ export default createStore({
 			{id: 19, HotelId: 5, ImageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/cb82068e_z.jpg'},
 			{id: 20, HotelId: 5, ImageLink: 'https://exp.cdn-hotels.com/hotels/3000000/2430000/2424700/2424602/1e9c4ac9_z.jpg'}
 			],
-		
 
 		search: {},
 
@@ -189,14 +207,10 @@ export default createStore({
     setDates(state, data) {
       state.dates = data
     },
-	
-	
-
   },
 
   actions: {
 
-	
     async fetchDestinations({commit}){
       let response = await fetch('/api/Destinations/')
       let data = await response.json()
@@ -254,8 +268,6 @@ export default createStore({
         commit('setDates', dates)
       },
 	
-	  
-	  
 	  async postReview({commit}, data){
 		  console.log(data)
 		  let body = {

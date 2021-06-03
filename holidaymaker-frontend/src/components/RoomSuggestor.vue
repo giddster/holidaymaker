@@ -1,28 +1,40 @@
 <template>
     <div class="room-box" v-for="room in filteredRooms" :key="room.id">
         <h5>Type: {{ room.roomType.typeName }}</h5>
-            <img v-bind:src="img">
+            <img :src='roomImage(room.hotelId, room.roomTypeId)'>
             <div class="box">
-                    <p><i class="fas fa-hashtag"></i><i>Room number: {{ room.roomNo}} </i> </p>
-                    <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
-                    <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
-                    <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
-                    <button class="btn btn-primary">Add to booking</button>
+                <p><i class="fas fa-hashtag"></i><i>Room number: {{ room.roomNo}} </i> </p>
+                <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
+                <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
+                <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
+                <button class="btn btn-primary">Add to booking</button>
             </div>
     </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            img: 'https://www.nordicchoicehotels.se/globalassets/global/hotel-pictures/nordic-hotels-and-resorts/hotel-christiania-teater/the-hotel/enterence-hotel-christiania-teater-web.jpg?t=SmartScale%7c1024x570'
-        }
-    },
     computed: {
       filteredRooms() {
         return this.$store.state.filteredRooms;
+      },
+      roomImages() {
+        return this.$store.state.roomImages;
       }
+    },
+    methods: {
+        roomImage(HotelId, RoomTypeId){
+
+            let img = []
+            let images = this.roomImages;
+
+            for(let image of images){
+                if(image.hotelId == HotelId && image.roomTypeId == RoomTypeId){
+                    img.push(image)
+                }
+            }
+            return img[0].imageLink
+        }
     },
     mounted() {
         this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
