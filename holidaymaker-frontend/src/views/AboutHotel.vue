@@ -108,6 +108,11 @@ import StarRating from '@/components/StarRating.vue'
 
 export default {
   components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
+  
+  created() {
+      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+    },
+    
   methods: {
     scrollToSuggestions(refName){
       var element = this.$refs[refName];
@@ -142,11 +147,9 @@ export default {
         }
         return filteredImages;
       }
-    },
+    }
     
-    created() {
-      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
-    },
+    
 }
 </script>
 
