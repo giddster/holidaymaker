@@ -40,15 +40,16 @@
 
 <script>
 export default {
+    methods: {
+        dispatchReview(){
+            this.$store.dispatch('fetchFilteredReviews', this.$route.params.id)
+            }
+        },
     computed:{
       reviews(){
         return this.$store.state.filteredReviews
-      },    
-    methods: {
-        dispatchReview(){
-            this.$store.dispatch('fetchFilteredReviews', this.$route.params.id);
-            }
-        }
+      }    
+    
     }
 }
 </script>
