@@ -28,7 +28,7 @@
           <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
             <img class="image-container" :src="filteredImages[0].ImageLink">
           </div>
-          <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
+          <div class="carousel-item" v-for="image in filteredImages.slice(1)" :key="image" style="text-align: center">
             <img class="image-container" :src="image.ImageLink">
           </div>
         </div>
