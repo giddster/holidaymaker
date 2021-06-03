@@ -1,8 +1,8 @@
 <template>
     <section>
         <div class="FixedHeightContainer">
-            <h2>Reviews</h2>
-            <button @click="dispatchReview" class="btn btn-primary">See reviews</button>
+            <h4 class="averageuserrating-title">Average user rating: {{ average }} </h4>
+            <button @click="dispatchReview" class="btn btn-lg btn-primary">See reviews</button>
             <div class="scroll">
                 <div v-for="review in reviews" :key="review" class="content">
                     
@@ -10,7 +10,7 @@
 
                     <div class="review-emoji">
                         <div v-if="review.rating == 10">
-                            <i class="far fa-grin-hearts" style="color:green;"></i> 
+                            <i class="far fa-grin-hearts" style="color:hotpink;"></i> 
                         </div>
                         <div v-else-if="review.rating > 7">
                          <i class="far fa-grin-beam" style="color:green;"></i> 
@@ -25,9 +25,11 @@
                             <i class="far fa-angry" style="color:red;"></i> 
                         </div>
                     </div>
+                    
                     <b class="reviewtext-heading">Review: </b>
                     <p class="review-text"><i>{{ review.reviewText }}</i></p>
                     <p v-if="review.name !=null" class="review-name"> Review submitted by: {{ review.name }}</p>
+                    
                     <hr>  
                 </div>
             </div>
@@ -41,17 +43,17 @@ export default {
     computed:{
       reviews(){
         return this.$store.state.filteredReviews    
-      }
-    },
     methods: {
         dispatchReview(){
             this.$store.dispatch('fetchFilteredReviews', this.$route.params.id);
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+
 .FixedHeightContainer
 {
   float:right;
@@ -60,6 +62,7 @@ export default {
   padding:3px; 
     background: rgb(246, 246, 252);
 }
+
 .scroll
 {
   height:180px;
@@ -67,9 +70,12 @@ export default {
    overflow-y: auto;
     background: rgb(246, 246, 252)
 }
-h2{
-    font-size: 20px;
+
+.averageuserrating-title {
+    color: lightcoral;
+    margin-bottom: 10px;
 }
+
 button{
     width:100%;
     padding: 0px;
