@@ -46,6 +46,9 @@ export default {
         },
         hotelImages() {
             return this.$store.state.hotelImages
+        },
+        search() {
+            return this.$store.state.search
         }
     },
 
