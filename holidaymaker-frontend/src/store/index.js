@@ -143,6 +143,8 @@ export default createStore({
 			],
 		
 
+		search: {},
+
 		filteredHotels: [],
 
 		filteredRooms: [],
@@ -161,6 +163,9 @@ export default createStore({
     setDestinations(state, data){
       state.destinations = data
     },
+	setSearch(state, data){
+		state.search = data
+	},
     setHotels(state, data){
       state.hotels = data
     },
@@ -208,6 +213,7 @@ export default createStore({
         let data = await response.json()
         console.log(data)
         commit('setFilteredHotels', data)
+        commit('setSearch', searchString)
       },
 
 	  async fetchThisHotel({commit}, id){
