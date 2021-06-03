@@ -15,8 +15,14 @@
                 <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
                 <img src='../assets/logo.png' class="thumbnail">
                 <h4 class="hotel-name"> {{ hotel.name }}</h4>
-                <i class="fas fa-star star-rating"></i>
+                
+                <star-rating v-model:rating="hotel.starRating"> </star-rating>
+                
+
                 <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
+                
+                
+
             </div>
     </div>
 
@@ -27,20 +33,30 @@
 
 <script>
 import FilterComponent from '@/components/FilterComponent.vue'
+import StarRating from '@/components/StarRating.vue'
 
 export default {
 
-components: { FilterComponent },
+components: { FilterComponent, StarRating },
 methods: {
     
 },
 computed: {
+
+     thishotel() {
+        return this.$store.state.thisHotel;
+      },
     filteredHotels(){
         return this.$store.state.filteredHotels
     },
     hotelImages() {
         return this.$store.state.hotelImages
     }
+
+    
+   
+   
+
 },
 
 }
