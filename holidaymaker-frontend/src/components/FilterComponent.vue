@@ -61,6 +61,8 @@
 <script>
 
 export default {
+    // emits: ['change-filter'],
+
     data(){
         return{
             value2: 0,
@@ -79,7 +81,19 @@ export default {
                 hasRoomService: false,
             }
         }
-    }
+    },
+    methods:{
+            // setFilter(event) {
+            //     const inputId = event.target.id;
+            //     const isActive = event.target.checked;
+            //     const updatedFilters = {
+            //         ...this.filters,
+            //         [inputId]: isActive
+            //     };
+            //     this.filters = updatedFilters;
+            //     this.$emit('changed-filter', updatedFilters);
+            // }
+        }
 }
 </script>
 
