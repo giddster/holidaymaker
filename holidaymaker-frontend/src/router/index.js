@@ -13,8 +13,7 @@ import About from "../views/static/About.vue"
 import Contact from "../views/static/Contact.vue"
 import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
-import { StripeCheckout } from "@vue-stripe/vue-stripe"
-
+import Payment from "../views/Payment.vue"
 
 const routes = [
   {
@@ -88,6 +87,11 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
+  {
+    path: "/payment",
+    name: "Payment",
+    component: Payment
+  }
   
 ];
 
