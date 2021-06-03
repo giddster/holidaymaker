@@ -7,7 +7,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        <FilterComponent @change-filter="setFilters"/>
+        <FilterComponent />
     </div>
 
     <div class="results-div"> 
