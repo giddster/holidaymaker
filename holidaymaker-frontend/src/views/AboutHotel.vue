@@ -26,10 +26,10 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" style="border: 1px solid black">
         <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
-          <img class="image-container" :src="filteredImages[0].ImageLink" style="object-fit: cover">
+          <img class="image-container" :src="filteredImages[0].ImageLink">
         </div>
         <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
-          <img class="image-container" :src="image.ImageLink" style="object-fit: cover">
+          <img class="image-container" :src="image.ImageLink">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">

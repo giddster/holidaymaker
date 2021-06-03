@@ -11,13 +11,21 @@
     </div>
 
     <div class="results-div"> 
-            <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
-                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
-                <img src='../assets/logo.png' class="thumbnail">
-                <h4 class="hotel-name"> {{ hotel.name }}</h4>
-                <i class="fas fa-star star-rating"></i>
+        <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
+            <div class="header-div" style="margin-bot: 50px;">
+                <h4 class="hotel-name" style="float: left"> {{ hotel.name }}</h4>
+                <i class="fas fa-star star-rating" style="float: left"></i>
+                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button" style="float: right">Book a room</router-link>
+            </div>
+            <div class="picture-div" style="width: 25%">
+                <img :src='Image(hotel.id)' class="thumbnail-hotel-image">
+            </div>
+            <div class="content-div" style="width: 75%; float: right">
+                
+                
                 <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
             </div>
+        </div>
     </div>
 
 </div>
@@ -30,19 +38,33 @@ import FilterComponent from '@/components/FilterComponent.vue'
 
 export default {
 
-components: { FilterComponent },
-methods: {
+    components: { FilterComponent },
     
-},
-computed: {
-    filteredHotels(){
-        return this.$store.state.filteredHotels
+    computed: {
+        filteredHotels(){
+            return this.$store.state.filteredHotels
+        },
+        hotelImages() {
+            return this.$store.state.hotelImages
+        }
     },
-    hotelImages() {
-        return this.$store.state.hotelImages
-    }
-},
 
+    methods: {
+        Image(id) {
+            
+            let img = [];
+            let images = this.hotelImages;
+            
+            for(let image of images){
+                if(image.HotelId == id){
+                    img.push(image);
+                }
+            }
+
+
+            return img[0].ImageLink
+        }
+    }
 }
 </script>
 
@@ -83,12 +105,14 @@ computed: {
     margin-left: 10px;
 }
 
-.thumbnail {
+.thumbnail-hotel-image {
     border: 1px solid #ddd;
     padding: 5px; 
     margin-right: 10px;
-    width: 150px; 
+    width: 150px;
+    height: 100px;
     float: left;
+    object-fit: cover;
 }
 
 .star-rating {
