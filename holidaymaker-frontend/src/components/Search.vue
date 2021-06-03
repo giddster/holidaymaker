@@ -46,9 +46,6 @@ export default {
      redirect() {
         this.$router.push({ name: 'SearchResults' })
         this.$store.dispatch('search', this.searchString)
-     },
-     autocomplete() {
-         this.$store.state.searches = $('#searchBox-field').val()
      }
   },
     components: { DRPicker },

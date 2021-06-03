@@ -36,7 +36,6 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   padding-top: 20px;
-  margin-bottom: 0px;
 }
 .footer-div1 { 
   grid-area: 1 / 1 / 2 / 2; 

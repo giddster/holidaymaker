@@ -11,9 +11,26 @@
     <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
   </div>
 
-  <div class="div3"> 
-        <img src='../assets/logo.png'>
-  </div>
+  <div class="div3">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" style="border: 1px solid black">
+        <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
+          <img class="test" :src="filteredImages[0].ImageLink" style="object-fit: cover">
+        </div>
+        <div class="carousel-item" v-for="image in filteredImages" :key="image" style="text-align: center">
+          <img class="test" :src="image.ImageLink" style="object-fit: cover">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">
+        <span class="carousel-control-arrowprev" style="" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="width: 75px">
+        <span class="carousel-control-arrownext" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
 
   <div class="div4"> 
       REVIEW SUMMARY
@@ -95,13 +112,28 @@ export default {
   computed: {
       thishotel() {
         return this.$store.state.thisHotel;
+      },
+      images() {
+        return this.$store.state.hotelImages
+      },
+      filteredImages() {
+        let images = this.$store.state.hotelImages;
+        let filteredImages = []
+        let image;
+
+        for(image of images){
+          if (image.HotelId == this.thishotel.id){
+            filteredImages.push(image);
+          }
+        }
+
+        return filteredImages;
       }
     },
     
     mounted() {
       this.$store.dispatch('fetchThisHotel', this.$route.params.id)
     },
-    
 }
 </script>
 
@@ -155,6 +187,24 @@ export default {
 }
 .div8 { 
   grid-area: 4 / 2 / 5 / 3; 
+ .test {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.carousel-control-arrowprev:after {
+  content: '<';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
+}
+
+.carousel-control-arrownext:after {
+  content: '>';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
 }
 
 .hotel-title {
@@ -264,7 +314,29 @@ border-radius: 10px;
 
 .roomsuggestor-child{ 
   grid-area: 1 / 1 / 2 / 2; 
-  width: 100%;
+  padding-bottom: 10px;
 }
-
+.div2 { 
+  grid-area: 1 / 2 / 2 / 3; 
+}
+.div3 { 
+  grid-area: 2 / 1 / 3 / 2;
+  margin-bottom: 20px;
+}
+.div4 { 
+  grid-area: 2 / 2 / 3 / 3; 
+  margin: auto;
+}
+.div5 { 
+  grid-area: 3 / 1 / 4 / 2; 
+}
+.div6 { 
+  grid-area: 3 / 2 / 4 / 3; 
+}
+.div7 { 
+  grid-area: 4 / 1 / 5 / 2; 
+}
+.div8 { 
+  grid-area: 4 / 1 / 5 / 3; 
+}
 </style>

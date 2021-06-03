@@ -9,9 +9,6 @@
 			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker">
 			<p style="margin-bottom: 0px; color: lightcoral">Checkout Date</p>
 		</div>
-		
-		
-
 	</div>
 </template>
 
