@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="FixedHeightContainer">
-            <h4 class="averageuserrating-title">Average user rating: {{ average }} </h4>
+            <h4 class="averageuserrating-title">Average user rating: {{  }} </h4>
             <button @click="dispatchReview" class="btn btn-lg btn-primary">See reviews</button>
             <div class="scroll">
                 <div v-for="review in reviews" :key="review" class="content">
