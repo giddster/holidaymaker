@@ -90,11 +90,7 @@ button{
 .review-rating {
     display: inline-flex;
     font-size: 18px;
-}
-
-.rating-grade {
-    text-align: right;
-    font-style: normal;
+    color: lightcoral;
 }
 
 .reviewtext-heading {
