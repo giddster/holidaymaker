@@ -57,16 +57,16 @@ export default {
 
 .FixedHeightContainer
 {
-  float:right;
-  height: 250px;
-  width:400px; 
-  padding:3px; 
+    float:right;
+    height: 500px;
+    width:500px; 
+    padding:3px; 
     background: rgb(246, 246, 252);
 }
 
 .scroll
 {
-  height:180px;
+  height:100%;
    overflow-x: hidden;
    overflow-y: auto;
     background: rgb(246, 246, 252)

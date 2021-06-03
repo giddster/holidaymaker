@@ -41,7 +41,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-</div>
+  </div>
 
   <div class="div4"> 
       <OutputReview />
@@ -65,8 +65,6 @@
       <i class="fas fa-umbrella-beach distance-icon"><i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i></i>
       <br>
       <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
-      
-     
   </div>
 
   <div class="div6 empty-div"> 
@@ -84,18 +82,11 @@
   <div class="div8 empty-div"> 
       EMPTY
   </div>
-    
-  
-</div>
-
-<div class="roomsuggestor-parent" ref="roomsuggestor">
-    <div class="roomsuggestor-child"> 
-      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
-      <h4 class="roomsuggestor-title">Available rooms </h4>
-      <RoomSuggestor />
-      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
-    </div>
-
+  <div class="div9">
+    <h4 class="roomsuggestor-title">Available rooms </h4>
+    <RoomSuggestor class="rs" />
+    <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
+  </div>
   </div>
 
 </template>
@@ -157,8 +148,8 @@ export default {
 <style>
 .parent.hotel-header {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto 320px auto auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   background: rgb(246, 246, 252);
@@ -183,10 +174,13 @@ export default {
   grid-area: 1 / 2 / 2 / 3; 
 }
 .div3 { 
-  grid-area: 2 / 1 / 3 / 2;
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+  float: left;
 }
-.div4 { 
-  grid-area: 2 / 2 / 3 / 3; 
+.div4 {
+  padding-top: 50px;
+  grid-row: 2 / span 4;
   margin: auto;
 }
 .div5 { 
@@ -200,7 +194,10 @@ export default {
 }
 .div8 { 
   grid-area: 4 / 2 / 5 / 3; 
- 
+}
+
+.div9 {
+  grid-column: 1 / 3;
 }
 
 .image-container {
