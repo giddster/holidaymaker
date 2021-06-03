@@ -4,29 +4,29 @@
             <div class="form">
                 <form class="filter-form">
                     <div class="checkboxes"> 
-                        <input type="checkbox" id="hasPool" name="hasPool">
+                        <input type="checkbox" id="hasPool" name="hasPool" @change="setFilter">
                         <label for="hasPool">Pool</label>
-                        <input type="checkbox" id="hasSeaSide" name="hasSeaSide">
+                        <input type="checkbox" id="hasSeaSide" name="hasSeaSide" @change="setFilter">
                         <label for="hasSeaSide">Seaside</label><br>
 
-                        <input type="checkbox" id="hasEntertainment" name="hasEntertainment">
+                        <input type="checkbox" id="hasEntertainment" name="hasEntertainment" @change="setFilter">
                         <label for="hasEntertainment">Entertainment</label>
-                        <input type="checkbox" id="hasKidsClub" name="hasKidsClub">
+                        <input type="checkbox" id="hasKidsClub" name="hasKidsClub" @change="setFilter">
                         <label for="hasKidsClub">Kids Club</label><br>
 
-                        <input type="checkbox" id="hasRestaurant" name="hasRestaurant">
+                        <input type="checkbox" id="hasRestaurant" name="hasRestaurant" @change="setFilter">
                         <label for="hasRestaurant">Restaurant</label>
-                        <input type="checkbox" id="hasHalfPension" name="hasHalfPension">
+                        <input type="checkbox" id="hasHalfPension" name="hasHalfPension" @change="setFilter">
                         <label for="hasHalfPension">Half Pension</label><br>
 
-                        <input type="checkbox" id="hasWholePension" name="hasWholePension">
+                        <input type="checkbox" id="hasWholePension" name="hasWholePension" @change="setFilter">
                         <label for="hasWholePension">Whole Pension</label>
-                        <input type="checkbox" id="hasAllInclusive" name="hasAllInclusive">
+                        <input type="checkbox" id="hasAllInclusive" name="hasAllInclusive" @change="setFilter">
                         <label for="hasAllInclusive">All inclusive</label><br>
 
-                        <input type="checkbox" id="hasWifi" name="hasWifi">
+                        <input type="checkbox" id="hasWifi" name="hasWifi" @change="setFilter">
                         <label for="hasWifi">Wifi</label>
-                        <input type="checkbox" id="hasRoomService" name="hasRoomService">
+                        <input type="checkbox" id="hasRoomService" name="hasRoomService" @change="setFilter">
                         <label for="hasRoomService">Roomservice</label>
                     </div>
                     <h3>Price per night: </h3>
@@ -64,7 +64,20 @@ export default {
     data(){
         return{
             value2: 0,
-            value: 0
+            value: 0,
+
+            filters: {
+                hasPool: false,
+                hasSeaSide: false,
+                hasEntertainment: false,
+                hasKidsClub: false,
+                hasRestaurant: false,
+                hasHalfPension: false,
+                hasWholePension: false,
+                hasAllInclusive: false,
+                hasWifi: false,
+                hasRoomService: false,
+            }
         }
     }
 }

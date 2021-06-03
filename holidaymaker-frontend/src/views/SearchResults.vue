@@ -7,7 +7,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        <FilterComponent />
+        <FilterComponent @change-filter="setFilters"/>
     </div>
 
     <div class="results-div"> 
@@ -31,12 +31,64 @@ import FilterComponent from '@/components/FilterComponent.vue'
 export default {
 
 components: { FilterComponent },
+data(){
+    return{
+        activeFilters: {
+                hasPool: false,
+                hasSeaSide: false,
+                hasEntertainment: false,
+                hasKidsClub: false,
+                hasRestaurant: false,
+                hasHalfPension: false,
+                hasWholePension: false,
+                hasAllInclusive: false,
+                hasWifi: false,
+                hasRoomService: false,
+        }
+    }
+},
 methods: {
-    
+    setFilters(updatedFilters) {
+        this.activeFilters = updatedFilters;
+    }
 },
 computed: {
     filteredHotels(){
-        return this.$store.state.filteredHotels
+        return this.$store.sate.filteredHotels
+        // const filteredHotels = this.$store.state.filteredHotels
+        // return filteredHotels.filter(hotel => {
+        //     if (this.activeFilters.hasPool && hotel.includes('hasPool')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasSeaSide && hotel.includes('hasSeaSide')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasEntertainment && hotel.includes('hasEntertainment')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasKidsClub && hotel.includes('hasKidsClub')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasRestaurant && hotel.includes('hasRestaurant')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasHalfPension && hotel.includes('hasHalfPension')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasWholePension && hotel.includes('hasWholePension')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasAllInclusive && hotel.includes('hasAllInclusive')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasWifi && hotel.includes('hasWifi')) {
+        //         return true;
+        //     }
+        //     if (this.activeFilters.hasRoomService && hotel.includes('hasRoomService')) {
+        //         return true;
+        //     }
+        //     return false;
+        // });
     },
     hotelImages() {
         return this.$store.state.hotelImages
