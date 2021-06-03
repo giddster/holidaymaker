@@ -8,7 +8,7 @@ import Contact from "../views/static/Contact.vue"
 import NotFound from "../views/static/NotFound.vue"
 
 
-// STRIPE REDIRECTS //
+// STRIPE COMPONENTS //
 import Payment from "../views/Payment/Payment.vue"
 import PaymentFail from "../views/Payment/PaymentFail.vue"
 import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
