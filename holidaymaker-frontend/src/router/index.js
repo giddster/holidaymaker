@@ -8,8 +8,10 @@ import Contact from "../views/static/Contact.vue"
 import NotFound from "../views/static/NotFound.vue"
 
 
-// STRIPE REDIRECT TO PAYMENT //
-import Payment from "../views/Payment.vue"
+// STRIPE REDIRECTS //
+import Payment from "../views/Payment/Payment.vue"
+import PaymentFail from "../views/Payment/PaymentFail.vue"
+import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
 
 //"DYNAMIC" VIEWS
 import Login from "/src/views/Login.vue"
@@ -23,15 +25,17 @@ import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue"
 import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
 
-
-
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home
   },
-  { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
+  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
+  { path: '/:pathMatch(.*)*', 
+    name: 'not-found', 
+    component: NotFound 
+  },
   {
     path: "/about",
     name: "About",
@@ -98,10 +102,22 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
+  
+  //PAYMENT ROUTES
   {
     path: "/payment",
     name: "Payment",
     component: Payment
+  },
+  {
+    path: "/paymentfailed",
+    name: "PaymentFail",
+    component: PaymentFail
+  },
+  {
+    path: "/paymentsucceeded",
+    name: "PaymentSuccess",
+    component: PaymentSuccess
   }
   
 ];

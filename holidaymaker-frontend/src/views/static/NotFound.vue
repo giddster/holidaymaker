@@ -18,6 +18,6 @@ name: 'NotFound',
 <style scoped>
 .notfound{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 </style>

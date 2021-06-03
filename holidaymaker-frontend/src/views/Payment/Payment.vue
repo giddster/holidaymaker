@@ -20,6 +20,7 @@ export default {
     StripeCheckout,
   },
   data () {
+    // API TEST KEY
     this.publishableKey = 'pk_test_51IyG1qK0lVPWMlywAbpqOFcKOHwihLzpsx5kQPafYwW8DaoYmBYiCCUKpVpaGAcxpe9HenvGKNqSV66qHKaCgDNm00wuo0QAG1';
     return {
       loading: false,
@@ -29,8 +30,8 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: 'http://localhost:8080/',
-      cancelURL: 'http://localhost:8080/help',
+      successURL: 'http://localhost:8080/paymentsucceeded',
+      cancelURL: 'http://localhost:8080/paymentfailed',
     };
   },
   methods: {
