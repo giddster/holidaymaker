@@ -173,11 +173,17 @@ export default createStore({
 	},
     setDates(state, data) {
       state.dates = data
-    }
+    },
+	setReviews(state, data){
+	  state.reviews = data
+	},
+	
 
   },
 
   actions: {
+
+	
     async fetchDestinations({commit}){
       let response = await fetch('/api/Destinations/')
       let data = await response.json()
@@ -218,6 +224,45 @@ export default createStore({
 
       
 
+      async setDates({commit}, dates){
+        commit('setDates', dates)
+      },
+	
+	  async fetchReviews({commit}){
+		let response = await fetch('api/reviews/')
+		let data = await response.json()
+		console.log(data)
+		commit('setReviews', data)
+	  },
+	  
+	  async postReview({commit}, data){
+		  console.log(data)
+		  let body = {
+  			rating: data.rating,
+  			// customerId: data.customerId,
+			customerId: data.customerId,
+  			hotelId: data.hotelId,
+  			heading: data.heading,
+  			name: data.name,
+			reviewText: data.reviewText,
+			
+			
+		  }
+		//  let response = await fetch('api/Reviews', {
+		// 	 method: 'post',
+		// 	 headers: {'Content-type': 'application/json'},
+		// 	 body: JSON.stringify(body)
+		//  })
+		let requestOptions = { 
+			method: 'post',
+		 	headers: {'Content-type': 'application/json'},
+		 	body: JSON.stringify(body)}
+
+			 const response = await fetch('api/Reviews', requestOptions)
+		 let result = await response.json()
+		 console.log('resultat från backend', result)
+		 commit('setReviews', result)
+	  }
   },
   modules: {
 
