@@ -92,19 +92,19 @@ export default createStore({
 			rooms: []
 		},
 		
-		reviews: [
-			{
-				id: 0,
-				rating: 0.0,
-				customerId: 0,
-				hotelId: 0,
-				heading: null,
-				name: null,
-				reviewText: "",
-				customer: null,
-				hotel: null
-			}
-		],
+		// reviews: [
+		// 	{
+		// 		id: 0,
+		// 		rating: 0.0,
+		// 		customerId: 0,
+		// 		hotelId: 0,
+		// 		heading: null,
+		// 		name: null,
+		// 		reviewText: "",
+		// 		customer: null,
+		// 		hotel: null
+		// 	}
+		// ],
 		
 		rooms: {
 			id: 0,
@@ -148,6 +148,8 @@ export default createStore({
 		filteredRooms: [],
 
 		thisHotel: {},
+
+		reviews: [],
 
       	dates: {}  
 
@@ -222,14 +224,12 @@ export default createStore({
       commit('setFilteredRooms', data)
       },
 
-      
-
       async setDates({commit}, dates){
         commit('setDates', dates)
       },
 	
 	  async fetchReviews({commit}){
-		let response = await fetch('api/reviews/')
+		let response = await fetch('/api/reviews/')
 		let data = await response.json()
 		console.log(data)
 		commit('setReviews', data)
