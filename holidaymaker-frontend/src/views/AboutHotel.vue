@@ -4,8 +4,6 @@
     <h4 class="hotel-title">{{ thishotel.name }}</h4>
     
     <star-rating @rating-selected ="setRating"
-        
-               
                 :round-start-rating="false"
                 :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
                 :border-width="2"
@@ -18,12 +16,6 @@
         </star-rating>
    
   </div>
-
- 
-        
-      
-  
-
 
   <div class="div2"> 
     <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
@@ -93,9 +85,7 @@
   <div class="div8 empty-div"> 
       EMPTY
   </div>
-  
-  <h4>Room suggestions: </h4>
-  <RoomSuggestor />
+    
   
 </div>
 
@@ -115,10 +105,10 @@
 import DRPicker from '@/components/DRPicker.vue'
 import RoomSuggestor from '@/components/RoomSuggestor.vue'
 import OutputReview from '../components/OutputReview.vue'
-import { computed } from 'vue'
+import StarRating from '@/components/StarRating.vue'
 
 export default {
-  components: { DRPicker, RoomSuggestor },
+  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
   methods: {
     scrollToSuggestions(refName){
       var element = this.$refs[refName];
@@ -133,11 +123,7 @@ export default {
       window.scrollTo(0, top);
     }
   },
-import StarRating from '@/components/StarRating.vue'
 
-export default {
-  components: { DRPicker, RoomSuggestor,StarRating },
-  
   computed: {
       thishotel() {
         return this.$store.state.thisHotel;
@@ -155,7 +141,6 @@ export default {
             filteredImages.push(image);
           }
         }
-
         return filteredImages;
       }
     },
@@ -216,7 +201,10 @@ export default {
 }
 .div8 { 
   grid-area: 4 / 2 / 5 / 3; 
- .test {
+ 
+}
+
+.test {
   width: 600px;
   height: 300px;
   object-fit: cover;
