@@ -5,7 +5,7 @@
             <form id = "loginForm" class="login-form">
                 <input v-model="UserEmail" type="email" placeholder="Email">
                 <input v-model="UserPassword" type="password" placeholder="Password">
-                <button @click.prevent="handleUserLogin">Login</button>
+                <button @click="handleUserLogin">Login</button>
                 <p class="message">Not registered? <router-link to="/register">Register</router-link></p>
             </form>
         </div>
@@ -17,6 +17,7 @@
 
 import {mapActions} from 'vuex'
 import router from '../router/index'
+
 export default {
 
      data() {
@@ -48,10 +49,11 @@ export default {
                console.log(response)
 
                 if(response){
-                    router.go()
-                    router.push('/')
+                    //router.go()
                     alert('Login Successful')
+                    //this.reRender()
                     document.getElementById("loginForm").reset();
+                    router.push('/about')
 
                 }
                 else{
@@ -59,6 +61,10 @@ export default {
                 }
         
         },
+
+        reRender(){
+        this.$forceUpdate()
+     }
     
     },
     

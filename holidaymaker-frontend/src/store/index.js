@@ -134,7 +134,7 @@ export default createStore({
       userName: "",
       password: "",
       IsLoggedIn: window.localStorage.getItem('isLoggedIn')
-      },
+    },
 
     hotelImages: [
       { id: 2, HotelId: 1, ImageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg' },
@@ -183,23 +183,23 @@ export default createStore({
       state.user = data
     },
 
-	  LogInUser(state, data) {
-		state.loggedInUser = data
-    state.loggedInUser.isLoggedIn = true
-    console.log(state.loggedInUser.isLoggedIn)
-	  },
+    LogInUser(state, data) {
+      state.loggedInUser = data
+      state.loggedInUser.isLoggedIn = true
+      console.log(state.loggedInUser.isLoggedIn)
+    },
 
     Logout(state) {
       state.loggedInUser.userName = null
       state.loggedInUser.password = null
       state.loggedInUser.isLoggedIn = false
-      }
+    }
 
 
 
   },
 
-  getters:{
+  getters: {
 
     IsLoggedIn: state => !!state.loggedInUser.IsLoggedIn
     //  IsLoggedIn(state){ 
@@ -259,52 +259,52 @@ export default createStore({
     },
 
 
-	async loginUser({ commit }, loggedInUser) {
+    async loginUser({ commit }, loggedInUser) {
 
-		let body = { userName: loggedInUser.email, password: loggedInUser.password }
-  
-		const requestOptions = {
-		  method: "POST",
-		  headers: { 'Content-type': 'application/json' },
-		  body: JSON.stringify(body)
-		};
-  
-		const response = await fetch('/api/Authentication/Login', requestOptions)
-		const data = await response.json();
-  
-		
-  
-		if (response.status == 200) {
-
-			commit('LogInUser', data)
-      window.localStorage.setItem('isLoggedIn',true)
-      //router.push('/')
-		  return true
-		}
-		else {
-		  return false
-		}
-	  },
-
-    async logoutUser({commit}){
+      let body = { userName: loggedInUser.email, password: loggedInUser.password }
 
       const requestOptions = {
         method: "POST",
         headers: { 'Content-type': 'application/json' },
-        
+        body: JSON.stringify(body)
       };
-      
+
+      const response = await fetch('/api/Authentication/Login', requestOptions)
+      const data = await response.json();
+
+      if (response.status == 200) {
+
+        window.localStorage.setItem('isLoggedIn', true)
+        commit('LogInUser', data)
+
+        //router.push('/')
+        return true
+      }
+      else {
+        return false
+      }
+    },
+
+    async logoutUser({ commit }) {
+
+      const requestOptions = {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+
+      };
+
       let response = await fetch('/api/Authentication/Logout', requestOptions)
       const data = await response.json();
 
 
       if (response.status == 200) {
-        commit('Logout')
         window.localStorage.removeItem('isLoggedIn')
-        router.go()
-        router.push('/')
-        alert('you have been logged off')
-        return data
+        commit('Logout')
+        //router.go()
+
+        // alert('you have been logged off')
+        // router.push('/')
+        return true
       }
       else {
         return false

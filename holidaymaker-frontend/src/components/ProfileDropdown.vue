@@ -1,6 +1,3 @@
-
-
-
 <template>
     <div id ="profileDropDown" class="dropdown show">
         <a  class="btn btn-primary dropdown-toggle profiledropdown-button" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,21 +10,35 @@
         <router-link to="/mybookings" class="dropdown-item"> <i class="far fa-calendar-alt profileIcon"></i> My bookings </router-link>
         
         <div class="dropdown-divider"></div>
-        <a @click="logoutUser" class="dropdown-item" href="#">Sign out</a>
+        <a @click="handleLogout" onmouseover="" style="cursor: pointer;" class="dropdown-item">Sign out</a>
     </div>
 </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
-
+import router from '../router/index'
 
 export default{
     
     methods:{
-        ...mapActions(["logoutUser"])
+        ...mapActions(["logoutUser"]),
 
+        async handleLogout() {
 
+            let response = await this.logoutUser()
+
+            console.log(response)
+
+            if(response){
+                alert('you have been logged off')
+                router.push('/')
+            }
+            else{
+                    alert('Logout Failed')
+            }
+
+        }
     }
 
 
@@ -52,5 +63,9 @@ export default{
     border-radius: 5px;
     border: 1px solid lightcoral;
 }
+
+/* .dropdown-item{
+    po
+} */
 
 </style>
