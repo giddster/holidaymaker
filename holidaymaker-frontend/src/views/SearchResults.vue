@@ -18,6 +18,7 @@
                 
                 <star-rating v-model:rating="hotel.starRating"> </star-rating>
                 
+                <br>
 
                 <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
                 
@@ -105,12 +106,6 @@ computed: {
     margin-right: 10px;
     width: 150px; 
     float: left;
-}
-
-.star-rating {
-    font-size: 28px;
-    color: red;
-    margin-left: 10px;
 }
 
 .hotel-description {
