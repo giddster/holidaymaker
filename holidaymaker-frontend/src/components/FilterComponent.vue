@@ -4,29 +4,29 @@
             <div class="form">
                 <form class="filter-form">
                     <div class="checkboxes"> 
-                        <input type="checkbox" id="hasPool" name="hasPool">
+                        <input type="checkbox" id="hasPool" name="hasPool" :value="hasPool" v-model="filters.hasPool">
                         <label for="hasPool">Pool</label>
-                        <input type="checkbox" id="hasSeaSide" name="hasSeaSide">
+                        <input type="checkbox" id="hasSeaSide" name="hasSeaSide" :value="hasSeaSide" v-model="filters.hasSeaSide">
                         <label for="hasSeaSide">Seaside</label><br>
 
-                        <input type="checkbox" id="hasEntertainment" name="hasEntertainment">
+                        <input type="checkbox" id="hasEntertainment" name="hasEntertainment" :value="hasEntertainment" v-model="filters.hasEntertainment">
                         <label for="hasEntertainment">Entertainment</label>
-                        <input type="checkbox" id="hasKidsClub" name="hasKidsClub">
+                        <input type="checkbox" id="hasKidsClub" name="hasKidsClub" :value="hasKidsClub" v-model="filters.hasKidsClub">
                         <label for="hasKidsClub">Kids Club</label><br>
 
-                        <input type="checkbox" id="hasRestaurant" name="hasRestaurant">
+                        <input type="checkbox" id="hasRestaurant" name="hasRestaurant" :value="hasRestaurant" v-model="filters.hasRestaurant">
                         <label for="hasRestaurant">Restaurant</label>
-                        <input type="checkbox" id="hasHalfPension" name="hasHalfPension">
+                        <input type="checkbox" id="hasHalfPension" name="hasHalfPension" :value="hasHalfPension" v-model="filters.hasHalfPension">
                         <label for="hasHalfPension">Half Pension</label><br>
 
-                        <input type="checkbox" id="hasWholePension" name="hasWholePension">
+                        <input type="checkbox" id="hasWholePension" name="hasWholePension" :value="hasWholePension" v-model="filters.hasWholePension">
                         <label for="hasWholePension">Whole Pension</label>
-                        <input type="checkbox" id="hasAllInclusive" name="hasAllInclusive">
+                        <input type="checkbox" id="hasAllInclusive" name="hasAllInclusive" :value="hasAllInclusive" v-model="filters.hasAllInclusive">
                         <label for="hasAllInclusive">All inclusive</label><br>
 
-                        <input type="checkbox" id="hasWifi" name="hasWifi">
+                        <input type="checkbox" id="hasWifi" name="hasWifi" :value="hasWifi" v-model="filters.hasWifi">
                         <label for="hasWifi">Wifi</label>
-                        <input type="checkbox" id="hasRoomService" name="hasRoomService">
+                        <input type="checkbox" id="hasRoomService" name="hasRoomService" :value="hasRoomService" v-model="filters.hasRoomService">
                         <label for="hasRoomService">Roomservice</label>
                     </div>
                     <h3>Price per night: </h3>
@@ -64,7 +64,20 @@ export default {
     data(){
         return{
             value2: 0,
-            value: 0
+            value: 0,
+
+            filters: {
+                hasPool: false,
+                hasSeaSide: false,
+                hasEntertainment: false,
+                hasKidsClub: false,
+                hasRestaurant: false,
+                hasHalfPension: false,
+                hasWholePension: false,
+                hasAllInclusive: false,
+                hasWifi: false,
+                hasRoomService: false,
+            }
         }
     }
 }
