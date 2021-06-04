@@ -24,7 +24,7 @@ namespace HolidayMaker_API.Services
 
         public Customer GetCustomerByEmail(string userEmail)
         {
-            return _holidayMakerContext.Customers.FirstOrDefault(u => u.Email == userEmail);
+            return _holidayMakerContext.Customers.FirstOrDefault(u => u.Email.ToLower() == userEmail.ToLower());
         }
 
         public bool UserExistsByEmail(string userEmail)

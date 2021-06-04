@@ -17,45 +17,22 @@ namespace HolidayMaker_API.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly HolidayMakerContext _context;
-        private readonly BookingService _bs;
         private readonly CustomerService _customerService;
 
-        public BookingsController(HolidayMakerContext context, BookingService bs, CustomerService customerService)
+        public BookingsController(HolidayMakerContext context, CustomerService customerService)
         {
             _context = context;
-            _bs = bs;
-            this._customerService = customerService;
+            _customerService = customerService;
         }
-
-        // GET: api/Bookings
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
-        //{
-        //    return await _context.Bookings.ToListAsync();
-        //}
-
-        // GET: api/Bookings/5
-        [HttpGet("{id}")]
-        //public async Task<ActionResult<Booking>> GetBooking(int id)
-        //{
-        //    var booking = await _context.Bookings.FindAsync(id);
-
-        //    if (booking == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return booking;
-        //}
 
 
         // GET: api/Bookings/5
         [HttpGet("/api/BookingsByCustomer/{id}")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookingsByCustomer(int id)
         {
-            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var loggedInUserEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            var customerFromDB = _customerService.UserExistsByEmail(userEmail);
+            var customerFromDB = _customerService.UserExistsByEmail(loggedInUserEmail);
 
 
             if (customerFromDB)
@@ -82,9 +59,9 @@ namespace HolidayMaker_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBooking(int id, Booking booking)
         {
-            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var loggedInUserEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            var customerFromDB = _customerService.UserExistsByEmail(userEmail);
+            var customerFromDB = _customerService.UserExistsByEmail(loggedInUserEmail);
 
 
             if (customerFromDB)
@@ -127,9 +104,9 @@ namespace HolidayMaker_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
-            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var loggedInUserEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            var customerFromDB = _customerService.UserExistsByEmail(userEmail);
+            var customerFromDB = _customerService.UserExistsByEmail(loggedInUserEmail);
 
 
             if (customerFromDB)
@@ -172,9 +149,9 @@ namespace HolidayMaker_API.Controllers
         public async Task<IActionResult> DeleteBooking(int id)
         {
 
-            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var loggedInUserEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            var customerFromDB = _customerService.UserExistsByEmail(userEmail);
+            var customerFromDB = _customerService.UserExistsByEmail(loggedInUserEmail);
 
 
             if (customerFromDB)
