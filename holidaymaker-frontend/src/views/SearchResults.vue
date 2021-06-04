@@ -7,7 +7,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        <FilterComponent />
+        <filter-component @change-filter="setFilters"></filter-component>
     </div>
 
     <div class="results-div"> 
@@ -26,17 +26,42 @@
 </template>
 
 <script>
-import FilterComponent from '@/components/FilterComponent.vue'
+import FilterComponent from '../components/FilterComponent.vue';
 
 export default {
-
 components: { FilterComponent },
+
+data(){
+    return {
+        activeFilters: {
+                hasPool: true,
+                hasSeaSide: true,
+                hasEntertainment: true,
+                hasKidsClub: true,
+                hasRestaurant: true,
+                hasHalfPension: true,
+                hasWholePension: true,
+                hasAllInclusive: true,
+                hasWifi: true,
+                hasRoomService: true,
+            }
+    }
+},
+
 methods: {
-    
+    setFilters(updatedFilters){
+        this.activeFilters = updatedFilters;
+    }
 },
 computed: {
     filteredHotels(){
         return this.$store.state.filteredHotels
+        // const hotels = this.$store.state.filteredHotels;
+        // return hotels.filter(hotel => {
+        //     if (this.activeFilters.hasPool && hotel.filteredHotels.includes('hasPool')){
+        //         return true;
+        //     }
+        // });
     },
     hotelImages() {
         return this.$store.state.hotelImages
