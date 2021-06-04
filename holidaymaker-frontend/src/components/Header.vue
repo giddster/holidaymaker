@@ -14,18 +14,23 @@
           ><h5 class="header-title">HolidayMaker.com</h5></router-link
         >
       </div>
-      {{ IsLoggedIn }}
+
+      <!-- {{ IsLoggedIn }} -->
+
       <div v-if="IsLoggedIn" class="header-div2">
         <ProfileDropdown />
       </div>
-      <div v-else>
+      <div v-else class="header-div3">
         <router-link to="/login"
-          ><h5 class="header-title">login</h5></router-link
+          ><h5 class="header-title">Login</h5></router-link
         >
         <router-link to="/register"
-          ><h5 class="header-title">register</h5></router-link
+          ><h5 class="header-title">Register</h5></router-link
         >
       </div>
+
+      
+
     </div>
   </header>
 </template>
@@ -34,6 +39,7 @@
 import ProfileDropdown from "@/components/ProfileDropdown.vue";
 import { mapGetters } from "vuex";
 export default {
+  
   components: { ProfileDropdown },
   computed: {
     ...mapGetters(["IsLoggedIn"]),
@@ -41,10 +47,15 @@ export default {
     //   return this.$store.state.loggedInUser.IsLoggedIn
     //}
   },
+
+  methods: {
+    
+
+  }
 };
 </script>
 
-<style>
+<style scoped>
 header {
   background: rgb(233, 232, 253);
 }
@@ -65,6 +76,11 @@ header {
   margin-top: 10px;
   margin-right: 10px;
 }
+.header-div3 {
+  grid-area: 1 / 4 / 2 / 5;
+  margin-top: 20px;
+  margin-right: 10px;
+}
 
 .header-title {
   display: inline;
@@ -80,4 +96,11 @@ header {
   padding: 5px;
   width: 85px;
 }
+
+
+
+
+
+
+
 </style>

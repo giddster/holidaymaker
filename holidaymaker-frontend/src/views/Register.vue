@@ -109,7 +109,7 @@ body {
   background: rgba(7, 40, 195, 0.8);
   max-width: 360px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 45px 45px 15px 45px;
   text-align: center;
 }
 .form input {
@@ -122,6 +122,7 @@ body {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 4px;
 }
 .form button {
   font-family: "Roboto", sans-serif;
@@ -134,15 +135,16 @@ body {
   color: #ffffff;
   font-size: 14px;
   cursor: pointer;
+  border-radius: 5px;
 }
 .form button:hover,
 .form button:active {
   background: #43a047;
 }
 .form .message {
-  margin: 15px;
+  margin: 25px;
   color: aliceblue;
-  font-size: 12px;
+  font-size: 15px;
 }
 .form .message a {
   color: #4caf50;
