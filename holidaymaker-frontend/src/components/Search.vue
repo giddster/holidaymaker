@@ -37,29 +37,27 @@
 import DRPicker from '@/components/DRPicker.vue'
 
 export default {
+    components: { DRPicker },
      data() {
          return {
              searchString: ''
          }
      },
+     computed: {
+        // checkinDate(){
+        //     return this.$store.dates.checkinDate
+        // },
+        // checkoutDate(){
+        //     return this.$store.dates.checkoutDate
+        // }
+    },
      methods: {
      displaySearchResults() {
         this.$store.dispatch('search', this.searchString, this.checkinDate, this.checkoutDate)
      }
   },
-    components: { DRPicker },
-    computed: {
-        checkinDate(){
-            return this.$store.dates.checkinDate
-        },
-        checkoutDate(){
-            return this.$store.dates.checkoutDate
-        }
-    }
     
-    // created() {
-    //     this.$store.dispatch('fetchDestinations')
-    // }
+  
 }
 </script>
 

@@ -9,7 +9,7 @@
             <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
             <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
             <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
-            <button @click="addSelectedRoom(room).preventDefault()" class="btn btn-primary room-booking" data-toggle="modal" data-target="#guestsModal">Add to booking</button>
+            <button @click="addSelectedRoom(room)" class="btn btn-primary room-booking" data-toggle="modal" data-target="#guestsModal">Add to booking</button>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
 							<div class="col-md-4">
 								<i>Room {{index + 1}}</i>
                                 <p>Room number: <b>{{ room.roomNo }}</b> </p>
-								<button @click="removeSelectedRoom(room).preventDefault()" class="btn btn-danger btn-sm">
+								<button @click="removeSelectedRoom(room)" class="btn btn-danger btn-sm">
 									Delete
 								</button>
 							</div> 
@@ -54,6 +54,9 @@
 
 <script>
 export default {
+    async created() {
+        await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
+    },
     data() {
     return {
       selectedRooms: []
@@ -96,9 +99,7 @@ export default {
             }
         }
     },
-    async created() {
-        await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
-    }
+    
 }
 </script>
 

@@ -4,121 +4,23 @@ export default createStore({
   state: {
 		name: "Vue",
 		
-		bookings: {
-			id: 0,
-			checkInDate: "",
-			checkOutDate: "",
-			noOfAdults: 0,
-			noOfChildren: 0,
-			isPending: false,
-			isCancelled: false,
-			totalPrice: 0.0,
-			flightId: 0,
-			customerId: 0,
-			customer: null,
-			flight: null,
-			bookingXrooms: [ ]
-		},
+		bookings: { },
 		
-		customers: {
-			id: 0,
-			firstName: "",
-			lastName: "",
-			address: "",
-			zipCode: "",
-			city: "",
-			country: "",
-			email: "",
-			phone: "",
-			isLoggedIn: false,
-			password: "",
-			bookings: [],
-			favoriteHotels: [],
-			reviews: []
-		},
+		customers: { },
 		
-		destinations: {
-			id: 0,
-			country: "",
-			city: "",
-			flights: [],
-			hotels: []
-		},
+		destinations: {	},
 		
-		favoritehotels: {
-			id: 0,
-			hotelId: 0,
-			customerId: 0,
-			customer: null,
-			hotel: null
-		},
+		favoritehotels: { },
 		
-		flights: {
-			id: 1,
-			aviatorName: "",
-			departureCity: "",
-			departureCountry: "",
-			isReturnFlight: true,
-			price: 0.0,
-			destinationId: 1,
-			destination: null,
-			bookings: []
-		},
+		flights: { },
 		
-		hotels: {
-			id: 0,
-			name: "",
-			zipCode: "",
-			address: "",
-			starRating: 0.0,
-			distanceToBeach: 0.0,
-			distanceToCityCenter: 0.0,
-			hasPool: false,
-			hasSeaSide: false,
-			hasEntertainment: false,
-			hasKidsClub: false,
-			hasRestaurant: false,
-			hasHalfPension: false,
-			hasWholePension: false,
-			hasAllInclusive: false,
-			hasWifi: false,
-			hasRoomService: false,
-			destinationId: 0,
-			description: "",
-			destination: null,
-			favoriteHotels: [],
-			hotelImages: [],
-			reviews: [],
-			rooms: []
-		},
+		hotels: { },
 		
 		reviews: [
-			{
-				id: 0,
-				rating: 0.0,
-				customerId: 0,
-				hotelId: 0,
-				heading: null,
-				name: null,
-				reviewText: "",
-				customer: null,
-				hotel: null
-			}
+			{ }
 		],
 		
-		rooms: {
-			id: 0,
-			hotelId: 0,
-			roomNo: 0,
-			noOfSpareBeds: 0,
-			isSelfCleaning: true,
-			isOccupied: null,
-			roomTypeId: 0,
-			hotel: null,
-			roomType: null,
-			bookingXrooms: [],
-			roomImages: []
-		},
+		rooms: { },
 
 		roomImages: [
 			
@@ -236,12 +138,13 @@ export default createStore({
       },
 
 	 //gör samma datumhämtning från filteredrooms 
-	  async search({commit}, searchString, checkInDate = "2021-06-01", checkOutDate = "2021-07-01"){
-        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${checkinDate}/${checkoutDate}`)
+	 // async search({commit}, searchString, checkInDate = this.state.dates.checkinDate, checkOutDate = this.state.dates.checkoutDate
+	  	async search({commit}, searchString){
+        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
         let data = await response.json()
         console.log(data)
-        commit('setFilteredHotels', data)
         commit('setSearch', searchString)
+        commit('setFilteredHotels', data)
       },
 
 	  async fetchThisHotel({commit}, id){
