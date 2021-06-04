@@ -23,7 +23,19 @@
             <div class="content-div" style="width: 75%; float: right">
                 
                 
+            <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
+                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
+                <img src='../assets/logo.png' class="thumbnail">
+                <h4 class="hotel-name"> {{ hotel.name }}</h4>
+                
+                <star-rating v-model:rating="hotel.starRating"> </star-rating>
+                
+                <br>
+
                 <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
+                
+                
+
             </div>
         </div>
     </div>
@@ -35,15 +47,18 @@
 
 <script>
 import FilterComponent from '@/components/FilterComponent.vue'
+import StarRating from '@/components/StarRating.vue'
 
 export default {
 
-    components: { FilterComponent },
-    
+    components: { FilterComponent, StarRating },
     computed: {
         filteredHotels(){
             return this.$store.state.filteredHotels
         },
+        thishotel() {
+        return this.$store.state.thisHotel;
+      },
         hotelImages() {
             return this.$store.state.hotelImages
         },
@@ -53,7 +68,7 @@ export default {
     },
 
     methods: {
-        Image(id) {
+     Image(id) {
             
             let img = [];
             let images = this.hotelImages;
@@ -63,12 +78,12 @@ export default {
                     img.push(image);
                 }
             }
-
-
             return img[0].ImageLink
         }
-    }
+}, 
+  
 }
+
 </script>
 
 <style>
@@ -116,12 +131,6 @@ export default {
     height: 100px;
     float: left;
     object-fit: cover;
-}
-
-.star-rating {
-    font-size: 28px;
-    color: red;
-    margin-left: 10px;
 }
 
 .hotel-description {

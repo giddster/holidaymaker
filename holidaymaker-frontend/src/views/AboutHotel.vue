@@ -15,7 +15,19 @@
       
       </star-rating>
     
-    </div>
+        <star-rating v-model:rating="thishotel.starRating"
+                :round-start-rating="false"
+                :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                :border-width="2"
+                :clearable="true"
+                active-on-click
+                animate
+                :padding="0"
+        >
+     
+        </star-rating>
+   
+  </div>
 
     <div class="div2"> 
       <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>

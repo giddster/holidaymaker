@@ -10,6 +10,8 @@
       </slot>
     </div>
 
+
+
     <div
       class="vue-star-rating"
       @mouseleave="resetRating"
@@ -66,7 +68,7 @@ export default {
         },
         rating: {
             type: Number,
-            default: 3
+            default: 1
         },
         roundStartRating: {
             type: Boolean,
