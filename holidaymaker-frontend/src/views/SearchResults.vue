@@ -14,28 +14,15 @@
         <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
             <div class="header-div" style="margin-bot: 50px;">
                 <h4 class="hotel-name" style="float: left"> {{ hotel.name }}</h4>
-                <i class="fas fa-star star-rating" style="float: left"></i>
+                <star-rating v-model:rating="hotel.starRating"> </star-rating>
                 <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button" style="float: right">Book a room</router-link>
             </div>
+            
             <div class="picture-div" style="width: 25%">
                 <img :src='Image(hotel.id)' class="thumbnail-hotel-image">
             </div>
             <div class="content-div" style="width: 75%; float: right">
-                
-                
-            <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
-                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
-                <img src='../assets/logo.png' class="thumbnail">
-                <h4 class="hotel-name"> {{ hotel.name }}</h4>
-                
-                <star-rating v-model:rating="hotel.starRating"> </star-rating>
-                
-                <br>
-
                 <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
-                
-                
-
             </div>
         </div>
     </div>
