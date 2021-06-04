@@ -83,11 +83,13 @@
         EMPTY
     </div>
     <div class="div9" ref="roomsuggestor">
-      <h4 class="roomsuggestor-title">Available rooms </h4>
+      <h4 class="roomsuggestor-title">Available rooms: {{ filteredRooms.length }} </h4>
       <RoomSuggestor />
       <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
     </div>
   </div>
+
+ 
 </template>
 
 <script>
@@ -97,8 +99,8 @@ import OutputReview from '../components/OutputReview.vue'
 import StarRating from '@/components/StarRating.vue'
 
 export default {
-  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
   
+  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
   created() {
       this.$store.dispatch('fetchThisHotel', this.$route.params.id)
     },
@@ -115,12 +117,15 @@ export default {
       var top = element.offsetTop;
 
       window.scrollTo(0, top);
-    }
+    },
+   
   },
-
   computed: {
     thishotel() {
       return this.$store.state.thisHotel;
+    },
+    filteredRooms(){
+        return this.$store.state.filteredRooms;
     },
     images() {
       return this.$store.state.hotelImages
@@ -137,7 +142,8 @@ export default {
       }
       return filteredImages;
     }
-  }
+  },
+  
 }
 </script>
 
