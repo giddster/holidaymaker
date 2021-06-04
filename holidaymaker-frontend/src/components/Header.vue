@@ -29,8 +29,6 @@
         >
       </div>
 
-      
-
     </div>
   </header>
 </template>
@@ -43,15 +41,9 @@ export default {
   components: { ProfileDropdown },
   computed: {
     ...mapGetters(["IsLoggedIn"]),
-    // IsLoggedIn(){
-    //   return this.$store.state.loggedInUser.IsLoggedIn
-    //}
+    
   },
 
-  methods: {
-    
-
-  }
 };
 </script>
 

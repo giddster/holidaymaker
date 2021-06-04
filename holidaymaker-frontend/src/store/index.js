@@ -277,7 +277,6 @@ export default createStore({
         window.localStorage.setItem('isLoggedIn', true)
         commit('LogInUser', data)
 
-        //router.push('/')
         return true
       }
       else {
@@ -290,20 +289,15 @@ export default createStore({
       const requestOptions = {
         method: "POST",
         headers: { 'Content-type': 'application/json' },
-
       };
 
       let response = await fetch('/api/Authentication/Logout', requestOptions)
       const data = await response.json();
 
-
       if (response.status == 200) {
         window.localStorage.removeItem('isLoggedIn')
         commit('Logout')
-        //router.go()
 
-        // alert('you have been logged off')
-        // router.push('/')
         return true
       }
       else {
