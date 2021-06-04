@@ -219,7 +219,7 @@ export default createStore({
     },
     
     async fetchHotels({commit}){
-      let response2 = await fetch('api/Hotels/')
+      let response2 = await fetch('/api/Hotels/')
       let data = await response2.json()
       commit('setHotels', data)
       },
