@@ -41,77 +41,80 @@ namespace HolidayMaker_API.Controllers
             return destination;
         }
 
-        // PUT: api/Destinations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDestination(int id, Destination destination)
-        {
-            if (id != destination.Id)
-            {
-                return BadRequest();
-            }
+        #region OLD Används ej kan raderas
 
-            _context.Entry(destination).State = EntityState.Modified;
+        //// PUT: api/Destinations/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutDestination(int id, Destination destination)
+        //{
+        //    if (id != destination.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DestinationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    _context.Entry(destination).State = EntityState.Modified;
 
-            return NoContent();
-        }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!DestinationExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-        // POST: api/Destinations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Destination>> PostDestination(Destination destination)
-        {
-            _context.Destinations.Add(destination);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (DestinationExists(destination.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    return NoContent();
+        //}
 
-            return CreatedAtAction("GetDestination", new { id = destination.Id }, destination);
-        }
+        //// POST: api/Destinations
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Destination>> PostDestination(Destination destination)
+        //{
+        //    _context.Destinations.Add(destination);
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (DestinationExists(destination.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-        // DELETE: api/Destinations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDestination(int id)
-        {
-            var destination = await _context.Destinations.FindAsync(id);
-            if (destination == null)
-            {
-                return NotFound();
-            }
+        //    return CreatedAtAction("GetDestination", new { id = destination.Id }, destination);
+        //}
 
-            _context.Destinations.Remove(destination);
-            await _context.SaveChangesAsync();
+        //// DELETE: api/Destinations/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteDestination(int id)
+        //{
+        //    var destination = await _context.Destinations.FindAsync(id);
+        //    if (destination == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    _context.Destinations.Remove(destination);
+        //    await _context.SaveChangesAsync();
+
+        //    return NoContent();
+        //}
+        #endregion
 
         private bool DestinationExists(int id)
         {

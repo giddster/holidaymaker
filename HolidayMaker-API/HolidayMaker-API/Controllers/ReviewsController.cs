@@ -61,36 +61,38 @@ namespace HolidayMaker_API.Controllers
         }
 
 
-        // PUT: api/Reviews/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReview(int id, Review review)
-        {
-            if (id != review.Id)
-            {
-                return BadRequest();
-            }
+        #region OLD Används ej kan raderas
+        //// PUT: api/Reviews/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutReview(int id, Review review)
+        //{
+        //    if (id != review.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(review).State = EntityState.Modified;
+        //    _context.Entry(review).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReviewExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ReviewExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
+        #endregion
 
         // POST: api/Reviews
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -117,21 +119,23 @@ namespace HolidayMaker_API.Controllers
             return CreatedAtAction("GetReview", new { id = review.Id }, review);
         }
 
-        // DELETE: api/Reviews/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReview(int id)
-        {
-            var review = await _context.Reviews.FindAsync(id);
-            if (review == null)
-            {
-                return NotFound();
-            }
+        #region OLD Används ej kan raderas
+        //// DELETE: api/Reviews/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteReview(int id)
+        //{
+        //    var review = await _context.Reviews.FindAsync(id);
+        //    if (review == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Reviews.Remove(review);
-            await _context.SaveChangesAsync();
+        //    _context.Reviews.Remove(review);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
+        #endregion
 
         private bool ReviewExists(int id)
         {

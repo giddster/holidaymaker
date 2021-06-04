@@ -41,77 +41,80 @@ namespace HolidayMaker_API.Controllers
             return flight;
         }
 
-        // PUT: api/Flights/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlight(int id, Flight flight)
-        {
-            if (id != flight.Id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(flight).State = EntityState.Modified;
+        #region OLD Används ej kan raderas
+        //// PUT: api/Flights/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutFlight(int id, Flight flight)
+        //{
+        //    if (id != flight.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FlightExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    _context.Entry(flight).State = EntityState.Modified;
 
-            return NoContent();
-        }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!FlightExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-        // POST: api/Flights
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Flight>> PostFlight(Flight flight)
-        {
-            _context.Flights.Add(flight);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (FlightExists(flight.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    return NoContent();
+        //}
 
-            return CreatedAtAction("GetFlight", new { id = flight.Id }, flight);
-        }
+        //// POST: api/Flights
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Flight>> PostFlight(Flight flight)
+        //{
+        //    _context.Flights.Add(flight);
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (FlightExists(flight.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-        // DELETE: api/Flights/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlight(int id)
-        {
-            var flight = await _context.Flights.FindAsync(id);
-            if (flight == null)
-            {
-                return NotFound();
-            }
+        //    return CreatedAtAction("GetFlight", new { id = flight.Id }, flight);
+        //}
 
-            _context.Flights.Remove(flight);
-            await _context.SaveChangesAsync();
+        //// DELETE: api/Flights/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteFlight(int id)
+        //{
+        //    var flight = await _context.Flights.FindAsync(id);
+        //    if (flight == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    _context.Flights.Remove(flight);
+        //    await _context.SaveChangesAsync();
+
+        //    return NoContent();
+        //}
+        #endregion
 
         private bool FlightExists(int id)
         {
