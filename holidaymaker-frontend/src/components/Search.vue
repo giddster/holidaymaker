@@ -27,7 +27,7 @@
     </div>
 
     <div class="search-div3"> 
-         <button @click="redirect" class="btn btn-lg btn-primary search-button" id="searchButton">Search</button>
+         <router-link @click="displaySearchResults" :to="'/searchresults'" class="btn btn-md btn-primary search-button" style="float: right">Search</router-link>
     </div>
 
 </div>
@@ -43,8 +43,7 @@ export default {
          }
      },
      methods: {
-     redirect() {
-        this.$router.push({ name: 'SearchResults' })
+     displaySearchResults() {
         this.$store.dispatch('search', this.searchString)
      }
   },

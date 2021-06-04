@@ -2,19 +2,7 @@
   <div class="parent hotel-header" ref="top">
     <div class="div1"> 
       <h4 class="hotel-title">{{ thishotel.name }}</h4>
-      
-      <star-rating @rating-selected ="setRating"
-                  :round-start-rating="false"
-                  :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-                  :border-width="2"
-                  :clearable="true"
-                  active-on-click
-                  animate
-                  :padding="0"
-          >
-      
-      </star-rating>
-    
+          
         <star-rating v-model:rating="thishotel.starRating"
                 :round-start-rating="false"
                 :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
