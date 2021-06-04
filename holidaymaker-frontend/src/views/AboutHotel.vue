@@ -101,8 +101,8 @@ import StarRating from '@/components/StarRating.vue'
 export default {
   
   components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
-  created() {
-      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+  async created() {
+      await this.$store.dispatch('fetchThisHotel', this.$route.params.id)
     },
     
   methods: {

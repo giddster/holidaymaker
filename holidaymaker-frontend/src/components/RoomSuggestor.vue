@@ -96,8 +96,8 @@ export default {
             }
         }
     },
-    mounted() {
-        this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
+    async created() {
+        await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
     }
 }
 </script>

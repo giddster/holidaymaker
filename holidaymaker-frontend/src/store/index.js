@@ -235,8 +235,9 @@ export default createStore({
         commit('setDates', dates)
       },
 
-	  async search({commit}, searchString){
-        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+	 //gör samma datumhämtning från filteredrooms 
+	  async search({commit}, searchString, checkInDate = "2021-06-01", checkOutDate = "2021-07-01"){
+        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${checkinDate}/${checkoutDate}`)
         let data = await response.json()
         console.log(data)
         commit('setFilteredHotels', data)

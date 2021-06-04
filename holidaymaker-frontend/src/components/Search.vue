@@ -44,14 +44,22 @@ export default {
      },
      methods: {
      displaySearchResults() {
-        this.$store.dispatch('search', this.searchString)
+        this.$store.dispatch('search', this.searchString, this.checkinDate, this.checkoutDate)
      }
   },
     components: { DRPicker },
-    
-    created() {
-        this.$store.dispatch('fetchDestinations')
+    computed: {
+        checkinDate(){
+            return this.$store.dates.checkinDate
+        },
+        checkoutDate(){
+            return this.$store.dates.checkoutDate
+        }
     }
+    
+    // created() {
+    //     this.$store.dispatch('fetchDestinations')
+    // }
 }
 </script>
 
