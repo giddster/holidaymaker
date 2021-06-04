@@ -84,6 +84,7 @@
     </div>
     <div class="div9" ref="roomsuggestor">
       <h4 class="roomsuggestor-title">Available rooms: {{ filteredRooms.length }} </h4>
+      <button class="btn btn-primary room-booking" data-toggle="modal" data-target="#guestsModal">Your selected rooms</button>
       <RoomSuggestor />
       <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
     </div>
