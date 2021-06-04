@@ -103,6 +103,7 @@ export default {
   components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
   async created() {
       await this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+      await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
     },
     
   methods: {

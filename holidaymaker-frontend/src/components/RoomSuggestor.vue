@@ -54,20 +54,17 @@
 
 <script>
 export default {
-    async created() {
-        await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
-    },
     data() {
-    return {
-      selectedRooms: []
-    }
-  },
+        return {
+             selectedRooms: []
+        }
+     },
     computed: {
       filteredRooms() {
-        return this.$store.state.filteredRooms;
+        return this.$store.state.filteredRooms
       },
       roomImages() {
-        return this.$store.state.roomImages;
+        return this.$store.state.roomImages
       }
     },
     methods: {
@@ -93,7 +90,7 @@ export default {
             }
         },
         removeSelectedRoom(room) {
-            if(this.selectedRooms.includes(room.id)){
+            if(this.selectedRooms.includes(room)){
                 this.selectedRooms.splice(room)
                 console.log('Removed from selectedRooms')
             }

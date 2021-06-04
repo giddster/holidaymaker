@@ -22,6 +22,8 @@ export default createStore({
 		
 		rooms: { },
 
+		roomTypes: { },
+
 		roomImages: [
 			
 			{hotelId: 1, roomTypeId: 1, imageLink: 'https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/d5422cdf_z.jpg'},
@@ -91,6 +93,9 @@ export default createStore({
     setHotels(state, data){
       state.hotels = data
     },
+	setRoomTypes(state, data){
+		state.roomTypes = data
+	},
 	setReviews(state, data){
 		state.reviews = data
 	  },
@@ -126,8 +131,14 @@ export default createStore({
       commit('setHotels', data)
       },
 
+	  async fetchRoomTypes({commit}){
+		let response = await fetch('/api/Hotels/')
+		let data = await response.json()
+		commit('setRoomTypes', data)
+		},
+
 	  async fetchReviews({commit}){
-		let response = await fetch('/api/reviews/')
+		let response = await fetch('/api/RoomTypes')
 		let data = await response.json()
 		console.log(data)
 		commit('setReviews', data)
