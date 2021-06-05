@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import FilterComponent from '@/components/FilterComponent.vue'
-import StarRating from '@/components/StarRating.vue'
+import FilterComponent from '@/components/search/FilterComponent.vue'
+import StarRating from '@/components/starRating/StarRating.vue'
 
 export default {
     

@@ -23,7 +23,7 @@
     </div>
 
     <div class="search-div2"> 
-        <DRPicker />
+        <DatePicker />
     </div>
 
     <div class="search-div3"> 
@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import DRPicker from '@/components/DRPicker.vue'
+import DatePicker from '@/components/search/DatePicker.vue'
 
 export default {
-    components: { DRPicker },
+    components: { DatePicker },
      data() {
          return {
              searchString: ''

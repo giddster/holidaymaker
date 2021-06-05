@@ -6,8 +6,6 @@
         <p>Country: </p>
         <p>City: </p>    
     </div>
-
-    
     
     <div class="booking-dates">
         <h4>Dates </h4>
@@ -59,13 +57,10 @@
 
 <script>
 import Payment from '@/components/booking/Payment.vue'
-import BookingUserDetails from '../components/BookingUserDetails.vue'
-import HotelDetails from '../components/HotelDetails.vue'
-import RoomDetails from '../components/RoomDetails.vue'
-import Review from '../components/Review.vue'
+import Review from '@/components/Review.vue'
 
 export default {
-  components: { BookingUserDetails, HotelDetails, RoomDetails, Review, Payment },
+  components: { Review, Payment },
   computed: {
     dates(){
       return this.$store.state.dates

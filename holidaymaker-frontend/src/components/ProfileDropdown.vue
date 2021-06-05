@@ -8,7 +8,7 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      User
+      Profile
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

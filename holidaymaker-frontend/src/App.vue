@@ -12,7 +12,7 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import Search from './components/Search.vue'
+import Search from './components/search/Search.vue'
 
 
 export default {

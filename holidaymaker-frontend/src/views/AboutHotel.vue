@@ -94,14 +94,14 @@
 </template>
 
 <script>
-import DRPicker from '@/components/DRPicker.vue'
+import DatePicker from '@/components/search/DatePicker.vue'
 import RoomSuggestor from '@/components/RoomSuggestor.vue'
-import OutputReview from '../components/OutputReview.vue'
-import StarRating from '@/components/StarRating.vue'
+import OutputReview from '@/components/OutputReview.vue'
+import StarRating from '@/components/starRating/StarRating.vue'
 
 export default {
   
-  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
+  components: { DatePicker, RoomSuggestor, StarRating, OutputReview },
   async created() {
       await this.$store.dispatch('fetchThisHotel', this.$route.params.id)
       await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)

@@ -1,24 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router"
-// STATIC VIEWS //
 
-import Home from "../views/Home.vue"
+// STATIC VIEWS //
+import Home from "../views/static/Home.vue"
 import Help from "../views/static/Help.vue"
 import About from "../views/static/About.vue"
 import Contact from "../views/static/Contact.vue"
 import NotFound from "../views/static/NotFound.vue"
+import AllDestinations from "/src/views/static/AllDestinations.vue"
+import AllHotels from "/src/views/static/AllHotels.vue"
 
-
-// STRIPE COMPONENTS //
-import PaymentFail from "../views/Payment/PaymentFail.vue"
-import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
+// BOOKING //
+import CreateBooking from "../views/booking/CreateBooking.vue"
+import PaymentFail from "../views/booking/PaymentFail.vue"
+import PaymentSuccess from "../views/booking/PaymentSuccess.vue"
 
 //"DYNAMIC" VIEWS
-import Destinations from "/src/views/Destinations.vue"
-import Hotels from "/src/views/Hotels.vue"
 import Login from "/src/views/Login.vue"
 import Register from "/src/views/Register.vue"
 import Review from "/src/components/Review.vue"
-import BookingView from "/src/views/BookingView.vue"
 import ProfileView from "/src/views/ProfileView.vue"
 import MyProfile from "/src/views/MyProfile.vue"
 import MyBookingsProfile from "/src/views/MyBookingsProfile.vue"
@@ -39,16 +38,7 @@ const routes = [
     name: "Home",
     component: Home
   },
-  {
-    path: "/destinations",
-    name: "Destinations",
-    component: Destinations
-  },
-  {
-    path: "/hotels",
-    name: "Hotels",
-    component: Hotels
-  },
+  
   {
     path: "/hotel/:id",
     name: "AboutHotel",
@@ -67,8 +57,8 @@ const routes = [
   },
   {
     path: "/booking",
-    name: "Booking",
-    component: BookingView
+    name: "CreateBooking",
+    component: CreateBooking
   },
   {
     path: "/profile",
@@ -92,6 +82,16 @@ const routes = [
   },
 
   //STATIC VIEWS
+  {
+    path: "/destinations",
+    name: "AllDestinations",
+    component: AllDestinations
+  },
+  {
+    path: "/hotels",
+    name: "AllHotels",
+    component: AllHotels
+  },
   {
     path: "/about",
     name: "About",

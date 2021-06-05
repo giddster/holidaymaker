@@ -50,10 +50,8 @@
   </div>
 </template>
 <script type="text/javascript">
-/* eslint-disable vue/custom-event-name-casing */
-import Star from '@/components/Star.vue'
 
-
+import Star from '@/components/starRating/Star.vue'
 
 export default {
 
