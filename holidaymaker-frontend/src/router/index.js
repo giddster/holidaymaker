@@ -28,6 +28,13 @@ import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
 
 const routes = [
+  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
+  { path: '/:pathMatch(.*)*', 
+    name: 'not-found', 
+    component: NotFound 
+  },
+
+  //"DYNAMIC" VIEWS
   {
     path: "/",
     name: "Home",
@@ -43,36 +50,15 @@ const routes = [
     name: "Hotels",
     component: Hotels
   },
-
-  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
-  { path: '/:pathMatch(.*)*', 
-    name: 'not-found', 
-    component: NotFound 
+  {
+    path: "/hotel/:id",
+    name: "AboutHotel",
+    component: AboutHotel
   },
   {
-    path: "/about",
-    name: "About",
-    component: About
-  },
-  {
-    path: "/help",
-    name: "Help",
-    component: Help
-  },
-  {
-    path: "/contact",
-    name: "Contact",
-    component: Contact
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register
+    path: "/searchresults",
+    name: "SearchResults",
+    component: SearchResults
   },
   {
     path: "/review",
@@ -105,18 +91,37 @@ const routes = [
     name: "MyFavoritesProfile",
     component: MyFavoritesProfile
   },
+
+  //STATIC VIEWS
   {
-    path: "/hotel/:id",
-    name: "AboutHotel",
-    component: AboutHotel
+    path: "/about",
+    name: "About",
+    component: About
   },
   {
-    path: "/searchresults",
-    name: "SearchResults",
-    component: SearchResults
+    path: "/help",
+    name: "Help",
+    component: Help
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact
+  },
+
+  //AUTHENTICATION
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register
   },
   
-  //PAYMENT ROUTES
+  //PAYMENT
   {
     path: "/payment",
     name: "Payment",
