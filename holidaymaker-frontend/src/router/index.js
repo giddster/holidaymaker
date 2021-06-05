@@ -9,7 +9,6 @@ import NotFound from "../views/static/NotFound.vue"
 
 
 // STRIPE COMPONENTS //
-import Payment from "../views/Payment/Payment.vue"
 import PaymentFail from "../views/Payment/PaymentFail.vue"
 import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
 
@@ -121,12 +120,7 @@ const routes = [
     component: Register
   },
   
-  //PAYMENT
-  {
-    path: "/payment",
-    name: "Payment",
-    component: Payment
-  },
+  //PAYMENT STATUS VIEWS
   {
     path: "/paymentfailed",
     name: "PaymentFail",

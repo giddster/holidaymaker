@@ -9,7 +9,8 @@
       :cancel-url="cancelURL"
       @loading="v => loading = v"
     />
-    <button class="btn btn-info btn-lg" style="margin:100px" @click="submit">Pay now!</button>
+    
+    <button class="btn btn-info btn-lg" style="margin:100px" @click="submit">Confirm booking</button>
   </div>
 </template>
 

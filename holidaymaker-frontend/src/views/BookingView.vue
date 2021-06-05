@@ -38,25 +38,34 @@
       <p>FOOD PREFERENCE (DROPDOWN WITH THE OPTIONS THAT ARE TRUE FOR THIS HOTEL)</p>
     </div>
 
-    <div class="booking-customer">
+    <div class="booking-customerdetail">
         <h4>Customer details</h4>
         <p>First name: </p>
         <p>Last name: </p>
         <p>Address: </p>
         <p>E-mail: </p>    
     </div>
+
+    <div class="booking-price">
+        <h4>Price</h4>
+        <p>TOTAL SUM</p>
+    </div>
+
+    <router-link to="/" class="btn btn-lg btn-danger">Cancel booking</router-link>
+    <Payment />
     
 </template>
 
 
 <script>
+import Payment from '@/components/booking/Payment.vue'
 import BookingUserDetails from '../components/BookingUserDetails.vue'
 import HotelDetails from '../components/HotelDetails.vue'
 import RoomDetails from '../components/RoomDetails.vue'
-import Review from '../components/Review.vue';
+import Review from '../components/Review.vue'
 
 export default {
-  components: { BookingUserDetails, HotelDetails, RoomDetails, Review },
+  components: { BookingUserDetails, HotelDetails, RoomDetails, Review, Payment },
   computed: {
     dates(){
       return this.$store.state.dates

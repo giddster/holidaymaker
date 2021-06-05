@@ -49,6 +49,7 @@
                     Close
                 </button>
                 <router-link to="/booking" @click="saveSelectedRooms" class="btn btn-primary" data-dismiss="modal">Go to booking</router-link>
+                <!-- LÄGG IN EN AUTH HÄR SÅ ATT KUNDEN ÄR INLOGGAD OCH HAR KONTO -->
             </div>
 		</div>
 	</div>

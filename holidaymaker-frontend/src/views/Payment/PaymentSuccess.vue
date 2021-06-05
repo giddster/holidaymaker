@@ -10,7 +10,7 @@
 
 <script>
 export default {
-
+//GÖR EN HOOK SOM SPARAR BOKNINGEN TILL DATABASEN HÄR
 }
 </script>
 
