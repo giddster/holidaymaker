@@ -91,7 +91,9 @@ export default createStore({
 
 		reviews: [],
 
-      	dates: {}  
+      	dates: {},
+		
+		selectedRooms: [],
 		
   },
 
@@ -126,6 +128,9 @@ export default createStore({
     setUser(state, data) {
       state.user = data
     },
+	setSelectedRooms(state, data) {
+		state.selectedRooms = data
+	},
 
     LogInUser(state, data) {
       state.loggedInUser = data
@@ -141,9 +146,6 @@ export default createStore({
 	state.loggedInUser.isLoggedIn = window.localStorage.removeItem('isLoggedIn')
 
     }
-
-
-
   },
 
   getters: {
@@ -155,7 +157,6 @@ export default createStore({
     //   return true}
     //}
   },
-
 
   actions: {
 
@@ -214,6 +215,12 @@ export default createStore({
 		let data = await response.json()
 		console.log(data)
 		commit('setFilteredRooms', data)
+		},
+
+		async saveSelectedRooms({commit}, selectedRooms){
+			commit('setSelectedRooms', selectedRooms)
+			console.log('The following rooms have been saved to store:')
+			console.log(this.state.selectedRooms[0])
 		},
 	
 	  	async postReview({commit}, data){
