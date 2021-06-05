@@ -2,16 +2,13 @@
 	<div class="date-parent">
 		<div class="date-div1"> 
 			<input ref="checkIn" type="date" v-model="dates.checkinDate" class="date-picker">
-			<p>Checkin Date</p>
+			<p style="margin-bottom: 0px; color: lightcoral">Checkin Date</p>
 		</div>
 
 		<div class="date-div2"> 
 			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker">
-			<p>Checkout Date</p>
+			<p style="margin-bottom: 0px; color: lightcoral">Checkout Date</p>
 		</div>
-		
-		
-
 	</div>
 </template>
 
@@ -42,11 +39,11 @@ grid-row-gap: 0px;
 }
 
 .date-picker {
-	color:rgb(117, 116, 114);
-	opacity: 0.9;
-	border: 2px solid rgb(189, 189, 189);
-	border-radius: 5px;
-	background: #fff;
+color:rgb(117, 116, 114);
+opacity: 0.9;
+border: 2px solid rgb(189, 189, 189);
+border-radius: 5px;
+background: #fff;
 }
 
 .date-div1 { 

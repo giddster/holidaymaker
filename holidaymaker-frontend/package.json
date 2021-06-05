@@ -11,9 +11,11 @@
     "@smartweb/vue-flash-message": "^0.6.10",
     "@vue-stripe/vue-stripe": "^4.2.4",
     "core-js": "^3.6.5",
+    "stripe": "^8.151.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vue-simple-alert": "^1.1.1",
+    "vue-simple-range-slider": "^0.1.10",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

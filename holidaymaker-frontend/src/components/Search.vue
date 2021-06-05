@@ -12,17 +12,10 @@
                     aria-label="Search"
                     id="searchBox"
                     v-model="searchString"
-                    @keyup="autocomplete"
                     />
                     </td>
                     <td>
                         <i class="fa fa-search" id="searchIcon"></i>
-                    </td>
-               </tr>
-               <tr>
-                    <td >
-                        <label for="checkbox"> Include flight? </label>
-                        <input class="includeflight-checkbox" type="checkbox"> 
                     </td>
                </tr>
             </tbody>
@@ -53,14 +46,11 @@ export default {
      redirect() {
         this.$router.push({ name: 'SearchResults' })
         this.$store.dispatch('search', this.searchString)
-     },
-     autocomplete() {
-         this.$store.state.searches = $('#searchBox-field').val()
      }
   },
     components: { DRPicker },
     
-    mounted() {
+    created() {
         this.$store.dispatch('fetchDestinations')
     }
 }
@@ -75,7 +65,7 @@ export default {
    grid-column-gap: 0px;
    grid-row-gap: 0px;
    background: rgb(246, 246, 252);
-   margin: 20px auto;
+   margin: auto;
    padding: 12px;
    max-width: fit-content;
    border:black;
@@ -91,10 +81,12 @@ export default {
 .search-div2 { 
     grid-area: 1 / 2 / 2 / 3; 
     text-align: center;
+    padding-top: 10px;
 }
 .search-div3 { 
     grid-area: 1 / 3 / 2 / 4; 
     text-align: right;
+    padding-top: 8px;
 }
 
  #searchBox{
@@ -108,24 +100,8 @@ export default {
 
 #searchIcon {
     font-size: 25px;
-    color: black;
+    color: lightcoral;
     margin-left: 5px;
+    margin-top: 5px;
 }
-
-.search-button {
-    background: lightcoral;
-    border-radius: 5px;
-    border: 1px solid lightcoral;
-}
-.search-button:hover {
-    background: rgb(247, 108, 108);
-    border-radius: 5px;
-    border: 1px solid lightcoral;
-}
-
-.includeflight-checkbox {
-    margin-left:10px;
-}
-
-
 </style>

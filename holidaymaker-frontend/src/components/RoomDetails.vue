@@ -1,14 +1,10 @@
 <template>
-<body>
     <div class="form">
         <form class="room-form">
             <h3>Room Details</h3>
             <p>{{roomDetails}}</p>
         </form>
     </div>
-</body>
-    
-
 </template>
 
 
@@ -26,24 +22,25 @@ export default {
 <style scoped>
 .room-form {
     position: relative;
-    right:110px;
-    top:50px;
+    right:170px;
+    bottom: 650px;
     z-index: 1;
-    background: rgba(238, 238, 238, 0.8);
-    width: 650px;
-    margin: 0 right 100px;
-    padding: 100px;
+    background:rgb(246, 246, 252);
+    width: 700px;
+    margin: 0 auto 100px;
+    padding: 20px;
     text-align: left;
-    border: 3px black;
-    border-radius: 4px;
-    float: right;
-    margin-right: 200px;
     border-style: solid;
     border-width:3px;
 }
 h3{
     position: relative;
     text-align: left;
-    bottom: 60px;
+    
+}
+.form{
+    width:360px;
+    padding: 1% 0 0;
+    margin: auto;
 }
 </style>

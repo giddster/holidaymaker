@@ -36,18 +36,14 @@ export default {
 
 .hotel-form {
     position: relative;
-    left:0px;
-    bottom:840px;
+    left:200px;
+    bottom:582px;
     z-index: 1;
-    background: rgba(238, 238, 238, 0.8);
+    background:rgb(246, 246, 252);
     max-width: 360px;
-    margin: 0 right 100px;
-    padding: 100px;
+    margin: 0 auto 100px;
+    padding: 19px;
     text-align: left;
-    border: 3px black;
-    border-radius: 4px;
-    float: right;
-    margin-right: 200px;
     border-style: solid;
     border-width:3px;
 }
@@ -63,5 +59,10 @@ img{
 .hotelDetails{
     font-size: 15px;
     color:black;
+}
+.Hotel-details-page{
+    width:360px;
+    padding: 0 0 0;
+    margin: auto;
 }
 </style>

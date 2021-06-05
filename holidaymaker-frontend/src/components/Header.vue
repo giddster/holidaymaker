@@ -1,6 +1,3 @@
-
-
-
 <template>
   <header>
     <div class="header-parent">
@@ -14,6 +11,14 @@
           ><h5 class="header-title">HolidayMaker.com</h5></router-link
         >
       </div>
+
+      <!-- From premain-rel3
+      <div class="header-div1">
+        <router-link id="logo-link" to="/">
+          <img src="../assets/logoPink.svg" alt="holidayMakerLogo" class="companyLogo">
+        </router-link>
+      </div>
+      -->
 
       <!-- {{ IsLoggedIn }} -->
 
@@ -37,11 +42,11 @@
 import ProfileDropdown from "@/components/ProfileDropdown.vue";
 import { mapGetters } from "vuex";
 export default {
-  
+
   components: { ProfileDropdown },
   computed: {
     ...mapGetters(["IsLoggedIn"]),
-    
+
   },
 
 };
@@ -49,7 +54,9 @@ export default {
 
 <style scoped>
 header {
-  background: rgb(233, 232, 253);
+  /*background: rgb(233, 232, 253);*/
+  background:whitesmoke;
+  height: 75px;
 }
 
 .header-parent {
@@ -65,7 +72,8 @@ header {
 }
 .header-div2 {
   grid-area: 1 / 4 / 2 / 5;
-  margin-top: 10px;
+  /*margin-top: 10px;/*
+  margin-top: 17px;
   margin-right: 10px;
 }
 .header-div3 {
@@ -74,6 +82,7 @@ header {
   margin-right: 10px;
 }
 
+/*
 .header-title {
   display: inline;
   margin-left: 10px;
@@ -83,16 +92,13 @@ header {
   cursor: pointer;
   color: cornflowerblue;
 }
+*/
 
 .companyLogo {
-  padding: 5px;
-  width: 85px;
+  /*padding: 5px;
+  width: 85px;*/
+  height: 60px;
+
 }
-
-
-
-
-
-
 
 </style>

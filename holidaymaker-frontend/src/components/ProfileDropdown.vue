@@ -8,7 +8,7 @@
         <router-link to="/profile" class="dropdown-item"> <i class="fas fa-user-circle profileIcon"></i> My Profile </router-link>
         <router-link to="/myfavorites" class="dropdown-item"> <i class="far fa-heart profileIcon"></i> My favorites </router-link>
         <router-link to="/mybookings" class="dropdown-item"> <i class="far fa-calendar-alt profileIcon"></i> My bookings </router-link>
-        
+
         <div class="dropdown-divider"></div>
         <a @click="handleLogout" onmouseover="" style="cursor: pointer;" class="dropdown-item">Sign out</a>
     </div>
@@ -38,7 +38,7 @@ export default{
             message: "",
         };
     },
-    
+
     methods:{
         ...mapActions(["logoutUser"]),
 

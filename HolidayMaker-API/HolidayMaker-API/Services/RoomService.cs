@@ -13,12 +13,12 @@ namespace HolidayMaker_API.Services
 
 
         private readonly HolidayMakerContext _holidayMakerContext;
-      
+
 
         public RoomService(HolidayMakerContext holidayMakerContext)
         {
             _holidayMakerContext = holidayMakerContext;
-           
+
         }
         public async Task<IEnumerable<Room>> GetAvailableRoomsByDestinationId(int destinationId, DateTime checkInDate, DateTime checkOutDate)
         {

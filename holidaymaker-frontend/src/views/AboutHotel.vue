@@ -1,357 +1,336 @@
 <template>
-
-<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-        
-        <input type="text" name="Name" id="Name" value="HotelName"> &#9733; &#9733; &#9733; &#9733; &#9733; 
-        <br>
-		  
-        <br>
-        
-        
-        
-        
-        <label>
-          <input type="checkbox" name="HasWifi" value="kryssruta"  id="HasWifi">
-          Wi-Fi</label>
-        
-        <label>
-          <input type="checkbox" name="IsCancelled" value="kryssruta" id="IsCancelled">
-          Free Cancellation</label>
-        
-        <label>
-          <input type="checkbox" name="HasAllInclusive" value="kryssruta" id="HasAllInclusive">
-          All Inclusive</label>
-        
-        <br>
-        <br>
-        
-        <input type="checkbox" name="FavoriteHotelsId" id="FavoriteHotelsId">
-        <label for="checkbox">Add Hotel to favorites </label>
-      </td>
-      <td>
-		  <label for="range">Price from:</label>
-<input type="range" name="TypeName" id="TypeName">
-		<br>
-		  <br>
-          <input type="button" name="TypeName" id="TypeName" value="Choose this room" class="button">
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-	
-<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td> <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/447c582c_z.jpg" width="760" height="500" alt="">
-        <table width="750" border="0">
-          <tbody>
-          <tr>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/9af14a12_z.jpg" width="250" height="167" alt=""></td>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/38b33d0c_z.jpg" width="250" height="167" alt=""></td>
-            <td><img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/4378a799_z.jpg" width="250" height="167" alt=""></td>
-          </tr>
-        </tbody>
-    </table>
-        <B>About Hotel</B><br>
-       
-        
-<input type="text" name="Description" id="Description" value="The hotel is close to the beach and have a nice skybar" style="height:120px; width:400px;"> <br> <br> 
-  <label>
-    <input type="checkbox" name="HasPool" value="kryssruta" id="HasPool">
-    Pool</label>
-  
-  <label>
-    <input type="checkbox" name="SeaSide" value="kryssruta" id="SeaSide">
-    Seaview</label>
-  
-  <label>
-    <input type="checkbox" name="HasEntertainment" value="kryssruta" id="HasEntertainment">
-    Entertainment</label>
-  
-  <label>
-    <input type="checkbox" name="HasKidClub" value="kryssruta" id="HasKidClub">
-    KidClub</label>
-  
-  <label>
-    <input type="checkbox" name="HasRestaurant" value="kryssruta" id="HasRestaurant">
-    Restaurant</label>
- <br>
-  <label>
-    <input type="checkbox" name="HasHalfPension" value="kryssruta" id="HasHalfPension">
-    Halfpension</label>
-  
-  <label>
-    <input type="checkbox" name="HasWholePension" value="kryssruta" id="HasWholePension">
-    Wholepension</label>
- 
-  <label>
-    <input type="checkbox" name="HasAllInclusive" value="kryssruta" id="HasAllInclusive">
-    Allinclusive</label>
-  
-  <label>
-    <input type="checkbox" name="HasWifi" value="kryssruta" id="HasWifi">
-    Wi-Fi</label>
-  
-  <label>
-    <input type="checkbox" name="HasRoomService" value="kryssruta" id="HasRoomService">
-    Roomservice</label>
-  <br>
-<br>
-		  
-		  
-</td>
-      <td>
-		  
-		  
-		  <p> <b>Hotel info:</b> </p><br>
-	  
-		  
-		    
-		   <input type="text" name="Name" id="Name" value="HotelName">  
-        <br>
-	    <input type="text" name="Address" id="Address" value="StreetAddress">  
-        <br>
-          
-        <input type="text" name="ZipCode" id="ZipCode" value="ZipCode" style=" width:70px;">
-	    <input type="text" name="City" id="City" value="City">
-		  <br>
-		   <input type="text" name="Country" id="Country" value="Country"> 
-       
-		  <br>
-		  <br>
-		  <input type="number" name="DistanceToBeach" id="DistanceToBeach" value="850" style="width:50px;">
-	<label for="DistanceToBeach">Meters to beach</label>
-		  <br>
-		    <input type="number" name="DistanceToCityCenter" id="DistanceToCityCenter" value="150" style="width:50px;">
-	<label for="DistanceToCityCenter">Meters to city center</label>
-		  <br>
-		  <br>
-<img src="https://cm01.mapion.co.jp/m2/map?usr=atlas_org&island=org&lon=139.70960376&lat=35.6886135&level=16&size=633x510" width="323" height="200" alt=""/>
-        <p></p>
+  <div class="parent hotel-header" ref="top">
+    <div class="div1"> 
+      <h4 class="hotel-title">{{ thishotel.name }}</h4>
       
+      <star-rating @rating-selected ="setRating"
+                  :round-start-rating="false"
+                  :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                  :border-width="2"
+                  :clearable="true"
+                  active-on-click
+                  animate
+                  :padding="0"
+          >
+      
+      </star-rating>
+    
+        <star-rating v-model:rating="thishotel.starRating"
+                :round-start-rating="false"
+                :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                :border-width="2"
+                :clearable="true"
+                active-on-click
+                animate
+                :padding="0"
+        >
+     
+        </star-rating>
+   
+  </div>
+
+    <div class="div2"> 
+      <button @click="scrollToSuggestions('roomsuggestor')" class="btn btn-lg btn-primary selectrooms-button">Select rooms</button>
+      <button @click="addToFavorites" class="btn btn-lg btn-primary addtofavorite-button"><i class="fas fa-heart heart-icon"></i> Add to Favorites</button>
+    </div>
+
+    <div class="div3">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="border: 1px solid black">
+          <div class="carousel-item active" v-if="filteredImages.length !== 0" style="text-align: center">
+            <img class="image-container" :src="filteredImages[0].ImageLink">
+          </div>
+          <div class="carousel-item" v-for="image in filteredImages.slice(1)" :key="image" style="text-align: center">
+            <img class="image-container" :src="image.ImageLink">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="width: 75px">
+          <span class="carousel-control-arrowprev" style="" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="width: 75px">
+          <span class="carousel-control-arrownext" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="div4"> 
+        <OutputReview />
+    </div>
+
+    <div class="div5"> 
+        <p>Address: {{ thishotel.address }}, {{ thishotel.zipCode }} </p>
+        <p><i>{{thishotel.description}}</i></p> <br>
+
+        <b>Available amenities: </b> <br>
+        <i class="fas fa-wifi bool-icon"><p class="icon-description">Wi-fi</p></i>  
+        <i class="fas fa-water bool-icon"><p class="icon-description">Seaside</p></i> 
+        <i class="fas fa-swimming-pool bool-icon"><p class="icon-description">Pool</p></i> 
+        <i class="fas fa-utensils bool-icon"><p class="icon-description">Restaurant</p></i> 
+        <i class="fas fa-concierge-bell bool-icon"><p class="icon-description">Room Service</p></i> 
+        <i class="fas fa-gamepad bool-icon"><p class="icon-description">Kids' Club</p></i> 
+        <i class="fas fa-music bool-icon"><p class="icon-description">Entertainment</p></i> 
+        
         <br>
-<input type="number" name="Rating" id="Rating" value="9.1" style="width:40px;">
-<label for="Rating">Rating</label>
         <br>
-        <p>192 Guestreviews at HolidayMakers.com</p>
-        <label for="ReviewText">Latest Guestreview<br>
-        </label>
-        <input type="text" name="ReviewText" id="ReviewText" value="Very nice hotel close to the beach, bla bla bla bla bla lbla bla" style="height:60px; width:300px;">
-     <br>
-</td>
-    </tr>
-  </tbody>
-</table>
-<br>
+        <i class="fas fa-umbrella-beach distance-icon"><i> Distance to the beach: {{ thishotel.distanceToBeach }} km </i></i>
+        <br>
+        <i class="fas fa-city distance-icon"><i> Distance to city center: {{ thishotel.distanceToCityCenter }} km </i></i>
+    </div>
 
-	
-      <table width="1200" border="0">
-          <label for="NoOfAdults">Your choose for</label>
-          <input type="number" name="NoOfAdults" id="NoOfAdults" style="width:50px;">guest.
-          <br>
-			<br>
-			
-           <label for="CheckInDate">CheckIn date:</label>
-      <input type="date" name="CheckInDate" id="CheckInDate">
-												 
-	<label for="CheckInDate">CheckOut Date:</label>
-      <input type="date" name="CheckOutDate" id="CheckOutDate">
-			
- <label for="RoomNo">Number of room:</label>
-          <input type="number" name="RoomNo" id="RoomNo" style="width:50px;" value="2">
-			
-			<label for="NoOfAdults">Number of Adults:</label>
-          <input type="number" name="NoOfAdults" id="NoOfAdults" style="width:50px;" value="2">
-          <br>
-          
-         </table> 
-          
-       <br>
-     <br>
-		  
-		  <table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Standardroom / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/d5422cdf_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="500"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button" >
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="div6 empty-div"> 
+        EMPTY
+    </div>
 
-	<br>
-	<br>
-	<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Superior-Room / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/914ab001_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="750"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button">
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
-	
-	<br>
-	<br>
-	
-	<table width="1200" border="0">
-  <tbody>
-    <tr>
-      <td>
-		  <b>Suite-Room / Dubbleroom</b>
-		  <br>
-		  <br>
-		  <img src="https://exp.cdn-hotels.com/hotels/2000000/1410000/1400100/1400064/399f56bf_z.jpg" width="250" height="167" alt="">
-		
-		  <p>✓Sleeping room for 3 persons</p>
-		  <p>✓Queensize-bed or 2 single-beds</p>
-		</td>
-      <td>
-		  <p>✓Can be paid at the hotel</p>
-		  <p>✓Free Wi-Fi</p>
-		   <p>✓Breakfast included</p>
-		  <p>✓1 child staying for free </p>
-		</td>
-      <td>
-		  <b>Price including everything</b>
-		  <br>
-		  <br>
-		   <input type="number" name="TotalPrice" id="TotalPrice" style="width:60px;" value="1000"> <b>SEK</b>
-		  <br>
-		  <br>
-		 <input type="button" name="Book" id="Book" value="Book" class="button">
-		
-		</td>
-    </tr>
-  </tbody>
-</table>
-  
+    <div class="div7"> 
+        <!-- <h4>Your trip: </h4>
+        <DRPicker class="datepicker-small" />
+        <button class="btn btn-md btn-primary guests-button datepicker-small"><i class="fas fa-users"></i>Guests</button>
+        <hr> -->
+        
+    </div>
 
+    <div class="div8 empty-div"> 
+        EMPTY
+    </div>
+    <div class="div9" ref="roomsuggestor">
+      <h4 class="roomsuggestor-title">Available rooms </h4>
+      <RoomSuggestor />
+      <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
+    </div>
+  </div>
 </template>
 
+<script>
+import DRPicker from '@/components/DRPicker.vue'
+import RoomSuggestor from '@/components/RoomSuggestor.vue'
+import OutputReview from '../components/OutputReview.vue'
+import StarRating from '@/components/StarRating.vue'
+
+export default {
+  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
+  
+  created() {
+      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+    },
+    
+  methods: {
+    scrollToSuggestions(refName){
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    },
+    scrollToTop(refName){
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    }
+  },
+
+  computed: {
+    thishotel() {
+      return this.$store.state.thisHotel;
+    },
+    images() {
+      return this.$store.state.hotelImages
+    },
+    filteredImages() {
+      let images = this.$store.state.hotelImages;
+      let filteredImages = []
+      let image;
+
+      for(image of images){
+        if (image.HotelId == this.thishotel.id){
+          filteredImages.push(image);
+        }
+      }
+      return filteredImages;
+    }
+  }
+}
+</script>
 
 
 <style>
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: left;
-  color: #2c3e50;
+.parent.hotel-header {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto 320px auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: rgb(246, 246, 252);
+  margin: 20px auto;
+  padding: 12px;
+  max-width: 80%;
+  border:black;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
 }
 
-
-#nav a {
-  color: #2c3e50;
+.empty-div {
+  visibility: hidden;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.div1 { 
+  grid-area: 1 / 1 / 2 / 2; 
+  padding-bottom: 10px;
+}
+.div2 { 
+  grid-area: 1 / 2 / 2 / 3; 
+}
+.div3 { 
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+  float: left;
+}
+.div4 {
+  grid-column: 2 / 2;
+  grid-row: 2 / span 4;
+  margin: 4% auto;
+}
+.div5 { 
+  grid-area: 3 / 1 / 4 / 2; 
+}
+.div6 { 
+  grid-area: 3 / 2 / 4 / 3; 
+}
+.div7 { 
+  grid-area: 4 / 1 / 5 / 4; 
+}
+.div8 { 
+  grid-area: 4 / 2 / 5 / 3; 
 }
 
+.div9 {
+  grid-column: 1 / 3;
+}
 
- body {
-     margin: 0;
-     padding: 0;
-     font-family: 'Open Sans', serif;
-     background: white
-     
-     }
+.image-container {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+}
 
-     .button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
+.carousel-control-arrowprev:after {
+  content: '<';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
+}
+
+.carousel-control-arrownext:after {
+  content: '>';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
+}
+
+.hotel-title {
+  float: left;
+}
+
+.star-rating-about {
+  font-size: 28px;
+  margin-left: 10px;
+  color: red;
+}
+
+.heart-icon {
+  color: red;
+}
+
+.addtofavorite-button {
+  float: right;
+  margin-right: 20px;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.addtofavorite-button:hover {
+  color: lightcoral;
+}
+
+.prices-title {
+  text-align: right;
+}
+
+.selectrooms-button {
+  margin: 0 auto;
+  float: right;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.backtotop-button{
+  float: right;
+  margin: 0 auto;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.bool-icon {
+  font-size: 25px;
+  margin-left: 10px;
+  color: rgb(38, 177, 38);
+  border: 1px solid black;
+  border-style: hidden;
   text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-input[type=text] {
-  
-  
-  box-sizing: border-box;
-  border: 0px solid black;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: 'Open Sans', serif;
+.distance-icon {
   font-size: 18px;
-  
+  margin-left: 10px;
+  padding: 10px;
+  color:lightcoral;
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
 }
 
-input[type=number] {
-  
-  
-  box-sizing: border-box;
-  border: 0px solid black;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: 'Open Sans', serif;
-  font-size: 18px;
-  
+.icon-description {
+  font-size: 14px;
+  margin-right: 10px;
+  color: rgb(41, 148, 41);
+  font-family: sans-serif;
+  font-weight: lighter;
+  margin-top: 5px;
+}
+
+.datepicker-small {
+  display: inline-flex;
+}
+
+.guests-button {
+  margin-left: 10px;
+}
+
+ 
+
+.roomsuggestor-title{
+  text-align: left;
+}
+
+.roomsuggestor-parent {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+background: rgb(252, 232, 234);
+margin: 20px auto;
+padding: 12px;
+max-width: 80%;
+border:black;
+border-style: solid;
+border-width: thin;
+border-radius: 10px;
 }
 
 </style>
