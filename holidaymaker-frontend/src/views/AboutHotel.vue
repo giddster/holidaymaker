@@ -203,6 +203,7 @@ export default {
 
 .div9 {
   grid-column: 1 / 3;
+  padding: 20px;
 }
 
 .image-container {
