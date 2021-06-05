@@ -89,7 +89,7 @@ export default {
                 console.log('Added to selectedRooms')
             }
             else{
-                alert('You already added this room :/')
+                alert('You already added this room.')
             }
         },
         removeSelectedRoom(index) {
