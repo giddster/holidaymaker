@@ -15,7 +15,7 @@
       <!-- From premain-rel3 -->
       <div class="header-div1">
         <router-link id="logo-link" to="/">
-          <img src="../assets/logoPink.svg" alt="holidayMakerLogo" class="companyLogo">
+          <img src="@/assets/logoPink.svg" alt="holidayMakerLogo" class="companyLogo">
         </router-link>
       </div>
      
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import ProfileDropdown from "@/components/ProfileDropdown.vue";
+import ProfileDropdown from '@/components/marginals/ProfileDropdown.vue';
 import { mapGetters } from "vuex";
 export default {
 

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import Header from '@/components/marginals/Header.vue'
+import Footer from '@/components/marginals/Footer.vue'
 import Search from './components/search/Search.vue'
 
 

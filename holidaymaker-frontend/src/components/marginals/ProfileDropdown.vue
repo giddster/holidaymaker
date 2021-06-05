@@ -15,12 +15,7 @@
       <router-link to="/profile" class="dropdown-item">
         <i class="fas fa-user-circle profileIcon"></i> My Profile
       </router-link>
-      <router-link to="/myfavorites" class="dropdown-item">
-        <i class="far fa-heart profileIcon"></i> My favorites
-      </router-link>
-      <router-link to="/mybookings" class="dropdown-item">
-        <i class="far fa-calendar-alt profileIcon"></i> My bookings
-      </router-link>
+      
 
       <div class="dropdown-divider"></div>
       <a
@@ -48,7 +43,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 // import { mapActions } from "vuex";
-import router from "../router/index";
+import router from "@/router/index";
 
 export default {
   data: () => {

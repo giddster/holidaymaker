@@ -95,8 +95,8 @@
 
 <script>
 import DatePicker from '@/components/search/DatePicker.vue'
-import RoomSuggestor from '@/components/RoomSuggestor.vue'
-import OutputReview from '@/components/OutputReview.vue'
+import RoomSuggestor from '@/components/search/RoomSuggestor.vue'
+import OutputReview from '@/components/review/OutputReview.vue'
 import StarRating from '@/components/starRating/StarRating.vue'
 
 export default {

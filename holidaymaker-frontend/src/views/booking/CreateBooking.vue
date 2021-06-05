@@ -83,11 +83,10 @@
 
 
 <script>
-import Payment from '@/components/booking/Payment.vue'
-import Review from '@/components/Review.vue'
+import Payment from '@/components/payment/Payment.vue'
 
 export default {
-  components: { Review, Payment },
+  components: { Payment },
   computed: {
     dates(){
       return this.$store.state.dates

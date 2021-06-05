@@ -1,39 +1,28 @@
 <template>
   <body>
-    <div class="register-page">
+    <div class="login-page">
+      <!-- Remove after testing -->
+      <!-- <button class="btnModal" @click="open('Login Sucessful')">
+        open
+      </button> -->
+
       <div class="form">
-        <form id ="registerForm" class="register-form">
-          
-          <input
-            v-model="UserEmail"
-            id="UserEmail"
-            type="email"
-            placeholder="Email"
-          />
+        <form id="loginForm" class="login-form">
+          <input v-model="UserEmail" type="email" placeholder="Email" />
           <input
             v-model="UserPassword"
-            id="UserPassword"
             type="password"
             placeholder="Password"
           />
-          <input
-            v-model="UserPasswordConfirmation"
-            id="UserPasswordConfirmation"
-            type="password"
-            placeholder="Confirm password"
-          />
-
-          <button @click.prevent="handleUserRegister">Register</button>
+          <button @click.prevent="handleUserLogin">Login</button>
           <p class="message">
-            Already Registered? <router-link to="/login">Login</router-link>
+            Not registered? <router-link to="/register">Register</router-link>
           </p>
-
-          
         </form>
       </div>
     </div>
 
-    <transition name="fade">
+      <transition name="fade">
         <div class="popup-modal" v-if="isVisible">
           <div class="window">
             <slot>
@@ -43,74 +32,72 @@
           </div>
         </div>
       </transition>
-
-      <transition name="fade">
-        <div class="popup-modal" v-if="isVisibleConfirmPass">
-          <div class="window">
-            <slot>
-              <h3 id="custom">{{ message }}</h3>
-            </slot>
-            <button class="btnModal" @click="closeConfirmPass">CLOSE</button>
-          </div>
-        </div>
-      </transition>
-
+      
   </body>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import router from "../router/index";
+import { mapActions, mapGetters } from "vuex";
+// import { mapActions } from "vuex";
+import router from "@/router/index";
 
 export default {
-  data() {
+  data: () => {
     return {
-        user:{
-          userName: '',
-          email:'',
-          password:'',
-        },
-        
-        isVisible: false,
-        isVisibleConfirmPass: false,
-        message: "",
+      user: {
+        email: "",
+        password: "",
+      },
+
+      isVisible: false,
+      message: "",
     };
   },
+
+  computed: {
+    ...mapGetters(["IsLoggedIn"]),
+
+    // IsLoggedIn () {
+    //   return this.$store.getters.IsLoggedIn
+    // }
+  },
+
   methods: {
+    ...mapActions(["loginUser"]),
 
-      ...mapActions(['registerUser']),
+    
 
-     async handleUserRegister() {
-        
-        let user = {
-            userName: this.UserEmail,
-            password: this.UserPassword,
-            email: this.UserEmail,
-            UserPasswordConfirmation: this.UserPasswordConfirmation
-        }
+    async handleUserLogin() {
+      let user = {
+        email: this.UserEmail,
+        password: this.UserPassword,
+      };
 
+      console.log(this.IsLoggedIn)
+      //console.log(user)
 
+      let response = await this.loginUser(user);
 
-        if(user.password === user.UserPasswordConfirmation){
+      console.log(this.IsLoggedIn)
 
-            let response = await this.registerUser(user)
-            
+      //console.log(response);
 
-            if(response){
-                // alert('User Registration Successful')
-                this.open("Registration Successful");
-                document.getElementById("registerForm").reset();
+      if (response) {
+        //router.go()
+        //alert("Login Successful");
+        //this.reRender()
+        this.open("Login Successful");
+        // document.getElementById("loginForm").reset();
+        // this.$forceUpdate();
+        // router.push("/");
+      } else {
+        this.open("Login Failed");
+        //alert("Login Failed");
+      }
+    },
 
-            }
-            else{
-              this.openConfirmPass("Registration Failed");
-                // alert('User Registartion Failed')
-            }
-        }
-        else{
-            // alert('Wrong password')
-            this.openConfirmPass("Confirm Password");
-        }
+    reRender() {
+      this.$forceUpdate();
     },
 
     open(message) {
@@ -119,24 +106,11 @@ export default {
     },
 
     close() {
-      this.isVisible = false;
-      document.getElementById("registerForm").reset();
-      // this.$forceUpdate();
+      document.getElementById("loginForm").reset();
+      this.$forceUpdate();
       router.push("/");
+      this.isVisible = false;
     },
-
-    openConfirmPass(message) {
-      this.message = message;
-      this.isVisibleConfirmPass = true;
-    },
-
-    closeConfirmPass() {
-      this.isVisibleConfirmPass = false;
-      //document.getElementById("registerForm").reset();
-      // this.$forceUpdate();
-      //router.push("/");
-    },
-    
   },
 };
 </script>
@@ -149,7 +123,7 @@ body {
   background-size: cover;
   background-position: center;
 }
-.register-page {
+.login-page {
   width: 360px;
   padding: 10% 0 0;
   margin: auto;
@@ -170,7 +144,7 @@ body {
   width: 100%;
   border: 0;
   margin: 0 0 15px;
-  padding: 15px;
+  padding: 5px;
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 4px;
@@ -202,9 +176,10 @@ body {
   text-decoration: none;
 }
 
-
-
-
+.form h3 {
+  font-size: 32px;
+  font-family: "Roboto", sans-serif;
+}
 
 /* Message Modal */
 
@@ -216,7 +191,7 @@ body {
 .btnModal {
   font-family: "Roboto", sans-serif;
   margin-top: 1em;
-  margin-left: 21%;
+  margin-left: 12%;
   padding: 15px 30px;
   background-color: #e7e7e7;
   color: black;
@@ -260,3 +235,5 @@ body {
   padding: 1.75rem;
 }
 </style>
+
+

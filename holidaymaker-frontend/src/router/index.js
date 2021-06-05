@@ -14,18 +14,17 @@ import CreateBooking from "../views/booking/CreateBooking.vue"
 import PaymentFail from "../views/booking/PaymentFail.vue"
 import PaymentSuccess from "../views/booking/PaymentSuccess.vue"
 
-//"DYNAMIC" VIEWS
-import Login from "/src/views/Login.vue"
-import Register from "/src/views/Register.vue"
-import Review from "/src/components/Review.vue"
-import ProfileView from "/src/views/ProfileView.vue"
-import MyProfile from "/src/views/MyProfile.vue"
-import MyBookingsProfile from "/src/views/MyBookingsProfile.vue"
-import MyFavoritesProfile from "/src/views/MyFavoritesProfile.vue"
-import SearchResults from "../views/SearchResults.vue"
-import AboutHotel from "../views/AboutHotel.vue"
+//USER-RELATED //
+import MyProfile from "@/views/user/MyProfile.vue"
+import Login from "@/views/user/Login.vue"
+import Register from "@/views/user/Register.vue"
+
+//SEARCH //
+import SearchResults from "../views/search/SearchResults.vue"
+import AboutHotel from "../views/search/AboutHotel.vue"
 
 const routes = [
+  
   //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
   { path: '/:pathMatch(.*)*', 
     name: 'not-found', 
@@ -49,12 +48,7 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
-  {
-    path: "/review",
-    name: "Review",
-    component: Review
-
-  },
+ 
   {
     path: "/booking",
     name: "CreateBooking",
@@ -62,23 +56,8 @@ const routes = [
   },
   {
     path: "/profile",
-    name: "Profile",
-    component: ProfileView
-  },
-  {
-    path: "/myprofile",
     name: "MyProfile",
     component: MyProfile
-  },
-  {
-    path: "/mybookings",
-    name: "MyBookingsProfile",
-    component: MyBookingsProfile
-  },
-  {
-    path: "/myfavorites",
-    name: "MyFavoritesProfile",
-    component: MyFavoritesProfile
   },
 
   //STATIC VIEWS
