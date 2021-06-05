@@ -6,6 +6,13 @@
           <h3>Our destinations</h3>
       </router-link>
     </div>
+
+    <div class="seehotels">
+      <router-link :to="'/hotels/'"> 
+          <i class="fas fa-hotel showhotels-icon"></i>
+          <h3>Our hotels</h3>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -20,12 +27,26 @@ export default {
 </script>
 
 <style scoped>
+.seedestinations{
+float: left;
+margin-left: 700px;
+
+}
+
+.seehotels {
+float: right;
+margin-right: 700px;
+}
+
 .showdestinations-icon {
 margin-top: 20px;
 font-size: 200px;
 }
 
-.seedestinations{
-margin-left: 45%;
+.showhotels-icon {
+margin-top: 20px;
+font-size: 200px;
+float: right;
 }
+
 </style>

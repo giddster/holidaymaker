@@ -21,8 +21,7 @@ export default {
 	},
 	methods: {
 		saveDates() {
-			this.$store.dispatch('setDates', this.dates)
-			console.log(this.dates)
+			this.$store.dispatch('saveDates', this.dates)
 		}
 	}
 }

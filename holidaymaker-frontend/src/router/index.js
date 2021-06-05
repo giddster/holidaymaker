@@ -15,6 +15,7 @@ import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
 
 //"DYNAMIC" VIEWS
 import Destinations from "/src/views/Destinations.vue"
+import Hotels from "/src/views/Hotels.vue"
 import Login from "/src/views/Login.vue"
 import Register from "/src/views/Register.vue"
 import Review from "/src/components/Review.vue"
@@ -27,6 +28,13 @@ import SearchResults from "../views/SearchResults.vue"
 import AboutHotel from "../views/AboutHotel.vue"
 
 const routes = [
+  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
+  { path: '/:pathMatch(.*)*', 
+    name: 'not-found', 
+    component: NotFound 
+  },
+
+  //"DYNAMIC" VIEWS
   {
     path: "/",
     name: "Home",
@@ -37,35 +45,20 @@ const routes = [
     name: "Destinations",
     component: Destinations
   },
-  //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
-  { path: '/:pathMatch(.*)*', 
-    name: 'not-found', 
-    component: NotFound 
+  {
+    path: "/hotels",
+    name: "Hotels",
+    component: Hotels
   },
   {
-    path: "/about",
-    name: "About",
-    component: About
+    path: "/hotel/:id",
+    name: "AboutHotel",
+    component: AboutHotel
   },
   {
-    path: "/help",
-    name: "Help",
-    component: Help
-  },
-  {
-    path: "/contact",
-    name: "Contact",
-    component: Contact
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register
+    path: "/searchresults",
+    name: "SearchResults",
+    component: SearchResults
   },
   {
     path: "/review",
@@ -98,18 +91,37 @@ const routes = [
     name: "MyFavoritesProfile",
     component: MyFavoritesProfile
   },
+
+  //STATIC VIEWS
   {
-    path: "/hotel/:id",
-    name: "AboutHotel",
-    component: AboutHotel
+    path: "/about",
+    name: "About",
+    component: About
   },
   {
-    path: "/searchresults",
-    name: "SearchResults",
-    component: SearchResults
+    path: "/help",
+    name: "Help",
+    component: Help
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact
+  },
+
+  //AUTHENTICATION
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register
   },
   
-  //PAYMENT ROUTES
+  //PAYMENT
   {
     path: "/payment",
     name: "Payment",
