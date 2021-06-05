@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HolidayMaker_API.Migrations
 {
-    public partial class InitialApplicationDbContext : Migration
+    public partial class InitialApplicationDbContextAzure : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

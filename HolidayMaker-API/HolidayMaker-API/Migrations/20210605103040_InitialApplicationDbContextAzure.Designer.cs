@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HolidayMaker_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210519133745_InitialApplicationDbContext")]
-    partial class InitialApplicationDbContext
+    [Migration("20210605103040_InitialApplicationDbContextAzure")]
+    partial class InitialApplicationDbContextAzure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
