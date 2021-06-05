@@ -29,26 +29,24 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4">
-                            <i>Room {{index + 1}}</i>
-                            <p>Room number: <b>{{ room.roomNo }}</b> </p>
+                            <h4 class="selectedroom-title">Room {{index + 1}}</h4>
+                            <b>Room # {{ room.roomNo }} </b>
+                            <p>Size: {{ room.roomType.capacity }} persons</p>
                             <button @click="removeSelectedRoom(index)" class="btn btn-danger btn-sm">
-                                Delete
+                                <i class="far fa-trash-alt"></i> Delete
                             </button>
                         </div> 
-                        <div class="col-md-4 ml-auto">
-                            
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" @click="removeallSelectedRooms" class="btn btn-secondary" style="background:red;">
-                    Delete all rooms
+                <button type="button" @click="removeallSelectedRooms" class="btn btn-secondary" style="background:red;margin-right:100px;">
+                   <i class="fas fa-trash"></i> Delete all
                 </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Close
+                    <i class="far fa-window-close"></i> Close
                 </button>
-                <router-link to="/booking" @click="saveSelectedRooms" class="btn btn-primary" data-dismiss="modal">Go to booking</router-link>
+                <router-link to="/booking" @click="saveSelectedRooms" class="btn btn-primary" data-dismiss="modal"> <i class="fas fa-shopping-bag"></i> Go to booking</router-link>
                 <!-- LÄGG IN EN AUTH HÄR SÅ ATT KUNDEN ÄR INLOGGAD OCH HAR KONTO -->
             </div>
 		</div>
@@ -139,5 +137,9 @@ export default {
     float: right;
     object-fit: cover;
     border: 1px solid darkgrey
+}
+
+.selectedroom-title {
+    font-size: 20px;
 }
 </style>
