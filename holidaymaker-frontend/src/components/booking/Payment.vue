@@ -10,7 +10,7 @@
       @loading="v => loading = v"
     />
     
-    <button class="btn btn-info btn-lg" style="margin:100px" @click="submit">Confirm booking</button>
+    <button class="btn btn-info btn-lg" @click="submit">Confirm booking</button>
   </div>
 </template>
 
