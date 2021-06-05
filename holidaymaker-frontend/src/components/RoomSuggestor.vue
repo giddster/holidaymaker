@@ -12,6 +12,44 @@
             <button class="btn btn-primary room-booking">Add to booking</button>
         </div>
     </div>
+
+      <!-- GUESTS MODAL -->
+<div class="modal fade" id="guestsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Your selected rooms</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+				
+            <!-- ADD V-FOR BELOW TO INCREASE MODAL DYNAMICALLY -->
+            <div v-for="(room, index) in selectedRooms" :key="room" class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i>Room {{index + 1}}</i>
+                            <p>Room number: <b>{{ room.roomNo }}</b> </p>
+                            <button @click="removeSelectedRoom(index)" class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+                        </div> 
+                        <div class="col-md-4 ml-auto">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <router-link to="/booking" class="btn btn-primary">Go to booking</router-link>
+            </div>
+		</div>
+	</div>
+</div>
 </template>
 
 <script>
@@ -36,6 +74,18 @@ export default {
                 }
             }
             return img[0].imageLink
+        },
+        addSelectedRoom: function(room) {
+            if(!this.selectedRooms.includes(room)){
+                this.selectedRooms.push(room)
+                console.log('Added to selectedRooms')
+            }
+            else{
+                alert('You already added this room :/')
+            }
+        },
+        removeSelectedRoom(index) {
+            this.selectedRooms.splice(index, 1);
         }
     },
     mounted() {
