@@ -33,23 +33,47 @@
       </div>
     </div>
 
+    <transition name="fade">
+        <div class="popup-modal" v-if="isVisible">
+          <div class="window">
+            <slot>
+              <h3 id="custom">{{ message }}</h3>
+            </slot>
+            <button class="btnModal" @click="close">CLOSE</button>
+          </div>
+        </div>
+      </transition>
+
+      <transition name="fade">
+        <div class="popup-modal" v-if="isVisibleConfirmPass">
+          <div class="window">
+            <slot>
+              <h3 id="custom">{{ message }}</h3>
+            </slot>
+            <button class="btnModal" @click="closeConfirmPass">CLOSE</button>
+          </div>
+        </div>
+      </transition>
+
   </body>
 </template>
 
 <script>
-
-
 import {mapActions} from 'vuex'
+import router from "../router/index";
 
 export default {
   data() {
     return {
         user:{
-        userName: '',
-        email:'',
-        password:'',
-        }
-        //UserPasswordConfirmation:''
+          userName: '',
+          email:'',
+          password:'',
+        },
+        
+        isVisible: false,
+        isVisibleConfirmPass: false,
+        message: "",
     };
   },
   methods: {
@@ -73,17 +97,44 @@ export default {
             
 
             if(response){
-                alert('User Registration Successful')
+                // alert('User Registration Successful')
+                this.open("Registration Successful");
                 document.getElementById("registerForm").reset();
 
             }
             else{
-                alert('User Registartion Failed')
+              this.openConfirmPass("Registration Failed");
+                // alert('User Registartion Failed')
             }
         }
         else{
-            alert('Wrong password')
+            // alert('Wrong password')
+            this.openConfirmPass("Confirm Password");
         }
+    },
+
+    open(message) {
+      this.message = message;
+      this.isVisible = true;
+    },
+
+    close() {
+      this.isVisible = false;
+      document.getElementById("registerForm").reset();
+      // this.$forceUpdate();
+      router.push("/");
+    },
+
+    openConfirmPass(message) {
+      this.message = message;
+      this.isVisibleConfirmPass = true;
+    },
+
+    closeConfirmPass() {
+      this.isVisibleConfirmPass = false;
+      //document.getElementById("registerForm").reset();
+      // this.$forceUpdate();
+      //router.push("/");
     },
     
   },
@@ -149,5 +200,63 @@ body {
 .form .message a {
   color: #4caf50;
   text-decoration: none;
+}
+
+
+
+
+
+/* Message Modal */
+
+#custom {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.btnModal {
+  font-family: "Roboto", sans-serif;
+  margin-top: 1em;
+  margin-left: 21%;
+  padding: 15px 30px;
+  background-color: #e7e7e7;
+  color: black;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.popup-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Roboto", sans-serif;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.window {
+  /* background: #fff; */
+  background: rgb(233, 232, 253);
+  border-radius: 5px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.75rem;
 }
 </style>
