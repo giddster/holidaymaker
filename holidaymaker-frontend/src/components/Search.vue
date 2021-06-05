@@ -27,7 +27,7 @@
     </div>
 
     <div class="search-div3"> 
-         <button @click="redirect" class="btn btn-lg btn-primary search-button" id="searchButton">Search</button>
+         <router-link @click="displaySearchResults" :to="'/searchresults'" class="btn btn-md btn-primary search-button" style="float: right">Search</router-link>
     </div>
 
 </div>
@@ -37,22 +37,27 @@
 import DRPicker from '@/components/DRPicker.vue'
 
 export default {
+    components: { DRPicker },
      data() {
          return {
              searchString: ''
          }
      },
+     computed: {
+        // checkinDate(){
+        //     return this.$store.dates.checkinDate
+        // },
+        // checkoutDate(){
+        //     return this.$store.dates.checkoutDate
+        // }
+    },
      methods: {
-     redirect() {
-        this.$router.push({ name: 'SearchResults' })
-        this.$store.dispatch('search', this.searchString)
+     displaySearchResults() {
+        this.$store.dispatch('search', this.searchString, this.checkinDate, this.checkoutDate)
      }
   },
-    components: { DRPicker },
     
-    created() {
-        this.$store.dispatch('fetchDestinations')
-    }
+  
 }
 </script>
 

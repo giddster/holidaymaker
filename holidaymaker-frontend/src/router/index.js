@@ -15,6 +15,7 @@ import PaymentSuccess from "../views/Payment/PaymentSuccess.vue"
 
 //"DYNAMIC" VIEWS
 import Destinations from "/src/views/Destinations.vue"
+import Hotels from "/src/views/Hotels.vue"
 import Login from "/src/views/Login.vue"
 import Register from "/src/views/Register.vue"
 import Review from "/src/components/Review.vue"
@@ -37,6 +38,12 @@ const routes = [
     name: "Destinations",
     component: Destinations
   },
+  {
+    path: "/hotels",
+    name: "Hotels",
+    component: Hotels
+  },
+
   //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
   { path: '/:pathMatch(.*)*', 
     name: 'not-found', 

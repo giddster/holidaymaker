@@ -5,122 +5,26 @@ import router from "../router/index";
 export default createStore({
   state: {
 		name: "Vue",
-
-		bookings: {
-			id: 0,
-			checkInDate: "",
-			checkOutDate: "",
-			noOfAdults: 0,
-			noOfChildren: 0,
-			isPending: false,
-			isCancelled: false,
-			totalPrice: 0.0,
-			flightId: 0,
-			customerId: 0,
-			customer: null,
-			flight: null,
-			bookingXrooms: [ ]
-		},
-
-		customers: {
-			id: 0,
-			firstName: "",
-			lastName: "",
-			address: "",
-			zipCode: "",
-			city: "",
-			country: "",
-			email: "",
-			phone: "",
-			isLoggedIn: false,
-			password: "",
-			bookings: [],
-			favoriteHotels: [],
-			reviews: []
-		},
-
-		destinations: {
-			id: 0,
-			country: "",
-			city: "",
-			flights: [],
-			hotels: []
-		},
-
-		favoritehotels: {
-			id: 0,
-			hotelId: 0,
-			customerId: 0,
-			customer: null,
-			hotel: null
-		},
-
-		flights: {
-			id: 1,
-			aviatorName: "",
-			departureCity: "",
-			departureCountry: "",
-			isReturnFlight: true,
-			price: 0.0,
-			destinationId: 1,
-			destination: null,
-			bookings: []
-		},
-
-		hotels: {
-			id: 0,
-			name: "",
-			zipCode: "",
-			address: "",
-			starRating: 0.0,
-			distanceToBeach: 0.0,
-			distanceToCityCenter: 0.0,
-			hasPool: false,
-			hasSeaSide: false,
-			hasEntertainment: false,
-			hasKidsClub: false,
-			hasRestaurant: false,
-			hasHalfPension: false,
-			hasWholePension: false,
-			hasAllInclusive: false,
-			hasWifi: false,
-			hasRoomService: false,
-			destinationId: 0,
-			description: "",
-			destination: null,
-			favoriteHotels: [],
-			hotelImages: [],
-			reviews: [],
-			rooms: []
-		},
-
+		
+		bookings: { },
+		
+		customers: { },
+		
+		destinations: {	},
+		
+		favoritehotels: { },
+		
+		flights: { },
+		
+		hotels: { },
+		
 		reviews: [
-			{
-				id: 0,
-				rating: 0.0,
-				customerId: 0,
-				hotelId: 0,
-				heading: null,
-				name: null,
-				reviewText: "",
-				customer: null,
-				hotel: null
-			}
+			{ }
 		],
+		
+		rooms: { },
 
-		rooms: {
-			id: 0,
-			hotelId: 0,
-			roomNo: 0,
-			noOfSpareBeds: 0,
-			isSelfCleaning: true,
-			isOccupied: null,
-			roomTypeId: 0,
-			hotel: null,
-			roomType: null,
-			bookingXrooms: [],
-			roomImages: []
-		},
+		roomTypes: { },
 
     user: {
       userName: "",
@@ -203,6 +107,9 @@ export default createStore({
     setHotels(state, data){
       state.hotels = data
     },
+	setRoomTypes(state, data){
+		state.roomTypes = data
+	},
 	setReviews(state, data){
 		state.reviews = data
 	  },
@@ -264,9 +171,9 @@ export default createStore({
       console.log(data)
       commit('setDestinations', data)
     },
-
-    async fetchHotels({ commit }) {
-      let response2 = await fetch('api/Hotels/')
+    
+    async fetchHotels({commit}){
+      let response2 = await fetch('/api/Hotels/')
       let data = await response2.json()
       commit('setHotels', data)
     },
@@ -355,76 +262,87 @@ async logoutUser({ commit }) {
 
     async fetchReviews({commit}){
 		let response = await fetch('/api/reviews/')
-		let data = await response.json()
+	},
+	async fetchRoomTypes({commit}){
+	let response = await fetch('/api/Hotels/')
+	let data = await response.json()
+	commit('setRoomTypes', data)
+	},
+
+	async fetchReviews({commit}){
+	let response = await fetch('/api/RoomTypes')
+	let data = await response.json()
+	console.log(data)
+	commit('setReviews', data)
+	},
+
+	async setDates({commit}, dates){
+	commit('setDates', dates)
+	},
+
+	//gör samma datumhämtning från filteredrooms 
+	// async search({commit}, searchString, checkInDate = this.state.dates.checkinDate, checkOutDate = this.state.dates.checkoutDate
+	async search({commit}, searchString){
+	let response = await fetch(`/api/availableHotelsByCityOrCountryName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+	let data = await response.json()
+	console.log(data)
+	commit('setSearch', searchString)
+	commit('setFilteredHotels', data)
+	},
+
+	async fetchThisHotel({commit}, id){
+	let response = await fetch(`/api/Hotels/${id}`)
+	let data = await response.json()
+	console.log(data)
+	commit('setThisHotel', data)
+	},
+
+	async fetchFilteredReviews({commit}, id){
+	let response = await fetch(`/api/reviews/${id}`)
+	let data = await response.json()
+	console.log(data)
+	commit('setFilteredReviews', data)
+	},
+
+	async fetchFilteredRooms({commit}, id){
+	let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+	let data = await response.json()
+	console.log(data)
+	commit('setFilteredRooms', data)
+	},
+
+	async setDates({commit}, dates){
+	commit('setDates', dates)
+	},
+
+	async postReview({commit}, data){
 		console.log(data)
-		commit('setReviews', data)
-	  },
-
-	  async setDates({commit}, dates){
-        commit('setDates', dates)
-      },
-
-	  async search({commit}, searchString){
-        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-        let data = await response.json()
-        console.log(data)
-        commit('setFilteredHotels', data)
-        commit('setSearch', searchString)
-      },
-
-	  async fetchThisHotel({commit}, id){
-      let response = await fetch(`/api/Hotels/${id}`)
-      let data = await response.json()
-	  console.log(data)
-      commit('setThisHotel', data)
-      },
-
-	  async fetchFilteredReviews({commit}, id){
-		let response = await fetch(`/api/reviews/${id}`)
-		let data = await response.json()
-		console.log(data)
-		commit('setFilteredReviews', data)
-	  },
-
-	  async fetchFilteredRooms({commit}, id){
-      let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-      let data = await response.json()
-	  console.log(data)
-      commit('setFilteredRooms', data)
-      },
-
-      async setDates({commit}, dates){
-        commit('setDates', dates)
-      },
-
-	  async postReview({commit}, data){
-		  console.log(data)
-		  let body = {
-  			rating: data.rating,
-  			// customerId: data.customerId,
-			customerId: data.customerId,
-  			hotelId: data.hotelId,
-  			heading: data.heading,
-  			name: data.name,
-			reviewText: data.reviewText,
+		let body = {
+		rating: data.rating,
+		// customerId: data.customerId,
+		customerId: data.customerId,
+		hotelId: data.hotelId,
+		heading: data.heading,
+		name: data.name,
+		reviewText: data.reviewText,
 
 
-		  }
-		//  let response = await fetch('api/Reviews', {
-		// 	 method: 'post',
-		// 	 headers: {'Content-type': 'application/json'},
-		// 	 body: JSON.stringify(body)
-		//  })
-		let requestOptions = {
-			method: 'post',
-		 	headers: {'Content-type': 'application/json'},
-		 	body: JSON.stringify(body)}
+		}
+	//  let response = await fetch('api/Reviews', {
+	// 	 method: 'post',
+	// 	 headers: {'Content-type': 'application/json'},
+	// 	 body: JSON.stringify(body)
+	//  })
+	let requestOptions = {
+		method: 'post',
+		headers: {'Content-type': 'application/json'},
+		body: JSON.stringify(body)}
 
-			 const response = await fetch('api/Reviews', requestOptions)
-		 let result = await response.json()
-		 console.log('resultat från backend', result)
-		 commit('setReviews', result)
-	  }
+			const response = await fetch('api/Reviews', requestOptions)
+		let result = await response.json()
+		console.log('resultat från backend', result)
+		commit('setReviews', result)
+	}
   },
   modules: {
 
