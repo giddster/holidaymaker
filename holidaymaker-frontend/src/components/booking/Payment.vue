@@ -1,5 +1,4 @@
 <template>
-  <div>
     <stripe-checkout
       ref="checkoutRef"
       mode="payment"
@@ -9,9 +8,7 @@
       :cancel-url="cancelURL"
       @loading="v => loading = v"
     />
-    
-    <button class="btn btn-info btn-lg" @click="submit">Confirm booking</button>
-  </div>
+    <button class="btn btn-info btn-lg" @click="submit">Confirm and pay booking</button>
 </template>
 
 <script>

@@ -7,7 +7,7 @@
         <div class="room-box-2">
             <p><i class="fas fa-hashtag"></i><i>Room number: {{ room.roomNo}} </i> </p>
             <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
-            <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
+            <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} people </p>
             <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
             <button @click="addSelectedRoom(room)" class="btn btn-primary room-booking" data-toggle="modal" data-target="#roomsModal">Add to booking</button>
         </div>
@@ -31,7 +31,7 @@
                         <div class="col-md-4">
                             <h4 class="selectedroom-title">Room {{index + 1}}</h4>
                             <b>Room # {{ room.roomNo }} </b>
-                            <p>Size: {{ room.roomType.capacity }} persons</p>
+                            <p>Size: {{ room.roomType.capacity }} people</p>
                             <button @click="removeSelectedRoom(index)" class="btn btn-danger btn-sm">
                                 <i class="far fa-trash-alt"></i> Delete
                             </button>
