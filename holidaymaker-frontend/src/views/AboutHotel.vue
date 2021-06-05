@@ -2,19 +2,7 @@
   <div class="parent hotel-header" ref="top">
     <div class="div1"> 
       <h4 class="hotel-title">{{ thishotel.name }}</h4>
-      
-      <star-rating @rating-selected ="setRating"
-                  :round-start-rating="false"
-                  :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-                  :border-width="2"
-                  :clearable="true"
-                  active-on-click
-                  animate
-                  :padding="0"
-          >
-      
-      </star-rating>
-    
+          
         <star-rating v-model:rating="thishotel.starRating"
                 :round-start-rating="false"
                 :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
@@ -95,11 +83,14 @@
         EMPTY
     </div>
     <div class="div9" ref="roomsuggestor">
-      <h4 class="roomsuggestor-title">Available rooms </h4>
+      <h4 class="roomsuggestor-title">Available rooms: {{ filteredRooms.length }} </h4>
+      <button class="btn btn-primary room-booking" data-toggle="modal" data-target="#roomsModal">Your selected rooms</button>
       <RoomSuggestor />
       <button @click="scrollToTop('top')" class="btn btn-md btn-primary backtotop-button">Back to top</button>
     </div>
   </div>
+
+ 
 </template>
 
 <script>
@@ -109,10 +100,11 @@ import OutputReview from '../components/OutputReview.vue'
 import StarRating from '@/components/StarRating.vue'
 
 export default {
-  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
   
-  created() {
-      this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+  components: { DRPicker, RoomSuggestor, StarRating, OutputReview },
+  async created() {
+      await this.$store.dispatch('fetchThisHotel', this.$route.params.id)
+      await this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
     },
     
   methods: {
@@ -127,12 +119,15 @@ export default {
       var top = element.offsetTop;
 
       window.scrollTo(0, top);
-    }
+    },
+   
   },
-
   computed: {
     thishotel() {
       return this.$store.state.thisHotel;
+    },
+    filteredRooms(){
+        return this.$store.state.filteredRooms;
     },
     images() {
       return this.$store.state.hotelImages
@@ -149,7 +144,8 @@ export default {
       }
       return filteredImages;
     }
-  }
+  },
+  
 }
 </script>
 
@@ -207,6 +203,7 @@ export default {
 
 .div9 {
   grid-column: 1 / 3;
+  padding: 20px;
 }
 
 .image-container {

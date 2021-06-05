@@ -37,20 +37,26 @@ import FilterComponent from '@/components/FilterComponent.vue'
 import StarRating from '@/components/StarRating.vue'
 
 export default {
-
+    
     components: { FilterComponent, StarRating },
     computed: {
         filteredHotels(){
             return this.$store.state.filteredHotels
         },
         thishotel() {
-        return this.$store.state.thisHotel;
-      },
+            return this.$store.state.thisHotel;
+        },
         hotelImages() {
             return this.$store.state.hotelImages
         },
         search() {
             return this.$store.state.search
+        },
+        checkinDate(){
+            return this.$store.dates.checkinDate
+        },
+        checkoutDate(){
+            return this.$store.dates.checkoutDate
         }
     },
 

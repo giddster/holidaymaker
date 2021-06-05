@@ -16,6 +16,12 @@ import Search from './components/Search.vue'
 
 
 export default {
+  async created() {
+      await this.$store.dispatch('fetchDestinations')
+      await this.$store.dispatch('fetchHotels')
+      await this.$store.dispatch('fetchRoomTypes')
+      //Hämta inloggad användare
+  },
   components: { Header, Footer, Search}
 }
 </script>
