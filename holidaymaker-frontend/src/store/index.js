@@ -228,14 +228,17 @@ export default createStore({
 
     LogInUser(state, data) {
       state.loggedInUser = data
-      state.loggedInUser.isLoggedIn = true
+    //   state.loggedInUser.isLoggedIn = true
+	  state.loggedInUser.isLoggedIn = window.localStorage.setItem('isLoggedIn', true)
       console.log(state.loggedInUser.isLoggedIn)
     },
 
     Logout(state) {
       state.loggedInUser.userName = null
       state.loggedInUser.password = null
-      state.loggedInUser.isLoggedIn = false
+    //   state.loggedInUser.isLoggedIn = false
+	state.loggedInUser.isLoggedIn = window.localStorage.removeItem('isLoggedIn')
+
     }
 
 
@@ -318,7 +321,7 @@ async loginUser({ commit }, loggedInUser) {
 
   if (response.status == 200) {
 
-    window.localStorage.setItem('isLoggedIn', true)
+    // window.localStorage.setItem('isLoggedIn', true)
     commit('LogInUser', data)
 
     return true
@@ -339,7 +342,7 @@ async logoutUser({ commit }) {
   const data = await response.json();
 
   if (response.status == 200) {
-    window.localStorage.removeItem('isLoggedIn')
+    // window.localStorage.removeItem('isLoggedIn')
     commit('Logout')
 
     return true

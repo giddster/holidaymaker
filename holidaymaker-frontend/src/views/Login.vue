@@ -1,8 +1,7 @@
 <template>
   <body>
     <div class="login-page">
-
-        <!-- Remove after testing -->
+      <!-- Remove after testing -->
       <!-- <button class="btnModal" @click="open('Login Sucessful')">
         open
       </button> -->
@@ -21,24 +20,25 @@
           </p>
         </form>
       </div>
+    </div>
 
       <transition name="fade">
         <div class="popup-modal" v-if="isVisible">
           <div class="window">
             <slot>
-              <h3>{{ message }}</h3>
+              <h3 id="custom">{{ message }}</h3>
             </slot>
             <button class="btnModal" @click="close">CLOSE</button>
           </div>
         </div>
       </transition>
-
-    </div>
+      
   </body>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+// import { mapActions } from "vuex";
 import router from "../router/index";
 
 export default {
@@ -54,8 +54,18 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["IsLoggedIn"]),
+
+    // IsLoggedIn () {
+    //   return this.$store.getters.IsLoggedIn
+    // }
+  },
+
   methods: {
     ...mapActions(["loginUser"]),
+
+    
 
     async handleUserLogin() {
       let user = {
@@ -63,11 +73,14 @@ export default {
         password: this.UserPassword,
       };
 
+      console.log(this.IsLoggedIn)
       //console.log(user)
 
       let response = await this.loginUser(user);
 
-      console.log(response);
+      console.log(this.IsLoggedIn)
+
+      //console.log(response);
 
       if (response) {
         //router.go()
@@ -93,9 +106,9 @@ export default {
     },
 
     close() {
-        document.getElementById("loginForm").reset();
-        this.$forceUpdate();
-        router.push("/");
+      document.getElementById("loginForm").reset();
+      this.$forceUpdate();
+      router.push("/");
       this.isVisible = false;
     },
   },
@@ -148,7 +161,6 @@ body {
   font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
-
 }
 .form button:hover,
 .form button:active {
@@ -164,31 +176,26 @@ body {
   text-decoration: none;
 }
 
-
-
-
-.form h3{
+.form h3 {
   font-size: 32px;
   font-family: "Roboto", sans-serif;
-  
 }
-
 
 /* Message Modal */
 
-/* .Custom {
-  font-size: 32px;
-
-} */
+#custom {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
 
 .btnModal {
   font-family: "Roboto", sans-serif;
   margin-top: 1em;
-  margin-left: 16%;
+  margin-left: 12%;
   padding: 15px 30px;
   background-color: #e7e7e7;
   color: black;
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 5px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -218,13 +225,15 @@ body {
 }
 
 .window {
-  background: #fff;
+  /* background: #fff; */
+  background: rgb(233, 232, 253);
   border-radius: 5px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
   padding: 1.75rem;
-  
 }
 </style>
+
+
