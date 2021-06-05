@@ -24,29 +24,29 @@
 					</button>
 			</div>
 				
-				<!-- ADD V-FOR BELOW TO INCREASE MODAL DYNAMICALLY -->
-				<div v-for="(room, index) in selectedRooms" :key="index" class="modal-body">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-4">
-								<i>Room {{index + 1}}</i>
-                                <p>Room number: <b>{{ room.roomNo }}</b> </p>
-								<button @click="removeSelectedRoom(room)" class="btn btn-danger btn-sm">
-									Delete
-								</button>
-							</div> 
-							<div class="col-md-4 ml-auto">
-								
-							</div>
-						</div>
-					</div>
-				</div>
-                <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">
-							Close
-						</button>
-						<router-link to="/booking" class="btn btn-primary">Go to booking</router-link>
-					</div>
+            <!-- ADD V-FOR BELOW TO INCREASE MODAL DYNAMICALLY -->
+            <div v-for="(room, index) in selectedRooms" :key="room" class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i>Room {{index + 1}}</i>
+                            <p>Room number: <b>{{ room.roomNo }}</b> </p>
+                            <button @click="removeSelectedRoom(index)" class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+                        </div> 
+                        <div class="col-md-4 ml-auto">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <router-link to="/booking" class="btn btn-primary">Go to booking</router-link>
+            </div>
 		</div>
 	</div>
 </div>
@@ -80,7 +80,7 @@ export default {
             }
             return img[0].imageLink
         },
-        addSelectedRoom(room) {
+        addSelectedRoom: function(room) {
             if(!this.selectedRooms.includes(room)){
                 this.selectedRooms.push(room)
                 console.log('Added to selectedRooms')
@@ -89,11 +89,8 @@ export default {
                 alert('You already added this room :/')
             }
         },
-        removeSelectedRoom(room) {
-            if(this.selectedRooms.includes(room)){
-                this.selectedRooms.splice(room)
-                console.log('Removed from selectedRooms')
-            }
+        removeSelectedRoom(index) {
+            this.selectedRooms.splice(index, 1);
         }
     },
     
