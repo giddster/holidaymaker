@@ -9,12 +9,12 @@
             <p><i class="fas fa-tag"></i> {{ room.roomType.price }} SEK/night </p>
             <p> <i class="fas fa-users"></i> {{ room.roomType.capacity }} persons </p>
             <p><i> <i class="fas fa-bed"></i> {{ room.noOfSpareBeds }} spare bed(s) </i></p>
-            <button class="btn btn-primary room-booking">Add to booking</button>
+            <button @click="addSelectedRoom(room)" class="btn btn-primary room-booking" data-toggle="modal" data-target="#roomsModal">Add to booking</button>
         </div>
     </div>
 
       <!-- GUESTS MODAL -->
-<div class="modal fade" id="guestsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="roomsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -42,6 +42,9 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" @click="removeallSelectedRooms" class="btn btn-secondary" style="background:red;">
+                    Delete all rooms
+                </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
@@ -54,6 +57,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+             selectedRooms: []
+        }
+     },
     computed: {
       filteredRooms() {
         return this.$store.state.filteredRooms;
@@ -75,7 +83,7 @@ export default {
             }
             return img[0].imageLink
         },
-        addSelectedRoom: function(room) {
+        addSelectedRoom(room) {
             if(!this.selectedRooms.includes(room)){
                 this.selectedRooms.push(room)
                 console.log('Added to selectedRooms')
@@ -86,6 +94,9 @@ export default {
         },
         removeSelectedRoom(index) {
             this.selectedRooms.splice(index, 1);
+        },
+        removeallSelectedRooms() {
+            this.selectedRooms = []
         }
     },
     mounted() {
