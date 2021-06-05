@@ -78,8 +78,6 @@ export default createStore({
 		reviews: [],
 
       	dates: {}  
-
-		  // lagra searchString i state? Då kan den återanvändas enligt Benjamin
 		
   },
 
@@ -87,6 +85,9 @@ export default createStore({
     setDestinations(state, data){
       state.destinations = data
     },
+	setDates(state, data) {
+	  state.dates = data
+	},
 	setSearch(state, data){
 		state.search = data
 	},
@@ -111,9 +112,6 @@ export default createStore({
 	setFilteredRooms(state, data){
 	  state.filteredRooms = data
 	},
-    setDates(state, data) {
-      state.dates = data
-    },
   },
 
   actions: {
@@ -143,11 +141,13 @@ export default createStore({
 		console.log(data)
 		commit('setReviews', data)
 	  },
-	  
-	  async setDates({commit}, dates){
-        commit('setDates', dates)
-      },
 
+	  async saveDates({commit}, dates){
+        commit('setDates', dates)
+		console.log('The following dates have been saved to store:')
+		console.log(this.state.dates)
+      },
+	  	  
 	 //gör samma datumhämtning från filteredrooms 
 	 // async search({commit}, searchString, checkInDate = this.state.dates.checkinDate, checkOutDate = this.state.dates.checkoutDate
 	  	async search({commit}, searchString){
@@ -179,9 +179,7 @@ export default createStore({
       commit('setFilteredRooms', data)
       },
 
-      async setDates({commit}, dates){
-        commit('setDates', dates)
-      },
+      
 	
 	  async postReview({commit}, data){
 		  console.log(data)

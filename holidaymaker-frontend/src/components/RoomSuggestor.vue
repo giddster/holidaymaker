@@ -48,7 +48,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
-                <router-link to="/booking" class="btn btn-primary">Go to booking</router-link>
+                <router-link to="/booking" class="btn btn-primary" data-dismiss="modal">Go to booking</router-link>
             </div>
 		</div>
 	</div>
