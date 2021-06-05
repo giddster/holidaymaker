@@ -99,9 +99,7 @@ export default {
             this.selectedRooms = []
         }
     },
-    mounted() {
-        this.$store.dispatch('fetchFilteredRooms', this.$route.params.id)
-    }
+    
 }
 </script>
 

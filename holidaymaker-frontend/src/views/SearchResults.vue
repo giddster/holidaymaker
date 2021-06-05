@@ -43,14 +43,11 @@ export default {
         filteredHotels(){
             return this.$store.state.filteredHotels
         },
-        thishotel() {
-            return this.$store.state.thisHotel;
+        search() {
+            return this.$store.state.search
         },
         hotelImages() {
             return this.$store.state.hotelImages
-        },
-        search() {
-            return this.$store.state.search
         },
         checkinDate(){
             return this.$store.dates.checkinDate

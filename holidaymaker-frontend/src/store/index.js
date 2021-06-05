@@ -108,9 +108,6 @@ export default createStore({
     setHotels(state, data){
       state.hotels = data
     },
-	setRoomTypes(state, data){
-		state.roomTypes = data
-	},
 	setReviews(state, data){
 		state.reviews = data
 	  },
@@ -126,10 +123,6 @@ export default createStore({
 	setFilteredRooms(state, data){
 	  state.filteredRooms = data
 	},
-    setDates(state, data) {
-      state.dates = data
-    },
-
     setUser(state, data) {
       state.user = data
     },
@@ -166,107 +159,18 @@ export default createStore({
 
   actions: {
 
-    async fetchDestinations({commit}){
-      let response = await fetch('/api/Destinations/')
-      let data = await response.json()
-      console.log(data)
-      commit('setDestinations', data)
-    },
-    
-    async fetchHotels({commit}){
-      let response2 = await fetch('/api/Hotels/')
-      let data = await response2.json()
-      commit('setHotels', data)
-    },
-
-    async search({ commit }, searchString) {
-      let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-      let data = await response.json()
-      console.log(data)
-      commit('setFilteredHotels', data)
-    },
-
-    async setDates({ commit }, dates) {
-      commit('setDates', dates)
-    },
-
-    async registerUser({ commit }, user) {
-
-      let body = { userName: user.userName, password: user.password, email: user.email }
-
-      const requestOptions = {
-        method: "POST",
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(body)
-      };
-
-      const response = await fetch('/api/Authentication/Register', requestOptions)
-      const data = await response.json();
-
-      commit('setUser', data)
-
-      if (response.status == 200) {
-        return true
-      }
-      else {
-        return false
-      }
-    },
-
-
-async loginUser({ commit }, loggedInUser) {
-
-  let body = { userName: loggedInUser.email, password: loggedInUser.password }
-
-  const requestOptions = {
-    method: "POST",
-    headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify(body)
-  };
-
-  const response = await fetch('/api/Authentication/Login', requestOptions)
-  const data = await response.json();
-
-  if (response.status == 200) {
-
-    // window.localStorage.setItem('isLoggedIn', true)
-    commit('LogInUser', data)
-
-    return true
-  }
-  else {
-    return false
-  }
-},
-
-async logoutUser({ commit }) {
-
-  const requestOptions = {
-    method: "POST",
-    headers: { 'Content-type': 'application/json' },
-  };
-
-  let response = await fetch('/api/Authentication/Logout', requestOptions)
-  const data = await response.json();
-
-  if (response.status == 200) {
-    // window.localStorage.removeItem('isLoggedIn')
-    commit('Logout')
-
-    return true
-  }
-  else {
-    return false
-  }
-
-},
-
-    
-	  async fetchRoomTypes({commit}){
-		let response = await fetch('/api/Hotels/')
+	async fetchDestinations({commit}){
+		let response = await fetch('/api/Destinations/')
 		let data = await response.json()
-		commit('setRoomTypes', data)
-		},
+		console.log(data)
+		commit('setDestinations', data)
+	  },
+
+	  async fetchHotels({commit}){
+		let response2 = await fetch('/api/Hotels/')
+		let data = await response2.json()
+		commit('setHotels', data)
+	  },
 
 	  async fetchReviews({commit}){
 		let response = await fetch('/api/RoomTypes')
@@ -274,47 +178,45 @@ async logoutUser({ commit }) {
 		console.log(data)
 		commit('setReviews', data)
 	  },
-
+	  
 	  async saveDates({commit}, dates){
-        commit('setDates', dates)
+		commit('setDates', dates)
 		console.log('The following dates have been saved to store:')
 		console.log(this.state.dates)
-      },
-	  	  
-	 //gör samma datumhämtning från filteredrooms 
-	 // async search({commit}, searchString, checkInDate = this.state.dates.checkinDate, checkOutDate = this.state.dates.checkoutDate
-	  	async search({commit}, searchString){
-        let response = await fetch(`/api/availablehotelsByCityName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-        let data = await response.json()
-        console.log(data)
-        commit('setSearch', searchString)
-        commit('setFilteredHotels', data)
-      },
-
-	  async fetchThisHotel({commit}, id){
-      let response = await fetch(`/api/Hotels/${id}`)
-      let data = await response.json()
-	  console.log(data)
-      commit('setThisHotel', data)
-      },
-
-	  async fetchFilteredReviews({commit}, id){
-		let response = await fetch(`/api/reviews/${id}`)
-		let data = await response.json()
-		console.log(data)
-		commit('setFilteredReviews', data)
 	  },
 
-	  async fetchFilteredRooms({commit}, id){
-      let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
-      let data = await response.json()
-	  console.log(data)
-      commit('setFilteredRooms', data)
-      },
-
-      
+	  //gör samma datumhämtning från filteredrooms 
+	  // async search({commit}, searchString, checkInDate = this.state.dates.checkinDate, checkOutDate = this.state.dates.checkoutDate
+		   async search({commit}, searchString){
+		 let response = await fetch(`/api/availablehotelsByCityOrCountryName/${searchString}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+		 let data = await response.json()
+		 console.log(data)
+		 commit('setSearch', searchString)
+		 commit('setFilteredHotels', data)
+	   },
 	
-	  async postReview({commit}, data){
+	   async fetchThisHotel({commit}, id){
+		let response = await fetch(`/api/Hotels/${id}`)
+		let data = await response.json()
+		console.log(data)
+		commit('setThisHotel', data)
+		},
+
+		async fetchFilteredReviews({commit}, id){
+		  let response = await fetch(`/api/reviews/${id}`)
+		  let data = await response.json()
+		  console.log(data)
+		  commit('setFilteredReviews', data)
+		},
+
+		async fetchFilteredRooms({commit}, id){
+		let response = await fetch(`/api/availableRoomsByHotelId/${id}/${this.state.dates.checkinDate}/${this.state.dates.checkoutDate}`)
+		let data = await response.json()
+		console.log(data)
+		commit('setFilteredRooms', data)
+		},
+	
+	  	async postReview({commit}, data){
 		  console.log(data)
 		  let body = {
   			rating: data.rating,
@@ -324,8 +226,6 @@ async logoutUser({ commit }) {
   			heading: data.heading,
   			name: data.name,
 			reviewText: data.reviewText,
-
-
 		  }
 		//  let response = await fetch('api/Reviews', {
 		// 	 method: 'post',
@@ -341,10 +241,82 @@ async logoutUser({ commit }) {
 		 let result = await response.json()
 		 console.log('resultat från backend', result)
 		 commit('setReviews', result)
-	  }
+	  },
+
+	  	//IDENTITY API
+		async registerUser({ commit }, user) {
+
+		let body = { userName: user.userName, password: user.password, email: user.email }
+
+		const requestOptions = {
+			method: "POST",
+			headers: { 'Content-type': 'application/json' },
+			body: JSON.stringify(body)
+		};
+
+		const response = await fetch('/api/Authentication/Register', requestOptions)
+		const data = await response.json();
+
+		commit('setUser', data)
+
+		if (response.status == 200) {
+			return true
+		}
+		else {
+			return false
+		}
+		},
+
+
+	async loginUser({ commit }, loggedInUser) {
+
+	let body = { userName: loggedInUser.email, password: loggedInUser.password }
+
+	const requestOptions = {
+		method: "POST",
+		headers: { 'Content-type': 'application/json' },
+		body: JSON.stringify(body)
+	};
+
+	const response = await fetch('/api/Authentication/Login', requestOptions)
+	const data = await response.json();
+
+	if (response.status == 200) {
+
+		// window.localStorage.setItem('isLoggedIn', true)
+		commit('LogInUser', data)
+
+		return true
+	}
+	else {
+		return false
+	}
+	},
+
+	async logoutUser({ commit }) {
+
+	const requestOptions = {
+		method: "POST",
+		headers: { 'Content-type': 'application/json' },
+	};
+
+	let response = await fetch('/api/Authentication/Logout', requestOptions)
+	const data = await response.json();
+
+	if (response.status == 200) {
+		// window.localStorage.removeItem('isLoggedIn')
+		commit('Logout')
+
+		return true
+	}
+	else {
+		return false
+	}
+
+	},
+
+    
+	  
   },
-  modules: {
-
-
-  }
+  
 })
