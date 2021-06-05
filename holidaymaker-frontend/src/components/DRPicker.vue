@@ -1,12 +1,12 @@
 <template>
 	<div class="date-parent">
 		<div class="date-div1"> 
-			<input ref="checkIn" type="date" v-model="dates.checkinDate" class="date-picker">
+			<input ref="checkIn" type="date" v-model="dates.checkinDate" class="date-picker" id="checkinDate">
 			<p style="margin-bottom: 0px; color: lightcoral">Checkin Date</p>
 		</div>
 
 		<div class="date-div2"> 
-			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker">
+			<input ref="checkOut" type="date" v-model="dates.checkoutDate" @change="saveDates" class="date-picker" id="checkoutDate">
 			<p style="margin-bottom: 0px; color: lightcoral">Checkout Date</p>
 		</div>
 	</div>
@@ -14,6 +14,9 @@
 
 <script>
 export default {
+	mounted(){
+		this.forceMinMaxDate()
+	},
 	data() {
 		return {
 			dates: { checkinDate: '', checkoutDate: '' }
@@ -22,6 +25,10 @@ export default {
 	methods: {
 		saveDates() {
 			this.$store.dispatch('saveDates', this.dates)
+		},
+		forceMinMaxDate() {
+			checkinDate.min = new Date().toISOString().split("T")[0]
+			checkoutDate.min = new Date().toISOString().split("T")[0]
 		}
 	}
 }
