@@ -7,7 +7,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        <filter-component @change="setFilter"></filter-component>
+        <filter-component></filter-component>
     </div>
 
     <div class="results-div"> 
@@ -27,25 +27,13 @@
 
 <script>
 import FilterComponent from '../components/FilterComponent.vue';
+import {mapGetters} from 'vuex';
 
 export default {
 components: { FilterComponent },
 
 data(){
     return {
-        filters: [
-
-            hasPool = false,
-            hasSeaSide = false,
-            hasEntertainment = false,
-            hasKidsClub = false,
-            hasRestaurant = false,
-            hasHalfPension = false,
-            hasWholePension = false,
-            hasAllInclusive = false,
-            hasWifi =  false,
-            hasRoomService = false,
-        ],
          
     }
                 
@@ -55,15 +43,17 @@ methods: {
 
 },
 computed: {
-    setFilter(){
-        if(!this.filters.length){
-            return this.$store.state.filteredHotels
-        }
-        return this.$store.state.filteredHotels.filter(h => this.filters.includes(h.hasPool))
+    ...mapGetters(['updateFilter']),
 
-    },
     filteredHotels(){
-            return this.$store.state.filteredHotels
+        
+        // return this.$store.state.filteredHotels
+        // return this.$store.getters.updateFilter
+        let result = this.updateFilter()
+        console.log(result);
+        return result;
+
+            
     },
     hotelImages() {
         return this.$store.state.hotelImages

@@ -1,3 +1,4 @@
+// import { filter } from "core-js/core/array";
 import { createStore } from "vuex";
 
 export default createStore({
@@ -151,7 +152,10 @@ export default createStore({
 
 		reviews: [],
 
-      	dates: {}  
+      	dates: {},
+
+		filter: [],
+
 
 		  // lagra searchString i state? Då kan den återanvändas enligt Benjamin
 		
@@ -179,17 +183,53 @@ export default createStore({
 	setReviews(state, data){
 	  state.reviews = data
 	},
+	setFilter(state,data){
+		state.filter = data
+	}
 	
 
   },
+  getters:{
+	updateFilter:  (state) => (data) => {
+		console.log(data)
+		if(!!data) {
+			let result = state.filteredHotels
+		.filter(o => o.hasPool === data.hasPool)
+		// .filter(o => o.hasSeaSide === data.hasSeaSide)
+		// .filter(o => o.hasWholePension === data.hasWholePension)
+		// .filter(o => o.hasWifi === data.hasWifi)
+		// .filter(o => o.hasRestaurant === data.hasRestaurant)
+		// .filter(o => o.hasAllInclusive === data.hasAllInclusive)
+		// .filter(o => o.hasEntertainment === data.hasEntertainment)
+		// .filter(o => o.hasHalfPension === data.hasHalfPension)
+		// .filter(o => o.hasKidsClub === data.hasKidsClub)
+		// .filter(o => o.hasRoomService === data.hasRoomService)
+		console.log('if')
+		console.log(result)
+		return result;
+		
+		} else {
 
+			let result = state.filteredHotels
+			console.log('else')
+			console.log(result);
+			return result;
+		}
+	
+		
+
+
+	}
+
+	
+  },
   actions: {
 
 	
     async fetchDestinations({commit}){
       let response = await fetch('/api/Destinations/')
       let data = await response.json()
-	  console.log(data)
+	//   console.log(data)
 	  commit('setDestinations', data)
     },
     
@@ -262,6 +302,13 @@ export default createStore({
 		 let result = await response.json()
 		 console.log('resultat från backend', result)
 		 commit('setReviews', result)
+	  },
+	 	updateFilteredHotels({commit},data){
+		   commit('setFilteredHotels',data)
+
+	  },
+	  filter({commit}, data){
+		commit('setFilter', data)
 	  }
   },
   modules: {
