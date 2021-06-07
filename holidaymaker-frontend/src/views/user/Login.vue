@@ -57,6 +57,10 @@ export default {
   computed: {
     ...mapGetters(["IsLoggedIn"]),
 
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    }
+  
     // IsLoggedIn () {
     //   return this.$store.getters.IsLoggedIn
     // }
@@ -82,7 +86,7 @@ export default {
 
       //console.log(response);
 
-      if (response) {
+      if (this.IsLoggedIn) {
         //router.go()
         //alert("Login Successful");
         //this.reRender()
@@ -107,8 +111,8 @@ export default {
 
     close() {
       document.getElementById("loginForm").reset();
-      this.$forceUpdate();
-      router.push("/");
+      //this.$forceUpdate();
+      //router.push("/");
       this.isVisible = false;
     },
   },

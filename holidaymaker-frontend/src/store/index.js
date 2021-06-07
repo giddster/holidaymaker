@@ -145,7 +145,11 @@ export default createStore({
     //   state.loggedInUser.isLoggedIn = false
 	state.loggedInUser.isLoggedIn = window.localStorage.removeItem('isLoggedIn')
 
-    }
+    },
+
+	SetLoggedInUser(state, data) {
+		state.customers = data
+	}
   },
 
   getters: {
@@ -251,7 +255,7 @@ export default createStore({
 	  },
 
 	  	//IDENTITY API
-		async registerUser({ commit }, user) {
+		async registerUser({ dispatch }, user) {
 
 		let body = { userName: user.userName, password: user.password, email: user.email }
 
@@ -264,18 +268,12 @@ export default createStore({
 		const response = await fetch('/api/Authentication/Register', requestOptions)
 		const data = await response.json();
 
-		commit('setUser', data)
+		dispatch('getLoggedInUser')
 
-		if (response.status == 200) {
-			return true
-		}
-		else {
-			return false
-		}
 		},
 
 
-	async loginUser({ commit }, loggedInUser) {
+	async loginUser({ dispatch }, loggedInUser) {
 
 	let body = { userName: loggedInUser.email, password: loggedInUser.password }
 
@@ -288,16 +286,7 @@ export default createStore({
 	const response = await fetch('/api/Authentication/Login', requestOptions)
 	const data = await response.json();
 
-	if (response.status == 200) {
-
-		// window.localStorage.setItem('isLoggedIn', true)
-		commit('LogInUser', data)
-
-		return true
-	}
-	else {
-		return false
-	}
+	dispatch('getLoggedInUser')
 	},
 
 	async logoutUser({ commit }) {
@@ -321,6 +310,23 @@ export default createStore({
 	}
 
 	},
+
+	async getLoggedInUser({ commit }) {
+
+		let response = await fetch('/api/Customers/UserProfile')
+		const data = await response.json();
+
+	if (response.status == 200) {
+		// window.localStorage.removeItem('isLoggedIn')
+		commit('SetLoggedInUser', data)
+
+	}
+	else {
+		commit('SetLoggedInUser', {})
+	}
+
+
+	}
 
     
 	  

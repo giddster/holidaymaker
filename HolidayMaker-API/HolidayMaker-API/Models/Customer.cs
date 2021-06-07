@@ -12,6 +12,15 @@ namespace HolidayMaker_API.Models
             Bookings = new HashSet<Booking>();
             FavoriteHotels = new HashSet<FavoriteHotel>();
             Reviews = new HashSet<Review>();
+            FirstName = "";
+            LastName = "";
+            Address = "";
+            ZipCode = "";
+            City = "";
+            Country = "";
+            Phone = "";
+            Password = "";
+
         }
 
         public int Id { get; set; }

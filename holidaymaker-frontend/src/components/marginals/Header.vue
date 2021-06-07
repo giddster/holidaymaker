@@ -42,16 +42,14 @@
 
 <script>
 import ProfileDropdown from '@/components/marginals/ProfileDropdown.vue';
-import { mapGetters } from "vuex";
+
 export default {
 
   components: { ProfileDropdown },
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
-
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
+    isLoggedIn (){
+      return !!(this.$store.state.customer && this.$store.state.customer.email)
+    }
 
   },
 
