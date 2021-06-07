@@ -7,7 +7,7 @@
 
 <div class="parent">
     <div class="filter-div"> 
-        <filter-component @change-filter="setFilters"></filter-component>
+        <filter-component @change="setFilter"></filter-component>
     </div>
 
     <div class="results-div"> 
@@ -33,40 +33,43 @@ components: { FilterComponent },
 
 data(){
     return {
-        activeFilters: {
-                hasPool: true,
-                hasSeaSide: true,
-                hasEntertainment: true,
-                hasKidsClub: true,
-                hasRestaurant: true,
-                hasHalfPension: true,
-                hasWholePension: true,
-                hasAllInclusive: true,
-                hasWifi: true,
-                hasRoomService: true,
-            }
+        filters: [
+
+            hasPool = false,
+            hasSeaSide = false,
+            hasEntertainment = false,
+            hasKidsClub = false,
+            hasRestaurant = false,
+            hasHalfPension = false,
+            hasWholePension = false,
+            hasAllInclusive = false,
+            hasWifi =  false,
+            hasRoomService = false,
+        ],
+         
     }
+                
 },
 
 methods: {
-    setFilters(updatedFilters){
-        this.activeFilters = updatedFilters;
-    }
+
 },
 computed: {
+    setFilter(){
+        if(!this.filters.length){
+            return this.$store.state.filteredHotels
+        }
+        return this.$store.state.filteredHotels.filter(h => this.filters.includes(h.hasPool))
+
+    },
     filteredHotels(){
-        return this.$store.state.filteredHotels
-        // const hotels = this.$store.state.filteredHotels;
-        // return hotels.filter(hotel => {
-        //     if (this.activeFilters.hasPool && hotel.filteredHotels.includes('hasPool')){
-        //         return true;
-        //     }
-        // });
+            return this.$store.state.filteredHotels
     },
     hotelImages() {
         return this.$store.state.hotelImages
     }
 },
+
 
 }
 </script>
