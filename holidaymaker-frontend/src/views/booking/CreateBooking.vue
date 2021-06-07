@@ -22,21 +22,21 @@
       <div class="bookingdetails-options"> 
           <h4><i class="fas fa-list"></i> Options </h4>
           
-          <label for="includeFlight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
-          <select id="includeFlight" class="form-control options-selector">
-            <option value="none">None</option>
-            <option value="oneway">One way</option>
-            <option value="roundtrip">Round-trip</option>
+          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
+          <select id="include-flight" class="form-control options-selector" @change="getSelectedFlight">
+            <option value="none" id="no-flight">None</option>
+            <option value="oneway" id="oneway-flight">One way</option>
+            <option value="roundtrip" id="roundtrip-flight">Round-trip</option>
           </select>
         
             <br>
 
           <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
-          <select id="mealplan" class="form-control options-selector">
-            <option value="none">None</option>
-            <option value="halfpension" v-if="thisHotel.hasHalfPension">Half pension</option>
-            <option value="fullpension" v-if="thisHotel.hasWholePension">Full pension</option>
-            <option value="allinclusive" v-if="thisHotel.hasAllInclusive">All-inclusive</option>
+          <select id="mealplan" class="form-control options-selector" @change="getSelectedMealplan">
+            <option value="none" id="no-meals">None</option>
+            <option value="halfpension" id="half-pension">Half pension</option>
+            <option value="fullpension" id="full-pension">Full pension</option>
+            <option value="allinclusive" id="all-inclusive">All-inclusive</option>
           </select>
           <i>*A continental breakfast is always included at our partner hotels</i>
       </div>
@@ -48,11 +48,9 @@
               <p>Room number: <b>{{ room.roomNo }}</b> </p>
                 
               <label for="guestsperroom"><i class="fas fa-users"></i> Amount of guests </label> &nbsp;
-              <select id="guestsperroom" class="form-control options-selector">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-              </select>
+              <!-- <select id="guestsperroom" class="form-control options-selector" v-for="index in selectedRooms.roomType.capacity" :key="index">
+                  <option>{{index}}</option>
+              </select> -->
 
               <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
               <select id="sparebedsperroom" class="form-control options-selector">
@@ -75,9 +73,9 @@
         <p>Spare beds: </p>
         <hr>
         <h5>Options:</h5>
-        <p>Include flight: xxx SEK</p>
+        <p>Include flight: {{flightCost}} SEK</p>
         <p>Meal plan: xxx SEK</p>
-        <h5>TOTAL SUM: XXX SEK</h5>
+        <h5>TOTAL SUM: {{totalCost}} SEK</h5>
 
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger">Cancel booking</router-link>
@@ -85,8 +83,6 @@
         </div>
         
     </div>
-
-    
     
 </template>
 
@@ -95,7 +91,43 @@
 import Payment from '@/components/payment/Payment.vue'
 
 export default {
+  data(){
+    return {
+      flightCost: 0,
+      mealplanCost: 0,
+    }
+  },
   components: { Payment },
+  methods: {
+    getSelectedFlight(){
+        var selectedFlightOption = document.getElementById("include-flight").value;
+
+        if (selectedFlightOption === 'oneway'){
+          this.flightCost = 1000;
+        } else if(selectedFlightOption === 'roundtrip') {
+          this.flightCost = 2000;
+        } else {
+          this.flightCost = 0;
+        }
+        return this.flightCost;
+      },
+      getSelectedMealplan(){
+        var selectedMealplanOption = document.getElementById("mealplan").value;
+
+        if (selectedMealplanOption === 'halfpension'){
+          this.mealplanCost = 500;
+        } else if(selectedMealplanOption === 'fullpension') {
+          this.mealplanCost = 1000;
+        } else if(selectedMealplanOption === 'allinclusive') {
+          this.mealplanCost = 2500;
+        }
+        else {
+          this.mealplanCost = 0;
+        }
+        return this.mealplanCost;
+      }
+  },
+  
   computed: {
     dates(){
       return this.$store.state.dates
@@ -106,7 +138,12 @@ export default {
     selectedRooms(){
       return this.$store.state.selectedRooms
     },
-  }
+    totalCost(){
+      let totalCost = 0
+      return totalCost += this.flightCost += this.mealplanCost;
+    }
+  },
+  
 }
 </script>
 
