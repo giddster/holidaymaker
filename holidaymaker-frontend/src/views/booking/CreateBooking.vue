@@ -13,8 +13,8 @@
 
       <div class="bookingdetails-trip"> 
         <h4><i class="fas fa-suitcase"></i> Trip details</h4>
-        <p><i class="fas fa-hotel"></i> {{thishotel.name}}</p>
-        <p> <i class="fas fa-map-marked-alt"></i> {{thishotel.address}}, {{thishotel.zipCode}} CITY, COUNTRY</p>    
+        <p><i class="fas fa-hotel"></i> {{selectedHotel.name}}</p>
+        <p> <i class="fas fa-map-marked-alt"></i> {{selectedHotel.address}}, {{selectedHotel.zipCode}} CITY, COUNTRY</p>    
         <p> <i class="far fa-calendar-check"></i> Checkin: {{ dates.checkinDate }}</p>    
         <p> <i class="fas fa-calendar-times"></i> Checkout: {{ dates.checkoutDate }}</p> 
       </div>
@@ -32,11 +32,8 @@
             <br>
 
           <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
-          <select id="mealplan" class="form-control options-selector" @change="getSelectedMealplan">
-            <option value="none" id="no-meals">None</option>
-            <option value="halfpension" id="half-pension">Half pension</option>
-            <option value="fullpension" id="full-pension">Full pension</option>
-            <option value="allinclusive" id="all-inclusive">All-inclusive</option>
+          <select id="mealplan" class="form-control options-selector" @change="chosenMealPlan($event)">
+            <option v-for="item in mealPlanAlternatives" :key="item" :value="item" id="mealplan-item" :text="correctText(item)"></option>
           </select>
           <i>*A continental breakfast is always included at our partner hotels</i>
       </div>
@@ -53,7 +50,7 @@
               </select> -->
 
               <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
-              <select id="sparebedsperroom" class="form-control options-selector">
+              <select id="sparebedsperroom" class="form-control options-selector" @change="getSelectedMealplan">
                   <option value="1">0</option>
                   <option value="2">2</option>
                   <option value="3">{{room.noOfSpareBeds}}</option>
@@ -74,7 +71,7 @@
         <hr>
         <h5>Options:</h5>
         <p>Include flight: {{flightCost}} SEK</p>
-        <p>Meal plan: xxx SEK</p>
+        <p>Meal plan: {{mealplanCost}} SEK</p>
         <h5>TOTAL SUM: {{totalCost}} SEK</h5>
 
         <div class="payment-buttons">
@@ -95,6 +92,8 @@ export default {
     return {
       flightCost: 0,
       mealplanCost: 0,
+      roomCost: 0,
+      calculatedTotalCost: 0,
     }
   },
   components: { Payment },
@@ -103,45 +102,88 @@ export default {
         var selectedFlightOption = document.getElementById("include-flight").value;
 
         if (selectedFlightOption === 'oneway'){
-          this.flightCost = 1000;
+          this.flightCost = 1000; 
         } else if(selectedFlightOption === 'roundtrip') {
-          this.flightCost = 2000;
+          this.flightCost = 2000; 
         } else {
           this.flightCost = 0;
         }
         return this.flightCost;
       },
-      getSelectedMealplan(){
-        var selectedMealplanOption = document.getElementById("mealplan").value;
-
-        if (selectedMealplanOption === 'halfpension'){
-          this.mealplanCost = 500;
-        } else if(selectedMealplanOption === 'fullpension') {
-          this.mealplanCost = 1000;
-        } else if(selectedMealplanOption === 'allinclusive') {
-          this.mealplanCost = 2500;
-        }
-        else {
-          this.mealplanCost = 0;
-        }
-        return this.mealplanCost;
+    correctText(value){
+      if(value === 'none'){
+        return "None";
       }
+      else if(value === 'halfpension'){
+        return "Half pension"
+      }
+      else if(value === 'fullpension'){
+        return "Full pension"
+      }
+      else if(value === 'allinclusive'){
+        return "All inclusive"
+      }
+    },
+    chosenMealPlan(event) {
+      if (event.target.value === 'halfpension'){
+        this.mealplanCost = 500;
+      } 
+      else if(event.target.value === 'fullpension') {
+        this.mealplanCost = 1000;
+      } 
+      else if(event.target.value === 'allinclusive') {
+        this.mealplanCost = 2500;
+      }
+      else {
+        this.mealplanCost = 0;
+      }
+    },
   },
   
   computed: {
     dates(){
       return this.$store.state.dates
     },
-    thishotel(){
+    selectedHotel(){
       return this.$store.state.thisHotel;
     },
     selectedRooms(){
       return this.$store.state.selectedRooms
     },
     totalCost(){
-      let totalCost = 0
-      return totalCost += this.flightCost += this.mealplanCost;
-    }
+      this.calculatedTotalCost = 0;
+      this.roomCost = 0;
+      // I am not sure why the two following lines works beacause it seems strange to have to do this calculation but it works so i'll leave it for now
+      this.flightCost = this.flightCost;
+      this.mealplanCost = this.mealplanCost;
+
+      for(let room of this.selectedRooms){
+        this.roomCost += room.roomType.price;
+      }
+
+      return this.calculatedTotalCost = this.roomCost + this.flightCost + this.mealplanCost;
+    },
+    
+    mealPlanAlternatives(){
+      let availableAlternatives = []
+
+      availableAlternatives.push('none')
+
+      if (this.selectedHotel.hasHalfPension === true){
+        availableAlternatives.push('halfpension')
+      }
+
+      if (this.selectedHotel.hasWholePension === true){
+        availableAlternatives.push('fullpension')
+      }
+
+      if (this.selectedHotel.hasAllInclusive === true){
+        availableAlternatives.push('allinclusive')
+      }
+
+      return availableAlternatives
+    },
+
   },
   
 }
@@ -204,10 +246,6 @@ margin: 0 auto;
   padding: 20px;
   margin: auto;
   text-align: center;
-}
-
-.payment-buttons {
-  
 }
 
 

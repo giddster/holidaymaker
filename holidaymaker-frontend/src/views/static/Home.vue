@@ -30,7 +30,6 @@ export default {
 .seedestinations{
 float: left;
 margin-left: 700px;
-
 }
 
 .seehotels {
