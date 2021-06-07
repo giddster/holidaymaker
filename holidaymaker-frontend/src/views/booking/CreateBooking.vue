@@ -20,7 +20,7 @@
       </div>
       
       <div class="bookingdetails-options"> 
-          <h4><i class="fas fa-list"></i> Options: </h4>
+          <h4><i class="fas fa-list"></i> Options </h4>
           
           <label for="includeFlight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
           <select id="includeFlight" class="form-control options-selector">
@@ -34,9 +34,9 @@
           <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
           <select id="mealplan" class="form-control options-selector">
             <option value="none">None</option>
-            <option value="halfboard">Half pension</option>
-            <option value="fullboard">Full pension</option>
-            <option value="opel">All-inclusive</option>
+            <option value="halfpension" v-if="thisHotel.hasHalfPension">Half pension</option>
+            <option value="fullpension" v-if="thisHotel.hasWholePension">Full pension</option>
+            <option value="allinclusive" v-if="thisHotel.hasAllInclusive">All-inclusive</option>
           </select>
           <i>*A continental breakfast is always included at our partner hotels</i>
       </div>
@@ -56,9 +56,9 @@
 
               <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
               <select id="sparebedsperroom" class="form-control options-selector">
-                  <option value="1">1</option>
+                  <option value="1">0</option>
                   <option value="2">2</option>
-                  <option value="3">3</option>
+                  <option value="3">{{room.noOfSpareBeds}}</option>
               </select>
           </div>
       </div>
@@ -67,8 +67,17 @@
     </div>
 
     <div class="booking-price">
-        <h4>Payment</h4>
-        <p>TOTAL SUM: XXX SEK</p>
+        <h4>Price for booking</h4>
+        <h5>Room(s): {{selectedRooms.length}}</h5>
+        <div v-for="(room, index) in selectedRooms" :key="room"> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * X nights for XY guests = YYY SEK</p> 
+        </div>
+        <p>Spare beds: </p>
+        <hr>
+        <h5>Options:</h5>
+        <p>Include flight: xxx SEK</p>
+        <p>Meal plan: xxx SEK</p>
+        <h5>TOTAL SUM: XXX SEK</h5>
 
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger">Cancel booking</router-link>
