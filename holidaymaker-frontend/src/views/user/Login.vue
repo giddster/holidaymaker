@@ -28,7 +28,7 @@
             <slot>
               <h3 id="custom">{{ message }}</h3>
             </slot>
-            <button class="btnModal" @click="close">CLOSE</button>
+            <button class="btnModal" @click.prevent="close">CLOSE</button>
           </div>
         </div>
       </transition>
@@ -77,17 +77,19 @@ export default {
         password: this.UserPassword,
       };
 
-      // console.log('Värdet i isLoggedIn: ')
-      // console.log(this.isLoggedIn)
+      console.log('Värdet i isLoggedIn före: ')
+      console.log(this.isLoggedIn)
       //console.log(user)
 
-      let response = await this.loginUser(user);
+      await this.loginUser(user);
+
+      console.log('Värdet i isLoggedIn efter: ')
 
       console.log(this.isLoggedIn)
 
       //console.log(response);
 
-      if (this.isLoggedIn) {
+      if (!this.isLoggedIn) {
         //router.go()
         //alert("Login Successful");
         //this.reRender()
@@ -99,10 +101,6 @@ export default {
         this.open("Login Failed");
         //alert("Login Failed");
       }
-    },
-
-    reRender() {
-      this.$forceUpdate();
     },
 
     open(message) {

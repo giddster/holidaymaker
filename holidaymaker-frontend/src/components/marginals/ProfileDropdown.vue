@@ -43,7 +43,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 // import { mapActions } from "vuex";
-import router from "@/router/index";
+//import router from "@/router/index";
 
 export default {
   data: () => {
@@ -67,15 +67,15 @@ export default {
 
     async handleLogout() {
 
-      console.log(this.IsLoggedIn)
+      //console.log(this.IsLoggedIn)
 
       let response = await this.logoutUser();
 
-      console.log(this.IsLoggedIn)
+      // console.log(this.IsLoggedIn)
 
       console.log(response);
 
-      if (response) {
+      if (!isLoggedIn) {
         //alert('You have been logged off')
         this.open("You have been logged off");
         //router.push('/')
@@ -91,8 +91,8 @@ export default {
     },
 
     close() {
-      this.$forceUpdate();
-      router.push("/");
+      //this.$forceUpdate();
+      //router.push("/");
       this.isVisible = false;
       //this.$forceUpdate();
     },
