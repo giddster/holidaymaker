@@ -272,9 +272,7 @@ export default createStore({
 			const data = await response.json();
 
 			dispatch('getLoggedInUser')
-
 		},
-
 
 		async loginUser({ dispatch }, loggedInUser) {
 
@@ -292,7 +290,6 @@ export default createStore({
 			dispatch('getLoggedInUser')
 		},
 
-
 		async logoutUser({ dispatch }) {
 
 			const requestOptions = {
@@ -304,8 +301,6 @@ export default createStore({
 			const data = await response.json();
 
 			dispatch('getLoggedInUser')
-
-
 		},
 
 		async getLoggedInUser({ commit }) {
@@ -318,19 +313,15 @@ export default createStore({
 			}
 			catch (e) {
 				commit('SetLoggedInUser', {})
-
 			}
-
 			const data = await response.json();
+			console.log(data)
 
-			// console.log('getLoggedInUser data:')
-			// console.log(data)
-			// console.log(response.status)
+			
 
 			if (response.status == 200) {
-				// window.localStorage.removeItem('isLoggedIn')
+				
 				commit('SetLoggedInUser', data)
-
 			}
 			else {
 				commit('SetLoggedInUser', {})
