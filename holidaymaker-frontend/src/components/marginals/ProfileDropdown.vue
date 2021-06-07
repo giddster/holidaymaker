@@ -56,9 +56,9 @@ export default {
   computed: {
     ...mapGetters(["IsLoggedIn"]),
 
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    }
 
   },
 

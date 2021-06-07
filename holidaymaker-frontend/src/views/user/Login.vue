@@ -77,16 +77,17 @@ export default {
         password: this.UserPassword,
       };
 
-      console.log(this.IsLoggedIn)
+      // console.log('Värdet i isLoggedIn: ')
+      // console.log(this.isLoggedIn)
       //console.log(user)
 
       let response = await this.loginUser(user);
 
-      console.log(this.IsLoggedIn)
+      console.log(this.isLoggedIn)
 
       //console.log(response);
 
-      if (this.IsLoggedIn) {
+      if (this.isLoggedIn) {
         //router.go()
         //alert("Login Successful");
         //this.reRender()

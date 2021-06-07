@@ -20,9 +20,9 @@
       </div>
      
 
-      {{ IsLoggedIn }}
+      {{ isLoggedIn }}
 
-      <div v-if="IsLoggedIn" class="header-div2">
+      <div v-if="isLoggedIn" class="header-div2">
         <ProfileDropdown />
       </div>
 
@@ -48,7 +48,7 @@ export default {
   components: { ProfileDropdown },
   computed: {
     isLoggedIn (){
-      return !!(this.$store.state.customer && this.$store.state.customer.email)
+      return !!this.$store.state.customers.email
     }
 
   },

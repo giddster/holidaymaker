@@ -140,15 +140,17 @@ export default createStore({
     },
 
     Logout(state) {
-      state.loggedInUser.userName = null
-      state.loggedInUser.password = null
+		state.customer = {};
+      //state.loggedInUser.userName = null
+      //state.loggedInUser.password = null
     //   state.loggedInUser.isLoggedIn = false
-	state.loggedInUser.isLoggedIn = window.localStorage.removeItem('isLoggedIn')
+	//state.loggedInUser.isLoggedIn = window.localStorage.removeItem('isLoggedIn')
 
     },
 
 	SetLoggedInUser(state, data) {
 		state.customers = data
+		console.log(state.customers)
 	}
   },
 
@@ -289,7 +291,7 @@ export default createStore({
 	dispatch('getLoggedInUser')
 	},
 
-	async logoutUser({ commit }) {
+	async logoutUser({ dispatch }) {
 
 	const requestOptions = {
 		method: "POST",
@@ -299,22 +301,27 @@ export default createStore({
 	let response = await fetch('/api/Authentication/Logout', requestOptions)
 	const data = await response.json();
 
-	if (response.status == 200) {
-		// window.localStorage.removeItem('isLoggedIn')
-		commit('Logout')
-
-		return true
-	}
-	else {
-		return false
-	}
+	dispatch('getLoggedInUser')
+	
 
 	},
 
 	async getLoggedInUser({ commit }) {
 
-		let response = await fetch('/api/Customers/UserProfile')
+		let response
+		try{
+
+			response = await fetch('/api/Customers/UserProfile')
+		}
+		catch (e) {
+			commit('SetLoggedInUser', {})
+
+		}
 		const data = await response.json();
+
+		// console.log('getLoggedInUser data:')
+		// console.log(data)
+		// console.log(response.status)
 
 	if (response.status == 200) {
 		// window.localStorage.removeItem('isLoggedIn')

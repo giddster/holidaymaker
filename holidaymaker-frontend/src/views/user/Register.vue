@@ -81,7 +81,7 @@ export default {
     isLoggedIn (){
       // return !!this.$store.customer.email
 
-      return !!(this.$store.state.customer && this.$store.state.customer.email)
+      return !!this.$store.state.customers.email
     }
   },
 
