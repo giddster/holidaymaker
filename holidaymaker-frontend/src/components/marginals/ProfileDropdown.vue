@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 // import { mapActions } from "vuex";
 //import router from "@/router/index";
 
@@ -54,7 +54,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
+    //...mapGetters(["IsLoggedIn"]),
 
     isLoggedIn (){
       return !!this.$store.state.customers.email
@@ -73,9 +73,9 @@ export default {
 
       // console.log(this.IsLoggedIn)
 
-      console.log(response);
+      //console.log(response);
 
-      if (!isLoggedIn) {
+      if (!!response) {
         //alert('You have been logged off')
         this.open("You have been logged off");
         //router.push('/')

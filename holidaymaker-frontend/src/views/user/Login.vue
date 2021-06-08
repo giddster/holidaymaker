@@ -39,7 +39,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 // import { mapActions } from "vuex";
-import router from "@/router/index";
+//import router from "@/router/index";
 
 export default {
   data: () => {
@@ -55,10 +55,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
+    //...mapGetters(["IsLoggedIn"]),
 
-    isLoggedIn (){
-      return !!this.$store.state.customers.email
+    async isLoggedIn (){
+      return await !!this.$store.state.customers.email
     }
   
     // IsLoggedIn () {
@@ -83,13 +83,13 @@ export default {
 
       await this.loginUser(user);
 
-      console.log('Värdet i isLoggedIn efter: ')
+      //console.log('Värdet i isLoggedIn efter: ')
 
-      console.log(this.isLoggedIn)
+      //console.log(this.isLoggedIn)
 
       //console.log(response);
 
-      if (!this.isLoggedIn) {
+      if (!!user) {
         //router.go()
         //alert("Login Successful");
         //this.reRender()

@@ -46,6 +46,7 @@ import ProfileDropdown from '@/components/marginals/ProfileDropdown.vue';
 export default {
 
   components: { ProfileDropdown },
+  
   computed: {
     isLoggedIn (){
       return !!this.$store.state.customers.email

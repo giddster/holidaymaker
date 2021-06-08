@@ -156,7 +156,7 @@ export default createStore({
 
 	getters: {
 
-		IsLoggedIn: state => !!state.loggedInUser.IsLoggedIn
+		IsLoggedIn: (state) => {!!state.customers.email}
 		//  IsLoggedIn(state){
 		//  if(state.loggedInUser.IsLoggedIn === 'true' ){
 

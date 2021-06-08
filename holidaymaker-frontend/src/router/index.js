@@ -57,7 +57,22 @@ const routes = [
   {
     path: "/profile",
     name: "MyProfile",
-    component: MyProfile
+    component: MyProfile,
+    async beforeEnter(to, from, next) {
+      let result = this.$store.state.customer.email
+      // let result = await store.dispatch("IsLoggedIn")
+      // let result = store.getters.IsLoggedIn
+      // let result = store.getters["IsLoggedIn"]
+      // let result = true;
+      // let result = '';
+      console.log(!!result)
+      if(!!result){
+        next()
+      }else{
+        next('/Login')
+        // next({name: "Login"})
+      }
+    }
   },
 
   //STATIC VIEWS
