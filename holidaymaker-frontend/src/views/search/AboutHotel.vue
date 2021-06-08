@@ -98,6 +98,7 @@ import DatePicker from '@/components/search/DatePicker.vue'
 import RoomSuggestor from '@/components/search/RoomSuggestor.vue'
 import OutputReview from '@/components/review/OutputReview.vue'
 import StarRating from '@/components/starRating/StarRating.vue'
+import {mapActions} from "vuex"
 
 export default {
   
@@ -108,6 +109,8 @@ export default {
     },
     
   methods: {
+    ...mapActions(['addHotelToFavorites']),
+
     scrollToSuggestions(refName){
       var element = this.$refs[refName];
       var top = element.offsetTop;
@@ -120,6 +123,26 @@ export default {
 
       window.scrollTo(0, top);
     },
+
+    addToFavorites(){
+
+
+
+      let inputHotelId = this.thishotel.id;
+      console.log(inputHotelId)
+      let inputcustomerId = this.thisLoggedInCustomer.id ;
+      console.log(inputcustomerId)
+
+      let data = {
+        hotelId : inputHotelId,
+        customerId : inputcustomerId
+      }
+
+      this.addHotelToFavorites(data)
+
+
+
+    }
    
   },
   computed: {
@@ -143,7 +166,11 @@ export default {
         }
       }
       return filteredImages;
-    }
+    },
+
+    thisLoggedInCustomer(){
+            return this.$store.state.customers;
+        }
   },
   
 }

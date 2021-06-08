@@ -125,7 +125,7 @@ namespace HolidayMaker_API.Controllers
                 return BadRequest();
             }
 
-            return NoContent();
+            return Ok();
         }
 
         #region OLD

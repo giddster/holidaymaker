@@ -12,15 +12,6 @@ namespace HolidayMaker_API.Models
             Bookings = new HashSet<Booking>();
             FavoriteHotels = new HashSet<FavoriteHotel>();
             Reviews = new HashSet<Review>();
-            FirstName = "";
-            LastName = "";
-            Address = "";
-            ZipCode = "";
-            City = "";
-            Country = "";
-            Phone = "";
-            Password = "";
-
         }
 
         public int Id { get; set; }
@@ -32,8 +23,6 @@ namespace HolidayMaker_API.Models
         public string Country { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public bool IsLoggedIn { get; set; }
-        public string Password { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<FavoriteHotel> FavoriteHotels { get; set; }
