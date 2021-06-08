@@ -8,7 +8,7 @@
       :cancel-url="cancelURL"
       @loading="v => loading = v"
     />
-    <button class="btn btn-info btn-lg" @click="submit">Confirm and pay booking</button>
+    <button class="btn btn-info btn-lg" @click="submit">Confirm/pay booking</button>
 </template>
 
 <script>

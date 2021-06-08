@@ -23,13 +23,13 @@
       <div class="bookingdetails-options"> 
           <h4><i class="fas fa-list"></i> Options </h4>
           
-          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?Ä</label> &nbsp;
+          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
           <select id="include-flight" class="form-control options-selector" @change="getSelectedFlight">
             <option value="none" id="no-flight">None</option>
             <option value="oneway" id="oneway-flight">One way</option>
             <option value="roundtrip" id="roundtrip-flight">Round-trip</option>
           </select>
-          <i>*Our flights always depart on your given checkin and checkout dates.</i>
+          <i class="asterisk-text">*Our flights always depart on your given checkin and checkout dates.</i>
         
             <br>
             <br>
@@ -38,7 +38,7 @@
           <select id="mealplan" class="form-control options-selector" @change="chosenMealPlan($event)">
             <option v-for="item in mealPlanAlternatives" :key="item" :value="item" id="mealplan-item" :text="correctText(item)"></option>
           </select>
-          <i>*A continental breakfast is always included at our partner hotels</i>
+          <i class="asterisk-text">*A continental breakfast is always included at our partner hotels</i>
       </div>
 
       <div class="bookingdetails-rooms"> 
@@ -67,17 +67,22 @@
         <h4>Price for booking</h4>
         <h5>Room(s): {{selectedRooms.length}}</h5>
         <div v-for="(room, index) in selectedRooms" :key="room"> 
-        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights = {{room.roomType.price * lengthOfStay}} SEK</p> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK <i class="fas fa-times" style="font-size:12px;color:red;"></i> {{lengthOfStay}} nights = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
         <p v-if="numberOfSpareBeds > 0"> Spare beds: {{numberOfSpareBeds}} * 300 SEK = {{numberOfSpareBeds * 300}} SEK</p>
+        <p>Total number of guests: </p>
+        
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
         <p>Meal plan: {{mealplanCost}} SEK</p>
+        
+        <hr>
+
         <h5>Total: {{totalCost}} SEK</h5>
 
         <div class="payment-buttons">
-            <router-link to="/" class="btn btn-lg btn-danger">Cancel booking</router-link>
+            <router-link to="/" class="btn btn-lg btn-danger" style="margin-right:10px;">Cancel booking</router-link>
             <Payment />
         </div>
         
@@ -256,6 +261,10 @@ border-radius: 10px;
   display: inline-flex;
 }
 
+.asterisk-text {
+  font-size: 12px;
+}
+
 .eachroom-box {
 border:black;
 border-style:hidden;
@@ -273,6 +282,10 @@ margin: 0 auto;
   padding: 20px;
   margin: auto;
   text-align: center;
+  max-width: fit-content;
+  border-style:hidden;
+  border-width:thin;
+  border-radius: 10px;
 }
 
 
