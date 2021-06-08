@@ -37,9 +37,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-// import { mapActions } from "vuex";
-//import router from "@/router/index";
+import { mapActions } from "vuex";
+import router from "@/router/index";
 
 export default {
   data: () => {
@@ -55,52 +54,31 @@ export default {
   },
 
   computed: {
-    //...mapGetters(["IsLoggedIn"]),
 
-    async isLoggedIn (){
-      return await !!this.$store.state.customers.email
-    }
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    },
   
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
   },
 
   methods: {
-    ...mapActions(["loginUser"]),
-
-    
+    ...mapActions(["loginUser"]), 
 
     async handleUserLogin() {
+
       let user = {
         email: this.UserEmail,
         password: this.UserPassword,
       };
 
-      console.log('Värdet i isLoggedIn före: ')
-      console.log(this.isLoggedIn)
-      //console.log(user)
-
       await this.loginUser(user);
 
-      //console.log('Värdet i isLoggedIn efter: ')
-
-      //console.log(this.isLoggedIn)
-
-      //console.log(response);
-
       if (!!user) {
-        //router.go()
-        //alert("Login Successful");
-        //this.reRender()
         this.open("Login Successful");
-        // document.getElementById("loginForm").reset();
-        // this.$forceUpdate();
-        // router.push("/");
       } else {
         this.open("Login Failed");
-        //alert("Login Failed");
       }
+
     },
 
     open(message) {
@@ -110,8 +88,7 @@ export default {
 
     close() {
       document.getElementById("loginForm").reset();
-      //this.$forceUpdate();
-      //router.push("/");
+      router.push("/");
       this.isVisible = false;
     },
   },

@@ -79,8 +79,6 @@ export default {
 
   computed: {
     isLoggedIn (){
-      // return !!this.$store.customer.email
-
       return !!this.$store.state.customers.email
     }
   },

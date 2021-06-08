@@ -321,7 +321,7 @@ export default createStore({
 
 		
 
-		async logoutUser({ dispatch }) {
+		async logoutUser({ commit }) {
 
 			const requestOptions = {
 				method: "POST",
@@ -331,7 +331,9 @@ export default createStore({
 			let response = await fetch('/api/Authentication/Logout', requestOptions)
 			const data = await response.json();
 
-			dispatch('getLoggedInUser')
+			// dispatch('getLoggedInUser')
+
+			commit('SetLoggedInUser', {})
 		},
 
 		
@@ -347,8 +349,9 @@ export default createStore({
 			catch (e) {
 				commit('SetLoggedInUser', {})
 			}
+
 			const data = await response.json();
-			console.log(data)
+			//console.log(data)
 
 			
 

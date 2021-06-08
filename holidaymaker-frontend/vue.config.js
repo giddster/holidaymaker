@@ -10,7 +10,6 @@ module.exports = {
           pathRewrite: {'^/userapi' : '/api2'}
         },
         
-        
       }
     }
   }

@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
+import store from '../store/index.js';
+
 
 // STATIC VIEWS //
 import Home from "../views/static/Home.vue"
@@ -52,25 +54,32 @@ const routes = [
   {
     path: "/booking",
     name: "CreateBooking",
-    component: CreateBooking
+    component: CreateBooking,
+    beforeEnter: (to, from, next) => {
+      let result = store.state.customers.email
+
+      console.log(!!result)
+
+      if(!!result){
+        next()
+      }else{
+        next({name: "Login"})
+      }
+    }
   },
   {
     path: "/profile",
     name: "MyProfile",
     component: MyProfile,
-    async beforeEnter(to, from, next) {
-      let result = this.$store.state.customer.email
-      // let result = await store.dispatch("IsLoggedIn")
-      // let result = store.getters.IsLoggedIn
-      // let result = store.getters["IsLoggedIn"]
-      // let result = true;
-      // let result = '';
+    beforeEnter: (to, from, next) => {
+      let result = store.state.customers.email
+
       console.log(!!result)
+
       if(!!result){
         next()
       }else{
-        next('/Login')
-        // next({name: "Login"})
+        next({name: "Login"})
       }
     }
   },
