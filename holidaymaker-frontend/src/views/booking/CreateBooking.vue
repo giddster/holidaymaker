@@ -53,25 +53,21 @@
               </select> -->
 
               <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
-              <select id="sparebedsperroom" class="form-control options-selector" @change="chosenNumberOfSpareBeds($event)">
+              <select id="sparebedsperroom" class="form-control options-selector" @change="chosenNumberOfSpareBeds($event, index)">
                   <option value="0">0</option>
-                  <option v-for="spareBed in room.noOfSpareBeds" :key="spareBed" :value="spareBed">{{spareBed}}</option>
+                  <option v-for="spareBed in room.noOfSpareBeds" :key="spareBed" :id="'test'+index" :value="spareBed">{{spareBed}}</option>
               </select>
           </div>
       </div>
-
-
     </div>
 
     <div class="booking-price">
         <h4>Price for booking</h4>
         <h5>Room(s): {{selectedRooms.length}}</h5>
         <div v-for="(room, index) in selectedRooms" :key="room"> 
-        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK <i class="fas fa-times" style="font-size:12px;color:red;"></i> {{lengthOfStay}} nights = {{room.roomType.price * lengthOfStay}} SEK</p> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights for X guests + {{selectionOfSpareBeds[index]}} spare bed(s) = YYY SEK</p> 
         </div>
-        <p v-if="numberOfSpareBeds > 0"> Spare beds: {{numberOfSpareBeds}} * 300 SEK = {{numberOfSpareBeds * 300}} SEK</p>
-        <p>Total number of guests: </p>
-        
+        <p>Spare beds: {{totalNumberOfSpareBeds}} * 300 SEK = {{calculatePriceForSpareBeds}} SEK</p>
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
@@ -102,9 +98,13 @@ export default {
       mealplanCost: 0,
       roomCost: 0,
       calculatedTotalCost: 0,
-      numberOfSpareBeds: 0,
+      selectionOfSpareBeds: [0],
       numberOfGuests: 0,
+      totalSpareBedCost: 0,
     }
+  },
+  watch: {
+    
   },
   
   components: { Payment },
@@ -149,20 +149,38 @@ export default {
         this.mealplanCost = 0;
       }
     },
-    chosenNumberOfSpareBeds(event){
-      this.numberOfSpareBeds = event.target.value
-
-      return this.numberOfSpareBeds
+    chosenNumberOfSpareBeds(event, index){
+      this.selectionOfSpareBeds[index] = event.target.value
     },
-   
-    // chosenNumberOfGuests(event){
-    //   this.numberOfGuests = event.target.value
-
-    //   return this.numberOfGuests
-    // }
   },
   
   computed: {
+    calculatedNumberOfSpareBeds(){
+      if (this.selectionOfSpareBeds !== undefined){
+        for (let i of this.selectionOfSpareBeds){
+          number = parseInt(i)
+          numberOfSpareBeds += number
+        }
+        return numberOfSpareBeds
+      }
+    },
+    calculatePriceForSpareBeds(){
+      let numberOfSpareBeds = 0
+      let totalSpareBedCost = 0
+      let number = 0;
+
+      if (this.selectionOfSpareBeds !== undefined){
+        for (let i of this.selectionOfSpareBeds){
+          number = parseInt(i)
+        numberOfSpareBeds += number
+      }
+      console.log(numberOfSpareBeds)
+      
+      totalSpareBedCost = numberOfSpareBeds * 300
+
+      return totalSpareBedCost
+      }
+    },
     dates(){
       return this.$store.state.dates
     },
@@ -189,11 +207,10 @@ export default {
       this.mealplanCost = this.mealplanCost;
 
       for(let room of this.selectedRooms){
-        this.roomCost += (room.roomType.price * this.lengthOfStay);
-        this.roomCost += this.numberOfSpareBeds * 300 // Price for a spare bed
+        this.roomCost += room.roomType.price; // Price for a spare bed
       }
 
-      return this.calculatedTotalCost = this.roomCost + this.flightCost + this.mealplanCost;
+      return this.calculatedTotalCost = this.roomCost + this.flightCost + this.mealplanCost + this.calculatePriceForSpareBeds;
     },
     
     mealPlanAlternatives(){
