@@ -19,8 +19,8 @@
         </router-link>
       </div>
      
-
-      {{ isLoggedIn }}
+      <!-- For testing -->
+      <!-- {{ isLoggedIn }} -->
 
       <div v-if="isLoggedIn" class="header-div2">
         <ProfileDropdown />

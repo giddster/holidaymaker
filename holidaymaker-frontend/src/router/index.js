@@ -26,11 +26,12 @@ import SearchResults from "../views/search/SearchResults.vue"
 import AboutHotel from "../views/search/AboutHotel.vue"
 
 const routes = [
-  
+
   //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
-  { path: '/:pathMatch(.*)*', 
-    name: 'not-found', 
-    component: NotFound 
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFound
   },
 
   //"DYNAMIC" VIEWS
@@ -39,7 +40,7 @@ const routes = [
     name: "Home",
     component: Home
   },
-  
+
   {
     path: "/hotel/:id",
     name: "AboutHotel",
@@ -50,22 +51,39 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
- 
+
   {
     path: "/booking",
     name: "CreateBooking",
     component: CreateBooking,
-    beforeEnter: (to, from, next) => {
-      let result = store.state.customers.email
+    // beforeEnter: (to, from, next) => {
 
-      console.log(!!result)
 
-      if(!!result){
-        next()
-      }else{
-        next({name: "Login"})
-      }
-    }
+    //   // let result1 = store.actions.dispatch('getLoggedInUser')
+    //   let result1 = store.state.customers
+
+    //   let result2 = store.state.customers.email
+
+
+    //   // let result1 = 's';
+
+    //   if (!result1.IsRevoked) {
+    //     console.log(result1)
+    //     next({ name: "Login" })
+
+    //   } else if (!!result2) {
+    //     console.log(result2)
+
+    //     next()
+
+    //   }
+
+    //   // if(!!result1){
+    //   //   next()
+    //   // }else{
+    //   //   next({name: "Login"})
+    //   // }
+    // }
   },
   {
     path: "/profile",
@@ -76,10 +94,10 @@ const routes = [
 
       console.log(!!result)
 
-      if(!!result){
+      if (!!result) {
         next()
-      }else{
-        next({name: "Login"})
+      } else {
+        next({ name: "Login" })
       }
     }
   },
@@ -122,7 +140,7 @@ const routes = [
     name: "Register",
     component: Register
   },
-  
+
   //PAYMENT STATUS VIEWS
   {
     path: "/paymentfailed",
@@ -134,7 +152,7 @@ const routes = [
     name: "PaymentSuccess",
     component: PaymentSuccess
   }
-  
+
 ];
 
 const router = createRouter({
