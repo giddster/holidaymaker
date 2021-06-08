@@ -48,9 +48,9 @@
               <p>Room number: <b>{{ room.roomNo }}</b> </p>
                 
               <label for="guestsperroom"><i class="fas fa-users"></i> Amount of guests </label> &nbsp;
-              <!-- <select id="guestsperroom" class="form-control options-selector" @change="chosenNumberOfGuests($event)">
-                  <option v-for="guests in selectedRooms.roomType.capacity" :key="guests" :value="items">{{items}}</option>
-              </select> -->
+              <select id="guestsperroom" class="form-control options-selector" @change="chosenNumberOfGuests($event, index)">
+                  <option v-for="guests in room.roomType.capacity" :key="guests" :value="guest">{{guests}}</option>
+              </select>
 
               <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
               <select id="sparebedsperroom" class="form-control options-selector" @change="chosenNumberOfSpareBeds($event, index)">
@@ -67,7 +67,7 @@
         <div v-for="(room, index) in selectedRooms" :key="room"> 
         <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights  = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
-        <p>Spare beds({{calculatedNumberOfSpareBeds}}) = {{calculatePriceForSpareBeds}} SEK</p>
+        <p>Spare beds({{calculatedNumberOfSpareBeds}}) á {{spareBedPrice}} SEK = {{calculatePriceForSpareBeds}} SEK</p>
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
@@ -99,8 +99,9 @@ export default {
       roomCost: 0,
       calculatedTotalCost: 0,
       selectionOfSpareBeds: [0],
-      numberOfGuests: 0,
+      spareBedPrice: 300, // change this to change the price for a single spare bed
       totalSpareBedCost: 0,
+      selectionOfGuests: [0],
     }
   },
   components: { Payment },
@@ -117,6 +118,7 @@ export default {
         }
         return this.flightCost;
       },
+//#region Meal Plan Methods
     correctText(value){
       if(value === 'none'){
         return "None";
@@ -145,12 +147,19 @@ export default {
         this.mealplanCost = 0;
       }
     },
+//#endregion Meal Plan Methods
+    
+    chosenNumberOfGuests(event, index){
+      this.selectionOfGuests[index] = event.target.value
+    },
+
     chosenNumberOfSpareBeds(event, index){
       this.selectionOfSpareBeds[index] = event.target.value
     },
   },
   
   computed: {
+//#region Spare Beds Computed
     calculatedNumberOfSpareBeds(){
       let number = 0;
       let numberOfSpareBeds = 0;
@@ -164,6 +173,8 @@ export default {
         console.log(numberOfSpareBeds)
         return numberOfSpareBeds
     },
+
+    // Calculates the total price for spare beds depending on the users choices
     calculatePriceForSpareBeds(){
       let numberOfSpareBeds = 0
       let totalSpareBedCost = 0
@@ -175,11 +186,13 @@ export default {
           numberOfSpareBeds += number
       }
       
-      totalSpareBedCost = numberOfSpareBeds * 300
+      totalSpareBedCost = numberOfSpareBeds * this.spareBedPrice
 
       return totalSpareBedCost
       }
     },
+//#endregion Spare Beds Computed
+
     dates(){
       return this.$store.state.dates
     },
@@ -201,8 +214,6 @@ export default {
     totalCost(){
       this.calculatedTotalCost = 0;
       this.roomCost = 0;
-      // I am not sure why the two following lines works beacause it seems strange to have to do this calculation but it works so i'll leave it for now
-      
 
       for(let room of this.selectedRooms){
         this.roomCost += room.roomType.price * this.lengthOfStay
@@ -281,11 +292,9 @@ border-radius: 10px;
 }
 
 .eachroom-box {
-border:black;
-border-style:hidden;
-border-width:thin;
-border-radius: 10px;
 margin: 0 auto;
+width: 35%;
+float: left;
 }
 
 .options-selector {
