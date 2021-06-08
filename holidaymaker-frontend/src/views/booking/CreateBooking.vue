@@ -69,7 +69,7 @@
         <div v-for="(room, index) in selectedRooms" :key="room"> 
         <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights  = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
-        <p>Spare beds({{calculatedNumberOfSpareBeds}}) á {{spareBedPrice}} SEK = {{calculatePriceForSpareBeds}} SEK</p>
+        <p>Spare beds({{calculatedNumberOfSpareBeds}}) * {{spareBedPrice}} SEK = {{calculatePriceForSpareBeds}} SEK</p>
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
