@@ -94,6 +94,8 @@ export default createStore({
       	dates: {},
 		
 		selectedRooms: [],
+
+		totalBookingPrice: {price: 0},
 		
   },
 

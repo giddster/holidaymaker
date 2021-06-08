@@ -25,15 +25,24 @@ export default {
       lineItems: [
         {
           price: 'price_1J01VSK0lVPWMlywOHp0M1Wf', // The id of the one-time price you created in your Stripe dashboard
-          quantity: 1, //SET THIS AS THE CREATEBOOKING TOTAL SUM AS A SILLY WORKAROUND
+          quantity: 0, //SET THIS AS THE CREATEBOOKING TOTAL SUM AS A SILLY WORKAROUND
         },
       ],
       successURL: 'http://localhost:8080/paymentsucceeded',
       cancelURL: 'http://localhost:8080/paymentfailed',
     };
   },
+  computed: {
+    
+  },
   methods: {
     submit () {
+      let input = this.$store.state.totalBookingPrice
+      let finalTotal = 0
+
+      finalTotal = parseInt(input.price)
+      
+      this.lineItems[0].quantity = finalTotal
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },

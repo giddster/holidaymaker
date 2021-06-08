@@ -173,7 +173,6 @@ export default {
           numberOfSpareBeds += number
         }
       }
-        console.log(numberOfSpareBeds)
         return numberOfSpareBeds
     },
 
@@ -222,6 +221,8 @@ export default {
         this.roomCost += room.roomType.price * this.lengthOfStay
       }
 
+      this.$store.state.totalBookingPrice.price = this.roomCost + this.flightCost + this.mealplanCost + this.calculatePriceForSpareBeds;
+      console.log(this.$store.state.totalBookingPrice.price)
       return this.calculatedTotalCost = this.roomCost + this.flightCost + this.mealplanCost + this.calculatePriceForSpareBeds;
     },
     
