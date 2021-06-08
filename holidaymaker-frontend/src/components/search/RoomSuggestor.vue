@@ -46,7 +46,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     <i class="far fa-window-close"></i> Close
                 </button>
-                <router-link to="/booking" @click="saveSelectedRooms" class="btn btn-primary" data-dismiss="modal"> <i class="fas fa-shopping-bag"></i> Go to booking</router-link>
+                <router-link to="/booking" v-if="selectedRooms.length" @click="saveSelectedRooms" class="btn btn-primary" data-dismiss="modal"> <i class="fas fa-shopping-bag"></i> Go to booking</router-link>
                 <!-- LÄGG IN EN AUTH HÄR SÅ ATT KUNDEN ÄR INLOGGAD OCH HAR KONTO -->
             </div>
 		</div>
