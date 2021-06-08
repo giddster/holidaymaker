@@ -17,6 +17,7 @@
         <p> <i class="fas fa-map-marked-alt"></i> {{selectedHotel.address}}, {{selectedHotel.zipCode}} CITY, COUNTRY</p>    
         <p> <i class="far fa-calendar-check"></i> Checkin: {{ dates.checkinDate }}</p>    
         <p> <i class="fas fa-calendar-times"></i> Checkout: {{ dates.checkoutDate }}</p> 
+        <p>Length of stay: {{lengthOfStay}} nights</p>
       </div>
       
       <div class="bookingdetails-options"> 
@@ -64,7 +65,7 @@
         <h4>Price for booking</h4>
         <h5>Room(s): {{selectedRooms.length}}</h5>
         <div v-for="(room, index) in selectedRooms" :key="room"> 
-        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * X nights for XY guests = YYY SEK</p> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights for X guests + {{numberOfSpareBeds}} spare bed(s) = YYY SEK</p> 
         </div>
         <p>Spare beds: {{numberOfSpareBeds}} * 300 SEK = {{numberOfSpareBeds * 300}} SEK</p>
         <hr>
@@ -89,6 +90,7 @@ import Payment from '@/components/payment/Payment.vue'
 export default {
   data(){
     return {
+      lengthOfStay: 0,
       flightCost: 0,
       mealplanCost: 0,
       roomCost: 0,
@@ -97,6 +99,7 @@ export default {
       numberOfGuests: 0,
     }
   },
+  
   components: { Payment },
   methods: {
     getSelectedFlight(){
@@ -144,6 +147,7 @@ export default {
 
       return this.numberOfSpareBeds
     },
+   
     // chosenNumberOfGuests(event){
     //   this.numberOfGuests = event.target.value
 
@@ -160,6 +164,15 @@ export default {
     },
     selectedRooms(){
       return this.$store.state.selectedRooms
+    },
+    lengthOfStay(){
+      let checkinDate = new Date(this.$store.state.dates.checkinDate);
+      let checkoutDate = new Date(this.$store.state.dates.checkoutDate);
+
+      let difference = Math.abs(checkoutDate-checkinDate);
+      let nights = difference/(1000*3600*24);
+      this.lengthOfStay = nights;
+      return this.lengthOfStay;
     },
     totalCost(){
       this.calculatedTotalCost = 0;
