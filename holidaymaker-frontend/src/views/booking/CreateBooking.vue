@@ -1,65 +1,67 @@
 <template>
-    <h2 class="bookingdetails-heading">Your booking details:</h2>
-    
-    <div class="bookingdetails-parent">
-
-      <div class="bookingdetails-customer"> 
-        <h4><i class="fas fa-user-alt"></i> Customer details</h4>
-        <p>First name: </p>
-        <p>Last name: </p>
-        <p>Address: </p>
-        <p>E-mail: </p>    
-      </div>
-
-      <div class="bookingdetails-trip"> 
-        <h4><i class="fas fa-suitcase"></i> Trip details</h4>
-        <p><i class="fas fa-hotel"></i> {{selectedHotel.name}}</p>
-        <p> <i class="fas fa-map-marked-alt"></i> {{selectedHotel.address}}, {{selectedHotel.zipCode}} CITY, COUNTRY</p>    
-        <p> <i class="far fa-calendar-check"></i> Checkin: {{ dates.checkinDate }}</p>    
-        <p> <i class="fas fa-calendar-times"></i> Checkout: {{ dates.checkoutDate }}</p> 
-        <p>Length of stay: {{lengthOfStay}} nights</p>
-      </div>
-      
-      <div class="bookingdetails-options"> 
-          <h4><i class="fas fa-list"></i> Options </h4>
-          
-          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
-          <select id="include-flight" class="form-control options-selector" @change="getSelectedFlight">
-            <option value="none" id="no-flight">None</option>
-            <option value="oneway" id="oneway-flight">One way</option>
-            <option value="roundtrip" id="roundtrip-flight">Round-trip</option>
-          </select>
-          <i class="asterisk-text">*Our flights always depart on your given checkin and checkout dates.</i>
-        
-            <br>
-            <br>
-
-          <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
-          <select id="mealplan" class="form-control options-selector" @change="chosenMealPlan($event)">
-            <option v-for="item in mealPlanAlternatives" :key="item" :value="item" id="mealplan-item" :text="correctText(item)"></option>
-          </select>
-          <i class="asterisk-text">*A continental breakfast is always included at our partner hotels</i>
-      </div>
-
-      <div class="bookingdetails-rooms"> 
-          <h4><i class="fas fa-door-open"></i> Room(s) </h4>
-          <div v-for="(room, index) in selectedRooms" :key="room" class="eachroom-box">
-              <i>Room {{index + 1}}</i>
-              <p>Room number: <b>{{ room.roomNo }}</b> </p>
-                
-              <label for="guestsperroom"><i class="fas fa-users"></i> Amount of guests </label> &nbsp;
-              <select id="guestsperroom" class="form-control options-selector" @change="chosenNumberOfGuests($event, index)">
-                  <option v-for="guests in room.roomType.capacity" :key="guests" :value="guest">{{guests}}</option>
-              </select>
-
-              <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
-              <select id="sparebedsperroom" class="form-control options-selector" @change="chosenNumberOfSpareBeds($event, index)">
-                  <option value="0">0</option>
-                  <option v-for="spareBed in room.noOfSpareBeds" :key="spareBed" :id="'test'+index" :value="spareBed">{{spareBed}}</option>
-              </select>
-          </div>
-      </div>
+  <div class="bookingdetails-parent">
+    <div class="bookingdetails-heading">
+      <h2>Your booking details</h2>
+      <hr/>
     </div>
+    
+    <div class="bookingdetails-customer"> 
+      <h4><i class="fas fa-user-alt"></i> Customer details</h4>
+      <p>First name: </p>
+      <p>Last name: </p>
+      <p>Address: </p>
+      <p>E-mail: </p>
+    </div>
+
+    <div class="bookingdetails-trip"> 
+      <h4><i class="fas fa-suitcase"></i> Trip details</h4>
+      <p><i class="fas fa-hotel"></i> {{selectedHotel.name}}</p>
+      <p> <i class="fas fa-map-marked-alt"></i> {{selectedHotel.address}}, {{selectedHotel.zipCode}} CITY, COUNTRY</p>    
+      <p> <i class="far fa-calendar-check"></i> Checkin: {{ dates.checkinDate }}</p>    
+      <p> <i class="fas fa-calendar-times"></i> Checkout: {{ dates.checkoutDate }}</p> 
+      <p>Length of stay: {{lengthOfStay}} nights</p>
+    </div>
+    
+    <div class="bookingdetails-options"> 
+        <h4><i class="fas fa-list"></i> Options </h4>
+        <label for="include-flight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
+        <select id="include-flight" class="form-control options-selector" @change="getSelectedFlight">
+          <option value="none" id="no-flight">None</option>
+          <option value="oneway" id="oneway-flight">One way</option>
+          <option value="roundtrip" id="roundtrip-flight">Round-trip</option>
+        </select>
+        <i class="asterisk-text">*Our flights always depart on your given checkin and checkout dates.</i>
+      
+          <br>
+          <br>
+
+        <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
+        <select id="mealplan" class="form-control options-selector" @change="chosenMealPlan($event)">
+          <option v-for="item in mealPlanAlternatives" :key="item" :value="item" id="mealplan-item" :text="correctText(item)"></option>
+        </select>
+        <i class="asterisk-text">*A continental breakfast is always included at our partner hotels</i>
+    </div>
+
+    <div class="bookingdetails-rooms">
+        <h4><i class="fas fa-door-open"></i> Room(s) </h4>
+        <hr>
+        <div v-for="(room, index) in selectedRooms" :key="room" class="eachroom-box">
+            <i>Room {{index + 1}}</i>
+            <p>Room number: <b>{{ room.roomNo }}</b> </p>
+              
+            <label for="guestsperroom"><i class="fas fa-users"></i> Amount of guests </label> &nbsp;
+            <select id="guestsperroom" class="form-control options-selector" @change="chosenNumberOfGuests($event, index)">
+                <option v-for="guests in room.roomType.capacity" :key="guests" :value="guest">{{guests}}</option>
+            </select>
+
+            <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
+            <select id="sparebedsperroom" class="form-control options-selector" @change="chosenNumberOfSpareBeds($event, index)">
+                <option value="0">0</option>
+                <option v-for="spareBed in room.noOfSpareBeds" :key="spareBed" :id="'test'+index" :value="spareBed">{{spareBed}}</option>
+            </select>
+        </div>
+    </div>
+    
 
     <div class="booking-price">
         <h4>Price for booking</h4>
@@ -75,7 +77,7 @@
         
         <hr>
 
-        <h5>Total: {{totalCost}} SEK</h5>
+        <h5><b>Total: {{totalCost}} SEK</b></h5>
 
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger" style="margin-right:10px;">Cancel booking</router-link>
@@ -83,6 +85,7 @@
         </div>
         
     </div>
+  </div>
     
 </template>
 
@@ -249,52 +252,70 @@ export default {
 
 
 <style scoped>
-.bookingdetails-heading {
-  text-align: center;
-}
-
 .bookingdetails-parent {
 display: grid;
-grid-template-columns: repeat(2, 1fr);
-grid-template-rows: repeat(2, 1fr);
+background-color: whitesmoke;
+grid-template-columns: 50% 50%;
+grid-template-rows: 1fr auto auto auto auto;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
 padding: 10px;
-max-width: 80%;
-margin: auto;
-border:black;
+max-width: 70%;
+height: auto;
+margin: 40px auto;
+border:darkgrey;
 border-style: solid;
 border-width: thin;
 border-radius: 10px;
 }
 
+.bookingdetails-heading {
+  grid-column: 1 /span 2;
+  grid-row: 1;
+  text-align: center;
+  width: 100%;
+}
+
 .bookingdetails-customer { 
-  grid-area: 1 / 1 / 2 / 2; 
+  grid-column: 1;
+  grid-row: 2; 
   padding: 10px;
 }
 .bookingdetails-trip { 
-  grid-area: 1 / 2 / 2 / 3; 
+  grid-column: 1;
+  grid-row: 3;
   padding: 10px;
 }
 .bookingdetails-options { 
-  grid-area: 2 / 1 / 3 / 2; 
+  grid-column: 1;
+  grid-row: 4;
   padding: 10px;
 }
 .bookingdetails-rooms { 
-  grid-area: 2 / 2 / 3 / 3;
+  grid-column: 1 / span 2;
+  grid-row: 5;
   padding: 10px;
   margin: auto 0;
-  display: inline-flex;
+}
+
+.eachroom-box {
+grid-column: 1 / span 2;
+grid-row: 5;
+margin: 2% 2%;
+display: inline-block;
+}
+
+.booking-price {
+  grid-column: 2;
+  grid-row: 2 / span 3;
+  padding: 20px;
+  margin: 0px auto;
+  text-align: center;
+  max-width: fit-content;
 }
 
 .asterisk-text {
   font-size: 12px;
-}
-
-.eachroom-box {
-margin: 0 auto;
-width: 35%;
-float: left;
 }
 
 .options-selector {
@@ -302,15 +323,8 @@ float: left;
   max-height: 40px;
 }
 
-.booking-price {
-  padding: 20px;
-  margin: auto;
-  text-align: center;
-  max-width: fit-content;
-  border-style:hidden;
-  border-width:thin;
-  border-radius: 10px;
+h4 {
+  color: lightcoral;
 }
-
 
 </style>
