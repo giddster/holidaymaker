@@ -23,13 +23,15 @@
       <div class="bookingdetails-options"> 
           <h4><i class="fas fa-list"></i> Options </h4>
           
-          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?</label> &nbsp;
+          <label for="include-flight"><i class="fas fa-plane"></i> Include flight?Ä</label> &nbsp;
           <select id="include-flight" class="form-control options-selector" @change="getSelectedFlight">
             <option value="none" id="no-flight">None</option>
             <option value="oneway" id="oneway-flight">One way</option>
             <option value="roundtrip" id="roundtrip-flight">Round-trip</option>
           </select>
+          <i>*Our flights always depart on your given checkin and checkout dates.</i>
         
+            <br>
             <br>
 
           <label for="mealplan"><i class="fas fa-utensils"></i> Meal plan*</label> &nbsp;
