@@ -110,6 +110,9 @@ export default createStore({
 		setHotels(state, data) {
 			state.hotels = data
 		},
+		setFavoriteHotel(state, data){
+			state.favoritehotels = data
+		},
 		setReviews(state, data) {
 			state.reviews = data
 		},
@@ -207,6 +210,32 @@ export default createStore({
 			let data = await response.json()
 			console.log(data)
 			commit('setThisHotel', data)
+		},
+
+
+		async addHotelToFavorites({commit}, data){
+
+			console.log(data)
+			let body = {
+
+				hotelId : data.hotelId,
+				customerId : data.customerId,
+			}
+
+			console.log(body)
+			let requestOptions = {
+				method: 'POST',
+				headers: { 'Content-type': 'application/json' },
+				body: JSON.stringify(body)
+			}
+			console.log(requestOptions)
+
+
+			const response = await fetch('/api/FavoriteHotels', requestOptions)
+			let result = await response.json()
+			console.log('resultat från backend', result)
+			commit('setFavoriteHotel', result)
+
 		},
 
 		async fetchFilteredReviews({ commit }, id) {
@@ -334,23 +363,35 @@ export default createStore({
 
 		},
 
-		// async editCustomer({commit},data){
-		// 	let body = {  }
+		async editCustomer({commit} , data){
+			let body = { 
+				id: data.id,
+				firstName: data.firstName ,
+				lastName: data.lastName ,
+				address: data.address ,
+				zipCode: data.zipCode,
+				city: data.city,
+				country:data.country,
+				email: data.email,
+				phone: data.phone}
 
-		// 	const requestOptions = {
-		// 		method: "POST",
-		// 		headers: { 'Content-type': 'application/json' },
-		// 		body: JSON.stringify(body)
-		// 	};
+			const requestOptions = {
+				method: "PUT",
+				headers: { 'Content-type': 'application/json' },
+				body: JSON.stringify(body)
+			};
 
-		// 	const response = await fetch('/api/Authentication/Register', requestOptions)
-		// 	const data = await response.json();
+			const id = data.id;
+			console.log(id)
 
-		// 	dispatch('getLoggedInUser')
+			const response = await fetch(`/api/Customers/${id}`, requestOptions)
+			data = await response.json();
+
+			commit('SetLoggedInUser')
 
 
 
-		// }
+		}
 
 
 

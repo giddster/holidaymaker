@@ -67,6 +67,7 @@
 
 
 <script>
+import {mapActions} from "vuex"
 import router from "../../router/index"
 export default {
 
@@ -91,6 +92,9 @@ export default {
         }
     },
     methods:{
+
+        ...mapActions(['editCustomer']),
+
         enableEditProfileForm(){
             var form = document.getElementById("editProfileForm")
             var elements = form.elements;
@@ -112,6 +116,8 @@ export default {
             var editBtn = document.getElementById("editProfileBtn");
             saveBtn.hidden = true;
             editBtn.disabled = false;
+
+            this.editCustomer(this.thisLoggedInUser)
 
         }
     }
