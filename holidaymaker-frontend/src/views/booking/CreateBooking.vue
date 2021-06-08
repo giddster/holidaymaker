@@ -65,14 +65,14 @@
         <h4>Price for booking</h4>
         <h5>Room(s): {{selectedRooms.length}}</h5>
         <div v-for="(room, index) in selectedRooms" :key="room"> 
-        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights for X guests + {{numberOfSpareBeds}} spare bed(s) = YYY SEK</p> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
-        <p>Spare beds: {{numberOfSpareBeds}} * 300 SEK = {{numberOfSpareBeds * 300}} SEK</p>
+        <p v-if="numberOfSpareBeds > 0"> Spare beds: {{numberOfSpareBeds}} * 300 SEK = {{numberOfSpareBeds * 300}} SEK</p>
         <hr>
         <h5>Options:</h5>
-        <p>Include flight: {{flightCost}} SEK</p>
+        <p>Flight: {{flightCost}} SEK</p>
         <p>Meal plan: {{mealplanCost}} SEK</p>
-        <h5>TOTAL SUM: {{totalCost}} SEK</h5>
+        <h5>Total: {{totalCost}} SEK</h5>
 
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger">Cancel booking</router-link>
@@ -130,13 +130,13 @@ export default {
     },
     chosenMealPlan(event) {
       if (event.target.value === 'halfpension'){
-        this.mealplanCost = 500;
+        this.mealplanCost = 200 * this.lengthOfStay;
       } 
       else if(event.target.value === 'fullpension') {
-        this.mealplanCost = 1000;
+        this.mealplanCost = 400 * this.lengthOfStay;
       } 
       else if(event.target.value === 'allinclusive') {
-        this.mealplanCost = 2500;
+        this.mealplanCost = 700 * this.lengthOfStay;
       }
       else {
         this.mealplanCost = 0;
@@ -182,7 +182,7 @@ export default {
       this.mealplanCost = this.mealplanCost;
 
       for(let room of this.selectedRooms){
-        this.roomCost += room.roomType.price;
+        this.roomCost += (room.roomType.price * this.lengthOfStay);
         this.roomCost += this.numberOfSpareBeds * 300 // Price for a spare bed
       }
 
