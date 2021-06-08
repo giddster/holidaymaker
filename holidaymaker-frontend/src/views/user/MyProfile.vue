@@ -1,41 +1,48 @@
 <template>
-    <h2 class="profile-title">My Profile</h2>
-
-    <div class="profile-parent">
-    
-        <div class="profile-details"> 
-            <h4><i class="fas fa-user-alt"></i> Profile details</h4>
+  <div class="profile-title" ref="top">
+    <div class="div1"> 
+<h4><i class="fas fa-user-alt"></i> Profile details</h4>
+<br>
             <p>First name: </p>
             <p>Last name: </p>
             <p>Address:  XXX, ZIPCODE, CITY</p>
             <p>Country: </p>
             <p>E-mail</p>
             <p>Phone number: </p>
-            <button class="btn btn-info">Edit profile details</button> TRIGGER A MODAL
-        </div>
+            <button class="btn btn-info">Edit profile details</button> 
+  </div>
 
-        <div class="profile-bookings"> 
-            <h4><i class="fas fa-hotel"></i> My bookings</h4>
-            TAB BETWEEN THESE
-            <p>Pending: </p>
-            <p>Completed: </p>
-        </div>
+    <div class="div2"> 
 
-        <div class="profile-favoritehotels"> 
-            <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
+    <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
+    <br>
              <p><i class="fas fa-hotel"></i> Hotel X</p>
              <p><i class="fas fa-map-marked-alt"></i> Address: </p>
              <hr>
              <p><i class="fas fa-hotel"></i> Hotel Y</p>
              <p><i class="fas fa-map-marked-alt"></i> Address: </p>
-        </div>
-
-    </div>
 
 
-    
+   </div>
+</div>
+<div class="profile-title" ref="top">
+
+<div class="div3">
+ <h4><i class="fas fa-hotel"></i> My bookings</h4>
+ <br>
+            TAB BETWEEN THESE
+            <p>Pending: </p>
+            <p>Completed: </p>
+</div>
+
+<div class="div4">
+
+</div>
+
+</div>
+
+ 
 </template>
-
 
 <script>
 
@@ -45,14 +52,25 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
+.profile-title {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: rgb(246, 246, 252);
+  margin: 20px auto;
+  padding: 12px;
+  max-width: 80%;
+  border:black;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+}
 
-.profile-parent{
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+.empty-div {
+  visibility: hidden;
 }
 
 .div1 { 
@@ -65,6 +83,110 @@ grid-row-gap: 0px;
     grid-area: 1 / 3 / 2 / 4; 
 }
 
+.div4 { 
+    grid-area: 1 / 3 / 2 / 4; 
+}
 
-</style>>
 
+
+
+.image-container {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.carousel-control-arrowprev:after {
+  content: '<';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
+}
+
+.carousel-control-arrownext:after {
+  content: '>';
+  font-size: 30px;
+  font-weight: bold;
+  color: lightcoral;
+}
+
+.hotel-title {
+  float: center;
+}
+
+.star-rating-about {
+  font-size: 28px;
+  margin-left: 10px;
+  color: red;
+}
+
+.heart-icon {
+  color: red;
+}
+
+.addtofavorite-button {
+  float: right;
+  margin-right: 20px;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.addtofavorite-button:hover {
+  color: lightcoral;
+}
+
+.prices-title {
+  text-align: right;
+}
+
+.selectrooms-button {
+  margin: 0 auto;
+  float: right;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.backtotop-button{
+  float: right;
+  margin: 0 auto;
+  background: lightcoral;
+  border-radius: 5px;
+  border: 1px solid lightcoral;
+}
+
+.bool-icon {
+  font-size: 25px;
+  margin-left: 10px;
+  color: rgb(38, 177, 38);
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
+
+.distance-icon {
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 10px;
+  color:lightcoral;
+  border: 1px solid black;
+  border-style: hidden;
+  text-align: center;
+}
+
+.icon-description {
+  font-size: 14px;
+  margin-right: 10px;
+  color: rgb(41, 148, 41);
+  font-family: sans-serif;
+  font-weight: lighter;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+</style>
