@@ -67,7 +67,7 @@
         <div v-for="(room, index) in selectedRooms" :key="room"> 
         <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights  = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
-        <p>Spare beds = {{calculatePriceForSpareBeds}} SEK</p>
+        <p>Spare beds({{calculatedNumberOfSpareBeds}}) = {{calculatePriceForSpareBeds}} SEK</p>
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
@@ -103,10 +103,6 @@ export default {
       totalSpareBedCost: 0,
     }
   },
-  watch: {
-    
-  },
-  
   components: { Payment },
   methods: {
     getSelectedFlight(){
@@ -156,13 +152,17 @@ export default {
   
   computed: {
     calculatedNumberOfSpareBeds(){
+      let number = 0;
+      let numberOfSpareBeds = 0;
+
       if (this.selectionOfSpareBeds !== undefined){
         for (let i of this.selectionOfSpareBeds){
           number = parseInt(i)
           numberOfSpareBeds += number
         }
-        return numberOfSpareBeds
       }
+        console.log(numberOfSpareBeds)
+        return numberOfSpareBeds
     },
     calculatePriceForSpareBeds(){
       let numberOfSpareBeds = 0
@@ -172,9 +172,8 @@ export default {
       if (this.selectionOfSpareBeds !== undefined){
         for (let i of this.selectionOfSpareBeds){
           number = parseInt(i)
-        numberOfSpareBeds += number
+          numberOfSpareBeds += number
       }
-      console.log(numberOfSpareBeds)
       
       totalSpareBedCost = numberOfSpareBeds * 300
 
@@ -203,11 +202,10 @@ export default {
       this.calculatedTotalCost = 0;
       this.roomCost = 0;
       // I am not sure why the two following lines works beacause it seems strange to have to do this calculation but it works so i'll leave it for now
-      this.flightCost = this.flightCost;
-      this.mealplanCost = this.mealplanCost;
+      
 
       for(let room of this.selectedRooms){
-        this.roomCost += room.roomType.price; // Price for a spare bed
+        this.roomCost += room.roomType.price * this.lengthOfStay
       }
 
       return this.calculatedTotalCost = this.roomCost + this.flightCost + this.mealplanCost + this.calculatePriceForSpareBeds;
