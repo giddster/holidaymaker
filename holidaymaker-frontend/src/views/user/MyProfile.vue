@@ -51,25 +51,13 @@
         </div>
 
         <div class="profile-favoritehotels" > 
-
-
             <ul >
                 <li v-for="favoritehotel in getFavoriteHotels" :key="favoritehotel.id">
                     {{ favoritehotel.hotel.name }}
                     {{favoritehotel.hotel.address}}
                 </li>
             </ul>
-            <!-- <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
-             <p><i class="fas fa-hotel"></i> Hotel X</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p>
-             <hr>
-             <p><i class="fas fa-hotel"></i> Hotel Y</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p> -->
-
-
-
         </div>
-
     </div>
 
 
@@ -79,21 +67,7 @@
 
 <script>
 import {mapActions} from "vuex"
-import router from "../../router/index"
 export default {
-
-    //async created(){
-       // var result =  await this.$store.dispatch('getLoggedInUser')
-
-        // console.log(result)
-
-        // if(!!result === false){
-        //     router.push('/Login')
-
-        // }
-
-   // },
-
 
     components:{ },
 
@@ -109,15 +83,20 @@ export default {
             return  this.$store.state.favoritehotels;
         },
 
+        getCustomerBookings(){
+            return  this.$store.state.customerBookings;
+        }
+
         
     },
 
     async created(){
         await this.$store.dispatch('fetchFavoriteHotels', this.thisLoggedInUser.id)
+        await this.$store.dispatch('fetchCustomerBookings', this.thisLoggedInUser.id)
     },
     methods:{
 
-        ...mapActions(['editCustomer', 'fetchFavoriteHotels']),
+        ...mapActions(['editCustomer', 'fetchFavoriteHotels', 'fetchCustomerBookings']),
         
         enableEditProfileForm(){
             var form = document.getElementById("editProfileForm")

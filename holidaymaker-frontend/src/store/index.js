@@ -8,6 +8,8 @@ export default createStore({
 
 		bookings: {},
 
+		customerBookings: {},
+
 		customers: {},
 
 		destinations: {},
@@ -98,6 +100,11 @@ export default createStore({
 	},
 
 	mutations: {
+
+		setCustomerBookings(state, data){
+			state.customerBookings = data
+		},
+
 		setDestinations(state, data) {
 			state.destinations = data
 		},
@@ -245,6 +252,13 @@ export default createStore({
 			let data = await response.json()
 			console.log(data)
 			commit('setFavoriteHotel', data)
+		},
+
+		async fetchCustomerBookings({commit}, id){
+			let response = await fetch(`/api/BookingsByCustomer/${id}`)
+			let data = await response.json()
+			console.log(data)
+			commit('setCustomerBookings', data)
 		},
 
 		async fetchFilteredReviews({ commit }, id) {
