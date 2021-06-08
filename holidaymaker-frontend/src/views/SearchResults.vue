@@ -1,23 +1,21 @@
 <template>
 <div class="hotelHeader">
-    <h2 v-if="filteredHotels.length">Your results for CITY, COUNTRY</h2>
+    <h2 v-if="filteredHotels.length > 0">Your results for CITY, COUNTRY</h2>
     <h2 v-else><i>Sorry, we couldn't find hotels for that search!</i></h2>
 </div>
 
 
 <div class="parent">
     <div class="filter-div"> 
-        <filter-component></filter-component>
+        <input type="checkbox" id="hasPool" name="hasPool"  v-model="hasPool">
+        <label for="hasPool">Pool</label>
+        <input type="checkbox" id="hasSeaSide" name="hasSeaSide"  v-model="hasSeaSide">
+        <label for="hasSeaSide">Seaside</label><br>
+
     </div>
 
-    <div class="results-div"> 
-            <div v-for="hotel in filteredHotels" :key="hotel.id" class="hotel">
-                <router-link :to="'/hotel/' + hotel.id" class="btn btn-md btn-primary booking-button">Book a room</router-link>
-                <img src='../assets/logo.png' class="thumbnail">
-                <h4 class="hotel-name"> {{ hotel.name }}</h4>
-                <i class="fas fa-star star-rating"></i>
-                <p class="hotel-description"> <i>{{ hotel.description }}</i> </p>
-            </div>
+    <div>
+        <search-results-hotels :hotels="filteredHotels"></search-results-hotels>
     </div>
 
 </div>
@@ -26,37 +24,37 @@
 </template>
 
 <script>
-import FilterComponent from '../components/FilterComponent.vue';
-import {mapGetters} from 'vuex';
+import SearchResultsHotels from '../components/SearchResultsHotels.vue';
+
 
 export default {
-components: { FilterComponent },
-
+components: { SearchResultsHotels },
 data(){
-    return {
-         
+    return{
+
+        hasPool: false,
+        hasSeaSide: false,
     }
-                
 },
 
-methods: {
-
-},
 computed: {
-    ...mapGetters(['updateFilter']),
+   
 
-    filteredHotels(){
+    hotels(){
         
-        // return this.$store.state.filteredHotels
-        // return this.$store.getters.updateFilter
-        let result = this.updateFilter()
-        console.log(result);
-        return result;
-
+        return this.$store.state.filteredHotels
             
     },
-    hotelImages() {
-        return this.$store.state.hotelImages
+    
+    filteredHotels(){
+        let result = this.hotels
+        .filter((hotel) => !this.hasPool || hotel.hasPool === this.hasPool)
+        .filter((hotel) => !this.hasSeaSide || hotel.hasSeaSide === this.hasSeaSide)
+        
+
+        return result;
+        // .filter((hotel) => hotel.hasSeaSide === this.hasSeaSide)
+        
     }
 },
 

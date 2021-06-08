@@ -192,7 +192,7 @@ export default createStore({
   getters:{
 	updateFilter:  (state) => (data) => {
 		console.log(data)
-		if(!!data) {
+		
 			let result = state.filteredHotels
 		.filter(o => o.hasPool === data.hasPool)
 		// .filter(o => o.hasSeaSide === data.hasSeaSide)
@@ -208,13 +208,7 @@ export default createStore({
 		console.log(result)
 		return result;
 		
-		} else {
-
-			let result = state.filteredHotels
-			console.log('else')
-			console.log(result);
-			return result;
-		}
+		
 	
 		
 
