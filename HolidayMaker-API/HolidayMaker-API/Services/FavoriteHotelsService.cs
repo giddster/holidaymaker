@@ -18,7 +18,7 @@ namespace HolidayMaker_API.Services
 
         public async Task<List<FavoriteHotel>> GetFavoriteHotelByUserId(int id)
         {
-            return await _holidayMakerContext.FavoriteHotels.Where(fh => fh.CustomerId == id).ToListAsync();
+            return await _holidayMakerContext.FavoriteHotels.Where(fh => fh.CustomerId == id).Include(h => h.Hotel).ToListAsync();
         }
     }
 }

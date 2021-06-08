@@ -113,6 +113,7 @@ export default createStore({
 		setFavoriteHotel(state, data){
 			state.favoritehotels = data
 		},
+		
 		setReviews(state, data) {
 			state.reviews = data
 		},
@@ -236,6 +237,14 @@ export default createStore({
 			console.log('resultat från backend', result)
 			commit('setFavoriteHotel', result)
 
+		},
+
+
+		async fetchFavoriteHotels({commit}, id){
+			let response = await fetch(`/api/FavoriteHotels/${id}`)
+			let data = await response.json()
+			console.log(data)
+			commit('setFavoriteHotel', data)
 		},
 
 		async fetchFilteredReviews({ commit }, id) {

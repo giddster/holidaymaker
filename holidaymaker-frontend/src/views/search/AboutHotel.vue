@@ -125,9 +125,6 @@ export default {
     },
 
     addToFavorites(){
-
-
-
       let inputHotelId = this.thishotel.id;
       console.log(inputHotelId)
       let inputcustomerId = this.thisLoggedInCustomer.id ;
@@ -139,8 +136,6 @@ export default {
       }
 
       this.addHotelToFavorites(data)
-
-
 
     }
    
