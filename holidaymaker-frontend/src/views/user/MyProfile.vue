@@ -50,15 +50,14 @@
             <p>Completed: </p>
         </div>
 
-        <div class="profile-favoritehotels"> 
-            <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
-             <p><i class="fas fa-hotel"></i> Hotel X</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p>
-             <hr>
-             <p><i class="fas fa-hotel"></i> Hotel Y</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p>
+        <div class="profile-favoritehotels" > 
+            <ul >
+                <li v-for="favoritehotel in getFavoriteHotels" :key="favoritehotel.id">
+                    {{ favoritehotel.hotel.name }}
+                    {{favoritehotel.hotel.address}}
+                </li>
+            </ul>
         </div>
-
     </div>
 
 
@@ -68,33 +67,37 @@
 
 <script>
 import {mapActions} from "vuex"
-import router from "../../router/index"
 export default {
-
-    //async created(){
-       // var result =  await this.$store.dispatch('getLoggedInUser')
-
-        // console.log(result)
-
-        // if(!!result === false){
-        //     router.push('/Login')
-
-        // }
-
-   // },
-
 
     components:{ },
 
     computed:{
+
+
         thisLoggedInUser(){
             return this.$store.state.customers;
+        },
+
+        getFavoriteHotels(){
+
+            return  this.$store.state.favoritehotels;
+        },
+
+        getCustomerBookings(){
+            return  this.$store.state.customerBookings;
         }
+
+        
+    },
+
+    async created(){
+        await this.$store.dispatch('fetchFavoriteHotels', this.thisLoggedInUser.id)
+        await this.$store.dispatch('fetchCustomerBookings', this.thisLoggedInUser.id)
     },
     methods:{
 
-        ...mapActions(['editCustomer']),
-
+        ...mapActions(['editCustomer', 'fetchFavoriteHotels', 'fetchCustomerBookings']),
+        
         enableEditProfileForm(){
             var form = document.getElementById("editProfileForm")
             var elements = form.elements;
@@ -119,7 +122,11 @@ export default {
 
             this.editCustomer(this.thisLoggedInUser)
 
-        }
+        },
+
+        
+
+
     }
 }
 
