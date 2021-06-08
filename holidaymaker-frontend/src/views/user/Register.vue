@@ -2,14 +2,14 @@
 
   <div class="register-title" ref="top">
     <div class="div1"> 
-<h4><i class="fas fa-user-alt" ></i> Create your HolidayMaker Account</h4>
+<h4><i class="fas fa-user-alt" ></i> Create your HolidayMaker account</h4>
 <br>
 
   
     <div class="register-page">
 
     
-   <center> <h4>Register a new account</h4></center>
+   <center> <h4>Create a new account</h4></center>
       <div class="form" >
         <form id ="registerForm" class="register-form">
           
@@ -53,7 +53,10 @@
             <slot>
               <h3 id="custom">{{ message }}</h3>
             </slot>
-            <button class="btnModal" @click="close">CLOSE</button>
+            <br>
+            <center>
+            <button class="btn btn-info" @click="close">Close</button>
+            </center>
           </div>
         </div>
       </transition>
@@ -63,8 +66,11 @@
           <div class="window">
             <slot>
               <h3 id="custom">{{ message }}</h3>
+              <br>
             </slot>
-            <button class="btnModal" @click="closeConfirmPass">CLOSE</button>
+            <center>
+            <button class="btn btn-info" @click="closeConfirmPass">Close</button>
+            </center>
           </div>
         </div>
       </transition>
@@ -187,10 +193,11 @@ export default {
 }
 .form input {
   font-family: "Roboto", sans-serif;
-  outline: 1;
+  outline: 0;
   background: #ffffff;
   width: 100%;
   border: 1;
+  border-color:grey;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
@@ -199,23 +206,8 @@ export default {
   font-color:000000;
   color:000000;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: lightcoral;
-  width: 100%;
-  border: 0;
-  padding: 15 px;
-  color: #000;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.form button:hover,
-.form button:active {
-  background: lightcoral;
-}
+
+
 .form .message {
   margin: 25px;
   color: 000000;
@@ -266,7 +258,7 @@ export default {
   right: 0;
   padding: 0.5rem;
   display: flex;
-  align-items: left;
+  align-items: center;
   z-index: 1;
 }
 
@@ -275,7 +267,7 @@ export default {
   background: rgb(233, 232, 253);
   border-radius: 5px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 480px;
+  max-width: 200x;
   margin-left: auto;
   margin-right: auto;
   padding: 1.75rem;
