@@ -290,6 +290,8 @@ export default createStore({
 			dispatch('getLoggedInUser')
 		},
 
+		
+
 		async logoutUser({ dispatch }) {
 
 			const requestOptions = {
@@ -302,6 +304,8 @@ export default createStore({
 
 			dispatch('getLoggedInUser')
 		},
+
+		
 
 		async getLoggedInUser({ commit }) {
 
@@ -328,7 +332,25 @@ export default createStore({
 			}
 
 
-		}
+		},
+
+		// async editCustomer({commit},data){
+		// 	let body = {  }
+
+		// 	const requestOptions = {
+		// 		method: "POST",
+		// 		headers: { 'Content-type': 'application/json' },
+		// 		body: JSON.stringify(body)
+		// 	};
+
+		// 	const response = await fetch('/api/Authentication/Register', requestOptions)
+		// 	const data = await response.json();
+
+		// 	dispatch('getLoggedInUser')
+
+
+
+		// }
 
 
 

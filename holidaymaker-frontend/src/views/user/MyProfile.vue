@@ -70,17 +70,17 @@
 import router from "../../router/index"
 export default {
 
-    async created(){
-        var result =  await this.$store.dispatch('getLoggedInUser')
+    //async created(){
+       // var result =  await this.$store.dispatch('getLoggedInUser')
 
-        console.log(result)
+        // console.log(result)
 
-        if(!!result === false){
-            router.push('/Login')
+        // if(!!result === false){
+        //     router.push('/Login')
 
-        }
+        // }
 
-    },
+   // },
 
 
     components:{ },
