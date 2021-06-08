@@ -65,9 +65,9 @@
         <h4>Price for booking</h4>
         <h5>Room(s): {{selectedRooms.length}}</h5>
         <div v-for="(room, index) in selectedRooms" :key="room"> 
-        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights for X guests + {{selectionOfSpareBeds[index]}} spare bed(s) = YYY SEK</p> 
+        <p>Room {{index + 1}}: {{ room.roomType.price }} SEK * {{lengthOfStay}} nights  = {{room.roomType.price * lengthOfStay}} SEK</p> 
         </div>
-        <p>Spare beds: {{totalNumberOfSpareBeds}} * 300 SEK = {{calculatePriceForSpareBeds}} SEK</p>
+        <p>Spare beds = {{calculatePriceForSpareBeds}} SEK</p>
         <hr>
         <h5>Options:</h5>
         <p>Flight: {{flightCost}} SEK</p>
