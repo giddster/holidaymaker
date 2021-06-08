@@ -24,8 +24,8 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: 'price_1IyGXNK0lVPWMlyw7XwDpVKS', // The id of the one-time price you created in your Stripe dashboard
-          quantity: 1,
+          price: 'price_1J01VSK0lVPWMlywOHp0M1Wf', // The id of the one-time price you created in your Stripe dashboard
+          quantity: 1, //SET THIS AS THE CREATEBOOKING TOTAL SUM AS A SILLY WORKAROUND
         },
       ],
       successURL: 'http://localhost:8080/paymentsucceeded',
