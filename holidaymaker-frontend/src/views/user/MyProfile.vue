@@ -53,6 +53,7 @@ export default {
 
 
 <style>
+
 .profile-title {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -87,15 +88,6 @@ export default {
     grid-area: 1 / 3 / 2 / 4; 
 }
 
-
-
-
-.image-container {
-  width: 600px;
-  height: 300px;
-  object-fit: cover;
-}
-
 .carousel-control-arrowprev:after {
   content: '<';
   font-size: 30px;
@@ -110,42 +102,10 @@ export default {
   color: lightcoral;
 }
 
-.hotel-title {
-  float: center;
-}
-
 .star-rating-about {
   font-size: 28px;
   margin-left: 10px;
   color: red;
-}
-
-.heart-icon {
-  color: red;
-}
-
-.addtofavorite-button {
-  float: right;
-  margin-right: 20px;
-  background: lightcoral;
-  border-radius: 5px;
-  border: 1px solid lightcoral;
-}
-
-.addtofavorite-button:hover {
-  color: lightcoral;
-}
-
-.prices-title {
-  text-align: right;
-}
-
-.selectrooms-button {
-  margin: 0 auto;
-  float: right;
-  background: lightcoral;
-  border-radius: 5px;
-  border: 1px solid lightcoral;
 }
 
 .backtotop-button{
@@ -164,29 +124,5 @@ export default {
   border-style: hidden;
   text-align: center;
 }
-
-.distance-icon {
-  font-size: 18px;
-  margin-left: 10px;
-  padding: 10px;
-  color:lightcoral;
-  border: 1px solid black;
-  border-style: hidden;
-  text-align: center;
-}
-
-.icon-description {
-  font-size: 14px;
-  margin-right: 10px;
-  color: rgb(41, 148, 41);
-  font-family: sans-serif;
-  font-weight: lighter;
-  margin-top: 5px;
-}
-
-
-
-
-
 
 </style>
