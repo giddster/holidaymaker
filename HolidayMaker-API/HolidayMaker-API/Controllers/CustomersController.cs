@@ -53,7 +53,7 @@ namespace HolidayMaker_API.Controllers
         //    return customer;
         //}
         #endregion
-
+        
 
         [HttpGet("UserProfile")]
         //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
@@ -125,7 +125,7 @@ namespace HolidayMaker_API.Controllers
                 return BadRequest();
             }
 
-            return NoContent();
+            return Ok();
         }
 
         #region OLD

@@ -34,14 +34,14 @@
         <slot>
           <h3 id="custom">{{ message }}</h3>
         </slot>
-        <button class="btnModal" @click="close">CLOSE</button>
+        <button class="btnModal" @click="close1">CLOSE</button>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 // import { mapActions } from "vuex";
 import router from "@/router/index";
 
@@ -54,11 +54,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
 
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    }
 
   },
 
@@ -67,34 +66,32 @@ export default {
 
     async handleLogout() {
 
-      console.log(this.IsLoggedIn)
+      await this.logoutUser();
 
-      let response = await this.logoutUser();
+      let result = !!this.$store.state.customers.email
 
-      console.log(this.IsLoggedIn)
+      console.log(result);
 
-      console.log(response);
-
-      if (response) {
-        //alert('You have been logged off')
-        this.open("You have been logged off");
-        //router.push('/')
+      if (!result) {
+        this.open1("You have been logged off");
+        // alert('You have been logged off')
+        router.push('/')
       } else {
-        // alert('Logout Failed')
-        this.open("Logout Failed");
+        //this.open1("Logout Failed");
+        alert('Logout Failed')
+        router.push('/')
+
       }
     },
 
-    open(message) {
+    open1(message) {
       this.message = message;
       this.isVisible = true;
     },
 
-    close() {
-      this.$forceUpdate();
+    close1() {
       router.push("/");
       this.isVisible = false;
-      //this.$forceUpdate();
     },
   },
 };
@@ -142,7 +139,7 @@ export default {
 
 .btnModal {
   margin-top: 1em;
-  margin-left: 25%;
+  margin-left: 3%;
   padding: 15px 30px;
   background-color: #e7e7e7;
   color: black;

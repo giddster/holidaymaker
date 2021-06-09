@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
+import store from '../store/index.js';
+
 
 // STATIC VIEWS //
 import Home from "../views/static/Home.vue"
@@ -24,11 +26,12 @@ import SearchResults from "../views/search/SearchResults.vue"
 import AboutHotel from "../views/search/AboutHotel.vue"
 
 const routes = [
-  
+
   //WILDCARD REDIRECT TO NOTFOUND COMPONENT //
-  { path: '/:pathMatch(.*)*', 
-    name: 'not-found', 
-    component: NotFound 
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFound
   },
 
   //"DYNAMIC" VIEWS
@@ -37,7 +40,7 @@ const routes = [
     name: "Home",
     component: Home
   },
-  
+
   {
     path: "/hotel/:id",
     name: "AboutHotel",
@@ -48,16 +51,62 @@ const routes = [
     name: "SearchResults",
     component: SearchResults
   },
- 
+
   {
     path: "/booking",
     name: "CreateBooking",
-    component: CreateBooking
+    component: CreateBooking,
+    // beforeEnter: (to, from, next) => {
+    //   // let result1 = store.actions.dispatch('getLoggedInUser')
+    //   //let result1 = store.state.customers
+
+    //   let result2 = store.state.customers.email
+
+    //   // let result1 = 's';
+
+    //   // if (!result1.IsRevoked) {
+    //   //   console.log(result1)
+    //   //   next({ name: "Login" })
+
+    //   // } else if (!!result2) {
+    //     console.log(!!result2)
+
+    //   //   next()
+
+    //   // }
+
+    //   if(!!result2){
+    //     console.log('if')
+    //     next()
+    //   }else{
+    //     console.log('else')
+    //     next({name: "Login"})
+    //   }
+    // }
   },
   {
     path: "/profile",
     name: "MyProfile",
-    component: MyProfile
+    component: MyProfile,
+    // beforeEnter: (to, from, next) => {
+
+      
+    //   let res = store.dispatch('getLoggedInUser')
+    //   console.log(res)
+      
+    //   let re = store.getters["IsLoggedIn"]
+    //   console.log(re)
+
+    //   let result = store.state.customers.email
+
+    //   console.log(!!result)
+
+    //   if (!!re) {
+    //     next()
+    //   } else {
+    //     next({ name: "Login" })
+    //   }
+    // }
   },
 
   //STATIC VIEWS
@@ -98,7 +147,7 @@ const routes = [
     name: "Register",
     component: Register
   },
-  
+
   //PAYMENT STATUS VIEWS
   {
     path: "/paymentfailed",
@@ -110,7 +159,7 @@ const routes = [
     name: "PaymentSuccess",
     component: PaymentSuccess
   }
-  
+
 ];
 
 const router = createRouter({

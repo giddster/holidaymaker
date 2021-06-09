@@ -19,10 +19,10 @@
         </router-link>
       </div>
      
+      <!-- For testing -->
+      <!-- {{ isLoggedIn }} -->
 
-      {{ IsLoggedIn }}
-
-      <div v-if="IsLoggedIn" class="header-div2">
+      <div v-if="isLoggedIn" class="header-div2">
         <ProfileDropdown />
       </div>
 
@@ -42,16 +42,15 @@
 
 <script>
 import ProfileDropdown from '@/components/marginals/ProfileDropdown.vue';
-import { mapGetters } from "vuex";
+
 export default {
 
   components: { ProfileDropdown },
+  
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
-
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    }
 
   },
 

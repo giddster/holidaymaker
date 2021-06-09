@@ -23,8 +23,6 @@ namespace HolidayMaker_API.Models
         public string Country { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public bool IsLoggedIn { get; set; }
-        public string Password { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<FavoriteHotel> FavoriteHotels { get; set; }

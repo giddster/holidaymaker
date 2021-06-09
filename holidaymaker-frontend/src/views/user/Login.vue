@@ -28,7 +28,7 @@
             <slot>
               <h3 id="custom">{{ message }}</h3>
             </slot>
-            <button class="btnModal" @click="close">CLOSE</button>
+            <button class="btnModal" @click.prevent="close">CLOSE</button>
           </div>
         </div>
       </transition>
@@ -37,8 +37,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-// import { mapActions } from "vuex";
+import { mapActions } from "vuex";
 import router from "@/router/index";
 
 export default {
@@ -55,49 +54,31 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["IsLoggedIn"]),
 
-    // IsLoggedIn () {
-    //   return this.$store.getters.IsLoggedIn
-    // }
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    },
+  
   },
 
   methods: {
-    ...mapActions(["loginUser"]),
-
-    
+    ...mapActions(["loginUser"]), 
 
     async handleUserLogin() {
+
       let user = {
         email: this.UserEmail,
         password: this.UserPassword,
       };
 
-      console.log(this.IsLoggedIn)
-      //console.log(user)
+      await this.loginUser(user);
 
-      let response = await this.loginUser(user);
-
-      console.log(this.IsLoggedIn)
-
-      //console.log(response);
-
-      if (response) {
-        //router.go()
-        //alert("Login Successful");
-        //this.reRender()
+      if (!!user) {
         this.open("Login Successful");
-        // document.getElementById("loginForm").reset();
-        // this.$forceUpdate();
-        // router.push("/");
       } else {
         this.open("Login Failed");
-        //alert("Login Failed");
       }
-    },
 
-    reRender() {
-      this.$forceUpdate();
     },
 
     open(message) {
@@ -107,7 +88,6 @@ export default {
 
     close() {
       document.getElementById("loginForm").reset();
-      this.$forceUpdate();
       router.push("/");
       this.isVisible = false;
     },

@@ -16,7 +16,10 @@ import Search from './components/search/Search.vue'
 
 
 export default {
+
+  
   async created() {
+      await this.$store.dispatch('getLoggedInUser')
       await this.$store.dispatch('fetchDestinations')
       await this.$store.dispatch('fetchHotels')
       //Hämta inloggad användare

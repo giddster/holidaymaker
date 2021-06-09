@@ -76,6 +76,13 @@ export default {
         message: "",
     };
   },
+
+  computed: {
+    isLoggedIn (){
+      return !!this.$store.state.customers.email
+    }
+  },
+
   methods: {
 
       ...mapActions(['registerUser']),
@@ -96,7 +103,7 @@ export default {
             let response = await this.registerUser(user)
             
 
-            if(response){
+            if(this.isLoggedIn){
                 // alert('User Registration Successful')
                 this.open("Registration Successful");
                 document.getElementById("registerForm").reset();
@@ -122,7 +129,7 @@ export default {
       this.isVisible = false;
       document.getElementById("registerForm").reset();
       // this.$forceUpdate();
-      router.push("/");
+      //router.push("/");
     },
 
     openConfirmPass(message) {
