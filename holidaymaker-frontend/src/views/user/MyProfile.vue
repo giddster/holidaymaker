@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-parent">
+  <div class="profile-title">
     <div class="profile-details">
    <h4><i class="fas fa-user-alt"></i> Profile details</h4>
 
@@ -166,7 +166,7 @@ export default {
 }
 .profile-title {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
