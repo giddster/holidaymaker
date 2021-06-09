@@ -7,10 +7,10 @@
     
     <div class="bookingdetails-customer"> 
       <h4><i class="fas fa-user-alt"></i> Customer details</h4>
-      <p>First name: </p>
-      <p>Last name: </p>
-      <p>Address: </p>
-      <p>E-mail: </p>
+      <p>First name: {{getCustomerDetails.firstName}}</p>
+      <p>Last name: {{getCustomerDetails.lastName}}</p>
+      <p>Address: {{getCustomerDetails.address}}</p>
+      <p>E-mail: {{getCustomerDetails.email}}</p>
     </div>
 
     <div class="bookingdetails-trip"> 
@@ -82,6 +82,8 @@
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger" style="margin-right:10px;">Cancel booking</router-link>
             <Payment />
+
+            <button class="btn" @click="PostBooking"></button>
         </div>
         
     </div>
@@ -109,6 +111,9 @@ export default {
   },
   components: { Payment },
   methods: {
+
+    
+
     getSelectedFlight(){
         var selectedFlightOption = document.getElementById("include-flight").value;
 
@@ -159,9 +164,83 @@ export default {
     chosenNumberOfSpareBeds(event, index){
       this.selectionOfSpareBeds[index] = event.target.value
     },
+
+    // dispatchPostBooking(data){
+    //   let data = this.PostBooking()
+    //   this.$store.dispatch('postBooking', data)
+    // },
+
+    async PostBooking() {
+      // this.$store.state.tempBooking.checkInDate = dates.checkInDate
+        //this.$store.state.tempBooking.totalCost = this.totalCost
+
+      //await this.$store.dispatch('postBooking')
+      // let dates = this.$store.state.dates
+        let bookingXroom = []
+  
+        for(let room of this.selectedRooms) {
+          bookingXroom.push(room.id)
+        }
+
+      let booking = {
+        checkInDate: new Date(this.$store.state.dates.checkinDate),
+        checkOutDate: new Date(this.$store.state.dates.checkoutDate),
+        noOfAdults: this.calculatedNoOfGuests,
+        totalPrice: 10,
+        customerId: this.getCustomerDetails.id,
+
+        isReturnFlight: this.getIfReturnFlight,
+        price: this.flightCost,
+
+        bookingXroom: this.bookingXroom
+      }
+
+
+      console.log(booking)
+
+      this.$store.dispatch('postBooking', booking)
+
+
+      //return this.booking
+      // this.$store.state.tempBooking = this.booking
+      
+      
+
+    },
   },
   
   computed: {
+    // async PostBooking() {
+    //   // this.$store.state.tempBooking.checkInDate = dates.checkInDate
+    //     //this.$store.state.tempBooking.totalCost = this.totalCost
+
+    //   //await this.$store.dispatch('postBooking')
+
+    //   let booking = {
+    //     checkInDate: this.dates.checkInDate,
+    //     checkOutDate: this.dates.checkOutDate,
+    //     noOfAdults: this.calculatedNoOfGuests,
+    //     totalPrice: this.totalCost,
+    //     customerId: this.getCustomerDetails.id,
+
+    //     isReturnFlight: this.getIfReturnFlight,
+    //     price: this.flightCost,
+
+    //     bookingXroom: this.bookingXroom
+    //   }
+
+    //   let bookingXroom = []
+
+    //   for(let room of this.selectedRooms) {
+    //     bookingXroom.push(room.id)
+    //   }
+
+    //   console.log(booking)
+    //   this.$store.state.tempBooking = this.booking
+      
+      
+
+    // },
 //#region Spare Beds Computed
     calculatedNumberOfSpareBeds(){
       let number = 0;
@@ -174,6 +253,15 @@ export default {
         }
       }
         return numberOfSpareBeds
+    },
+
+    calculatedNoOfGuests() {
+      let totalNoOfGuests;
+      for(let i of this.selectionOfGuests) {
+        totalNoOfGuests += parseInt(i)
+      }
+
+      return totalNoOfGuests
     },
 
     // Calculates the total price for spare beds depending on the users choices
@@ -193,6 +281,21 @@ export default {
       return totalSpareBedCost
       }
     },
+
+    getCustomerDetails() {
+      return this.$store.state.customers
+    },
+
+    getIfReturnFlight() {
+      if(this.flightCost === 1000) {
+        return false
+      }
+      else {
+        return true
+      }
+    },
+
+    
 //#endregion Spare Beds Computed
 
     dates(){

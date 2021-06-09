@@ -101,7 +101,7 @@ const routes = [
 
     //   console.log(!!result)
 
-    //   if (!!re) {
+    //   if (!!result) {
     //     next()
     //   } else {
     //     next({ name: "Login" })

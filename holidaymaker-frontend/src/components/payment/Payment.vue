@@ -46,6 +46,8 @@ export default {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },
+
+    
   },
 };
 </script>

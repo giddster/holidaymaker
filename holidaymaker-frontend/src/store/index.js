@@ -99,6 +99,20 @@ export default createStore({
 
 		totalBookingPrice: {price: 0},
 
+		tempBooking: {
+			// id: 0,
+			checkInDate: '',
+			checkOutDate: '',
+			noOfAdults: 0,
+			noOfChildren: 0,
+			isPending: 1,
+			isCancelled: 0, 
+			totalPrice: 0,
+			flightId: 0,
+			customerId: 0,
+			bookingXroom: [],
+		},
+
 	},
 
 	mutations: {
@@ -164,6 +178,10 @@ export default createStore({
 		SetLoggedInUser(state, data) {
 			state.customers = data
 			//console.log(state.customers)
+		},
+
+		setTempBooking(state, data) {
+			state.tempBooking = data
 		}
 	},
 
@@ -420,7 +438,63 @@ export default createStore({
 
 
 
+		},
+
+		async postBooking({commit}, data) {
+
+			console.log(data)
+
+			let body = {
+				// id: 0,
+				checkInDate: data.checkInDate,
+				checkOutDate: data.checkOutDate,
+				noOfAdults: data.noOfAdults,
+				noOfChildren: 0,
+				isPending: 1,
+				isCancelled: 0,
+				totalPrice: data.totalPrice,
+				flightId: 0,
+				customerId: data.customerId,
+
+				bookingXroom: data.bookingXroom
+
+
+			}
+			// let body = {
+			// 	// id: 0,
+			// 	checkInDate: this.state.tempBooking.checkInDate,
+			// 	checkOutDate: this.state.tempBooking.checkOutDate,
+			// 	noOfAdults: this.state.tempBooking.noOfAdults,
+			// 	noOfChildren: 0,
+			// 	isPending: 1,
+			// 	isCancelled: 0,
+			// 	totalPrice: this.state.tempBooking.totalPrice,
+			// 	flightId: 0,
+			// 	customerId: this.state.tempBooking.customerId,
+
+			// 	bookingXroom: this.state.tempBooking.bookingXroom
+
+
+			// }
+
+			console.log(body)
+
+			const requestOptions = {
+				method: "POST",
+				headers: { 'Content-type': 'application/json' },
+				body: JSON.stringify(body)
+			};
+
+			const response = await fetch('/api/Bookings', requestOptions)
+			const data1 = await response.json();
+
+			console.log(data1.status)
+
+			commit('setTempBooking', data)
+
 		}
+
+		
 
 
 
