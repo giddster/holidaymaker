@@ -125,7 +125,7 @@ export default {
   width: 360px;
   padding: 10% 0 0;
   margin: auto;
-  backgroud: #fffFFF;
+  background: white;
   
 }
 .form {
@@ -149,7 +149,7 @@ export default {
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 4px;
-  font-color:000000;
+  font:black;
   color:000000;
 }
 
@@ -177,7 +177,7 @@ export default {
   margin-top: 1em;
   margin-left: 21%;
   padding: 15px 30px;
-  background-color: #fffffff;
+  background-color: white;
   color: black;
   font-size: 16px;
   border-radius: 5px;

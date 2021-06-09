@@ -51,7 +51,7 @@
               
             <label for="guestsperroom"><i class="fas fa-users"></i> Amount of guests </label> &nbsp;
             <select id="guestsperroom" class="form-control options-selector" @change="chosenNumberOfGuests($event, index)">
-                <option v-for="guests in room.roomType.capacity" :key="guests" :value="guest">{{guests}}</option>
+                <option v-for="guests in room.roomType.capacity" :key="guests" :value="guests">{{guests}}</option>
             </select>
 
             <label for="sparebedsperroom"><i class="fas fa-bed"></i> Amount of spare beds </label> &nbsp;
@@ -176,33 +176,36 @@ export default {
 
       //await this.$store.dispatch('postBooking')
       // let dates = this.$store.state.dates
-        let bookingXroom = []
+        let bookingXrooms = []
+        
   
         for(let room of this.selectedRooms) {
-          bookingXroom.push(room.id)
+          bookingXrooms.push(room.id)
         }
 
-      let booking = {
-        checkInDate: new Date(this.$store.state.dates.checkinDate),
-        checkOutDate: new Date(this.$store.state.dates.checkoutDate),
-        noOfAdults: this.calculatedNoOfGuests,
-        totalPrice: 10,
-        customerId: this.getCustomerDetails.id,
+        console.log(bookingXrooms)
 
-        isReturnFlight: this.getIfReturnFlight,
-        price: this.flightCost,
+        let booking = {
+          bookingXroom: bookingXrooms,
+          checkInDate: this.dates.checkinDate,
+          checkOutDate: this.dates.checkoutDate,
+          customerId: this.getCustomerDetails.id,
+          isReturnFlight: this.getIfReturnFlight,
+          noOfAdults: this.calculatedNoOfGuests,
+          price: this.flightCost,
+          totalPrice: this.totalCost,
 
-        bookingXroom: this.bookingXroom
+
       }
 
 
       console.log(booking)
 
-      this.$store.dispatch('postBooking', booking)
+      this.$store.dispatch('postTempBooking', booking)
 
 
-      //return this.booking
-      // this.$store.state.tempBooking = this.booking
+      
+       //this.$store.state.tempBooking = this.booking
       
       
 
@@ -255,13 +258,21 @@ export default {
         return numberOfSpareBeds
     },
 
-    calculatedNoOfGuests() {
-      let totalNoOfGuests;
-      for(let i of this.selectionOfGuests) {
-        totalNoOfGuests += parseInt(i)
-      }
+    calculatedNoOfGuests(){
+       let number = 0;
+       let totalNoOfGuests = 0;
 
-      return totalNoOfGuests
+       console.log(this.selectionOfGuests)
+
+        if (this.selectionOfGuests !== undefined){
+
+            for (let i of this.selectionOfGuests){
+              number = parseInt(i)
+              totalNoOfGuests += number
+            }
+
+        }
+        return totalNoOfGuests
     },
 
     // Calculates the total price for spare beds depending on the users choices
@@ -287,11 +298,11 @@ export default {
     },
 
     getIfReturnFlight() {
-      if(this.flightCost === 1000) {
-        return false
+      if(this.flightCost === 2000) {
+        return true
       }
       else {
-        return true
+        return false
       }
     },
 

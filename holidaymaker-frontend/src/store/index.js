@@ -110,7 +110,7 @@ export default createStore({
 			totalPrice: 0,
 			flightId: 0,
 			customerId: 0,
-			bookingXroom: [],
+			bookingXroom: {},
 		},
 
 	},
@@ -440,42 +440,39 @@ export default createStore({
 
 		},
 
-		async postBooking({commit}, data) {
+		async postBooking({commit}) {
 
-			console.log(data)
-
-			let body = {
-				// id: 0,
-				checkInDate: data.checkInDate,
-				checkOutDate: data.checkOutDate,
-				noOfAdults: data.noOfAdults,
-				noOfChildren: 0,
-				isPending: 1,
-				isCancelled: 0,
-				totalPrice: data.totalPrice,
-				flightId: 0,
-				customerId: data.customerId,
-
-				bookingXroom: data.bookingXroom
-
-
-			}
 			// let body = {
 			// 	// id: 0,
-			// 	checkInDate: this.state.tempBooking.checkInDate,
-			// 	checkOutDate: this.state.tempBooking.checkOutDate,
-			// 	noOfAdults: this.state.tempBooking.noOfAdults,
+			// 	checkInDate: data.checkInDate,
+			// 	checkOutDate: data.checkOutDate,
+			// 	noOfAdults: data.noOfAdults,
 			// 	noOfChildren: 0,
 			// 	isPending: 1,
 			// 	isCancelled: 0,
-			// 	totalPrice: this.state.tempBooking.totalPrice,
+			// 	totalPrice: data.totalPrice,
 			// 	flightId: 0,
-			// 	customerId: this.state.tempBooking.customerId,
+			// 	customerId: data.customerId,
 
-			// 	bookingXroom: this.state.tempBooking.bookingXroom
+			// 	bookingXroom: data.bookingXroom
 
 
 			// }
+			let body = {
+				// id: 0,
+				checkInDate: this.state.tempBooking.checkInDate,
+				checkOutDate: this.state.tempBooking.checkOutDate,
+				noOfAdults: this.state.tempBooking.noOfAdults,
+				noOfChildren: 0,
+				isPending: 1,
+				isCancelled: 0,
+				totalPrice: this.state.tempBooking.totalPrice,
+				flightId: 0,
+				customerId: this.state.tempBooking.customerId,
+				bookingXroom: this.state.tempBooking.bookingXroom
+
+
+			}
 
 			console.log(body)
 
@@ -490,10 +487,16 @@ export default createStore({
 
 			console.log(data1.status)
 
+			commit('setTempBooking', data1)
+
+		},
+
+		
+		async postTempBooking({commit},data){
+
 			commit('setTempBooking', data)
 
 		}
-
 		
 
 

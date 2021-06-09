@@ -45,6 +45,7 @@ export default {
       this.lineItems[0].quantity = finalTotal
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
+      console.log(this.$refs.checkoutRef)
     },
 
     
