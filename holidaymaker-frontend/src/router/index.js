@@ -57,49 +57,56 @@ const routes = [
     name: "CreateBooking",
     component: CreateBooking,
     // beforeEnter: (to, from, next) => {
-
-
     //   // let result1 = store.actions.dispatch('getLoggedInUser')
-    //   let result1 = store.state.customers
+    //   //let result1 = store.state.customers
 
     //   let result2 = store.state.customers.email
 
-
     //   // let result1 = 's';
 
-    //   if (!result1.IsRevoked) {
-    //     console.log(result1)
-    //     next({ name: "Login" })
+    //   // if (!result1.IsRevoked) {
+    //   //   console.log(result1)
+    //   //   next({ name: "Login" })
 
-    //   } else if (!!result2) {
-    //     console.log(result2)
+    //   // } else if (!!result2) {
+    //     console.log(!!result2)
 
-    //     next()
-
-    //   }
-
-    //   // if(!!result1){
     //   //   next()
-    //   // }else{
-    //   //   next({name: "Login"})
+
     //   // }
+
+    //   if(!!result2){
+    //     console.log('if')
+    //     next()
+    //   }else{
+    //     console.log('else')
+    //     next({name: "Login"})
+    //   }
     // }
   },
   {
     path: "/profile",
     name: "MyProfile",
     component: MyProfile,
-    beforeEnter: (to, from, next) => {
-      let result = store.state.customers.email
+    // beforeEnter: (to, from, next) => {
 
-      console.log(!!result)
+      
+    //   let res = store.dispatch('getLoggedInUser')
+    //   console.log(res)
+      
+    //   let re = store.getters["IsLoggedIn"]
+    //   console.log(re)
 
-      if (!!result) {
-        next()
-      } else {
-        next({ name: "Login" })
-      }
-    }
+    //   let result = store.state.customers.email
+
+    //   console.log(!!result)
+
+    //   if (!!re) {
+    //     next()
+    //   } else {
+    //     next({ name: "Login" })
+    //   }
+    // }
   },
 
   //STATIC VIEWS
