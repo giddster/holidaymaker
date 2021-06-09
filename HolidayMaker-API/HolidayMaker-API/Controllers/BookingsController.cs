@@ -19,7 +19,7 @@ namespace HolidayMaker_API.Controllers
     {
         private readonly HolidayMakerContext _context;
         private readonly CustomerService _customerService;
-        private Booking PendingBooking;
+        private static Booking PendingBooking;
 
         public BookingsController(HolidayMakerContext context, CustomerService customerService)
         {
