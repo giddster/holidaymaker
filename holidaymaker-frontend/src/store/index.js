@@ -284,6 +284,24 @@ export default createStore({
 			console.log(this.state.selectedRooms[0])
 		},
 
+		async postBooking({commit}, data) {
+			let body = {
+				
+			}
+			
+			let requestOptions = {
+				method: 'post',
+				headers: { 'Content-type': 'application/json' },
+				body: JSON.stringify(body)
+			}
+
+			const response = await fetch('/api/Bookings', requestOptions)
+			let result = await response.json()
+			console.log('booking bla bla', result)
+			commit('setReviews', result)
+		},
+
+
 		async postReview({ commit }, data) {
 			console.log(data)
 			let body = {
