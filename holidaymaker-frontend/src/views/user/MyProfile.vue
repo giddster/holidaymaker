@@ -91,50 +91,7 @@
     </div>
   </div>
 </template>
-  <div class="profile-title" ref="top">
-    <div class="div1"> 
-<h4><i class="fas fa-user-alt"></i> Profile details</h4>
-<br>
-            <p>First name: </p>
-            <p>Last name: </p>
-            <p>Address:  XXX, ZIPCODE, CITY</p>
-            <p>Country: </p>
-            <p>E-mail</p>
-            <p>Phone number: </p>
-            <button class="btn btn-info">Edit profile details</button> 
-  </div>
-
-    <div class="div2"> 
-
-    <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
-    <br>
-             <p><i class="fas fa-hotel"></i> Hotel X</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p>
-             <hr>
-             <p><i class="fas fa-hotel"></i> Hotel Y</p>
-             <p><i class="fas fa-map-marked-alt"></i> Address: </p>
-
-
-   </div>
-</div>
-<div class="profile-title" ref="top">
-
-<div class="div3">
- <h4><i class="fas fa-hotel"></i> My bookings</h4>
- <br>
-            TAB BETWEEN THESE
-            <p>Pending: </p>
-            <p>Completed: </p>
-</div>
-
-<div class="div4">
-
-</div>
-
-</div>
-
- 
-</template>
+  
 
 <script>
 import { mapActions } from "vuex";
@@ -206,8 +163,7 @@ export default {
   grid-row-gap: 0px;
   margin-top: 20px;
   margin-left: 20px;
-<style>
-
+}
 .profile-title {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -254,7 +210,7 @@ export default {
 .div3 {
   grid-area: 1 / 3 / 2 / 4;
 }
-</style>>
+
 .div4 { 
     grid-area: 1 / 3 / 2 / 4; 
 }

@@ -245,6 +245,7 @@ export default createStore({
 			let result = await response.json()
 			console.log('resultat från backend', result)
 			commit('setFavoriteHotel', result)
+			alert('Added to your favorite hotels')
 
 		},
 

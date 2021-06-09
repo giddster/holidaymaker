@@ -1,7 +1,7 @@
 <template>
         <div class="paymentsucceeded">
             <h1>Payment successful!</h1>
-            <h3>Booking number: XXX</h3>
+            <i>You will receive an e-mail with booking details shortly.</i>
             <h4>Start packing your bags!</h4>
             <router-link to="/" class="btn btn-lg btn-primary">Back to homepage</router-link>
         </div>
