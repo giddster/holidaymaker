@@ -1,10 +1,10 @@
 <template>
   <div class="profile-parent">
     <div class="profile-details">
-      <h2 class="profile-title">My Profile</h2>
+   <h4><i class="fas fa-user-alt"></i> Profile details</h4>
 
       <div class="form">
-        <h4><i class="fas fa-user-alt"></i> Profile details</h4>
+        
         <form id="editProfileForm" class="edit-profile-form">
           <p class="profile-parent-input">First name:</p>
           <input
