@@ -3,6 +3,7 @@
     <div class="profile-details">
    <h4><i class="fas fa-user-alt"></i> Profile details</h4>
 
+
       <div class="form">
         
         <form id="editProfileForm" class="edit-profile-form">
@@ -68,11 +69,14 @@
             </button>
           </div>
         </form>
+
+       
       </div>
     </div>
 
     <div class="profile-bookings">
       <h4><i class="fas fa-hotel"></i> My bookings</h4>
+      <br>
       TAB BETWEEN THESE
       <p>Pending:</p>
       <p>Completed:</p>
@@ -81,6 +85,7 @@
     <div class="profile-favoritehotels">
       <ul style="list-style: none">
         <h4><i class="fas fa-heart"></i> My favorite hotels</h4>
+        <br>
 
         <li v-for="favoritehotel in getFavoriteHotels" :key="favoritehotel.id">
 
