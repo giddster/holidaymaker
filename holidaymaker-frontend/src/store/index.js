@@ -284,6 +284,39 @@ export default createStore({
 			console.log(this.state.selectedRooms[0])
 		},
 
+		async submit ({ commit }) {
+			var booking = {
+			  CheckInDate: '2021-06-09T18:05:19.617Z',
+			  CheckOutDate: '2021-06-10T18:05:19.617Z', 
+			  NoOfAdults: 0,
+			  NoOfChildren: 0,
+			  IsPending: true,
+			  IsCancelled: false,
+			  TotalPrice: 100,
+			  FlightId: 1,
+			  CustomerId: 59
+			}
+	  
+			let requestOptions = {
+					  method: 'post',
+					  headers: { 'Content-type': 'application/json' },
+					  body: JSON.stringify(booking)
+				  }
+	  
+				  const response = await fetch('/api/Bookings', requestOptions)
+				  let result = await response.json()
+			console.log(result)
+			
+			let input = this.$store.state.totalBookingPrice
+			let finalTotal = 0
+	  
+			finalTotal = parseInt(input.price)
+			
+			this.lineItems[0].quantity = finalTotal
+			// You will be redirected to Stripe's secure checkout page
+			// this.$refs.checkoutRef.redirectToCheckout();
+		  },
+		
 		async postBooking({commit}, data) {
 			let body = {
 				

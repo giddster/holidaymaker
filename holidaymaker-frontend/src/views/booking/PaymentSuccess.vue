@@ -10,7 +10,19 @@
 
 <script>
 export default {
-//GÖR EN HOOK SOM SPARAR BOKNINGEN TILL DATABASEN HÄR
+async created() {
+    var booking = {}
+
+      let requestOptions = {
+				method: 'post',
+				headers: { 'Content-type': 'application/json' },
+				body: JSON.stringify(booking)
+			}
+
+			const response = await fetch('/api/Bookings', requestOptions)
+			let result = await response.json()
+      console.log(result)
+    }
 }
 </script>
 

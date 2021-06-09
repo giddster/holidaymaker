@@ -36,15 +36,38 @@ export default {
     
   },
   methods: {
-    submit () {
-      let input = this.$store.state.totalBookingPrice
-      let finalTotal = 0
+     submit () {
+       this.$store.dispatch('submit')
+    //   var booking = {
+    //     CheckInDate: this.$store.state.dates.CheckInDate,
+    //     CheckOutDate: this.$store.state.dates.CheckOutDate, 
+    //     NoOfAdults: 0,
+    //     NoOfChildren: 0,
+    //     IsPending: true,
+    //     IsCancelled: false,
+    //     TotalPrice: this.$store.state.totalBookingPrice,
+    //     FlightId: 1,
+    //     CustomerId: 59
+    //   }
 
-      finalTotal = parseInt(input.price)
+    //   let requestOptions = {
+		// 		method: 'post',
+		// 		headers: { 'Content-type': 'application/json' },
+		// 		body: JSON.stringify(booking)
+		// 	}
+
+		// 	const response = await fetch('/api/Bookings', requestOptions)
+		// 	let result = await response.json()
+    //   console.log(result)
       
-      this.lineItems[0].quantity = finalTotal
-      // You will be redirected to Stripe's secure checkout page
-      this.$refs.checkoutRef.redirectToCheckout();
+    //   let input = this.$store.state.totalBookingPrice
+    //   let finalTotal = 0
+
+    //   finalTotal = parseInt(input.price)
+      
+    //   this.lineItems[0].quantity = finalTotal
+    //   // You will be redirected to Stripe's secure checkout page
+    //   // this.$refs.checkoutRef.redirectToCheckout();
     },
   },
 };
