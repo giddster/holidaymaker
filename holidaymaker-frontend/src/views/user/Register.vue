@@ -1,7 +1,16 @@
 <template>
-  <body>
+
+  <div class="register-title" ref="top">
+    <div class="div1"> 
+<h4><i class="fas fa-user-alt" ></i> Create your HolidayMaker account</h4>
+<br>
+
+  
     <div class="register-page">
-      <div class="form">
+
+    
+   <center> <h4>Create a new account</h4></center>
+      <div class="form" >
         <form id ="registerForm" class="register-form">
           
           <input
@@ -23,7 +32,9 @@
             placeholder="Confirm password"
           />
 
-          <button @click.prevent="handleUserRegister">Register</button>
+      <button class="btn btn-info" @click.prevent="handleUserRegister">Register</button> 
+
+      
           <p class="message">
             Already Registered? <router-link to="/login">Login</router-link>
           </p>
@@ -31,6 +42,9 @@
           
         </form>
       </div>
+
+
+  
     </div>
 
     <transition name="fade">
@@ -39,7 +53,10 @@
             <slot>
               <h3 id="custom">{{ message }}</h3>
             </slot>
-            <button class="btnModal" @click="close">CLOSE</button>
+            <br>
+            <center>
+            <button class="btn btn-info" @click="close">Close</button>
+            </center>
           </div>
         </div>
       </transition>
@@ -49,13 +66,26 @@
           <div class="window">
             <slot>
               <h3 id="custom">{{ message }}</h3>
+              <br>
             </slot>
-            <button class="btnModal" @click="closeConfirmPass">CLOSE</button>
+            <center>
+            <button class="btn btn-info" @click="closeConfirmPass">Close</button>
+            </center>
           </div>
         </div>
       </transition>
 
-  </body>
+  
+
+
+  </div>
+
+
+</div>
+
+
+
+  
 </template>
 
 <script>
@@ -148,23 +178,21 @@ export default {
 };
 </script>
 
-<style scoped>
-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(/src/assets/pic1.jpg);
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-}
+
+
+<style>
+
 .register-page {
   width: 360px;
   padding: 10% 0 0;
   margin: auto;
+  backgroud: #fffFFF;
+  
 }
 .form {
   position: relative;
   z-index: 1;
-  background: rgba(7, 40, 195, 0.8);
+  
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px 45px 15px 45px;
@@ -172,46 +200,31 @@ body {
 }
 .form input {
   font-family: "Roboto", sans-serif;
-  outline: 1;
-  background: #f2f2f2;
+  outline: 0;
+  background: #ffffff;
   width: 100%;
-  border: 0;
+  border: 1;
+  border-color:grey;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 4px;
+  font-color:000000;
+  color:000000;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4caf50;
-  width: 100%;
-  border: 0;
-  padding: 15 px;
-  color: #ffffff;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.form button:hover,
-.form button:active {
-  background: #43a047;
-}
+
+
 .form .message {
   margin: 25px;
-  color: aliceblue;
+  color: 000000;
   font-size: 15px;
+  
 }
 .form .message a {
-  color: #4caf50;
+  color: #000000;
   text-decoration: none;
 }
-
-
-
-
 
 /* Message Modal */
 
@@ -225,7 +238,7 @@ body {
   margin-top: 1em;
   margin-left: 21%;
   padding: 15px 30px;
-  background-color: #e7e7e7;
+  background-color: #fffffff;
   color: black;
   font-size: 16px;
   border-radius: 5px;
@@ -261,9 +274,37 @@ body {
   background: rgb(233, 232, 253);
   border-radius: 5px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 480px;
+  max-width: 200x;
   margin-left: auto;
   margin-right: auto;
   padding: 1.75rem;
 }
+
+.register-title {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: rgb(246, 246, 252);
+  margin: 20px auto;
+  padding: 12px;
+  max-width: 80%;
+  border:black;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+}
+
+.empty-div {
+  visibility: hidden;
+}
+
+.div1 { 
+    grid-area: 1 ; 
+}
+
+
+
+
 </style>
