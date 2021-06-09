@@ -81,9 +81,9 @@
 
         <div class="payment-buttons">
             <router-link to="/" class="btn btn-lg btn-danger" style="margin-right:10px;">Cancel booking</router-link>
-            <Payment />
+            <!-- <Payment /> -->
 
-            <button class="btn" @click="PostBooking"></button>
+            <button class="btn" @click="PostBooking"><Payment /></button>
         </div>
         
     </div>
@@ -96,6 +96,11 @@
 import Payment from '@/components/payment/Payment.vue'
 
 export default {
+
+  async beforeDestroyed() {
+    await this.PostBooking()
+  },
+
   data(){
     return {
       lengthOfStay: 0,
@@ -180,13 +185,17 @@ export default {
         
   
         for(let room of this.selectedRooms) {
-          bookingXrooms.push(room.id)
+          let xRoom = {
+            roomId: room.id,
+            bookingId: 0,
+          }
+
+          bookingXrooms.push(xRoom)
         }
 
         console.log(bookingXrooms)
 
         let booking = {
-          bookingXroom: bookingXrooms,
           checkInDate: this.dates.checkinDate,
           checkOutDate: this.dates.checkoutDate,
           customerId: this.getCustomerDetails.id,
@@ -194,6 +203,7 @@ export default {
           noOfAdults: this.calculatedNoOfGuests,
           price: this.flightCost,
           totalPrice: this.totalCost,
+          bookingXroom: bookingXrooms,
 
 
       }
@@ -201,7 +211,8 @@ export default {
 
       console.log(booking)
 
-      this.$store.dispatch('postTempBooking', booking)
+      // this.$store.dispatch('postTempBooking', booking)
+      this.$store.dispatch('postBooking', booking)
 
 
       

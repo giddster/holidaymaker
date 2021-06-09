@@ -11,7 +11,8 @@
 <script>
 export default {
     async created() {
-        await this.$store.dispatch('postBooking')
+        let data = {};
+        await this.$store.dispatch('postBooking', data)
     }
 
 //GÖR EN HOOK SOM SPARAR BOKNINGEN TILL DATABASEN HÄR

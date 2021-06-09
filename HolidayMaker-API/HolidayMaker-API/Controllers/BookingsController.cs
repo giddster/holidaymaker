@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -18,6 +19,7 @@ namespace HolidayMaker_API.Controllers
     {
         private readonly HolidayMakerContext _context;
         private readonly CustomerService _customerService;
+        private static Booking PendingBooking;
 
         public BookingsController(HolidayMakerContext context, CustomerService customerService)
         {
@@ -102,43 +104,68 @@ namespace HolidayMaker_API.Controllers
         // POST: api/Bookings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(Booking booking)
+        public async Task<ActionResult<Booking>> PostBooking(InputBooking booking)
         {
+            var tempBooking = new Booking();
+            if (PendingBooking == null)
+            {
+                PendingBooking = new Booking();
+            }
+
             var loggedInUserEmail = User.FindFirstValue(ClaimTypes.Email);
 
             var customerFromDB = _customerService.UserExistsByEmail(loggedInUserEmail);
-
-
-            if (customerFromDB)
+            if (booking.TotalPrice != 0)
             {
+                PendingBooking.Id = (int)booking.Id;
+                PendingBooking.CheckInDate = booking.CheckInDate;
+                PendingBooking.CheckOutDate = booking.CheckOutDate;
+                PendingBooking.NoOfAdults = booking.NoOfAdults;
+                PendingBooking.NoOfChildren = booking.NoOfChildren;
+                PendingBooking.IsPending = booking.IsPending;
+                PendingBooking.IsCancelled = booking.IsCancelled;
+                PendingBooking.TotalPrice = booking.TotalPrice;
+                PendingBooking.FlightId = booking.FlightId;
+                PendingBooking.CustomerId = booking.CustomerId;
+                PendingBooking.BookingXrooms = (ICollection<BookingXroom>)booking.bookingXroom;
 
-                _context.Bookings.Add(booking);
-
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException)
-                {
-                    if (BookingExists(booking.Id))
-                    {
-                        return Conflict();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return Ok(new { Message = "Added booking" });
-
-                //return CreatedAtAction("GetBooking", new { id = booking.Id }, booking);
+                return Ok(new { Message = "Added pending booking" });
             }
             else
             {
-                return BadRequest();
+                if (customerFromDB)
+                {
+
+                    _context.Bookings.Add(PendingBooking);
+
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        if (BookingExists(PendingBooking.Id))
+                        {
+                            return Conflict();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return Ok(new { Message = "Added booking" });
+
+                    //return CreatedAtAction("GetBooking", new { id = booking.Id }, booking);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
+
+
         }
 
 
@@ -178,4 +205,21 @@ namespace HolidayMaker_API.Controllers
             return _context.Bookings.Any(e => e.Id == id);
         }
     }
+
+    public class InputBooking
+    {
+        public int? Id { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public int NoOfAdults { get; set; }
+        public int NoOfChildren { get; set; }
+        public bool IsPending { get; set; }
+        public bool IsCancelled { get; set; }
+        public float TotalPrice { get; set; }
+        public int FlightId { get; set; }
+        public int CustomerId { get; set; }
+
+        public ICollection<BookingXroom> bookingXroom { get; set; }
+    }
 }
+
