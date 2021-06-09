@@ -1,4 +1,5 @@
 import { routerKey } from "vue-router";
+// import { filter } from "core-js/core/array";
 import { createStore } from "vuex";
 import router from "../router/index";
 
@@ -98,6 +99,10 @@ export default createStore({
 		selectedRooms: [],
 
 		totalBookingPrice: {price: 0},
+      	dates: {},
+
+		filter: [],
+
 
 	},
 
