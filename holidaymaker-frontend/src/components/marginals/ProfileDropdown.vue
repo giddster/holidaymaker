@@ -26,7 +26,6 @@
         >Sign out</a
       >
     </div>
-  </div>
 
   <transition name="fade">
     <div class="popup-modal" v-if="isVisible">
@@ -38,6 +37,7 @@
       </div>
     </div>
   </transition>
+  </div>
 </template>
 
 <script>
@@ -55,8 +55,8 @@ export default {
 
   computed: {
 
-    isLoggedIn (){
-      return !!this.$store.state.customers.email
+    async isLoggedIn (){
+      return await !!this.$store.state.customers.email
     }
 
   },
@@ -71,25 +71,28 @@ export default {
       let result = !!this.$store.state.customers.email
 
       console.log(result);
+      console.log(this.isLoggedIn);
 
       if (!result) {
-        this.open1("You have been logged off");
+      // if (!this.isLoggedIn) {
+
+        this.open("You have been logged off");
         // alert('You have been logged off')
         router.push('/')
       } else {
-        //this.open1("Logout Failed");
-        alert('Logout Failed')
+        this.open("Logout Failed");
+        //alert('Logout Failed')
         router.push('/')
 
       }
     },
 
-    open1(message) {
+    open(message) {
       this.message = message;
       this.isVisible = true;
     },
 
-    close1() {
+    close() {
       router.push("/");
       this.isVisible = false;
     },

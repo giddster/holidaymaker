@@ -1,7 +1,7 @@
 <template>
   <div class="profile-parent">
     <div class="profile-details">
-      <h2 class="profile-title">My Profile</h2>
+      <!-- <h2 class="profile-title">My Profile</h2> -->
 
       <div class="form">
         <h4><i class="fas fa-user-alt"></i> Profile details</h4>
@@ -45,7 +45,7 @@
           />
 
           <p class="profile-parent-input">E-mail</p>
-          <input type="text" disabled="true" v-model="thisLoggedInUser.email" />
+          <input readonly type="text" disabled="true" v-model="thisLoggedInUser.email" />
 
           <p class="profile-parent-input">Phone number:</p>
           <input type="text" disabled="true" v-model="thisLoggedInUser.phone" />
@@ -72,10 +72,26 @@
     </div>
 
     <div class="profile-bookings">
-      <h4><i class="fas fa-hotel"></i> My bookings</h4>
-      TAB BETWEEN THESE
-      <p>Pending:</p>
-      <p>Completed:</p>
+        <ul style="list-style: none">
+          <h4><i class="fas fa-hotel"></i> My bookings</h4>
+
+          <li v-for="booking in getCustomerBookings" :key="booking.id">
+
+            <!-- console.log(booking) -->
+
+            <p><i class="fas fa-hotel"></i> Booking id: {{ booking.id }}</p>  
+            <!-- <p>Hotel:  </p> -->
+
+            <p v-if="booking.isPending"><i class="fas fa-plane-departure"></i> Trip pending</p>
+            <p v-else ><i class="fas fa-plane-arrival"></i> Trip completed</p>
+            <!-- <i class="fas fa-check"></i> -->
+            <!-- <br> -->
+            <hr>
+
+          </li>
+
+        </ul>
+
     </div>
 
     <div class="profile-favoritehotels">
@@ -86,6 +102,9 @@
 
           <p><i class="fas fa-hotel"></i> {{ favoritehotel.hotel.name }}</p>
           <p><i class="fas fa-map-marked-alt"></i> {{ favoritehotel.hotel.address }}</p>
+
+          <hr>
+
         </li>
       </ul>
     </div>

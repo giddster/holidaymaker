@@ -77,8 +77,8 @@ export default {
 
   computed: {
 
-    isLoggedIn (){
-      return !!this.$store.state.customers.email
+    async isLoggedIn (){
+      return await !!this.$store.state.customers.email
     },
   
   },
@@ -119,7 +119,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 
 .login-page {
   width: 360px;
@@ -175,7 +175,7 @@ export default {
 .btnModal {
   font-family: "Roboto", sans-serif;
   margin-top: 1em;
-  margin-left: 21%;
+  margin-left: 13%;
   padding: 15px 30px;
   background-color: white;
   color: black;
