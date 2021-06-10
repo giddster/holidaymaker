@@ -1,6 +1,6 @@
 <template>
 <div class="hotelHeader">
-    <h2 v-if="filteredHotels.length > 0">Your results for CITY, COUNTRY</h2>
+    <h2 v-if="filteredHotels.length > 0">Your results for "{{ search }}"</h2>
     <h2 v-else><i>Sorry, we couldn't find hotels for that search!</i></h2>
 </div>
 
@@ -99,6 +99,9 @@ data(){
 
 computed: {
    
+   search() {
+            return this.$store.state.search
+    },
 
     hotels(){
         
