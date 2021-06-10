@@ -108,8 +108,8 @@ export default {
   },
 
   computed: {
-    isLoggedIn (){
-      return !!this.$store.state.customers.email
+    async isLoggedIn (){
+      return await !!this.$store.state.customers.email
     }
   },
 
@@ -131,21 +131,18 @@ export default {
         if(user.password === user.UserPasswordConfirmation){
 
             let response = await this.registerUser(user)
-            
+
+            console.log(this.isLoggedIn)
 
             if(this.isLoggedIn){
-                // alert('User Registration Successful')
                 this.open("Registration Successful");
                 document.getElementById("registerForm").reset();
-
             }
             else{
               this.openConfirmPass("Registration Failed");
-                // alert('User Registartion Failed')
             }
         }
         else{
-            // alert('Wrong password')
             this.openConfirmPass("Confirm Password");
         }
     },
@@ -156,10 +153,9 @@ export default {
     },
 
     close() {
-      this.isVisible = false;
       document.getElementById("registerForm").reset();
-      // this.$forceUpdate();
-      //router.push("/");
+      router.push("/");
+      this.isVisible = false;
     },
 
     openConfirmPass(message) {
@@ -169,9 +165,6 @@ export default {
 
     closeConfirmPass() {
       this.isVisibleConfirmPass = false;
-      //document.getElementById("registerForm").reset();
-      // this.$forceUpdate();
-      //router.push("/");
     },
     
   },
